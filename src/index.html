@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Orgo Type</title>
+<meta name="description" content="Learn organic chemistry by its patterns: spaced, mixed retrieval practice for carbonyl chemistry and synthesis.">
+<meta name="theme-color" content="#0f141b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Orgo Type">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif&display=swap">
+<script>try{var t=(JSON.parse(localStorage.getItem("orgotype.v1"))||{}).look;if(t&&t.theme)document.documentElement.dataset.theme=t.theme}catch(e){}</script>
+<style>
+/*@CSS@*/
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">Orgo <i>Type</i></div>
+    <button class="pill" id="themeBtn">Theme</button>
+  </header>
+
+  <section>
+    <div class="eyebrow">Carbonyl chemistry · four patterns</div>
+    <h1>Most of Orgo 2 runs on four mechanisms.</h1>
+    <p class="lead">Aldol, Claisen, Grignard and Michael look like separate reactions, but they're the same few moves. Practice cards are coming. For now, this preview checks that molecules draw correctly on your device.</p>
+  </section>
+
+  <div class="eyebrow">The patterns</div>
+  <section class="patterns" id="patterns" aria-label="The four mechanism patterns"></section>
+
+  <div class="eyebrow">Molecule bench · tap an atom</div>
+  <section class="bench">
+    <div class="chips" id="chips"></div>
+    <form class="smirow" id="smiForm">
+      <input id="smi" aria-label="SMILES" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go">
+      <button class="btn primary">Draw</button>
+    </form>
+    <div class="mol benchmol" id="benchMol"></div>
+    <div class="readout" id="readout"></div>
+  </section>
+
+  <footer class="foot">
+    <span id="fVer"></span><span id="fRd">RDKit loading…</span><span id="fOff"></span>
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script>
+"use strict";
+(() => {
+/*@JS@*/
+})();
+</script>
+</body>
+</html>

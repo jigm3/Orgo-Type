@@ -1,0 +1,32 @@
+/* Design tokens. Same family as Anatomy Type: dark by default, three light themes (Paper, Sage, Blueprint). */
+:root{
+  --bg:#0f141b; --bg2:#141b24; --bgtop:#18212c; --card:rgba(20,27,36,.72);
+  --line:#222b36; --line2:#2e3946;
+  --ink:#ffffff; --soft:#e7e3db; --mute:#8a939f; --ghost:#4a525e;
+  --accent:#f0b44c; --accent2:#7fb2ff; --ok:#8fdcaa; --bad:#ff6f61;
+  --f-body:"Geist","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --f-display:"Instrument Serif",Georgia,serif;
+  color-scheme:dark;
+}
+html[data-theme="paper"]{
+  --bg:#ebe5d9; --bg2:#e3dccd; --bgtop:#f4efe5; --card:rgba(255,255,255,.7);
+  --line:#d3cbbb; --line2:#bfb6a5;
+  --ink:#1d232b; --soft:#3a3f46; --mute:#6b6458; --ghost:#a39b8f;
+  --accent:#b9761a; --accent2:#2c5fc4; --ok:#2e8a46; --bad:#c8382b;
+  color-scheme:light;
+}
+html[data-theme="sage"]{
+  --bg:#dfe5dd; --bg2:#d4dcd2; --bgtop:#ecf0ea; --card:rgba(255,255,255,.7);
+  --line:#c3cdc1; --line2:#aab7a8;
+  --ink:#1f2a23; --soft:#34413a; --mute:#5f6d63; --ghost:#8f9e93;
+  --accent:#a86a12; --accent2:#2c5fc4; --ok:#2e8a46; --bad:#c8382b;
+  color-scheme:light;
+}
+html[data-theme="blueprint"]{
+  --bg:#dde5ee; --bg2:#d2dbe6; --bgtop:#eaf0f6; --card:rgba(255,255,255,.72);
+  --line:#c2cddb; --line2:#a8b6c8;
+  --ink:#16202c; --soft:#2e3c4c; --mute:#5b6b80; --ghost:#7f93a9;
+  --accent:#a86a12; --accent2:#2350b0; --ok:#2e8a46; --bad:#c8382b;
+  color-scheme:light;
+}
