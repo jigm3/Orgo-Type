@@ -14,6 +14,22 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The Grignard's C–Mg electrons attack the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[CH3:4]", "[CH3:5][Mg:6][Br:7]"],
+          "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}],
+          "note": "The C–Mg bond is polarized C(δ−)–Mg(δ+), so the carbon acts like a carbanion."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][C:2]([O-:3])([CH3:4])[CH3:5]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "H3O+ is added only after the Grignard is used up: acid would destroy the Grignard reagent."
+        }
+      ]
+    },
     "why": "The C=O carbon is electrophilic and the Grignard carbon is a strong carbon nucleophile. A ketone has no leaving group, so the methyl just adds; acid workup then protonates the alkoxide.",
     "traps": [
       {
@@ -74,6 +90,22 @@
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from NaBH4 attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]=[O:5]", "[H-:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "The real hydride donor is the B–H bond of BH4⁻; it is drawn here as H⁻."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][O-:5]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "In practice the methanol solvent often supplies this proton before workup."
+        }
+      ]
+    },
     "why": "NaBH4 is a source of hydride (H⁻), a nucleophile that adds to the electrophilic C=O carbon. An aldehyde has no leaving group, so H just adds; protonating the alkoxide gives a 1° alcohol.",
     "traps": [
       {
@@ -91,7 +123,7 @@
     ],
     "confusableWith": ["u1-nabh4-ketone", "u1-lialh4-ketone", "u1-grignard-formaldehyde", "u2-ester-dibal-aldehyde"],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card.",
+    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. Mechanism: the alkoxide is protonated by H3O+ workup (as in reagentDisplay); with NaBH4 in MeOH the solvent usually does this.",
     "verified": false,
     "verifiedBy": null
   },
@@ -109,6 +141,22 @@
       "nucleophileAtom": 8,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from NaBH4 attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H-:8]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}],
+          "note": "The real hydride donor is the B–H bond of BH4⁻; it is drawn here as H⁻."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[O-:1][CH:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "In practice the methanol solvent often supplies this proton before workup."
+        }
+      ]
     },
     "why": "Hydride from NaBH4 adds to the electrophilic C=O carbon and the π electrons go to oxygen. A ketone has no leaving group, so the alkoxide just gets protonated, giving a 2° alcohol.",
     "traps": [
@@ -134,7 +182,7 @@
       "u1-clemmensen"
     ],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card.",
+    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. Mechanism: the alkoxide is protonated by H3O+ workup (as in reagentDisplay); with NaBH4 in MeOH the solvent usually does this.",
     "verified": false,
     "verifiedBy": null
   },
@@ -152,6 +200,22 @@
       "nucleophileAtom": 6,
       "electrophileAtom": 3,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from LiAlH4 attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][CH2:2][C:3](=[O:4])[CH3:5]", "[H-:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}],
+          "note": "Hydride can attack either face of the flat C=O, so the new stereocenter forms as a racemic mixture."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][CH2:2][CH:3]([O-:4])[CH3:5]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "LiAlH4 reacts violently with water, so the proton source is added only in a separate workup step."
+        }
+      ]
     },
     "why": "LiAlH4 delivers hydride to the electrophilic C=O carbon, giving an alkoxide. LiAlH4 reacts violently with water and alcohols, so it is used in dry ether first and the alkoxide is protonated in a separate H3O+ workup step.",
     "traps": [
@@ -188,6 +252,21 @@
       "nucleophileAtom": 4,
       "electrophileAtom": 1,
       "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The ethyl carbon of the Grignard attacks the formaldehyde carbon; the π electrons move onto oxygen",
+          "species": ["[CH2:1]=[O:2]", "[CH3:3][CH2:4][Mg:5][Br:6]"],
+          "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}],
+          "note": "Formaldehyde has no carbon groups on C=O, so the product is a 1° alcohol with one more carbon."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:3][CH2:4][CH2:1][O-:2]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        }
+      ]
     },
     "why": "The Grignard carbon is a strong carbon nucleophile and attacks the electrophilic C=O carbon of formaldehyde. Formaldehyde's carbon carries two H's, so after acid workup it becomes a CH2OH: a 1° alcohol with one more carbon than the Grignard.",
     "traps": [
@@ -238,6 +317,21 @@
       "electrophileAtom": 3,
       "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The Grignard's methyl carbon attacks the aldehyde carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][CH2:2][CH:3]=[O:4]", "[CH3:5][Mg:6][Br:7]"],
+          "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}],
+          "note": "An aldehyde carbon carries one H and one R group, so adding a second R gives a 2° alcohol."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][CH2:2][CH:3]([O-:4])[CH3:5]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        }
+      ]
+    },
     "why": "The Grignard carbon attacks the electrophilic aldehyde carbon, and the C=O π electrons go to oxygen. An aldehyde carbon already has one carbon group and one H, so adding a second carbon group gives a 2° alcohol after acid workup.",
     "traps": [
       {
@@ -287,6 +381,21 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The acetylide carbon's lone pair attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[CH3:4]", "[CH:5]#[C-:6].[Na+:7]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}],
+          "note": "The new C–C bond is to the carbon that carried the negative charge, so the triple bond stays intact."
+        },
+        {
+          "label": "Acid workup: the alkoxide oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][C:2]([O-:3])([CH3:4])[C:6]#[CH:5]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        }
+      ]
+    },
     "why": "The acetylide carbon carries a negative charge, so it is a good carbon nucleophile, and it adds to the electrophilic C=O carbon of acetone. A ketone has no leaving group, so it just adds; H3O+ workup protonates the alkoxide to give a 3° alcohol that keeps the triple bond.",
     "traps": [
       {
@@ -335,6 +444,22 @@
       "nucleophileAtom": 5,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Cyanide's carbon attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[CH3:4]", "[C-:5]#[N:6].[Na+:7]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}],
+          "note": "Cyanide attacks through carbon (the negatively charged atom), forming a new C–C bond."
+        },
+        {
+          "label": "The alkoxide takes a proton from HCN, regenerating cyanide",
+          "species": ["[CH3:1][C:2]([O-:3])([CH3:4])[C:5]#[N:6]", "[H:30][C:31]#[N:32]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "This step makes a new CN⁻, which is why only a catalytic amount of NaCN is needed."
+        }
+      ]
     },
     "why": "Cyanide's carbon is the nucleophile and attacks the electrophilic C=O carbon. The alkoxide is then protonated by HCN (which regenerates cyanide), giving a cyanohydrin: OH and CN on the same carbon.",
     "traps": [
@@ -386,6 +511,27 @@
       "electrophileAtom": 1,
       "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The carbonyl oxygen takes a proton from H3O+",
+          "species": ["[CH2:1]=[O:2]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "Protonation makes the carbonyl carbon much more electrophilic, so even weak nucleophiles like water can add."
+        },
+        {
+          "label": "Water attacks the protonated carbonyl carbon",
+          "species": ["[CH2:1]=[O+:2][H:30]", "[OH2:3]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}]
+        },
+        {
+          "label": "Water removes a proton from the oxonium ion, giving the hydrate and regenerating H3O+",
+          "species": ["[H:32][OH+:3][CH2:1][OH:2]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 32}}, {"from": {"bond": [32, 3]}, "to": {"atom": 3}}],
+          "note": "The acid is regenerated, so it is a catalyst. Every step is reversible."
+        }
+      ]
+    },
     "why": "Water is a weak nucleophile, so acid helps by protonating the C=O and making the carbon more electrophilic. Water adds, a proton is lost, and the product is a gem-diol (hydrate). Formaldehyde has no carbon groups to stabilize the C=O, so the equilibrium lies almost fully on the hydrate side.",
     "traps": [
       {
@@ -424,6 +570,52 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 9]}, "to": {"atom": 9}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The carbonyl oxygen takes a proton from protonated methanol (the acid catalyst)",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:32][OH+:31][H:30]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "In methanol, the strongest acid present is CH3OH2+."
+        },
+        {
+          "label": "Methanol attacks the protonated carbonyl carbon",
+          "species": ["[H:30][O+:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:8][O:9][H:33]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Methanol removes the proton from the oxonium ion, giving the hemiacetal",
+          "species": ["[CH3:8][O+:9]([H:33])[C:2]1([OH:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:32][OH:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 33}}, {"from": {"bond": [33, 9]}, "to": {"atom": 9}}],
+          "note": "The hemiacetal (one OH, one OCH3 on the same carbon) is the halfway point."
+        },
+        {
+          "label": "The OH group takes a proton, turning it into a good leaving group",
+          "species": ["[CH3:8][O:9][C:2]1([OH:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:32][OH+:31][H:33]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 33}}, {"from": {"bond": [33, 31]}, "to": {"atom": 31}}],
+          "note": "OH⁻ is a poor leaving group; water is a good one."
+        },
+        {
+          "label": "Water leaves, pushed out by a lone pair on the OCH3 oxygen, giving an oxocarbenium ion",
+          "species": ["[CH3:8][O:9][C:2]1([OH2+:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [9, 2]}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}],
+          "note": "Removing this water (Dean–Stark trap or drying agent) drives the equilibrium toward the acetal."
+        },
+        {
+          "label": "A second methanol attacks the oxocarbenium carbon",
+          "species": ["[CH3:8][O+:9]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:10][O:11][H:36]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Methanol removes the last proton, giving the acetal and regenerating the acid catalyst",
+          "species": [
+            "[CH3:8][O:9][C:2]1([O+:11]([H:36])[CH3:10])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH3:38][OH:37]"
+          ],
+          "arrows": [{"from": {"lonePair": 37}, "to": {"atom": 36}}, {"from": {"bond": [36, 11]}, "to": {"atom": 11}}]
+        }
+      ]
+    },
     "why": "Acid makes the C=O carbon electrophilic, methanol adds to give a hemiacetal, and acid turns its OH into water, a good leaving group. Losing water gives an oxocarbenium ion, which a second methanol attacks. Removing water drives the equilibrium to the acetal.",
     "traps": [
       {
@@ -441,7 +633,7 @@
     ],
     "confusableWith": ["u1-cyclic-acetal", "u1-acetal-hydrolysis", "u1-hydrate"],
     "tags": ["acetal", "acid catalysis", "equilibrium"],
-    "review": "Key step drilled is the second methanol attacking the oxocarbenium ion (the step that makes the acetal, not just the hemiacetal). The same choice is used for the cyclic acetal and for acetal hydrolysis (water attacking the oxocarbenium).",
+    "review": "Key step drilled is the second methanol attacking the oxocarbenium ion (the step that makes the acetal, not just the hemiacetal). The same choice is used for the cyclic acetal and for acetal hydrolysis (water attacking the oxocarbenium). Mechanism: protonated methanol is the acid and methanol the base throughout (the H+ catalyst in methanol solvent).",
     "verified": false,
     "verifiedBy": null
   },
@@ -469,6 +661,49 @@
       "nucleophileAtom": 11,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The carbonyl oxygen takes a proton from H3O+",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "One OH of ethylene glycol attacks the protonated carbonyl carbon",
+          "species": ["[H:30][O+:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:33][O:8][CH2:9][CH2:10][OH:11]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Water removes the proton from the oxonium ion, giving the hemiacetal",
+          "species": [
+            "[OH:11][CH2:10][CH2:9][O+:8]([H:33])[C:2]1([OH:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 33}}, {"from": {"bond": [33, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The OH group takes a proton, turning it into a good leaving group",
+          "species": ["[OH:11][CH2:10][CH2:9][O:8][C:2]1([OH:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:33][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 33}}, {"from": {"bond": [33, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water leaves, pushed out by a lone pair on the ring-to-be oxygen, giving an oxocarbenium ion",
+          "species": ["[OH:11][CH2:10][CH2:9][O:8][C:2]1([OH2+:1])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [8, 2]}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "The second OH of the same glycol attacks the oxocarbenium carbon, closing a 5-membered ring",
+          "species": ["[H:34][O:11][CH2:10][CH2:9][O+:8]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 8]}, "to": {"atom": 8}}],
+          "note": "Because the second OH is on the same molecule, this ring closure is fast and entropically favoured."
+        },
+        {
+          "label": "Water removes the last proton, giving the cyclic acetal and regenerating H3O+",
+          "species": ["[H:34][O+:11]1[CH2:10][CH2:9][O:8][C:2]12[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]2", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 34}}, {"from": {"bond": [34, 11]}, "to": {"atom": 11}}]
+        }
+      ]
     },
     "why": "It's acetal formation with both OH groups on one molecule: one OH adds, water leaves, and the second OH closes a five-membered ring on the oxocarbenium ion. The cyclic acetal is unreactive toward bases, Grignards and hydrides, so it protects a ketone; H3O+ removes it later.",
     "traps": [
@@ -507,6 +742,47 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "One OCH3 oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][C:2]([O:3][CH3:4])([O:5][CH3:6])[CH3:7]", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "Acetals are stable to base; they only fall apart once acid makes the OR group leavable."
+        },
+        {
+          "label": "Methanol leaves, pushed out by a lone pair on the other OCH3, giving an oxocarbenium ion",
+          "species": ["[CH3:1][C:2]([O+:3]([H:30])[CH3:4])([O:5][CH3:6])[CH3:7]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"bond": [5, 2]}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Water attacks the oxocarbenium carbon",
+          "species": ["[CH3:1][C:2]([CH3:7])=[O+:5][CH3:6]", "[H:32][OH:8]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}],
+          "note": "Excess water pushes every equilibrium toward hydrolysis: the acetal mechanism run backward."
+        },
+        {
+          "label": "Water removes a proton from the oxonium ion, giving the hemiacetal",
+          "species": ["[CH3:1][C:2]([OH+:8][H:32])([O:5][CH3:6])[CH3:7]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 32}}, {"from": {"bond": [32, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The remaining OCH3 oxygen takes a proton from H3O+",
+          "species": ["[CH3:1][C:2]([O:8][H:33])([O:5][CH3:6])[CH3:7]", "[H:32][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 32}}, {"from": {"bond": [32, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Methanol leaves, pushed out by a lone pair on the OH oxygen, giving the protonated ketone",
+          "species": ["[CH3:1][C:2]([O:8][H:33])([O+:5]([H:32])[CH3:6])[CH3:7]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [8, 2]}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "Water removes the proton from oxygen, giving the ketone and regenerating H3O+",
+          "species": ["[CH3:1][C:2](=[O+:8][H:33])[CH3:7]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 33}}, {"from": {"bond": [33, 8]}, "to": {"atom": 8}}]
+        }
+      ]
+    },
     "why": "Acetal formation run backwards: acid protonates one OCH3 so methanol can leave, giving an oxocarbenium ion that water attacks. Repeating this loses the second methanol, and with lots of water the equilibrium goes back to the ketone.",
     "traps": [
       {
@@ -544,6 +820,43 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The amine nitrogen attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:8][NH2:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}],
+          "note": "Mild acid (pH about 4–5) is best: enough to help later steps, not so much that all the amine is protonated."
+        },
+        {
+          "label": "The negatively charged oxygen takes a proton from H3O+",
+          "species": ["[O-:1][C:2]1([NH2+:9][CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water removes a proton from the nitrogen, giving the carbinolamine",
+          "species": ["[OH:1][C:2]1([NH+:9]([H:32])[CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 32}}, {"from": {"bond": [32, 9]}, "to": {"atom": 9}}],
+          "note": "The carbinolamine (OH and N on the same carbon) is the tetrahedral intermediate."
+        },
+        {
+          "label": "The OH group takes a proton, turning it into a good leaving group",
+          "species": ["[OH:1][C:2]1([NH:9][CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:32][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 32}}, {"from": {"bond": [32, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water leaves, pushed out by the nitrogen lone pair, giving an iminium ion",
+          "species": ["[OH2+:1][C:2]1([NH:9][CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [9, 2]}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Water removes the proton from nitrogen, giving the imine",
+          "species": ["[CH3:8][N+:9]([H:33])=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 33}}, {"from": {"bond": [33, 9]}, "to": {"atom": 9}}],
+          "note": "A 1° amine still has an N–H on the iminium, so the proton comes off nitrogen and C=N remains."
+        }
+      ]
+    },
     "why": "The amine's nitrogen lone pair attacks the electrophilic C=O carbon to give a carbinolamine. Mild acid turns the OH into water, which leaves, and because a 1° amine's N still has an H to lose, a C=N double bond (imine) forms.",
     "traps": [
       {
@@ -579,6 +892,57 @@
       "nucleophileAtom": 8,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The pyrrolidine nitrogen attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[NH:8]1[CH2:9][CH2:10][CH2:11][CH2:12]1"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "The negatively charged oxygen takes a proton from H3O+",
+          "species": [
+            "[O-:1][C:2]1([NH+:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[H:30][OH2+:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water removes the proton from nitrogen, giving the carbinolamine",
+          "species": [
+            "[OH:1][C:2]1([N+:8]([H:32])2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 32}}, {"from": {"bond": [32, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The OH group takes a proton, turning it into a good leaving group",
+          "species": [
+            "[OH:1][C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[H:32][OH2+:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 32}}, {"from": {"bond": [32, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water leaves, pushed out by the nitrogen lone pair, giving an iminium ion",
+          "species": ["[OH2+:1][C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [8, 2]}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Water removes a proton from the α-carbon; the C=N π electrons move onto nitrogen, giving the enamine",
+          "species": [
+            "[N+:8]3([CH2:9][CH2:10][CH2:11][CH2:12]3)=[C:2]1[CH:3]([H:33])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:31]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 31}, "to": {"atom": 33}},
+            {"from": {"bond": [33, 3]}, "to": {"bond": [3, 2]}},
+            {"from": {"bond": [2, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "This iminium has no N–H (2° amine), so the proton has to come from the α-carbon instead: C=C–N, not C=N."
+        }
+      ]
     },
     "why": "The nitrogen of pyrrolidine attacks the C=O carbon, and acid helps water leave to give an iminium ion. A 2° amine's N has no H left to lose, so a proton is removed from the α-carbon instead, forming a C=C next to N: an enamine.",
     "traps": [
@@ -624,6 +988,30 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The ylide's negatively charged carbon attacks the carbonyl carbon",
+          "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH2-:8][P+:9](c4ccccc4)(c5ccccc5)c6ccccc6"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}],
+          "note": "The ylide is a carbanion next to P+; written as Ph3P=CH2 it is the same molecule."
+        },
+        {
+          "label": "The alkoxide oxygen bonds to phosphorus, closing a 4-membered oxaphosphetane ring",
+          "species": ["[O-:1][C:2]1([CH2:8][P+:9](c4ccccc4)(c5ccccc5)c6ccccc6)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "The ring breaks apart: C=C forms and P=O forms",
+          "species": ["[O:1]1[C:2]2([CH2:8][P:9]1(c4ccccc4)(c5ccccc5)c6ccccc6)[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]2"],
+          "arrows": [
+            {"from": {"bond": [9, 8]}, "to": {"bond": [8, 2]}},
+            {"from": {"bond": [2, 1]}, "to": {"bond": [1, 9]}}
+          ],
+          "note": "The very strong P=O bond in triphenylphosphine oxide is the driving force."
+        }
+      ]
+    },
     "why": "The ylide's negative carbon attacks the C=O carbon. The oxygen then bonds to phosphorus (oxaphosphetane), and the ring falls apart into the very stable Ph3P=O and a new C=C exactly where the C=O was.",
     "traps": [
       {
@@ -655,7 +1043,7 @@
       ]
     },
     "tags": ["C-C bond", "alkene synthesis", "ylide"],
-    "review": "Arrows show the textbook 'ylide carbon attacks C=O' step (betaine-style picture). Current evidence favours direct [2+2] oxaphosphetane formation; check this simplification is acceptable as the drilled key step.",
+    "review": "Arrows show the textbook 'ylide carbon attacks C=O' step (betaine-style picture). Current evidence favours direct [2+2] oxaphosphetane formation; check this simplification is acceptable as the drilled key step. Mechanism: drawn as betaine (ylide C attacks C=O) → oxaphosphetane → syn-elimination, matching the key step. For unstabilized ylides the oxaphosphetane is now thought to form directly by [2+2]; check the betaine step is acceptable.",
     "verified": false,
     "verifiedBy": null
   },
@@ -675,6 +1063,71 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "A hydrazine nitrogen attacks the carbonyl carbon; the π electrons move onto oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[NH2:10][NH2:11]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}],
+          "note": "Steps 1–5 make the hydrazone, the same way an imine forms."
+        },
+        {
+          "label": "The negatively charged oxygen takes a proton from water",
+          "species": ["[CH3:1][C:2]([O-:3])([NH2+:10][NH2:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:30][OH:31]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Hydroxide removes a proton from the positively charged nitrogen",
+          "species": ["[CH3:1][C:2]([OH:3])([NH+:10]([H:32])[NH2:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 32}}, {"from": {"bond": [32, 10]}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "Hydroxide leaves, pushed out by the nitrogen lone pair",
+          "species": ["[CH3:1][C:2]([OH:3])([NH:10][NH2:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"bond": [10, 2]}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Hydroxide removes the proton from nitrogen, giving the hydrazone",
+          "species": ["[CH3:1][C:2](=[N+:10]([H:34])[NH2:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:3]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 34}}, {"from": {"bond": [34, 10]}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "Hydroxide removes a proton from the terminal NH2",
+          "species": ["[CH3:1][C:2](=[N:10][NH:11][H:36])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:35]"],
+          "arrows": [{"from": {"lonePair": 35}, "to": {"atom": 36}}, {"from": {"bond": [36, 11]}, "to": {"atom": 11}}],
+          "note": "Strong base and heat (about 200 °C in a high-boiling solvent) are what make these N–H steps go."
+        },
+        {
+          "label": "The anion is protonated on carbon by water (through its resonance form)",
+          "species": ["[CH3:1][C:2](=[N:10][NH-:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:37][OH:38]"],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [11, 10]}},
+            {"from": {"bond": [10, 2]}, "to": {"atom": 37}},
+            {"from": {"bond": [37, 38]}, "to": {"atom": 38}}
+          ],
+          "note": "The former carbonyl carbon now has its first new C–H bond."
+        },
+        {
+          "label": "Hydroxide removes the second N–H proton",
+          "species": ["[CH3:1][CH:2]([N:10]=[N:11][H:39])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:38]"],
+          "arrows": [{"from": {"lonePair": 38}, "to": {"atom": 39}}, {"from": {"bond": [39, 11]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "N2 leaves, giving a carbanion",
+          "species": ["[CH3:1][CH:2]([N:10]=[N-:11])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [11, 10]}},
+            {"from": {"bond": [10, 2]}, "to": {"atom": 2}}
+          ],
+          "note": "Loss of N2 gas is irreversible and pulls the whole reaction forward."
+        },
+        {
+          "label": "The carbanion takes a proton from water, giving the CH2 group",
+          "species": ["[CH3:1][CH-:2][c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:40][OH:41]"],
+          "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
+    },
     "why": "Hydrazine's nitrogen attacks the C=O carbon and water is lost, giving a hydrazone (like imine formation). Strong base and heat then remove the N–H protons, N2 gas leaves, and the carbon picks up a second H, so the C=O becomes CH2.",
     "traps": [
       {
@@ -689,7 +1142,7 @@
     ],
     "confusableWith": ["u1-clemmensen", "u1-nabh4-ketone", "u1-imine"],
     "tags": ["reduction", "deoxygenation", "basic conditions"],
-    "review": "Key step drilled is hydrazine N attacking C=O (hydrazone formation, the pattern-A step), not the base-promoted N2 loss that actually makes the CH2. Check that is the step to drill.",
+    "review": "Key step drilled is hydrazine N attacking C=O (hydrazone formation, the pattern-A step), not the base-promoted N2 loss that actually makes the CH2. Check that is the step to drill. Mechanism: hydrazone formation drawn under the basic conditions (water and hydroxide as proton shuttles; hydroxide leaves from the carbinolamine with the N lone pair pushing). Some courses draw it acid-catalysed like imine formation, or start the mechanism from the preformed hydrazone.",
     "verified": false,
     "verifiedBy": null
   },
