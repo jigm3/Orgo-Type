@@ -1,0 +1,110 @@
+[
+  {
+    "id": "lesson-u1",
+    "unit": 1,
+    "title": "Pattern A: nucleophiles add to C=O",
+    "verified": false,
+    "verifiedBy": null,
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Aldehydes and ketones have only C and H on the carbonyl carbon, and neither can leave. So a nucleophile **adds and stays**. A strong nucleophile (Grignard, hydride, acetylide) attacks directly; acid workup then protonates the O⁻ to an alcohol.",
+        "smiles": "[CH3:1][C:2](=[O:3])[CH3:4]",
+        "lit": {"2": "el"}
+      },
+      {
+        "kind": "worked",
+        "reaction": "u1-grignard-ketone",
+        "text": "Watch the two arrows: the C–Mg bond attacks the carbonyl carbon, and the C=O π bond moves onto oxygen."
+      },
+      {
+        "kind": "card",
+        "reaction": "u1-grignard-aldehyde",
+        "card": "arrows",
+        "given": 1,
+        "text": "Same pattern on an aldehyde. The first arrow is drawn; add the second."
+      },
+      {
+        "kind": "card",
+        "reaction": "u1-nabh4-ketone",
+        "card": "where",
+        "text": "Hydride is a nucleophile too."
+      },
+      {
+        "kind": "choice",
+        "text": "NaBH4 turns cyclohexanone into cyclohexanol. Why is there no new carbon in the product?",
+        "options": [
+          {
+            "text": "NaBH4 delivers hydride (H⁻), so the new bond to the carbonyl carbon is C–H, not C–C.",
+            "correct": true,
+            "explains": "Right. Same pattern A attack, but the nucleophile is H⁻. Grignards deliver a carbon, which is why they make new C–C bonds."
+          },
+          {
+            "text": "NaBH4 removes the oxygen.",
+            "explains": "The oxygen stays; it becomes the alcohol OH after workup. Removing the O entirely (C=O → CH2) needs Wolff–Kishner or Clemmensen."
+          },
+          {
+            "text": "Boron bonds to the carbonyl carbon and is removed in workup.",
+            "explains": "Boron ends up on oxygen (as an alkoxyborate), not carbon. The carbonyl carbon gets a hydrogen."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "u1-grignard-formaldehyde", "card": "product", "text": "Now with no help."},
+      {
+        "kind": "read",
+        "text": "Weaker nucleophiles (water, alcohols, amines) need **acid**: protonating the C=O oxygen makes the carbon much more electrophilic. After adding, the O can leave as water, so you get **acetals** (2 ROH), **imines** (1° amine) or **enamines** (2° amine).",
+        "smiles": "[CH3:1][C:2](=[OH+:3])[CH3:4]",
+        "lit": {"2": "el"}
+      },
+      {"kind": "card", "reaction": "u1-imine", "card": "product"},
+      {
+        "kind": "choice",
+        "text": "Cyclohexanone + pyrrolidine (a 2° amine) with acid gives an enamine, not an imine. Why?",
+        "options": [
+          {
+            "text": "After water leaves, the nitrogen has no H left to lose, so a proton is removed from the α-carbon instead, giving C=C–N.",
+            "correct": true,
+            "explains": "Right. A 1° amine's N keeps an H that it can lose to form C=N (imine). A 2° amine's N has none, so the α-C–H gives it up."
+          },
+          {
+            "text": "Pyrrolidine is too bulky to attack the carbonyl.",
+            "explains": "It attacks just fine (that's the first step). The difference is what happens after water leaves."
+          },
+          {
+            "text": "2° amines aren't nucleophilic.",
+            "explains": "2° amines are good nucleophiles. The outcome differs because the N has no N–H left at the end."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "u1-cyanohydrin",
+        "card": "arrows",
+        "text": "Last one: draw both arrows yourself."
+      },
+      {
+        "kind": "choice",
+        "text": "Which carbonyl compound gives a **2°** alcohol with CH3MgBr, then H3O+?",
+        "options": [
+          {
+            "text": "An aldehyde other than formaldehyde, such as propanal.",
+            "correct": true,
+            "explains": "Right: the carbonyl carbon already has one carbon group, the Grignard adds a second, so it ends up with two (2°)."
+          },
+          {
+            "text": "Formaldehyde.",
+            "explains": "Formaldehyde's carbon has no carbon groups, so after the Grignard adds one it's a 1° alcohol."
+          },
+          {
+            "text": "A ketone.",
+            "explains": "A ketone's carbon already has two carbon groups; the Grignard adds a third, giving a 3° alcohol."
+          },
+          {
+            "text": "An ester.",
+            "explains": "Esters take two equivalents of Grignard (add, eliminate, add again), giving a 3° alcohol."
+          }
+        ]
+      }
+    ]
+  }
+]

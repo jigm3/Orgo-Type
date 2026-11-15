@@ -1,0 +1,94 @@
+/* ---------- home: today's session, the pattern map, units and lessons ---------- */
+function renderHome(view) {
+  const s = summary(), st = streak();
+  const empty = !REACTIONS.length;
+  const banner = CONTENT.dev
+    ? `<div class="banner warn"><b>Preview build.</b> These cards haven't been checked by a reviewer yet, so some may contain mistakes. Use “Report a problem” on any card that looks wrong.</div>`
+    : empty ? `<div class="banner">No checked cards yet. While the content is being reviewed, you can try the <a href="dev/">preview build</a>.</div>` : "";
+  const startLabel = s.due + s.newLeft ? `Start · ${s.due} review${s.due === 1 ? "" : "s"}${s.newLeft ? ` + ${s.newLeft} new` : ""}` : "All caught up";
+  // the next lesson to do in an open unit (new cards in that unit wait for it)
+  const nextLesson = UNITS.filter(unitOpen).flatMap(lessonsOfUnit).find(l => !lessonDone(l.id));
+  view.innerHTML = `
+    ${banner}
+    <section class="today">
+      <div class="eyebrow">Today</div>
+      <h1>${s.due + s.newLeft ? (s.due ? "Reviews are waiting." : "Ready for something new.") : nextLesson ? "Start with a short lesson." : studiedToday() ? "Done for today." : "Nothing due right now."}</h1>
+      <div class="stats">
+        <div class="stat"><strong>${st}</strong><small>day streak${studiedToday() ? " · today ✓" : ""}</small></div>
+        <div class="stat"><strong>${s.mastered}</strong><small>of ${s.total} cards mastered</small></div>
+        <div class="stat"><strong>${store.xp || 0}</strong><small>XP</small></div>
+      </div>
+      <div class="actions">${s.due + s.newLeft || !nextLesson ? btn(startLabel, "primary big start", s.due + s.newLeft ? "" : "disabled")
+        : `<a class="btn primary big" href="#/lesson/${encodeURIComponent(nextLesson.id)}">Lesson: ${esc(nextLesson.title)}</a>`}
+        ${s.due + s.newLeft && nextLesson ? `<a class="btn" href="#/lesson/${encodeURIComponent(nextLesson.id)}">Next lesson: ${esc(nextLesson.title)}</a>` : ""}</div>
+      <p class="mute small">Mixed practice from every open unit. Cards you miss come back until you get them; a card is <b>mastered</b> once you've got it right on three separate days.</p>
+    </section>
+
+    <div class="eyebrow">Pattern map</div>
+    <section class="pmap">${patternProgress().map(p => `
+      <div class="ptile" style="--fill:${(100 * p.pct).toFixed(1)}%;--seen:${(100 * p.learned / p.total).toFixed(1)}%">
+        <span class="tag">${esc(p.id)}</span><b>${esc(p.name)}</b>
+        <div class="bar" role="img" aria-label="${p.mastered} of ${p.total} mastered, ${p.learned} learned"><i class="s"></i><i class="m"></i></div>
+        <small>${p.mastered}/${p.total} mastered · ${p.learned} learned</small></div>`).join("") || '<p class="mute">The map fills in as cards are added.</p>'}
+    </section>
+
+    <div class="eyebrow">Units</div>
+    <section class="units">${UNITS.map(unitRow).join("")}</section>
+
+    <div class="eyebrow">The four patterns</div>
+    <section class="patterns" id="patterns"></section>
+    <footer class="foot">
+      <a href="#/settings">Settings &amp; sync</a>${CONTENT.diagnostic.length ? '<a href="#/diag">Check-up quiz</a>' : ""}<a href="review.html">Review sheet</a>${CONTENT.dev ? '<a href="#/bench">Molecule bench</a>' : ""}
+      <span>build ${BUILD_ID}</span><span id="fOff"></span>
+    </footer>`;
+  const st0 = view.querySelector(".start"); if (st0) st0.onclick = () => startSession();
+  view.querySelectorAll("[data-unlock]").forEach(b => b.onclick = () => {
+    const u = isNaN(+b.dataset.unlock) ? b.dataset.unlock : +b.dataset.unlock;
+    if (confirm(`Open “${UNIT_NAME[u]}” now? Its cards build on the earlier units.`)) { settings().unlocked[u] = true; save(); renderHome(view); }
+  });
+  renderPatterns();
+  offlineStatus();
+}
+
+function unitRow(u) {
+  const ids = cardsOfUnit(u), lessons = lessonsOfUnit(u);
+  if (!ids.length && !lessons.length) return "";
+  const st = unitStatus(u), m = masteryOf(ids);
+  const learned = ids.filter(id => cardState(id) && cardState(id).days.length).length;
+  const lessonBtns = lessons.map(l => `<a class="btn sm ${lessonDone(l.id) ? "" : "primary"}" href="#/lesson/${encodeURIComponent(l.id)}">${lessonDone(l.id) ? "Revisit" : "Start"} lesson: ${esc(l.title)}</a>`).join("");
+  const status = !st.open
+    ? `<span class="lock">Locked · opens at 60% of earlier units learned (now ${Math.round(100 * (st.have || 0))}%)</span> <button class="link" data-unlock="${u}">Open now</button>`
+    : ids.length && lessons.some(l => !lessonDone(l.id)) ? `<span class="mute">New cards start after the lesson.</span>` : "";
+  return `<div class="unit ${st.open ? "" : "locked"}">
+    <div class="uhead"><span class="tag">${u === "side" ? "Side deck" : "Unit " + u}</span><b>${esc(UNIT_NAME[u])}</b>
+      <small>${ids.length ? `${learned}/${ids.length} learned · ${m.mastered} mastered` : ""}</small></div>
+    <div class="ubody">${status}${st.open ? lessonBtns : ""}</div></div>`;
+}
+
+/* ---- the four pattern cards (illustrations, not graded content) ---- */
+const PATTERNS = [
+  { id: "A", name: "Nucleophilic addition", smiles: "CC(C)=O", lit: { 1: "accent" },
+    text: "A nucleophile attacks the C=O carbon. Aldehydes and ketones have no leaving group, so it just adds." },
+  { id: "B", name: "Nucleophilic acyl substitution", smiles: "CC(=O)Cl", lit: { 1: "accent", 3: "accent2" },
+    text: "Same attack, but there's a leaving group (blue), so it adds and then eliminates." },
+  { id: "C", name: "1,2 vs 1,4 addition", smiles: "C=CC(C)=O", lit: { 2: "accent", 0: "accent2" },
+    text: "Enones have two electrophilic carbons: hard nucleophiles hit C=O (1,2), soft ones hit the β-carbon (1,4)." },
+  { id: "D", name: "Enolate as nucleophile", smiles: "C=C(C)[O-]", lit: { 0: "accent" },
+    text: "The α-carbon becomes the nucleophile, then runs pattern A, B or C (or SN2)." },
+];
+const litColors = lit => Object.fromEntries(Object.entries(lit).map(([i, v]) => [i, cssVar("--" + v)]));
+function renderPatterns() {
+  const box = $("#patterns"); if (!box) return;
+  box.innerHTML = PATTERNS.map(p => `
+    <article class="pcard"><span class="tag">PATTERN ${p.id}</span><div class="mol" id="pm${p.id}">drawing…</div>
+      <b>${esc(p.name)}</b><p>${esc(p.text)}</p></article>`).join("");
+  PATTERNS.forEach(p => depict(p.smiles, { width: 240, height: 160, highlight: litColors(p.lit) })
+    .then(d => { const el = $("#pm" + p.id); if (el) el.innerHTML = d.svg; })
+    .catch(e => { const el = $("#pm" + p.id); if (el) el.innerHTML = `<span class="err">${esc(e.message)}</span>`; }));
+}
+
+function offlineStatus() {
+  const off = $("#fOff"); if (!off) return;
+  const ok = !!(navigator.serviceWorker && navigator.serviceWorker.controller);
+  off.textContent = ok ? "● ready offline" : "○ not cached yet"; off.className = ok ? "on" : "";
+}

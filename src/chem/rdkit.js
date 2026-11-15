@@ -20,9 +20,9 @@ function loadRDKit() {
   if (rdkitPromise) return rdkitPromise;
   rdkitPromise = new Promise((resolve, reject) => {
     const s = document.createElement("script");
-    s.src = "vendor/rdkit/RDKit_minimal.js?v=" + RDKIT_VERSION;
+    s.src = "__BASE__vendor/rdkit/RDKit_minimal.js?v=" + RDKIT_VERSION;
     s.onload = () => window.initRDKitModule({
-      locateFile: () => "vendor/rdkit/RDKit_minimal.wasm?v=" + RDKIT_VERSION,
+      locateFile: () => "__BASE__vendor/rdkit/RDKit_minimal.wasm?v=" + RDKIT_VERSION,
     }).then(resolve, reject);
     s.onerror = () => reject(new Error("Couldn't load the chemistry engine"));
     document.head.appendChild(s);
@@ -55,34 +55,40 @@ function atomMaps(mol) {
 }
 const stripMaps = smi => smi.replace(/(\[[^\]]*?):\d+\]/g, "$1]");
 
-/* opts: { width, height, highlight:{idx: cssColor}, highlightBonds:{idx: cssColor} } */
+/* opts: { width, height, highlight:{idx: cssColor}, bondLength }
+   Returns { svg, atoms:[{idx,map,el,x,y}], bonds:[{idx,a,b,x,y}], n }. Several molecules can be drawn
+   together by joining SMILES with "." (one drawing, so arrows can cross between them). */
 async function depict(smiles, opts = {}) {
   const RDKit = await loadRDKit();
-  const mapped = RDKit.get_mol(smiles);
+  const KEEP_H = JSON.stringify({ removeHs: false });   // explicit [H:n] atoms are drawn, so arrows can use them
+  const mapped = RDKit.get_mol(smiles, KEEP_H);
   if (!mapped || !mapped.is_valid()) { mapped && mapped.delete(); throw new Error("Not a valid SMILES: " + smiles); }
   const info = atomMaps(mapped); mapped.delete();
-  const mol = RDKit.get_mol(stripMaps(smiles));   // same atom order, no map labels drawn
+  const mol = RDKit.get_mol(stripMaps(smiles), KEEP_H);   // same atom order, no map labels drawn
   try {
     const n = mol.get_num_atoms(), all = [...Array(n).keys()], cols = {};
-    const clear = [0, 0, 0, 0];
-    all.forEach(i => { cols[i] = clear; });
+    all.forEach(i => { cols[i] = [0, 0, 0, 0]; });
     for (const [i, col] of Object.entries(opts.highlight || {})) cols[i] = [...hexToRgb(col), 0.45];
-    const bcols = {};
-    for (const [i, col] of Object.entries(opts.highlightBonds || {})) bcols[i] = [...hexToRgb(col), 0.45];
     const raw = mol.get_svg_with_highlights(JSON.stringify({
       width: opts.width || 300, height: opts.height || 200,
-      atoms: all, highlightAtomColors: cols,
-      bonds: Object.keys(bcols).map(Number), highlightBondColors: bcols,
-      clearBackground: false, bondLineWidth: 2, padding: 0.12,
+      atoms: all, highlightAtomColors: cols, bonds: [],
+      clearBackground: false, bondLineWidth: 2, padding: 0.1,
+      fixedBondLength: opts.bondLength || 34,
       atomColourPalette: molPalette(), highlightRadius: 0.32,
     }));
     const atoms = [...raw.matchAll(/<ellipse cx='([\d.-]+)' cy='([\d.-]+)'[^>]*class='atom-(\d+)'/g)]
       .map(m => ({ idx: +m[3], x: +m[1], y: +m[2] }))
       .sort((a, b) => a.idx - b.idx)
       .map(a => Object.assign(a, info[a.idx] || {}));
+    const seen = new Set(), bonds = [];
+    for (const m of raw.matchAll(/class='bond-(\d+) atom-(\d+) atom-(\d+)'/g)) {
+      if (seen.has(m[1])) continue; seen.add(m[1]);
+      const a = atoms[+m[2]], b = atoms[+m[3]];
+      if (a && b) bonds.push({ idx: +m[1], a: a.idx, b: b.idx, x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
+    }
     const svg = raw.replace(/^[\s\S]*?(<svg)/, "$1").replace(/<!-- END OF HEADER -->/, "")
       .replace(/width='[\d.]+px' height='[\d.]+px'/, "");   // let CSS size it; viewBox keeps the geometry
-    return { svg, atoms, n };
+    return { svg, atoms, bonds, n, width: opts.width || 300, height: opts.height || 200 };
   } finally { mol.delete(); }
 }
 

@@ -30,7 +30,7 @@ ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 REQUIRED = {"id": str, "unit": (int, str), "pattern": str, "title": str, "reactants": list, "reagents": list,
             "reagentDisplay": str, "reagentAliases": list, "product": str, "keyStep": dict, "why": str,
             "traps": list, "confusableWith": list, "tags": list, "verified": bool}
-OPTIONAL = {"byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str}
+OPTIONAL = {"byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str, "retro": dict, "skipCards": list}
 MIN_TRAPS, MAX_TRAPS = 2, 4
 LONE_PAIR_ELEMENTS = {"N", "O", "S", "F", "Cl", "Br", "I", "P"}
 
@@ -49,11 +49,15 @@ class Report:
         return {c for _, c, _ in self.errors}
 
 
+_PARAMS = Chem.SmilesParserParams()
+_PARAMS.removeHs = False  # keep explicit [H:n] atoms so arrows can start or end on a hydrogen (hydrides, E2, proton transfers)
+
+
 def parse(smiles):
-    """Parse and sanitize. Returns a Mol or None."""
+    """Parse and sanitize, keeping explicit hydrogens. Returns a Mol or None."""
     if not isinstance(smiles, str) or not smiles.strip():
         return None
-    return Chem.MolFromSmiles(smiles)  # MolFromSmiles sanitizes by default
+    return Chem.MolFromSmiles(smiles, _PARAMS)  # sanitizes by default
 
 
 def canon(mol):
@@ -61,7 +65,7 @@ def canon(mol):
     m = Chem.Mol(mol)
     for a in m.GetAtoms():
         a.SetAtomMapNum(0)
-    return Chem.MolToSmiles(m)
+    return Chem.MolToSmiles(Chem.RemoveHs(m, sanitize=False))
 
 
 def mapped_atoms(mol):
@@ -106,6 +110,9 @@ def check_record(r, where, rep):
         rep.err(where, "no-aliases", "reagentAliases is empty")
     elif len(aliases) != len(r["reagentAliases"]):
         rep.err(where, "bad-alias", "every alias must be a non-empty string")
+    bad_skip = [c for c in r.get("skipCards", []) if c not in ("where", "arrows", "paper", "change", "back")]
+    if bad_skip:
+        rep.err(where, "bad-skip", f"skipCards can only hide where/arrows/paper/change/back, not {bad_skip}")
     if r["verified"] and not r.get("verifiedBy"):
         rep.err(where, "verified-without-reviewer", "verified is true but verifiedBy is empty")
     if r.get("review"):
@@ -147,6 +154,8 @@ def check_record(r, where, rep):
             rep.err(where, "duplicate-map", f"{label} uses map numbers twice: {d}")
         for a in mol.GetAtoms():
             n = a.GetAtomMapNum()
+            if not n and a.GetAtomicNum() == 1:
+                continue  # hydrogens don't need maps
             if not n:
                 rep.err(where, "unmapped-atom", f"{label} atom {a.GetSymbol()}{a.GetIdx()} has no map number (every product heavy atom must come from a reactant or reagent)")
             elif n not in in_atoms:
@@ -216,8 +225,8 @@ def check_record(r, where, rep):
         elif "bond" in dst:
             b = dst["bond"]
             if isinstance(b, list) and len(b) == 2:
-                for x in b:
-                    atom_ok(x, lab + ".to.bond")
+                if all([atom_ok(x, lab + ".to.bond") for x in b]) and not bond_between(species, *b):
+                    rep.err(where, "no-such-bond", f"{lab}: arrow ends on bond {b[0]}–{b[1]}, which doesn't exist (point at the atom instead)")
             else:
                 rep.err(where, "bad-arrow", f"{lab}.to.bond must be two map numbers")
         else:
@@ -256,6 +265,24 @@ def check_record(r, where, rep):
             rep.err(where, "duplicate-trap", f"traps[{i}] is the same molecule as traps[{seen[tc]}]")
         seen.setdefault(tc, i)
 
+    # ---- retro (one-step-back card) ----
+    retro = r.get("retro")
+    if retro is not None:
+        ds = retro.get("distractors")
+        if not isinstance(ds, list) or not (2 <= len(ds) <= 3):
+            rep.err(where, "retro-count", "retro.distractors needs 2–3 entries")
+            ds = ds if isinstance(ds, list) else []
+        start = ".".join(sorted(canon(m) for m in reactants))
+        for i, d in enumerate(ds):
+            pm = parse(d.get("precursor")) if isinstance(d, dict) else None
+            if pm is None:
+                rep.err(where, "bad-smiles", f"retro.distractors[{i}].precursor does not parse"); continue
+            if not str(d.get("reagent", "")).strip() or not str(d.get("explains", "")).strip():
+                rep.err(where, "retro-incomplete", f"retro.distractors[{i}] needs a reagent and an explanation")
+            if ".".join(sorted(canon(f) for f in Chem.GetMolFrags(Chem.Mol(pm), asMols=True))) == start \
+                    and str(d.get("reagent", "")).strip().lower() == r["reagentDisplay"].strip().lower():
+                rep.err(where, "retro-equals-answer", f"retro.distractors[{i}] is the correct route")
+
     # stash for cross-record checks
     r["_reaction_key"] = ".".join(sorted(canon(m) for m in reactants)) + ">" + \
         ".".join(sorted(canon(m) for m in reagents)) + ">" + pc
@@ -288,6 +315,126 @@ def check_all(records, rep):
             keys.setdefault(k, r.get("id"))
 
 
+LESSON_KINDS = {"read", "tap", "choice", "worked", "card"}
+CARD_TYPES = {"where", "arrows", "product", "reagent", "why", "change", "back", "paper"}
+
+
+def available_types(r):
+    t = set(CARD_TYPES) - set(r.get("skipCards", []))
+    if not r.get("retro"):
+        t.discard("back")
+    return t
+
+
+def check_choice(where, st, rep, label):
+    opts = st.get("options")
+    if not isinstance(opts, list) or not (2 <= len(opts) <= 4):
+        rep.err(where, "choice-options", f"{label}: needs 2–4 options"); return
+    if sum(1 for o in opts if o.get("correct")) != 1:
+        rep.err(where, "choice-correct", f"{label}: exactly one option must be correct")
+    for k, o in enumerate(opts):
+        if not o.get("correct") and not str(o.get("explains", "")).strip():
+            rep.err(where, "trap-no-explanation", f"{label}: wrong option {k} has no explanation")
+        if "smiles" in o and parse(o["smiles"]) is None:
+            rep.err(where, "bad-smiles", f"{label}: option {k} does not parse")
+        if "smiles" not in o and not str(o.get("text", "")).strip():
+            rep.err(where, "choice-empty", f"{label}: option {k} needs text or smiles")
+    smi = [canon(parse(o["smiles"])) for o in opts if "smiles" in o and parse(o["smiles"]) is not None]
+    if len(smi) != len(set(smi)):
+        rep.err(where, "duplicate-trap", f"{label}: two options are the same molecule")
+
+
+def check_lessons(lessons, reactions, rep):
+    rx = {r.get("id"): r for _, r in reactions if isinstance(r, dict)}
+    ids = Counter(l.get("id") for _, l in lessons)
+    for i, n in ids.items():
+        if n > 1:
+            rep.err(f"lesson {i}", "duplicate-id", f"lesson id '{i}' is used {n} times")
+    for where, l in lessons:
+        for k in ("id", "unit", "title", "steps", "verified"):
+            if k not in l:
+                rep.err(where, "missing-field", f"lesson is missing '{k}'")
+        if l.get("unit") not in UNITS:
+            rep.err(where, "bad-unit", f"unit {l.get('unit')!r}")
+        if l.get("verified") and not l.get("verifiedBy"):
+            rep.err(where, "verified-without-reviewer", "verified is true but verifiedBy is empty")
+        if l.get("review"):
+            rep.warn(where, "needs-review", l["review"])
+        for i, st in enumerate(l.get("steps") or []):
+            lab, kind = f"steps[{i}]", st.get("kind")
+            if kind not in LESSON_KINDS:
+                rep.err(where, "bad-step", f"{lab}: kind must be one of {sorted(LESSON_KINDS)}"); continue
+            if kind in ("read", "tap", "choice") and not str(st.get("text", "")).strip():
+                rep.err(where, "empty-text", f"{lab}: needs text")
+            if kind == "read" and len(str(st.get("text", "")).split()) > 90:
+                rep.warn(where, "long-read", f"{lab}: {len(st['text'].split())} words; keep reading steps under ~30 seconds")
+            m = None
+            if st.get("smiles") is not None:
+                m = parse(st["smiles"])
+                if m is None:
+                    rep.err(where, "bad-smiles", f"{lab}: smiles does not parse")
+            maps = set(mapped_atoms(m)) if m is not None else set()
+            if kind == "read":
+                for a, v in (st.get("lit") or {}).items():
+                    if int(a) not in maps or v not in ("nu", "el", "lg"):
+                        rep.err(where, "bad-step-atom", f"{lab}: lit {a}:{v} (map must exist; value nu/el/lg)")
+            if kind == "tap":
+                if m is None:
+                    rep.err(where, "bad-step", f"{lab}: tap needs smiles")
+                if not st.get("answer") or any(a not in maps for a in st.get("answer", [])):
+                    rep.err(where, "bad-step-atom", f"{lab}: answer maps must exist in the smiles")
+                if not str(st.get("explain", "")).strip():
+                    rep.err(where, "trap-no-explanation", f"{lab}: tap needs an explanation")
+            if kind == "choice":
+                check_choice(where, st, rep, lab)
+            if kind in ("worked", "card"):
+                r = rx.get(st.get("reaction"))
+                if not r:
+                    rep.err(where, "unknown-reaction", f"{lab}: reaction '{st.get('reaction')}' doesn't exist"); continue
+                if kind == "card":
+                    if st.get("card") not in available_types(r):
+                        rep.err(where, "bad-card", f"{lab}: card '{st.get('card')}' isn't available for {r['id']}")
+                    g = st.get("given", 0)
+                    if g and (st.get("card") != "arrows" or not (0 < g < len(r["keyStep"]["arrows"]))):
+                        rep.err(where, "bad-given", f"{lab}: given only works on arrows cards and must leave at least one arrow to draw")
+
+
+def check_diagnostic(items, reactions, rep):
+    seen_rx = set()
+    for _, r in reactions:
+        if isinstance(r, dict) and parse(r.get("product")) is not None:
+            seen_rx.add(canon(parse(r["product"])))
+    ids = Counter(q.get("id") for _, q in items)
+    for i, n in ids.items():
+        if n > 1:
+            rep.err(f"quiz {i}", "duplicate-id", f"quiz id '{i}' is used {n} times")
+    pairs = Counter()
+    for where, q in items:
+        for k in ("id", "form", "pattern", "prompt", "options", "verified"):
+            if k not in q:
+                rep.err(where, "missing-field", f"quiz item is missing '{k}'")
+        if q.get("form") not in ("A", "B"):
+            rep.err(where, "bad-form", "form must be A or B")
+        if q.get("pattern") not in PATTERNS | {"SYN"}:
+            rep.err(where, "bad-pattern", f"pattern {q.get('pattern')!r}")
+        if q.get("start") is not None and parse(q["start"]) is None:
+            rep.err(where, "bad-smiles", "start does not parse")
+        check_choice(where, q, rep, "options")
+        right = [o for o in q.get("options", []) if o.get("correct") and "smiles" in o and parse(o["smiles"]) is not None]
+        if right and q.get("start") and canon(parse(right[0]["smiles"])) in seen_rx:
+            rep.warn(where, "in-deck", "the correct product also appears in the deck; the quiz should use new problems")
+        if q.get("verified") and not q.get("verifiedBy"):
+            rep.err(where, "verified-without-reviewer", "verified is true but verifiedBy is empty")
+        if q.get("review"):
+            rep.warn(where, "needs-review", q["review"])
+        if q.get("pair"):
+            pairs[(q["pair"], q.get("form"))] += 1
+    for (pair, form), n in pairs.items():
+        other = "B" if form == "A" else "A"
+        if (pair, other) not in pairs:
+            rep.err(f"quiz pair {pair}", "unpaired", f"pair '{pair}' has a form {form} item but no form {other} item")
+
+
 def load(paths, rep):
     records = []
     for p in paths:
@@ -299,7 +446,7 @@ def load(paths, rep):
             rep.err(str(p), "bad-json", "file must contain a JSON array of reaction records"); continue
         for i, r in enumerate(data):
             rid = r.get("id", f"#{i}") if isinstance(r, dict) else f"#{i}"
-            records.append((f"{Path(p).name}:{rid}", r))
+            records.append((f"{Path(p).parent.name}/{Path(p).name}:{rid}", r))
     return records
 
 
@@ -309,6 +456,12 @@ def main(argv):
     rep = Report()
     records = load(paths, rep)
     check_all(records, rep)
+    if not [a for a in argv if not a.startswith("--")]:
+        lessons = load(sorted((ROOT / "content" / "lessons").glob("*.json")), rep)
+        check_lessons(lessons, records, rep)
+        items = load(sorted((ROOT / "content" / "diagnostic").glob("*.json")), rep)
+        check_diagnostic(items, records, rep)
+        print(f"{len(lessons)} lessons · {len(items)} quiz items")
     if not quiet:
         for w, c, m in rep.warnings:
             print(f"warning  {w}  [{c}] {m}")

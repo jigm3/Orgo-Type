@@ -7,26 +7,255 @@
     "reactants": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1"],
     "reagents": ["[CH3:8][Cu-:9][CH3:10].[Li+:11]"],
     "reagentDisplay": "1. (CH3)2CuLi, ether  2. H3O+",
-    "reagentAliases": ["(CH3)2CuLi", "Me2CuLi", "lithium dimethylcuprate", "dimethylcuprate", "gilman", "gilman reagent", "R2CuLi"],
+    "reagentAliases": [
+      "(CH3)2CuLi",
+      "Me2CuLi",
+      "lithium dimethylcuprate",
+      "dimethylcuprate",
+      "gilman",
+      "gilman reagent",
+      "R2CuLi"
+    ],
     "product": "[O:1]=[C:2]1[CH2:3][CH:4]([CH3:8])[CH2:5][CH2:6][CH2:7]1",
     "keyStep": {
       "nucleophileAtom": 8,
       "electrophileAtom": 4,
       "arrows": [
-        { "from": { "bond": [8, 9] }, "to": { "atom": 4 } },
-        { "from": { "bond": [3, 4] }, "to": { "bond": [2, 3] } },
-        { "from": { "bond": [1, 2] }, "to": { "atom": 1 } }
+        {"from": {"bond": [8, 9]}, "to": {"atom": 4}},
+        {"from": {"bond": [3, 4]}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
       ]
     },
     "why": "Cuprates are soft nucleophiles, so they add to the soft β-carbon (1,4) rather than the C=O carbon. The enolate that forms is protonated on workup and tautomerizes back to the ketone, now carrying a methyl at the β-position.",
     "traps": [
-      { "smiles": "CC1(O)C=CCCC1", "explains": "That's 1,2-addition, which is what a hard nucleophile like CH3MgBr or CH3Li does. Cuprates add 1,4." },
-      { "smiles": "CC1CCCCC1=O", "explains": "The methyl lands on the β-carbon (two carbons from C=O), not the α-carbon next to it." },
-      { "smiles": "CC1CCCC(O)C1", "explains": "Cuprates don't reduce the C=O. After workup the ketone is still there." }
+      {
+        "smiles": "CC1(O)C=CCCC1",
+        "explains": "That's 1,2-addition, which is what a hard nucleophile like CH3MgBr or CH3Li does. Cuprates add 1,4."
+      },
+      {
+        "smiles": "CC1CCCCC1=O",
+        "explains": "The methyl lands on the β-carbon (two carbons from C=O), not the α-carbon next to it."
+      },
+      {
+        "smiles": "CC1CCCC(O)C1",
+        "explains": "Cuprates don't reduce the C=O. After workup the ketone is still there."
+      }
     ],
-    "confusableWith": ["u1-grignard-ketone"],
+    "confusableWith": [
+      "u1-grignard-ketone",
+      "u3-grignard-enone-12",
+      "u4-michael-malonate-mvk",
+      "u3-alkyllithium-enone-12",
+      "u3-gilman-acid-chloride"
+    ],
     "tags": ["C-C bond", "organometallic", "conjugate addition", "1,4"],
     "review": "Arrows show the simplified 'carbanion adds to β-carbon' picture, not the Cu(III) oxidative-addition mechanism. Check this is acceptable as the drilled key step (it is the standard textbook simplification).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u3-grignard-enone-12",
+    "unit": 3,
+    "pattern": "C",
+    "title": "Enone + CH3MgBr → 1,2-addition (allylic alcohol)",
+    "reactants": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:8][Mg:9][Br:10]"],
+    "reagentDisplay": "1. CH3MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard", "CH3MgI", "MeMgI"],
+    "product": "[OH:1][C:2]1([CH3:8])[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1",
+    "keyStep": {
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [8, 9]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+    },
+    "why": "A Grignard is a hard, highly reactive nucleophile, so it attacks the hard, most positive carbon: the C=O carbon (1,2-addition), not the β-carbon. Workup protonates the alkoxide to a tertiary allylic alcohol; the C=C is untouched. Compare (CH3)2CuLi, which adds 1,4.",
+    "traps": [
+      {
+        "smiles": "CC1CCCC(=O)C1",
+        "explains": "That's 1,4 (conjugate) addition, which is what a soft cuprate like (CH3)2CuLi does. Grignards add 1,2 to the C=O."
+      },
+      {
+        "smiles": "CC1(O)CCCCC1",
+        "explains": "The Grignard adds once, to the C=O. Nothing reduces the C=C, so the product is still an alkene."
+      },
+      {
+        "smiles": "CC1=CC=CCC1",
+        "explains": "Mild aqueous acid workup only protonates the alkoxide. Dehydrating the alcohol to a diene would need heat and strong acid."
+      }
+    ],
+    "confusableWith": [
+      "u3-gilman-enone",
+      "u3-alkyllithium-enone-12",
+      "u1-grignard-ketone",
+      "u4-michael-malonate-mvk",
+      "u1-wittig"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C1C=CCCC1",
+          "reagent": "1. (CH3)2CuLi  2. H3O+",
+          "explains": "A cuprate adds 1,4, so this gives 3-methylcyclohexanone, a ketone with no OH."
+        },
+        {
+          "precursor": "OC1C=CCCC1",
+          "reagent": "1. CH3MgBr  2. H3O+",
+          "explains": "An alcohol's O–H just protonates the Grignard (giving methane). There is no C=O for the methyl to add to."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "1,2", "alcohol synthesis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u3-alkyllithium-enone-12",
+    "unit": 3,
+    "pattern": "C",
+    "title": "Enone + n-BuLi → 1,2-addition (allylic alcohol)",
+    "reactants": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6]1"],
+    "reagents": ["[CH3:7][CH2:8][CH2:9][CH2:10][Li:11]"],
+    "reagentDisplay": "1. CH3CH2CH2CH2Li, ether  2. H3O+",
+    "reagentAliases": ["n-BuLi", "BuLi", "butyllithium", "n-butyllithium", "CH3CH2CH2CH2Li", "CH3(CH2)3Li"],
+    "product": "[OH:1][C:2]1([CH2:10][CH2:9][CH2:8][CH3:7])[CH:3]=[CH:4][CH2:5][CH2:6]1",
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+    },
+    "why": "Organolithiums, like Grignards, are hard carbon nucleophiles, so they add directly to the C=O carbon (1,2) of an enone. Workup gives a tertiary allylic alcohol with the C=C still in place.",
+    "traps": [
+      {
+        "smiles": "CCCCC1CCC(=O)C1",
+        "explains": "That's 1,4-addition, the cuprate result. To put the butyl on the β-carbon you would use (CH3CH2CH2CH2)2CuLi."
+      },
+      {
+        "smiles": "CCCCC1(O)CCCC1",
+        "explains": "Only the C=O reacts. The organolithium does not reduce the C=C, so the alkene is still there."
+      },
+      {
+        "smiles": "OC1C=CCC1",
+        "explains": "BuLi delivers a carbon, not a hydride, so a new C–C bond forms at the carbonyl carbon."
+      }
+    ],
+    "confusableWith": ["u3-grignard-enone-12", "u3-gilman-enone"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C1C=CCC1",
+          "reagent": "1. (CH3CH2CH2CH2)2CuLi  2. H3O+",
+          "explains": "A cuprate adds 1,4, giving 3-butylcyclopentanone, not an allylic alcohol."
+        },
+        {
+          "precursor": "O=C1CCCC1",
+          "reagent": "1. CH3CH2CH2CH2Li  2. H3O+",
+          "explains": "Cyclopentanone has no C=C, so this gives 1-butylcyclopentanol; the target still has the ring alkene."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "1,2", "alcohol synthesis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u3-gilman-acid-chloride",
+    "unit": 3,
+    "pattern": "C",
+    "title": "Acid chloride + R2CuLi → ketone (stops there)",
+    "reactants": ["[O:1]=[C:2]([Cl:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+    "reagents": ["[CH3:10][Cu-:11][CH3:12].[Li+:13]"],
+    "reagentDisplay": "1. (CH3)2CuLi, ether  2. H3O+",
+    "reagentAliases": ["(CH3)2CuLi", "Me2CuLi", "lithium dimethylcuprate", "dimethylcuprate", "gilman reagent", "R2CuLi"],
+    "product": "[O:1]=[C:2]([CH3:10])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1",
+    "byproducts": ["[Cl-:3]"],
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+    },
+    "why": "Gilman reagents (made from 2 CH3Li + CuI) are soft and much less reactive than Grignards: they substitute the Cl of a reactive acid chloride (pattern B) but do not attack the ketone that forms, so the reaction stops at the ketone. CH3MgBr would add a second time and give a tertiary alcohol.",
+    "traps": [
+      {
+        "smiles": "CC(C)(O)c1ccccc1",
+        "explains": "That's the Grignard result: CH3MgBr adds twice (substitution, then addition to the new ketone). A cuprate is too unreactive to add to a ketone, so it stops after one."
+      },
+      {
+        "smiles": "CC(O)c1ccccc1",
+        "explains": "Cuprates don't reduce ketones and workup doesn't either. The product keeps its C=O."
+      },
+      {
+        "smiles": "O=C(O)c1ccccc1",
+        "explains": "The cuprate replaces the Cl with CH3 before workup, so the acid chloride is gone by the time water is added. No carboxylic acid forms."
+      }
+    ],
+    "confusableWith": ["u2-grignard-ester", "u3-gilman-enone", "u3-corey-house"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C(Cl)c1ccccc1",
+          "reagent": "1. CH3MgBr (excess)  2. H3O+",
+          "explains": "A Grignard adds twice to an acid chloride, so this gives 2-phenyl-2-propanol, not the ketone."
+        },
+        {
+          "precursor": "COC(=O)c1ccccc1",
+          "reagent": "1. (CH3)2CuLi  2. H3O+",
+          "explains": "Cuprates are too unreactive to substitute an ester; they need the much more reactive acid chloride."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "ketone synthesis", "cuprate"],
+    "review": "Key-step arrows use the simplified 'carbanion adds to C=O' picture (like u3-gilman-enone), not the Cu(III) oxidative-addition/reductive-elimination mechanism. Also check the methyl benzoate retro distractor: cuprates are generally described as unreactive toward esters.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u3-corey-house",
+    "unit": 3,
+    "pattern": "C",
+    "title": "R2CuLi + alkyl halide → coupling (Corey–House)",
+    "reactants": ["[Br:1][CH2:2][CH2:3][c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+    "reagents": ["[CH3:10][Cu-:11][CH3:12].[Li+:13]"],
+    "reagentDisplay": "(CH3)2CuLi, ether",
+    "reagentAliases": ["(CH3)2CuLi", "Me2CuLi", "lithium dimethylcuprate", "dimethylcuprate", "gilman reagent", "R2CuLi"],
+    "product": "[CH3:10][CH2:2][CH2:3][c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1",
+    "byproducts": ["[Br-:1]"],
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+    },
+    "why": "A Gilman reagent (made from 2 CH3Li + CuI) swaps the halogen for one of its R groups, joining two carbon pieces with a new C–C bond. Grignards and organolithiums don't do this cleanly, which is why cuprates are the coupling reagent of choice.",
+    "traps": [
+      {
+        "smiles": "C=Cc1ccccc1",
+        "explains": "Cuprates are weak bases, so E2 to the alkene is not the main pathway. They couple instead."
+      },
+      {
+        "smiles": "c1ccc(CCCCc2ccccc2)cc1",
+        "explains": "That's a Wurtz-type homocoupling of two alkyl halides. The cuprate supplies the CH3 that replaces Br."
+      },
+      {
+        "smiles": "CC(C)c1ccccc1",
+        "explains": "The CH3 ends up on the carbon that carried the Br; there is no carbocation and no rearrangement."
+      }
+    ],
+    "confusableWith": ["u3-gilman-acid-chloride", "side-sn2-2-bromobutane-cyanide", "u4-enolate-alkylation-lda"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "BrCCc1ccccc1",
+          "reagent": "CH3MgBr, ether",
+          "explains": "Grignard reagents do not couple cleanly with alkyl halides; you need the cuprate."
+        },
+        {
+          "precursor": "c1ccccc1.CCCCl",
+          "reagent": "AlCl3",
+          "explains": "Friedel–Crafts alkylation with a 1° chloride rearranges to the 2° carbocation, giving mostly isopropylbenzene (cumene)."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "cuprate", "coupling"],
+    "review": "The Corey–House mechanism is not SN2 (oxidative addition to Cu then reductive elimination); the key step drawn is the simplified 'CH3 replaces Br' arrow pair, which looks like SN2. Check this is acceptable, and that the E2/homocoupling traps are fair.",
     "verified": false,
     "verifiedBy": null
   }

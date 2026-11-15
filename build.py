@@ -1,27 +1,35 @@
 #!/usr/bin/env python3
 """Build Orgo Type into dist/.
 
-Assembles src/index.html with the CSS and JS modules inlined (one page, like Anatomy Type),
-copies static files, and writes a service worker whose cache name is a hash of everything built,
-so phones pick up each new version.
+Two builds from the same source:
+  dist/        the real app: only reaction cards, lessons and quiz items with "verified": true
+  dist/dev/    the preview app: everything, unverified included, with a warning banner and separate progress
 
-    python3 build.py            # build into dist/ (only verified reaction cards are included)
-    python3 build.py --dev      # include unverified cards too, for authoring
+Each page is one index.html with the CSS, JS modules and content inlined (like Anatomy Type). RDKit and
+ts-fsrs are served from vendor/ and cached by one service worker, whose cache name is a hash of the build.
+
+    python3 build.py            # build both into dist/
     python3 build.py --serve    # build, then serve dist/ on http://localhost:8000
+    python3 build.py --no-validate   # skip validation (local experiments only; CI always validates)
 
 Content is validated first (tools/validate.py, needs `pip install -r requirements.txt`); any error stops the build.
+Sync turns on when firebase.config.json exists ({"projectId": ..., "apiKey": ...}).
 """
 import hashlib, json, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SRC, DIST = ROOT / "src", ROOT / "dist"
+sys.path.insert(0, str(ROOT / "tools"))
 
 # order matters: later modules use earlier ones
 CSS = ["ui/tokens.css", "ui/app.css"]
-JS = ["engine/store.js", "chem/rdkit.js", "ui/app.js"]
-STATIC = ["manifest.webmanifest", "icons", "vendor/rdkit/RDKit_minimal.js",
-          "vendor/rdkit/RDKit_minimal.wasm", "vendor/rdkit/LICENSE", ".nojekyll"]
+JS = ["engine/store.js", "chem/rdkit.js", "engine/grade.js", "engine/deck.js", "engine/scheduler.js", "engine/game.js",
+      "engine/sync.js", "ui/molview.js", "cards/common.js", "cards/where.js", "cards/arrows.js", "cards/product.js",
+      "cards/reagent.js", "cards/why.js", "cards/change.js", "cards/back.js", "cards/paper.js",
+      "ui/session.js", "ui/lesson.js", "ui/home.js", "ui/settings.js", "ui/tour.js", "ui/diag.js", "ui/app.js"]
+STATIC = ["manifest.webmanifest", "icons", "vendor/rdkit/RDKit_minimal.js", "vendor/rdkit/RDKit_minimal.wasm",
+          "vendor/rdkit/LICENSE", "vendor/fsrs/ts-fsrs.umd.js", "vendor/fsrs/LICENSE", ".nojekyll"]
 
 
 def read(rel):
@@ -32,29 +40,32 @@ def module(rel):
     return f"/* ===== {rel} ===== */\n{read(rel).rstrip()}\n"
 
 
-def content(dev):
-    """Validate, then write dist/content/reactions.json and dist/review.html."""
-    if subprocess.run([sys.executable, str(ROOT / "tools/validate.py"), "--quiet"]).returncode:
+def page(dev, base, versions, firebase, build_id):
+    import compile_content
+    content = compile_content.bundle(dev=dev)
+    css = "\n".join(module(p) for p in CSS)
+    js = "\n".join(module(p) for p in JS)
+    sub = {"__RDKIT_VERSION__": versions["rdkit"], "__FSRS_VERSION__": versions["fsrs"], "__BASE__": base,
+           "__BUILD_ID__": build_id + ("-dev" if dev else ""), "__FIREBASE__": json.dumps(firebase),
+           "__STORE_KEY__": "orgotype.dev.v1" if dev else "orgotype.v1"}
+    html = read("index.html").replace("/*@CSS@*/", css).replace("/*@JS@*/", js)
+    for k, v in sub.items():
+        html = html.replace(k, v)
+    # content last, so nothing inside it gets substituted
+    html = html.replace("/*@CONTENT@*/", json.dumps(content, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
+    return html, content
+
+
+def main():
+    if "--no-validate" not in sys.argv and subprocess.run([sys.executable, str(ROOT / "tools/validate.py"), "--quiet"]).returncode:
         sys.exit("build stopped: fix the content errors above")
-    records = []
-    for f in sorted((ROOT / "content/reactions").glob("*.json")):
-        records += json.loads(f.read_text(encoding="utf-8"))
-    shipped = [r for r in records if dev or r.get("verified") is True]
-    shipped = [r for r in shipped if r.get("source", "shared") == "shared"]
-    out = DIST / "content"
-    out.mkdir()
-    (out / "reactions.json").write_text(json.dumps(shipped, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    subprocess.run([sys.executable, str(ROOT / "tools/review_sheet.py"), str(DIST / "review.html")], check=True)
-    print(f"content: {len(shipped)} of {len(records)} reaction cards shipped ({'dev: unverified included' if dev else 'verified only'})")
+    versions = {"rdkit": (ROOT / "vendor/rdkit/VERSION").read_text().strip(), "fsrs": (ROOT / "vendor/fsrs/VERSION").read_text().strip()}
+    fb_file = ROOT / "firebase.config.json"
+    firebase = json.loads(fb_file.read_text()) if fb_file.exists() else None
 
-
-def main(dev=False):
-    rdkit_version = (ROOT / "vendor/rdkit/VERSION").read_text().strip()
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
-    content(dev)
-
     for rel in STATIC:
         src, dst = ROOT / rel, DIST / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -63,37 +74,40 @@ def main(dev=False):
         elif src.exists():
             shutil.copy2(src, dst)
         else:
-            dst.touch()  # e.g. .nojekyll
+            dst.touch()
 
-    css = "\n".join(module(p) for p in CSS)
-    js = "\n".join(module(p) for p in JS).replace("__RDKIT_VERSION__", rdkit_version)
-
-    # build id = hash of every input that ends up in dist (so the SW cache busts on any change)
+    # build id = hash of every input
     h = hashlib.sha256()
-    h.update(css.encode()); h.update(js.encode()); h.update(read("index.html").encode()); h.update(read("sw.js").encode())
-    for f in sorted(p for p in DIST.rglob("*") if p.is_file()):
-        h.update(f.relative_to(DIST).as_posix().encode()); h.update(f.read_bytes())
+    for f in sorted(list(SRC.rglob("*")) + list((ROOT / "content").rglob("*.json")) + [p for p in DIST.rglob("*")]):
+        if f.is_file():
+            h.update(f.name.encode()); h.update(f.read_bytes())
+    if firebase:
+        h.update(json.dumps(firebase).encode())
     build_id = h.hexdigest()[:10]
 
-    page = (read("index.html")
-            .replace("/*@CSS@*/", css)
-            .replace("/*@JS@*/", js.replace("__BUILD_ID__", build_id)))
-    (DIST / "index.html").write_text(page, encoding="utf-8")
+    html, content = page(False, "", versions, firebase, build_id)
+    (DIST / "index.html").write_text(html, encoding="utf-8")
+    (DIST / "dev").mkdir()
+    dev_html, dev_content = page(True, "../", versions, firebase, build_id)
+    (DIST / "dev" / "index.html").write_text(dev_html, encoding="utf-8")
+    subprocess.run([sys.executable, str(ROOT / "tools/review_sheet.py"), str(DIST / "review.html")], check=True, stdout=subprocess.DEVNULL)
 
-    v = f"?v={rdkit_version}"
-    core = ["./", "index.html", "manifest.webmanifest",
+    core = ["./", "index.html", "dev/", "dev/index.html", "manifest.webmanifest",
             "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/favicon.png",
-            "vendor/rdkit/RDKit_minimal.js" + v, "vendor/rdkit/RDKit_minimal.wasm" + v, "content/reactions.json"]
+            f"vendor/rdkit/RDKit_minimal.js?v={versions['rdkit']}", f"vendor/rdkit/RDKit_minimal.wasm?v={versions['rdkit']}",
+            f"vendor/fsrs/ts-fsrs.umd.js?v={versions['fsrs']}"]
     sw = read("sw.js").replace("__CACHE_ID__", build_id).replace("__CORE__", json.dumps(core))
     (DIST / "sw.js").write_text(sw, encoding="utf-8")
 
-    size = (DIST / "index.html").stat().st_size
-    print(f"built dist/ · build {build_id} · index.html {size/1024:.1f} KB · RDKit {rdkit_version}")
+    def counts(c):
+        return f"{len(c['reactions'])} reactions, {len(c['lessons'])} lessons, {len(c['diagnostic'])} quiz items"
+    print(f"built dist/ · build {build_id} · app: {counts(content)} · preview (dev/): {counts(dev_content)}"
+          f" · sync {'on' if firebase else 'off'} · index.html {(DIST / 'index.html').stat().st_size / 1024:.0f} KB")
     return build_id
 
 
 if __name__ == "__main__":
-    main(dev="--dev" in sys.argv)
+    main()
     if "--serve" in sys.argv:
         import functools, http.server
         handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(DIST))

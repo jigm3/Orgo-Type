@@ -1,0 +1,107 @@
+[
+  {
+    "id": "lesson-u0",
+    "unit": 0,
+    "title": "Why carbonyls react",
+    "verified": false,
+    "verifiedBy": null,
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Oxygen is more electronegative than carbon, so a C=O bond is **polar**: the oxygen is δ− and the carbon is δ+. That δ+ carbon is the **electrophile** in almost every Orgo 2 reaction.",
+        "smiles": "[CH3:1][C:2](=[O:3])[CH3:4]",
+        "lit": {"2": "el"}
+      },
+      {
+        "kind": "tap",
+        "text": "Tap the electrophilic atom in propanal.",
+        "smiles": "[CH3:1][CH2:2][CH:3]=[O:4]",
+        "answer": [3],
+        "explain": "The carbonyl carbon. Oxygen pulls the C=O electrons toward itself, leaving that carbon electron-poor, so nucleophiles attack it."
+      },
+      {
+        "kind": "choice",
+        "text": "Why is the carbonyl carbon electrophilic?",
+        "options": [
+          {
+            "text": "Oxygen pulls the C=O electrons toward itself, so the carbon is δ+.",
+            "correct": true,
+            "explains": "Right: the bond is polarized toward O, which leaves the carbon electron-poor."
+          },
+          {
+            "text": "The carbonyl carbon carries a full negative charge.",
+            "explains": "It's the opposite: the carbon is partially positive (δ+). A negative carbon would be a nucleophile."
+          },
+          {
+            "text": "Oxygen's lone pairs push electron density onto the carbon.",
+            "explains": "The lone pairs stay mostly on oxygen; they make the oxygen basic, not the carbon electron-rich. Electronegativity wins and leaves the carbon δ+."
+          }
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "When a nucleophile adds to the carbon, the C=O π electrons move onto oxygen. The carbon goes from flat (sp²) to **tetrahedral** (sp³) with an O⁻ attached. This **tetrahedral intermediate** is the hub of carbonyl chemistry.",
+        "smiles": "[CH3:1][C:2]([O-:3])([CH3:4])[CH3:5]",
+        "lit": {"2": "el"}
+      },
+      {
+        "kind": "choice",
+        "text": "A nucleophile adds to a ketone, and the same nucleophile adds to an acid chloride. What decides what happens next?",
+        "options": [
+          {
+            "text": "Whether the carbon has a leaving group. No leaving group: it stays added (pattern A). A leaving group: C=O reforms and the group leaves (pattern B).",
+            "correct": true,
+            "explains": "Right. Ketones and aldehydes only have C and H on the carbonyl carbon, and those can't leave. Acid derivatives have Cl, OR, OCOR or NR2, which can."
+          },
+          {
+            "text": "How strong the nucleophile is.",
+            "explains": "Strength decides whether it attacks at all, not what happens afterward. After the attack, a leaving group on the carbon is what lets C=O reform."
+          },
+          {
+            "text": "Whether the reaction is done in acid or base.",
+            "explains": "Acid or base changes how fast steps go, but a ketone still can't kick out a C or H group either way. The leaving group decides addition vs substitution."
+          }
+        ]
+      },
+      {
+        "kind": "tap",
+        "text": "Methoxide added to acetyl chloride and made this tetrahedral intermediate. When the C=O reforms, which atom leaves?",
+        "smiles": "[CH3:1][C:2]([O-:3])([Cl:4])[O:5][CH3:6]",
+        "answer": [4],
+        "explain": "Chloride. It's the weakest base on that carbon, so it's the best leaving group; the product is an ester (methyl acetate)."
+      },
+      {
+        "kind": "read",
+        "text": "One more property: a C–H on the carbon **next to** the C=O (the **α-carbon**) is unusually acidic (pKa about 20 for a ketone). Removing it gives an anion shared between carbon and oxygen, the **enolate**, which is a carbon nucleophile.",
+        "smiles": "[CH3:1][C:2](=[O:3])[CH3:4]",
+        "lit": {"1": "nu", "4": "nu"}
+      },
+      {
+        "kind": "tap",
+        "text": "Tap an α-carbon in 2-butanone.",
+        "smiles": "[CH3:1][C:2](=[O:3])[CH2:4][CH3:5]",
+        "answer": [1, 4],
+        "explain": "The α-carbons are the ones bonded directly to the carbonyl carbon (both sides count). The end CH3 is a β-carbon."
+      },
+      {
+        "kind": "choice",
+        "text": "That's the whole toolkit. An enolate attacks the C=O carbon of an aldehyde. Which pattern is that?",
+        "options": [
+          {
+            "text": "Pattern D: the enolate is the nucleophile, and it runs pattern A (addition) on the aldehyde. That's the aldol reaction.",
+            "correct": true,
+            "explains": "Right. Aldol, Claisen and Michael are all 'enolate + pattern A, B or C'."
+          },
+          {
+            "text": "Pattern B: acyl substitution.",
+            "explains": "An aldehyde has no leaving group, so nothing gets substituted. The enolate just adds."
+          },
+          {
+            "text": "Pattern C: 1,4-addition.",
+            "explains": "1,4-addition needs a C=C conjugated to the C=O (an enone). A plain aldehyde only has the C=O carbon to attack."
+          }
+        ]
+      }
+    ]
+  }
+]

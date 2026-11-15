@@ -1,0 +1,114 @@
+[
+  {
+    "id": "lesson-u2",
+    "unit": 2,
+    "title": "Acyl substitution: add, then kick out",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Step 4: the ladder is taught as acid chloride > anhydride > ester ≈ acid > amide, with 'you can go down but not up'. The correct option's explanation adds that going up needs a special reagent (SOCl2: acid → acid chloride), which is in the deck (u2-acid-socl2-acid-chloride). Please check the wrong options are fair: ester + NaCl, amide + CH3OH and anhydride + NaCl are all labelled as not working.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Acid derivatives get attacked just like ketones in pattern A: a nucleophile adds to the C=O carbon and the π electrons go up onto oxygen. The difference is a **leaving group** on that carbon. So the O⁻ comes back down, the C=O re-forms, and the leaving group is pushed out. Add, then eliminate: that is pattern B.",
+        "smiles": "[CH3:1][C:2](=[O:3])[Cl:4]",
+        "lit": {"2": "el", "4": "lg"}
+      },
+      {
+        "kind": "tap",
+        "text": "Methyl acetate is an ester. Tap the atom of its **leaving group** that is bonded to the C=O carbon.",
+        "smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+        "answer": [4],
+        "explain": "The single-bonded oxygen leaves, taking CH3 with it as methoxide (CH3O⁻). The C=O oxygen stays: it is the one that takes the electrons up and pushes them back down."
+      },
+      {
+        "kind": "read",
+        "text": "Acid derivatives sit on a **reactivity ladder**: acid chloride > anhydride > ester ≈ carboxylic acid > amide. The better the leaving group (Cl⁻ is best, ⁻NH2 is worst), the more reactive the derivative. Substitution runs downhill: a more reactive derivative turns into a less reactive one, not the other way."
+      },
+      {
+        "kind": "choice",
+        "text": "Which conversion works in one step?",
+        "options": [
+          {
+            "text": "Acetyl chloride + CH3OH (pyridine) → methyl acetate",
+            "correct": true,
+            "explains": "Downhill on the ladder: Cl⁻ is a much better leaving group than CH3O⁻, so the ester is the more stable product. (Going up needs a special reagent, like SOCl2 to turn an acid into an acid chloride.)"
+          },
+          {
+            "text": "Methyl acetate + NaCl → acetyl chloride",
+            "explains": "That's uphill. Even if Cl⁻ added, the intermediate would just push out Cl⁻ again, because Cl⁻ is the better leaving group. A nucleophile can't replace a group that leaves worse than it does."
+          },
+          {
+            "text": "N-methylacetamide + CH3OH → methyl acetate",
+            "explains": "Amides are the bottom rung. ⁻NHCH3 is a terrible leaving group, so methanol can't push it out. Amides need strong acid or base and heat even to hydrolyse."
+          },
+          {
+            "text": "Acetic anhydride + NaCl → acetyl chloride",
+            "explains": "Uphill again: acetate is a worse leaving group than chloride, so the acid chloride can't form this way. You only go down the ladder."
+          }
+        ]
+      },
+      {
+        "kind": "worked",
+        "reaction": "u2-acid-chloride-alcohol-ester",
+        "text": "The key step is the addition: O attacks C, and the C=O π bond goes up to O. Right after, the O⁻ comes back down and Cl⁻ leaves."
+      },
+      {
+        "kind": "card",
+        "reaction": "u2-anhydride-alcohol-ester",
+        "card": "arrows",
+        "given": 1,
+        "text": "Same move on an anhydride. The attack is drawn; add the arrow that finishes the addition."
+      },
+      {"kind": "card", "reaction": "u2-acid-chloride-amine-amide", "card": "product"},
+      {"kind": "card", "reaction": "u2-ester-aminolysis", "card": "where"},
+      {
+        "kind": "choice",
+        "text": "A ketone adds a nucleophile and stops at the alkoxide (pattern A). **Why** does an ester's tetrahedral intermediate collapse instead?",
+        "options": [
+          {
+            "text": "The ester carbon carries a group that can leave as a fairly stable anion (CH3O⁻), so the O⁻ pushes it out and the strong C=O re-forms.",
+            "correct": true,
+            "explains": "Right. The leaving group is the whole difference between pattern A and pattern B."
+          },
+          {
+            "text": "Esters are more electrophilic than ketones, so they react further.",
+            "explains": "Esters are actually less electrophilic than ketones: the OR oxygen donates electrons into the C=O. Reactivity doesn't decide this; having a leaving group does."
+          },
+          {
+            "text": "Ketones collapse too, but they lose H⁻ or R⁻ instead.",
+            "explains": "H⁻ and R⁻ are far too basic to leave. That's exactly why ketones stop at the alkoxide and get protonated on workup."
+          },
+          {
+            "text": "The nucleophile falls off again, so the ester comes back.",
+            "explains": "That would just return the starting material. Here the group that leaves is the OR, not the nucleophile that came in."
+          }
+        ]
+      },
+      {
+        "kind": "choice",
+        "text": "Methyl pentanoate is treated with (1) LiAlH4, then H3O+, or (2) **DIBAL-H** at −78 °C, then H2O. What do you get?",
+        "smiles": "CCCCC(=O)OC",
+        "options": [
+          {
+            "text": "(1) pentan-1-ol; (2) pentanal",
+            "correct": true,
+            "explains": "LiAlH4 adds hydride, CH3O⁻ leaves, and the aldehyde formed is more reactive than the ester, so it is reduced again to the 1° alcohol. DIBAL-H gives one hydride, and at −78 °C its tetrahedral intermediate holds together until workup, when it falls apart to the aldehyde."
+          },
+          {
+            "text": "(1) pentanal; (2) pentan-1-ol",
+            "explains": "Swapped. LiAlH4 is the strong, unselective one; DIBAL-H at low temperature is the one that stops at the aldehyde."
+          },
+          {
+            "text": "Both give pentanal: one hydride per ester.",
+            "explains": "With LiAlH4 the aldehyde forms while hydride is still around, and aldehydes are more reactive than esters, so it gets reduced too."
+          },
+          {
+            "text": "Both give pentan-1-ol.",
+            "explains": "This misses the low-temperature trick: DIBAL-H's intermediate doesn't collapse to the aldehyde until water is added, when no hydride is left to reduce it."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "u2-grignard-ester", "card": "product"}
+    ]
+  }
+]

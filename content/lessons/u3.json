@@ -1,0 +1,100 @@
+[
+  {
+    "id": "lesson-u3",
+    "unit": 3,
+    "title": "Enones: 1,2 or 1,4?",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Step 3 lists soft (1,4) nucleophiles as R2CuLi, stabilised enolates, amines and thiols, and hard (1,2) ones as RMgX, RLi and LiAlH4. NaBH4 was left out on purpose (it often gives mixtures on enones). Step 8 option text names 1-ethylcyclopent-2-en-1-ol as the RMgX product; please check the wording.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "An **α,β-unsaturated carbonyl** (an enone) has two electrophilic carbons. One is the C=O carbon. Through resonance, the β-carbon at the far end of the C=C is δ+ too. Attack at the C=O carbon is 1,2-addition. Attack at the β-carbon is 1,4-addition, also called conjugate addition.",
+        "smiles": "[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1",
+        "lit": {"2": "el", "4": "el"}
+      },
+      {
+        "kind": "tap",
+        "text": "Tap the **β-carbon**: the one a 1,4 (conjugate) nucleophile attacks.",
+        "smiles": "[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1",
+        "answer": [4],
+        "explain": "Count from the carbonyl: C=O carbon, then α (next to it), then β. The resonance form ⁻O–C=C–C⁺ puts the positive charge on β."
+      },
+      {
+        "kind": "read",
+        "text": "Which carbon wins depends on the nucleophile. **Hard**, very reactive nucleophiles (RMgX, RLi, LiAlH4) attack fast at the C=O carbon: 1,2. **Soft**, gentler ones (R2CuLi, stabilised enolates, amines, thiols) add at the β-carbon: 1,4. After 1,4-addition the enolate is protonated, so the C=O survives."
+      },
+      {
+        "kind": "worked",
+        "reaction": "u3-grignard-enone-12",
+        "text": "A Grignard is hard, so it goes 1,2: straight to the C=O carbon. The C=C is left alone."
+      },
+      {
+        "kind": "card",
+        "reaction": "u3-alkyllithium-enone-12",
+        "card": "arrows",
+        "given": 1,
+        "text": "Butyllithium is hard too. The C–Li bond attack is drawn; add the rest."
+      },
+      {
+        "kind": "card",
+        "reaction": "u3-gilman-enone",
+        "card": "product",
+        "text": "Now a soft nucleophile, a Gilman reagent."
+      },
+      {
+        "kind": "choice",
+        "text": "**Why** does (CH3)2CuLi add 1,4 to cyclohexenone when CH3MgBr adds 1,2?",
+        "options": [
+          {
+            "text": "The cuprate is a soft, less reactive nucleophile, so it adds to the soft β-carbon at the end of the conjugated system. The C=O is kept.",
+            "correct": true,
+            "explains": "Right: hard goes to the C=O carbon (the most positive atom), soft goes to the β-carbon."
+          },
+          {
+            "text": "The cuprate is bulkier, so it can't reach the C=O carbon.",
+            "explains": "Both deliver the same small CH3 group. The choice is about hard vs soft, not size."
+          },
+          {
+            "text": "The Grignard also adds 1,4 first, then moves over to the C=O.",
+            "explains": "Grignard 1,2-addition is direct and fast; it doesn't go through the β-carbon at all."
+          },
+          {
+            "text": "1,4-addition breaks the C=O bond, and only copper can do that.",
+            "explains": "It's the other way round: 1,4-addition uses up the C=C. The C=O comes back after the enolate is protonated."
+          }
+        ]
+      },
+      {
+        "kind": "choice",
+        "text": "Which reagent turns cyclopent-2-en-1-one into **3-ethylcyclopentanone**?",
+        "smiles": "O=C1C=CCC1",
+        "options": [
+          {
+            "text": "1. (CH3CH2)2CuLi  2. H3O+",
+            "correct": true,
+            "explains": "A cuprate adds 1,4: the ethyl lands on the β-carbon (C3) and the ketone survives."
+          },
+          {
+            "text": "1. CH3CH2MgBr  2. H3O+",
+            "explains": "A Grignard is hard and adds 1,2, giving 1-ethylcyclopent-2-en-1-ol: the C=O is gone and the C=C is still there."
+          },
+          {
+            "text": "1. CH3CH2Li  2. H3O+",
+            "explains": "Organolithiums are hard like Grignards, so they add 1,2 to the C=O carbon."
+          },
+          {
+            "text": "1. H2, Pd  2. CH3CH2MgBr  3. H3O+",
+            "explains": "Hydrogenation removes the C=C, so the Grignard then adds to the C=O carbon: 1-ethylcyclopentanol, with the ethyl in the wrong place."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "u3-gilman-acid-chloride",
+        "card": "reagent",
+        "text": "Soft and gentle also means a cuprate stops at a ketone. Which reagent does this?"
+      }
+    ]
+  }
+]

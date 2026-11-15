@@ -12,21 +12,716 @@
     "keyStep": {
       "nucleophileAtom": 5,
       "electrophileAtom": 2,
-      "arrows": [
-        { "from": { "bond": [5, 6] }, "to": { "atom": 2 } },
-        { "from": { "bond": [2, 3] }, "to": { "atom": 3 } }
-      ]
+      "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
     "why": "The C=O carbon is electrophilic and the Grignard carbon is a strong carbon nucleophile. A ketone has no leaving group, so the methyl just adds; acid workup then protonates the alkoxide.",
     "traps": [
-      { "smiles": "CC(C)O", "explains": "That's what a hydride (NaBH4) gives. A Grignard delivers a carbon, so a new C–C bond forms." },
-      { "smiles": "COC(C)C", "explains": "The Grignard carbon bonds to the electrophilic carbonyl carbon, not to the oxygen. No ether forms." },
-      { "smiles": "C=C(C)C", "explains": "Mild aqueous acid workup only protonates the alkoxide. Dehydrating the alcohol to an alkene would need heat and strong acid." }
+      {
+        "smiles": "CC(C)O",
+        "explains": "That's what a hydride (NaBH4) gives. A Grignard delivers a carbon, so a new C–C bond forms."
+      },
+      {
+        "smiles": "COC(C)C",
+        "explains": "The Grignard carbon bonds to the electrophilic carbonyl carbon, not to the oxygen. No ether forms."
+      },
+      {
+        "smiles": "C=C(C)C",
+        "explains": "Mild aqueous acid workup only protonates the alkoxide. Dehydrating the alcohol to an alkene would need heat and strong acid."
+      }
     ],
-    "confusableWith": ["u2-grignard-ester", "u3-gilman-enone"],
+    "confusableWith": [
+      "u2-grignard-ester",
+      "u3-gilman-enone",
+      "u1-grignard-formaldehyde",
+      "u1-grignard-aldehyde",
+      "u1-nabh4-ketone",
+      "u1-acetylide-ketone",
+      "u1-wittig",
+      "u2-nitrile-grignard-ketone",
+      "u3-grignard-enone-12"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC(C)O",
+          "reagent": "1. CH3MgBr  2. H3O+",
+          "explains": "An alcohol's O–H is acidic enough to destroy a Grignard (it just protonates it to methane). Grignards need a C=O to add to."
+        },
+        {
+          "precursor": "CC(C)=O",
+          "reagent": "1. NaBH4  2. H3O+",
+          "explains": "NaBH4 adds hydride, not carbon, so this gives 2-propanol. The target has a new C–C bond."
+        }
+      ]
+    },
     "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
     "review": "Check trap 2 (methyl ether) is a misconception students actually have; swap for a better distractor if not.",
     "verified": false,
     "verifiedBy": null
+  },
+  {
+    "id": "u1-nabh4-aldehyde",
+    "unit": 1,
+    "pattern": "A",
+    "title": "NaBH4 + aldehyde → 1° alcohol",
+    "reactants": ["[CH3:1][CH2:2][CH2:3][CH:4]=[O:5]"],
+    "reagents": ["[H-:6]"],
+    "reagentDisplay": "1. NaBH4, MeOH  2. H3O+",
+    "reagentAliases": ["NaBH4", "sodium borohydride", "borohydride", "NaBH4, MeOH", "NaBH4, EtOH"],
+    "product": "[CH3:1][CH2:2][CH2:3][CH2:4][OH:5]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
+    },
+    "why": "NaBH4 is a source of hydride (H⁻), a nucleophile that adds to the electrophilic C=O carbon. An aldehyde has no leaving group, so H just adds; protonating the alkoxide gives a 1° alcohol.",
+    "traps": [
+      {
+        "smiles": "CCCC(=O)O",
+        "explains": "NaBH4 is a reducing agent: it adds H to the carbonyl. Getting a carboxylic acid would need an oxidant (e.g. H2CrO4)."
+      },
+      {
+        "smiles": "CCCC",
+        "explains": "NaBH4 stops at the alcohol. Removing the oxygen completely (C=O → CH2) needs Wolff–Kishner or Clemmensen conditions."
+      },
+      {
+        "smiles": "CCC(C)O",
+        "explains": "Hydride adds to the carbonyl carbon (C1) and the skeleton doesn't change, so the OH stays on C1. An aldehyde gives a 1° alcohol; only a ketone gives a 2° one."
+      }
+    ],
+    "confusableWith": ["u1-nabh4-ketone", "u1-lialh4-ketone", "u1-grignard-formaldehyde", "u2-ester-dibal-aldehyde"],
+    "tags": ["reduction", "hydride", "alcohol synthesis"],
+    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-nabh4-ketone",
+    "unit": 1,
+    "pattern": "A",
+    "title": "NaBH4 + ketone → 2° alcohol",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[H-:8]"],
+    "reagentDisplay": "1. NaBH4, MeOH  2. H3O+",
+    "reagentAliases": ["NaBH4", "sodium borohydride", "borohydride", "NaBH4, MeOH", "NaBH4, EtOH"],
+    "product": "[OH:1][CH:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "keyStep": {
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+    },
+    "why": "Hydride from NaBH4 adds to the electrophilic C=O carbon and the π electrons go to oxygen. A ketone has no leaving group, so the alkoxide just gets protonated, giving a 2° alcohol.",
+    "traps": [
+      {
+        "smiles": "C1CCCCC1",
+        "explains": "NaBH4 stops at the alcohol. Turning C=O all the way into CH2 needs Wolff–Kishner (H2NNH2, KOH, heat) or Clemmensen (Zn(Hg), HCl)."
+      },
+      {
+        "smiles": "C1=CCCCC1",
+        "explains": "Workup only protonates the alkoxide. Dehydrating the alcohol to an alkene would need strong acid and heat."
+      },
+      {
+        "smiles": "COC1CCCCC1",
+        "explains": "Methanol is just the solvent and proton source. The new bond to the carbonyl carbon is to H (from BH4⁻), not to OCH3."
+      }
+    ],
+    "confusableWith": [
+      "u1-nabh4-aldehyde",
+      "u1-lialh4-ketone",
+      "u1-grignard-ketone",
+      "u1-wolff-kishner",
+      "u2-ester-lialh4-alcohol",
+      "u1-clemmensen"
+    ],
+    "tags": ["reduction", "hydride", "alcohol synthesis"],
+    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-lialh4-ketone",
+    "unit": 1,
+    "pattern": "A",
+    "title": "LiAlH4 + ketone → 2° alcohol",
+    "reactants": ["[CH3:1][CH2:2][C:3](=[O:4])[CH3:5]"],
+    "reagents": ["[H-:6]"],
+    "reagentDisplay": "1. LiAlH4, dry ether  2. H3O+",
+    "reagentAliases": ["LiAlH4", "LAH", "lithium aluminum hydride", "lithium aluminium hydride", "LiAlH4, ether"],
+    "product": "[CH3:1][CH2:2][CH:3]([OH:4])[CH3:5]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 3,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+    },
+    "why": "LiAlH4 delivers hydride to the electrophilic C=O carbon, giving an alkoxide. LiAlH4 reacts violently with water and alcohols, so it is used in dry ether first and the alkoxide is protonated in a separate H3O+ workup step.",
+    "traps": [
+      {
+        "smiles": "CCCC",
+        "explains": "LiAlH4 reduces a ketone only as far as the alcohol. Removing the O completely (C=O → CH2) is Wolff–Kishner or Clemmensen."
+      },
+      {
+        "smiles": "CCCCO",
+        "explains": "Hydride adds to the carbonyl carbon (C2) and the skeleton doesn't move, so the OH stays on C2: a 2° alcohol, not 1-butanol."
+      },
+      {
+        "smiles": "CC=CC",
+        "explains": "The H3O+ workup is mild and only protonates the alkoxide. Dehydration to an alkene needs strong acid and heat."
+      }
+    ],
+    "confusableWith": ["u1-nabh4-ketone", "u1-nabh4-aldehyde", "u1-grignard-aldehyde"],
+    "tags": ["reduction", "hydride", "alcohol synthesis"],
+    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. The product (2-butanol) is racemic; drawn without stereo on purpose.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-grignard-formaldehyde",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Grignard + formaldehyde → 1° alcohol (one more carbon)",
+    "reactants": ["[CH2:1]=[O:2]"],
+    "reagents": ["[CH3:3][CH2:4][Mg:5][Br:6]"],
+    "reagentDisplay": "1. CH3CH2MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3CH2MgBr", "EtMgBr", "ethylmagnesium bromide", "ethyl grignard", "C2H5MgBr", "EtMgCl"],
+    "product": "[CH3:3][CH2:4][CH2:1][OH:2]",
+    "keyStep": {
+      "nucleophileAtom": 4,
+      "electrophileAtom": 1,
+      "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}]
+    },
+    "why": "The Grignard carbon is a strong carbon nucleophile and attacks the electrophilic C=O carbon of formaldehyde. Formaldehyde's carbon carries two H's, so after acid workup it becomes a CH2OH: a 1° alcohol with one more carbon than the Grignard.",
+    "traps": [
+      {
+        "smiles": "CC(C)O",
+        "explains": "Formaldehyde's carbon has two H's, so after the ethyl adds it is bonded to only one carbon: a 1° alcohol. A 2° alcohol needs an aldehyde like acetaldehyde."
+      },
+      {
+        "smiles": "CCC=O",
+        "explains": "Workup just protonates the alkoxide. Nothing oxidizes it to an aldehyde."
+      },
+      {
+        "smiles": "CCOC",
+        "explains": "The Grignard carbon bonds to the electrophilic carbonyl carbon, not to oxygen. No ether forms."
+      }
+    ],
+    "confusableWith": ["u1-grignard-aldehyde", "u1-grignard-ketone", "u1-nabh4-aldehyde", "u1-wittig"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC=O",
+          "reagent": "1. CH3MgBr, ether  2. H3O+",
+          "explains": "Methyl adds to acetaldehyde's carbonyl carbon, which already has a CH3, so this gives 2-propanol (a 2° alcohol), not 1-propanol."
+        },
+        {
+          "precursor": "CCO",
+          "reagent": "1. CH3MgBr, ether  2. H3O+",
+          "explains": "Ethanol has no C=O to add to. Its O–H simply protonates the Grignard (giving methane), so no C–C bond forms."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-grignard-aldehyde",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Grignard + aldehyde → 2° alcohol",
+    "reactants": ["[CH3:1][CH2:2][CH:3]=[O:4]"],
+    "reagents": ["[CH3:5][Mg:6][Br:7]"],
+    "reagentDisplay": "1. CH3MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard", "CH3MgI", "MeMgI"],
+    "product": "[CH3:1][CH2:2][CH:3]([OH:4])[CH3:5]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 3,
+      "arrows": [{"from": {"bond": [5, 6]}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+    },
+    "why": "The Grignard carbon attacks the electrophilic aldehyde carbon, and the C=O π electrons go to oxygen. An aldehyde carbon already has one carbon group and one H, so adding a second carbon group gives a 2° alcohol after acid workup.",
+    "traps": [
+      {
+        "smiles": "CCCO",
+        "explains": "That's what NaBH4 gives (hydride adds). A Grignard delivers a carbon, so the product gains a CH3."
+      },
+      {
+        "smiles": "CCC(C)=O",
+        "explains": "The alkoxide is simply protonated on workup. Nothing oxidizes it to a ketone, and an aldehyde has no leaving group to lose."
+      },
+      {
+        "smiles": "CC=CC",
+        "explains": "Mild acid workup only protonates the alkoxide. Dehydrating to an alkene needs strong acid and heat."
+      }
+    ],
+    "confusableWith": ["u1-grignard-formaldehyde", "u1-grignard-ketone", "u1-lialh4-ketone", "u2-grignard-ester"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCC(C)=O",
+          "reagent": "1. CH3MgBr, ether  2. H3O+",
+          "explains": "Adding methyl to a ketone gives a 3° alcohol (2-methyl-2-butanol), not the 2° alcohol 2-butanol."
+        },
+        {
+          "precursor": "CCC=O",
+          "reagent": "1. NaBH4, MeOH  2. H3O+",
+          "explains": "NaBH4 adds hydride, not carbon, so propanal becomes 1-propanol. The target has an extra carbon and a new C–C bond."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-acetylide-ketone",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Acetylide + ketone → propargylic 3° alcohol",
+    "reactants": ["[CH3:1][C:2](=[O:3])[CH3:4]"],
+    "reagents": ["[CH:5]#[C-:6].[Na+:7]"],
+    "reagentDisplay": "1. HC≡CNa  2. H3O+",
+    "reagentAliases": ["HC≡CNa", "NaC≡CH", "sodium acetylide", "HCCNa", "NaCCH", "acetylide", "HC≡C⁻"],
+    "product": "[CH3:1][C:2]([OH:3])([CH3:4])[C:6]#[CH:5]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "The acetylide carbon carries a negative charge, so it is a good carbon nucleophile, and it adds to the electrophilic C=O carbon of acetone. A ketone has no leaving group, so it just adds; H3O+ workup protonates the alkoxide to give a 3° alcohol that keeps the triple bond.",
+    "traps": [
+      {
+        "smiles": "C=CC(C)(C)O",
+        "explains": "Nothing in this reaction reduces the triple bond. Making the alkene would need a separate step such as H2 with Lindlar's catalyst."
+      },
+      {
+        "smiles": "C#COC(C)C",
+        "explains": "The nucleophilic atom is the acetylide carbon, and it bonds to the electrophilic carbonyl carbon, not to oxygen."
+      },
+      {
+        "smiles": "CC(C)(O)C#CC(C)(C)O",
+        "explains": "HC≡C⁻ has only one negative carbon. The other end still has its H, so with one deprotonation only one acetone adds."
+      }
+    ],
+    "confusableWith": ["u1-grignard-ketone", "u1-cyanohydrin", "side-sn2-2-bromobutane-cyanide"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC=O",
+          "reagent": "1. HC≡CNa  2. H3O+",
+          "explains": "Acetaldehyde has only one methyl on its carbonyl carbon, so this gives 3-butyn-2-ol (a 2° alcohol), one CH3 short of the target."
+        },
+        {
+          "precursor": "CC(C)Br",
+          "reagent": "HC≡CNa",
+          "explains": "Acetylide is a strong base, so on a 2° halide it mostly eliminates (propene). Even SN2 would give an alkyne with no OH."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "alkyne", "alcohol synthesis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-cyanohydrin",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Cyanohydrin formation: HCN adds to C=O",
+    "reactants": ["[CH3:1][C:2](=[O:3])[CH3:4]"],
+    "reagents": ["[C-:5]#[N:6].[Na+:7]"],
+    "reagentDisplay": "HCN, NaCN (cat.)",
+    "reagentAliases": ["HCN", "NaCN", "KCN", "HCN, NaCN", "HCN, KCN", "hydrogen cyanide", "cyanide", "NaCN, HCl"],
+    "product": "[CH3:1][C:2]([OH:3])([CH3:4])[C:5]#[N:6]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "Cyanide's carbon is the nucleophile and attacks the electrophilic C=O carbon. The alkoxide is then protonated by HCN (which regenerates cyanide), giving a cyanohydrin: OH and CN on the same carbon.",
+    "traps": [
+      {
+        "smiles": "CC(C)C#N",
+        "explains": "A ketone has no leaving group, so cyanide adds; it doesn't replace the oxygen. Swapping a group for CN is SN2 on an alkyl halide."
+      },
+      {
+        "smiles": "CC(C)(O)C(=O)O",
+        "explains": "The nitrile survives these conditions. Hydrolyzing it to an α-hydroxy acid is a separate step with hot aqueous acid."
+      },
+      {
+        "smiles": "C=C(C)C#N",
+        "explains": "Nothing here dehydrates the cyanohydrin. The OH stays; losing water to make the alkene would need much harsher conditions."
+      }
+    ],
+    "confusableWith": ["u1-acetylide-ketone", "u1-hydrate", "side-sn2-2-bromobutane-cyanide"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC(C)Br",
+          "reagent": "NaCN, DMSO",
+          "explains": "SN2 swaps Br for CN, giving 2-methylpropanenitrile with no OH (and a 2° halide also eliminates). The OH of a cyanohydrin comes from a C=O oxygen."
+        },
+        {
+          "precursor": "CC(C)O",
+          "reagent": "HCN, NaCN (cat.)",
+          "explains": "2-Propanol has no C=O for cyanide to add to, and OH⁻ is a poor leaving group, so nothing happens."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "cyanide", "cyanohydrin"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-hydrate",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Hydrate formation: water adds to C=O",
+    "reactants": ["[CH2:1]=[O:2]"],
+    "reagents": ["[OH2:3]"],
+    "reagentDisplay": "H2O (H+ or HO⁻ cat.)",
+    "reagentAliases": ["H2O", "water", "H2O, H+", "H2O, OH-", "aqueous acid", "aqueous base"],
+    "product": "[OH:3][CH2:1][OH:2]",
+    "keyStep": {
+      "species": ["[CH2:1]=[OH+:2]", "[OH2:3]"],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 1,
+      "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 1}}, {"from": {"bond": [1, 2]}, "to": {"atom": 2}}]
+    },
+    "why": "Water is a weak nucleophile, so acid helps by protonating the C=O and making the carbon more electrophilic. Water adds, a proton is lost, and the product is a gem-diol (hydrate). Formaldehyde has no carbon groups to stabilize the C=O, so the equilibrium lies almost fully on the hydrate side.",
+    "traps": [
+      {
+        "smiles": "OC=O",
+        "explains": "Water adds across the C=O; nothing is oxidized. The hydrate carbon is at the same oxidation level as the aldehyde."
+      },
+      {
+        "smiles": "CO",
+        "explains": "Water isn't a hydride source, so nothing is reduced. You'd need NaBH4 or LiAlH4 to get methanol."
+      },
+      {
+        "smiles": "COCOC",
+        "explains": "That's an acetal, which forms with an alcohol (2 CH3OH, H+). With water as the nucleophile you get the gem-diol."
+      }
+    ],
+    "confusableWith": ["u1-acetal-methanol", "u1-acetal-hydrolysis", "u1-cyanohydrin"],
+    "tags": ["hydrate", "equilibrium", "acid catalysis"],
+    "review": "Hydration is an equilibrium and methanediol can't be isolated (it reverts to formaldehyde on drying). Formaldehyde was chosen because its hydrate is the major species in water; check that is acceptable as the 'product'. Key step shown is the acid-catalysed version (water attacks the protonated carbonyl), consistent with the acetal cards using a cationic species.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-acetal-methanol",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Acetal formation: ketone + 2 CH3OH, H+",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:8][OH:9]", "[CH3:10][OH:11]"],
+    "reagentDisplay": "2 CH3OH, H+ (cat.), −H2O",
+    "reagentAliases": ["CH3OH", "MeOH", "methanol", "2 CH3OH", "CH3OH, H+", "MeOH, H+", "2 MeOH"],
+    "product": "[CH3:8][O:9][C:2]1([O:11][CH3:10])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "species": ["[CH3:8][O+:9]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:10][OH:11]"],
+      "nucleophileAtom": 11,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 9]}, "to": {"atom": 9}}]
+    },
+    "why": "Acid makes the C=O carbon electrophilic, methanol adds to give a hemiacetal, and acid turns its OH into water, a good leaving group. Losing water gives an oxocarbenium ion, which a second methanol attacks. Removing water drives the equilibrium to the acetal.",
+    "traps": [
+      {
+        "smiles": "COC1(O)CCCCC1",
+        "explains": "That's the hemiacetal, an intermediate. With acid and excess methanol its OH is protonated, leaves as water, and a second CH3OH adds."
+      },
+      {
+        "smiles": "OC1(O)CCCCC1",
+        "explains": "That's the hydrate, which forms with water. Here methanol is the nucleophile and water is removed."
+      },
+      {
+        "smiles": "COC1CCCCC1",
+        "explains": "Nothing reduces the carbon. The old carbonyl carbon ends up with two C–O bonds (two OCH3 groups), not one O and one H."
+      }
+    ],
+    "confusableWith": ["u1-cyclic-acetal", "u1-acetal-hydrolysis", "u1-hydrate"],
+    "tags": ["acetal", "acid catalysis", "equilibrium"],
+    "review": "Key step drilled is the second methanol attacking the oxocarbenium ion (the step that makes the acetal, not just the hemiacetal). The same choice is used for the cyclic acetal and for acetal hydrolysis (water attacking the oxocarbenium).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-cyclic-acetal",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Cyclic acetal with ethylene glycol (protecting group)",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[OH:8][CH2:9][CH2:10][OH:11]"],
+    "reagentDisplay": "HOCH2CH2OH, H+ (cat.), −H2O",
+    "reagentAliases": [
+      "HOCH2CH2OH",
+      "ethylene glycol",
+      "ethane-1,2-diol",
+      "1,2-ethanediol",
+      "glycol",
+      "HOCH2CH2OH, H+",
+      "TsOH, ethylene glycol"
+    ],
+    "product": "[CH2:3]1[CH2:4][CH2:5][CH2:6][CH2:7][C:2]12[O:8][CH2:9][CH2:10][O:11]2",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "species": ["[OH:11][CH2:10][CH2:9][O+:8]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+      "nucleophileAtom": 11,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "It's acetal formation with both OH groups on one molecule: one OH adds, water leaves, and the second OH closes a five-membered ring on the oxocarbenium ion. The cyclic acetal is unreactive toward bases, Grignards and hydrides, so it protects a ketone; H3O+ removes it later.",
+    "traps": [
+      {
+        "smiles": "OCCOC1(O)CCCCC1",
+        "explains": "That's the hemiacetal, an intermediate. Acid turns its OH into water, which leaves, and the glycol's second OH closes the ring."
+      },
+      {
+        "smiles": "OCCOC1(OCCO)CCCCC1",
+        "explains": "One glycol supplies both oxygens. Its second OH is right there, so closing the five-membered ring is much faster than bringing in another glycol molecule."
+      },
+      {
+        "smiles": "OCCOC1CCCCC1",
+        "explains": "Nothing reduces the carbon. The old carbonyl carbon ends up with two C–O bonds, both to the glycol."
+      }
+    ],
+    "confusableWith": ["u1-acetal-methanol", "u1-acetal-hydrolysis"],
+    "tags": ["acetal", "protecting group", "acid catalysis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-acetal-hydrolysis",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Acetal hydrolysis: H3O+ gives back the ketone",
+    "reactants": ["[CH3:1][C:2]([O:3][CH3:4])([O:5][CH3:6])[CH3:7]"],
+    "reagents": ["[OH2:8]"],
+    "reagentDisplay": "H3O+ (excess H2O)",
+    "reagentAliases": ["H3O+", "H2O, H+", "aqueous acid", "dilute HCl", "HCl, H2O", "H2SO4, H2O"],
+    "product": "[CH3:1][C:2](=[O:8])[CH3:7]",
+    "byproducts": ["[CH3:4][OH:3]", "[CH3:6][OH:5]"],
+    "keyStep": {
+      "species": ["[CH3:1][C:2]([CH3:7])=[O+:5][CH3:6]", "[OH2:8]"],
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}]
+    },
+    "why": "Acetal formation run backwards: acid protonates one OCH3 so methanol can leave, giving an oxocarbenium ion that water attacks. Repeating this loses the second methanol, and with lots of water the equilibrium goes back to the ketone.",
+    "traps": [
+      {
+        "smiles": "COC(C)(C)O",
+        "explains": "That's the hemiacetal, an intermediate. In excess aqueous acid it loses the second methanol and goes on to the ketone."
+      },
+      {
+        "smiles": "CC(C)(O)O",
+        "explains": "Acetone's hydrate is only a tiny fraction at equilibrium. The product you isolate is the ketone."
+      },
+      {
+        "smiles": "CC(C)O",
+        "explains": "Water and acid don't reduce anything. The carbon keeps two bonds to oxygen, as a C=O."
+      }
+    ],
+    "confusableWith": ["u1-acetal-methanol", "u1-cyclic-acetal", "u1-hydrate"],
+    "tags": ["acetal", "protecting group", "hydrolysis", "acid catalysis"],
+    "review": "Map choice: the ketone O is mapped to the water O (8), which is mechanistically right (the original OCH3 oxygens leave as methanol). Check the 'what changed?' card reads sensibly with that.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-imine",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Imine formation: ketone + 1° amine",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:8][NH2:9]"],
+    "reagentDisplay": "CH3NH2, H+ (cat.), −H2O",
+    "reagentAliases": ["CH3NH2", "MeNH2", "methylamine", "methyl amine", "CH3NH2, H+", "RNH2"],
+    "product": "[CH3:8][N:9]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "nucleophileAtom": 9,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+    },
+    "why": "The amine's nitrogen lone pair attacks the electrophilic C=O carbon to give a carbinolamine. Mild acid turns the OH into water, which leaves, and because a 1° amine's N still has an H to lose, a C=N double bond (imine) forms.",
+    "traps": [
+      {
+        "smiles": "CNC1=CCCCC1",
+        "explains": "That's the enamine tautomer. With a 1° amine the N can lose its own H, so the C=N imine forms. Enamines come from 2° amines."
+      },
+      {
+        "smiles": "CNC1(O)CCCCC1",
+        "explains": "That's the carbinolamine intermediate. Acid catalysis lets the OH leave as water, so it goes on to the C=N."
+      },
+      {
+        "smiles": "CNC1CCCCC1",
+        "explains": "That amine is the reductive amination product; it needs a reducing agent such as NaBH3CN. Without one, you stop at the C=N."
+      }
+    ],
+    "confusableWith": ["u1-enamine", "u1-wolff-kishner"],
+    "tags": ["imine", "condensation", "acid catalysis", "nitrogen nucleophile"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-enamine",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Enamine formation: ketone + 2° amine",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[NH:8]1[CH2:9][CH2:10][CH2:11][CH2:12]1"],
+    "reagentDisplay": "pyrrolidine, H+ (cat.), −H2O",
+    "reagentAliases": ["pyrrolidine", "C4H8NH", "pyrrolidine, H+", "R2NH", "2° amine", "morpholine", "piperidine"],
+    "product": "[CH:3]1=[C:2]([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:7][CH2:6][CH2:5][CH2:4]1",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 1]}, "to": {"atom": 1}}]
+    },
+    "why": "The nitrogen of pyrrolidine attacks the C=O carbon, and acid helps water leave to give an iminium ion. A 2° amine's N has no H left to lose, so a proton is removed from the α-carbon instead, forming a C=C next to N: an enamine.",
+    "traps": [
+      {
+        "smiles": "C1CCC(=[N+]2CCCC2)CC1",
+        "explains": "That iminium ion is an intermediate. The N has no H to lose, so it can't become a neutral imine; instead an α-H is removed to give the enamine."
+      },
+      {
+        "smiles": "OC1(N2CCCC2)CCCCC1",
+        "explains": "That's the carbinolamine intermediate. Acid catalysis lets the OH leave as water, so the reaction keeps going."
+      },
+      {
+        "smiles": "C1=CC(N2CCCC2)CCC1",
+        "explains": "The C=C forms between the old carbonyl carbon and its α-carbon, so N sits directly on the alkene carbon, not one carbon away."
+      }
+    ],
+    "confusableWith": ["u1-imine"],
+    "tags": ["enamine", "condensation", "acid catalysis", "nitrogen nucleophile"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-wittig",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Wittig: ketone + Ph3P=CH2 → alkene",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH2:8]=[P:9](c1ccccc1)(c1ccccc1)c1ccccc1"],
+    "reagentDisplay": "Ph3P=CH2, THF",
+    "reagentAliases": [
+      "Ph3P=CH2",
+      "Ph3PCH2",
+      "Ph3P=CH2 ylide",
+      "methylenetriphenylphosphorane",
+      "Wittig reagent",
+      "phosphorus ylide",
+      "ylide"
+    ],
+    "product": "[CH2:8]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "keyStep": {
+      "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH2-:8][P+:9](c1ccccc1)(c1ccccc1)c1ccccc1"],
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+    },
+    "why": "The ylide's negative carbon attacks the C=O carbon. The oxygen then bonds to phosphorus (oxaphosphetane), and the ring falls apart into the very stable Ph3P=O and a new C=C exactly where the C=O was.",
+    "traps": [
+      {
+        "smiles": "CC1(O)CCCCC1",
+        "explains": "That's the alcohol a Grignard (CH3MgBr) gives. With an ylide, the oxygen ends up on phosphorus as Ph3P=O, leaving a C=C."
+      },
+      {
+        "smiles": "CC1=CCCCC1",
+        "explains": "The Wittig puts the C=C exactly where the C=O was (here outside the ring). It doesn't move to the more substituted position like an E1 dehydration would."
+      },
+      {
+        "smiles": "CC1CCCCC1",
+        "explains": "Nothing adds H2. The new C=C between the ring carbon and CH2 is still there in the product."
+      }
+    ],
+    "confusableWith": ["u1-grignard-ketone", "u1-grignard-formaldehyde", "u3-grignard-enone-12"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC1(O)CCCCC1",
+          "reagent": "H2SO4, heat",
+          "explains": "Acid dehydration goes through a carbocation and gives mostly the more substituted alkene, 1-methylcyclohexene (Zaitsev), not the exocyclic C=CH2."
+        },
+        {
+          "precursor": "O=C1CCCCC1",
+          "reagent": "1. CH3MgBr, ether  2. H3O+",
+          "explains": "The Grignard adds and stops: workup gives the alcohol 1-methylcyclohexanol, not an alkene."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "alkene synthesis", "ylide"],
+    "review": "Arrows show the textbook 'ylide carbon attacks C=O' step (betaine-style picture). Current evidence favours direct [2+2] oxaphosphetane formation; check this simplification is acceptable as the drilled key step.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-wolff-kishner",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Wolff–Kishner: C=O → CH2",
+    "reactants": ["[CH3:1][C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+    "reagents": ["[NH2:10][NH2:11]"],
+    "reagentDisplay": "H2NNH2, KOH, heat",
+    "reagentAliases": ["H2NNH2", "NH2NH2", "N2H4", "hydrazine", "H2NNH2, KOH", "Wolff-Kishner", "Wolff–Kishner"],
+    "product": "[CH3:1][CH2:2][c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1",
+    "byproducts": ["[OH2:3]", "[N:10]#[N:11]"],
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "Hydrazine's nitrogen attacks the C=O carbon and water is lost, giving a hydrazone (like imine formation). Strong base and heat then remove the N–H protons, N2 gas leaves, and the carbon picks up a second H, so the C=O becomes CH2.",
+    "traps": [
+      {
+        "smiles": "CC(O)c1ccccc1",
+        "explains": "That's the alcohol NaBH4 or LiAlH4 would give. Wolff–Kishner removes the oxygen completely: C=O becomes CH2."
+      },
+      {
+        "smiles": "CC(=NN)c1ccccc1",
+        "explains": "The hydrazone is the intermediate. KOH and heat drive off N2, so it goes all the way to the CH2."
+      },
+      {"smiles": "CCC1CCCCC1", "explains": "Only the C=O is reduced. The benzene ring stays aromatic."}
+    ],
+    "confusableWith": ["u1-clemmensen", "u1-nabh4-ketone", "u1-imine"],
+    "tags": ["reduction", "deoxygenation", "basic conditions"],
+    "review": "Key step drilled is hydrazine N attacking C=O (hydrazone formation, the pattern-A step), not the base-promoted N2 loss that actually makes the CH2. Check that is the step to drill.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u1-clemmensen",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Clemmensen: C=O → CH2 in acid",
+    "reactants": ["[CH3:1][CH2:2][C:3](=[O:4])[c:5]1[cH:6][cH:7][cH:8][cH:9][cH:10]1"],
+    "reagents": ["[H+:11].[Cl-:12]"],
+    "reagentDisplay": "Zn(Hg), HCl, heat",
+    "reagentAliases": ["Zn(Hg), HCl", "Zn(Hg)", "zinc amalgam", "Zn/Hg, HCl", "Zn(Hg)/HCl", "Clemmensen"],
+    "product": "[CH3:1][CH2:2][CH2:3][c:5]1[cH:6][cH:7][cH:8][cH:9][cH:10]1",
+    "byproducts": ["[OH2:4]"],
+    "keyStep": {"nucleophileAtom": 4, "electrophileAtom": 11, "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 11}}]},
+    "why": "Zinc amalgam in hot HCl removes the carbonyl oxygen completely, turning C=O into CH2. Acid activates the C=O (protonation), and electrons from the zinc surface reduce the carbon. It is the acidic partner of Wolff–Kishner: use it when the molecule can survive strong acid but not strong base.",
+    "traps": [
+      {
+        "smiles": "CCC(O)c1ccccc1",
+        "explains": "That's the alcohol a hydride (NaBH4/LiAlH4) gives. Clemmensen removes the oxygen completely: C=O becomes CH2."
+      },
+      {
+        "smiles": "CCC(Cl)c1ccccc1",
+        "explains": "HCl here is the acid for the reduction; the product doesn't keep a C–Cl bond. The carbon ends up as a plain CH2."
+      },
+      {"smiles": "CCCC1CCCCC1", "explains": "Only the C=O is reduced. The benzene ring stays aromatic."}
+    ],
+    "confusableWith": ["u1-wolff-kishner", "u1-nabh4-ketone"],
+    "tags": ["reduction", "deoxygenation", "acidic conditions"],
+    "review": "The Clemmensen mechanism is not well established (zinc-surface electron transfer / zinc carbenoids), so there is no clean nucleophile-to-carbon step. The key step shown is only protonation of the carbonyl O by H+ (HCl written as H+ + Cl-, since RDKit drops a mapped H). Consider hiding the arrows card for this record or replacing the step. (Its where/arrows/paper cards are now skipped via skipCards, so only product/reagent/why are drilled.)",
+    "verified": false,
+    "verifiedBy": null,
+    "skipCards": ["where", "arrows", "paper"]
   }
 ]

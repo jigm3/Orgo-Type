@@ -14,20 +14,993 @@
       "nucleophileAtom": 1,
       "electrophileAtom": 5,
       "arrows": [
-        { "from": { "lonePair": 3 }, "to": { "bond": [2, 3] } },
-        { "from": { "bond": [1, 2] }, "to": { "atom": 5 } },
-        { "from": { "bond": [5, 6] }, "to": { "atom": 6 } }
+        {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 5}},
+        {"from": {"bond": [5, 6]}, "to": {"atom": 6}}
       ]
     },
     "why": "Hydroxide removes an α-H to make an enolate. Its α-carbon then runs pattern A on a second aldehyde: nucleophilic addition to the C=O carbon. Protonating the alkoxide gives a β-hydroxy aldehyde.",
     "traps": [
-      { "smiles": "CC=CC=O", "explains": "That's the aldol condensation product. Losing water to form the C=C needs heat; at low temperature the reaction stops at the β-hydroxy aldehyde." },
-      { "smiles": "CCC(O)C=O", "explains": "The new C–C bond joins the α-carbon of one aldehyde to the carbonyl carbon of the other, so the OH ends up on the β-carbon, not the α-carbon." },
-      { "smiles": "CC(O)CCO", "explains": "Hydroxide isn't a reducing agent. The aldehyde C=O survives; only the attacked C=O becomes an alcohol." }
+      {
+        "smiles": "CC=CC=O",
+        "explains": "That's the aldol condensation product. Losing water to form the C=C needs heat; at low temperature the reaction stops at the β-hydroxy aldehyde."
+      },
+      {
+        "smiles": "CCC(O)C=O",
+        "explains": "The new C–C bond joins the α-carbon of one aldehyde to the carbonyl carbon of the other, so the OH ends up on the β-carbon, not the α-carbon."
+      },
+      {
+        "smiles": "CC(O)CCO",
+        "explains": "Hydroxide isn't a reducing agent. The aldehyde C=O survives; only the attacked C=O becomes an alcohol."
+      }
     ],
-    "confusableWith": [],
+    "confusableWith": ["u4-aldol-condensation-propanal", "u4-claisen-ethyl-acetate"],
     "tags": ["C-C bond", "enolate", "aldol"],
     "review": "Check the conditions (NaOH, 5 °C = addition; heat = condensation) follow the usual textbook split.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-alpha-bromination-acid",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Acid-catalysed α-bromination → α-bromo ketone",
+    "reactants": ["[CH3:1][C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+    "reagents": ["[Br:10][Br:11]"],
+    "reagentDisplay": "Br2, CH3COOH",
+    "reagentAliases": ["Br2, CH3COOH", "Br2, AcOH", "Br2, acetic acid", "Br2, H+", "Br2, HBr", "Br2"],
+    "product": "[Br:10][CH2:1][C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1",
+    "byproducts": ["[BrH:11]"],
+    "keyStep": {
+      "species": ["[CH2:1]=[C:2]([OH:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[Br:10][Br:11]"],
+      "nucleophileAtom": 1,
+      "electrophileAtom": 10,
+      "arrows": [
+        {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+        {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+      ]
+    },
+    "why": "Acid catalyses formation of the enol, whose α-carbon attacks Br2. Once one Br is on, the C=O is less basic, so enol formation slows and the reaction stops at the mono-bromo ketone (in base, every α-H is replaced).",
+    "traps": [
+      {
+        "smiles": "O=C(C(Br)Br)c1ccccc1",
+        "explains": "Polyhalogenation happens in base, where each Br makes the next α-H more acidic. In acid, the reaction stops after one Br."
+      },
+      {
+        "smiles": "CC(=O)c1cccc(Br)c1",
+        "explains": "Brominating the benzene ring (EAS) needs a Lewis acid like FeBr3. Here the enol's α-carbon is the nucleophile."
+      },
+      {
+        "smiles": "O=C(O)c1ccccc1",
+        "explains": "Cleaving off the methyl as a haloform needs base (NaOH) and excess halogen. Acid conditions give the α-bromo ketone."
+      }
+    ],
+    "confusableWith": ["u4-haloform-iodoform"],
+    "tags": ["enol", "alpha-halogenation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-haloform-iodoform",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Haloform: methyl ketone + I2/NaOH → carboxylic acid + CHI3",
+    "reactants": ["[CH3:1][C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+    "reagents": ["[I:10][I:11]", "[I:12][I:13]", "[I:14][I:15]", "[OH-:16]"],
+    "reagentDisplay": "1. I2 (excess), NaOH, H2O  2. H3O+",
+    "reagentAliases": ["I2, NaOH", "I2/NaOH", "excess I2, NaOH", "I2, KOH", "iodoform", "Br2, NaOH", "NaOI"],
+    "product": "[O:3]=[C:2]([OH:16])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1",
+    "byproducts": ["[CH:1]([I:10])([I:12])[I:14]"],
+    "keyStep": {
+      "species": ["[C:1]([I:10])([I:12])([I:14])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:16]"],
+      "nucleophileAtom": 16,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 16}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "In base each α-iodination makes the remaining α-H's more acidic, so all three H's on the methyl are replaced. Hydroxide then does pattern B on the C=O with CI3⁻ as the leaving group, giving a carboxylate (an acid after workup) and yellow iodoform, CHI3.",
+    "traps": [
+      {
+        "smiles": "O=C(CI)c1ccccc1",
+        "explains": "Stopping at one halogen is the acid-catalysed result. In base, halogenation speeds up after each step, so all three α-H's are replaced."
+      },
+      {
+        "smiles": "O=C(c1ccccc1)C(I)(I)I",
+        "explains": "The triiodo ketone is an intermediate: hydroxide attacks its C=O and kicks out CI3⁻ as a leaving group."
+      },
+      {
+        "smiles": "O=C(O)Cc1ccccc1",
+        "explains": "The CH3 carbon leaves as CHI3, so the acid keeps the carbonyl carbon and loses one carbon overall."
+      }
+    ],
+    "confusableWith": ["u4-alpha-bromination-acid"],
+    "tags": ["enolate", "alpha-halogenation", "haloform", "C-C cleavage"],
+    "review": "Key step shown is hydroxide adding to the C=O of the CI3 ketone (the C–C bond breaks in the next step, when the tetrahedral intermediate expels CI3⁻). Check this is the step you want drilled.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-kinetic-enolate-alkylation",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Kinetic enolate (LDA, −78 °C) + CH3I → less substituted α-carbon",
+    "reactants": ["[O:1]=[C:2]1[CH:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:12][I:13]"],
+    "reagentDisplay": "1. LDA, THF, −78 °C  2. CH3I",
+    "reagentAliases": ["LDA", "LDA, -78 °C", "LDA then CH3I", "LDA, CH3I", "lithium diisopropylamide", "LiN(iPr)2"],
+    "product": "[O:1]=[C:2]1[CH:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH:7]1[CH3:12]",
+    "byproducts": ["[I-:13]"],
+    "keyStep": {
+      "species": ["[O-:1][C:2]1=[CH:7][CH2:6][CH2:5][CH2:4][CH:3]1[CH3:8]", "[CH3:12][I:13]"],
+      "nucleophileAtom": 7,
+      "electrophileAtom": 12,
+      "arrows": [
+        {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+        {"from": {"bond": [2, 7]}, "to": {"atom": 12}},
+        {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+      ]
+    },
+    "why": "LDA is a strong, bulky base: at −78 °C it removes the most accessible α-H (on the CH2 side) fast and irreversibly, giving the kinetic (less substituted) enolate. Its α-carbon then does SN2 on CH3I, giving 2,6-dimethylcyclohexanone.",
+    "traps": [
+      {
+        "smiles": "CC1(C)CCCCC1=O",
+        "explains": "That's the thermodynamic result (alkylation at the more substituted α-carbon), from an equilibrating base such as NaOEt at room temperature. Cold, bulky LDA deprotonates the less hindered side."
+      },
+      {
+        "smiles": "COC1=CCCCC1C",
+        "explains": "Enolates alkylate on carbon with alkyl halides like CH3I. The O-methyl enol ether is not the main product."
+      },
+      {
+        "smiles": "CC1CCCCC1(C)O",
+        "explains": "CH3I is an electrophile, not a carbon nucleophile, so nothing adds to the C=O. The enolate carbon attacks the CH3 of CH3I."
+      }
+    ],
+    "confusableWith": ["u4-thermodynamic-enolate-alkylation", "u4-enolate-alkylation-lda", "u4-stork-enamine-allyl"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC1CCCCC1=O",
+          "reagent": "1. NaOEt, EtOH  2. CH3I",
+          "explains": "An equilibrating base forms the more substituted (thermodynamic) enolate, giving 2,2-dimethylcyclohexanone."
+        },
+        {
+          "precursor": "O=C1CCCCC1",
+          "reagent": "1. LDA, THF, −78 °C  2. CH3I",
+          "explains": "One alkylation of cyclohexanone puts on only one methyl, giving 2-methylcyclohexanone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "alkylation", "kinetic"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-thermodynamic-enolate-alkylation",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Thermodynamic enolate + CH3I → more substituted α-carbon",
+    "reactants": ["[O:1]=[C:2]1[CH:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:12][I:13]"],
+    "reagentDisplay": "1. NaOEt, EtOH, 25 °C  2. CH3I",
+    "reagentAliases": ["NaOEt", "NaOEt, EtOH", "sodium ethoxide", "NaOCH2CH3", "NaH", "NaOEt then CH3I"],
+    "product": "[O:1]=[C:2]1[C:3]([CH3:8])([CH3:12])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[I-:13]"],
+    "keyStep": {
+      "species": ["[O-:1][C:2]1=[C:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:12][I:13]"],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 12,
+      "arrows": [
+        {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+        {"from": {"bond": [2, 3]}, "to": {"atom": 12}},
+        {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+      ]
+    },
+    "why": "A weaker base at room temperature deprotonates reversibly, so the enolates equilibrate and the more substituted (more stable) C=C enolate wins. Its α-carbon does SN2 on CH3I, putting the second methyl on the carbon that already has one.",
+    "traps": [
+      {
+        "smiles": "CC1CCCC(C)C1=O",
+        "explains": "That's the kinetic product, from LDA at −78 °C. Reversible, room-temperature conditions favour the more substituted enolate."
+      },
+      {
+        "smiles": "COC1=C(C)CCCC1",
+        "explains": "Enolates alkylate on carbon with CH3I; the O-methyl enol ether is not the main product."
+      },
+      {
+        "smiles": "CCC1CCCCC1=O",
+        "explains": "The new bond forms at the ring α-carbon, not on the existing methyl group. Those methyl H's are not α to the C=O."
+      }
+    ],
+    "confusableWith": ["u4-kinetic-enolate-alkylation", "u4-enolate-alkylation-lda"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC1CCCCC1=O",
+          "reagent": "1. LDA, THF, −78 °C  2. CH3I",
+          "explains": "Cold, bulky LDA forms the less substituted (kinetic) enolate, giving 2,6-dimethylcyclohexanone."
+        },
+        {
+          "precursor": "CC1CCCCC1=O",
+          "reagent": "1. CH3MgBr  2. H3O+",
+          "explains": "A Grignard adds to the C=O, giving 1,2-dimethylcyclohexanol, not an α-alkylated ketone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "alkylation", "thermodynamic"],
+    "review": "Textbooks vary on how cleanly thermodynamic-enolate alkylation works (with NaOEt/EtOH there is also polyalkylation and some 2,6-product). Check the conditions shown (NaOEt, EtOH, 25 °C; NaH accepted as an alias) match the course's convention.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-enolate-alkylation-lda",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Enolate alkylation: ketone + LDA, then 1° alkyl halide",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[Br:8][CH2:9][CH2:10][CH3:11]"],
+    "reagentDisplay": "1. LDA, THF, −78 °C  2. CH3CH2CH2Br",
+    "reagentAliases": [
+      "LDA",
+      "LDA, CH3CH2CH2Br",
+      "LDA then CH3CH2CH2Br",
+      "lithium diisopropylamide",
+      "LDA, PrBr",
+      "LDA, 1-bromopropane"
+    ],
+    "product": "[O:1]=[C:2]1[CH:3]([CH2:9][CH2:10][CH3:11])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[Br-:8]"],
+    "keyStep": {
+      "species": ["[O-:1][C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[Br:8][CH2:9][CH2:10][CH3:11]"],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 9,
+      "arrows": [
+        {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+        {"from": {"bond": [2, 3]}, "to": {"atom": 9}},
+        {"from": {"bond": [8, 9]}, "to": {"atom": 8}}
+      ]
+    },
+    "why": "LDA converts all of the ketone to its enolate, so there is no leftover ketone to self-condense. The enolate α-carbon then does SN2 on the unhindered 1° alkyl bromide, making a new C–C bond next to the C=O.",
+    "traps": [
+      {
+        "smiles": "CCCC1(O)CCCCC1",
+        "explains": "That's what a propyl Grignard would give. Here the ketone is the nucleophile (as its enolate) and the alkyl halide is the electrophile."
+      },
+      {
+        "smiles": "CCCOC1=CCCCC1",
+        "explains": "Enolates alkylate on carbon with alkyl halides; the propyl enol ether (O-alkylation) is not the main product."
+      },
+      {
+        "smiles": "CCCC1CCCC(CCC)C1=O",
+        "explains": "One equivalent of LDA and alkyl halide gives one alkylation. Dialkylation would need a second round of base and RX."
+      }
+    ],
+    "confusableWith": [
+      "u4-kinetic-enolate-alkylation",
+      "u4-malonic-ester-butanoic-acid",
+      "u4-stork-enamine-allyl",
+      "u3-corey-house",
+      "u4-thermodynamic-enolate-alkylation"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C1CCCCC1",
+          "reagent": "1. CH3CH2CH2MgBr  2. H3O+",
+          "explains": "A Grignard adds to the C=O, giving 1-propylcyclohexanol, not an α-alkylated ketone."
+        },
+        {
+          "precursor": "O=C1CCCCC1",
+          "reagent": "1. LDA  2. CH3CH2CH2OH",
+          "explains": "OH⁻ is a terrible leaving group, so the alcohol can't be attacked; it just protonates the enolate back to cyclohexanone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "alkylation", "SN2"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-aldol-condensation-propanal",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Aldol condensation (heat) → α,β-unsaturated aldehyde",
+    "reactants": ["[CH3:1][CH2:2][CH:3]=[O:4]", "[CH3:5][CH2:6][CH:7]=[O:8]"],
+    "reagents": [],
+    "reagentDisplay": "NaOH, H2O, heat",
+    "reagentAliases": ["NaOH, heat", "NaOH", "KOH, heat", "NaOEt, heat", "base, heat", "hydroxide, heat"],
+    "product": "[CH3:1][CH2:2][CH:3]=[C:6]([CH3:5])[CH:7]=[O:8]",
+    "byproducts": ["[OH2:4]"],
+    "keyStep": {
+      "species": ["[CH3:5][CH:6]=[CH:7][O-:8]", "[CH3:1][CH2:2][CH:3]=[O:4]"],
+      "nucleophileAtom": 6,
+      "electrophileAtom": 3,
+      "arrows": [
+        {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+        {"from": {"bond": [6, 7]}, "to": {"atom": 3}},
+        {"from": {"bond": [3, 4]}, "to": {"atom": 4}}
+      ]
+    },
+    "why": "Enolate + pattern A: the enolate α-carbon adds to the C=O carbon of a second propanal, giving a β-hydroxy aldehyde. With heat, base removes the now doubly-activated α-H and expels OH⁻ (E1cB), giving the conjugated C=C: 2-methylpent-2-enal.",
+    "traps": [
+      {
+        "smiles": "CCC(O)C(C)C=O",
+        "explains": "That's the aldol addition product. With heat, the β-hydroxy aldehyde loses water to give the conjugated enal."
+      },
+      {
+        "smiles": "CCCC=CC=O",
+        "explains": "The new C–C bond is made by the α-carbon (the CH2 next to C=O), so the product carries a methyl branch at C2. A straight chain would need the CH3 end to be nucleophilic."
+      },
+      {
+        "smiles": "CCC(=O)C(C)C=O",
+        "explains": "That's a Claisen-type (pattern B) product. An aldehyde has no leaving group, so the alkoxide stays on and becomes OH, then leaves as water."
+      }
+    ],
+    "confusableWith": [
+      "u4-aldol-addition-acetaldehyde",
+      "u4-claisen-ethyl-acetate",
+      "u4-intramolecular-aldol-hexanedione",
+      "u4-claisen-schmidt-chalcone"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCC=O",
+          "reagent": "NaOH, H2O, 5 °C",
+          "explains": "Cold conditions stop at the aldol addition product (the β-hydroxy aldehyde); no water is lost."
+        },
+        {
+          "precursor": "CCC(=O)OCC",
+          "reagent": "1. NaOEt, EtOH  2. H3O+",
+          "explains": "An ester does a Claisen condensation, giving a β-keto ester, not an α,β-unsaturated aldehyde."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "aldol", "condensation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-claisen-schmidt-chalcone",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Crossed aldol (Claisen–Schmidt): ketone + benzaldehyde → enone",
+    "reactants": [
+      "[O:1]=[CH:2][c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1",
+      "[CH3:9][C:10](=[O:11])[c:12]1[cH:13][cH:14][cH:15][cH:16][cH:17]1"
+    ],
+    "reagents": [],
+    "reagentDisplay": "NaOH, EtOH/H2O, heat",
+    "reagentAliases": ["NaOH", "NaOH, heat", "NaOH, EtOH", "KOH", "KOH, EtOH", "base, heat"],
+    "product": "[O:11]=[C:10]([CH:9]=[CH:2][c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1)[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "species": [
+        "[CH2:9]=[C:10]([O-:11])[c:12]1[cH:13][cH:14][cH:15][cH:16][cH:17]1",
+        "[O:1]=[CH:2][c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1"
+      ],
+      "nucleophileAtom": 9,
+      "electrophileAtom": 2,
+      "arrows": [
+        {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+        {"from": {"bond": [9, 10]}, "to": {"atom": 2}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+      ]
+    },
+    "why": "Benzaldehyde has no α-H, so it can only be the electrophile, and as an aldehyde it is a better one than the ketone. Enolate + pattern A on the aldehyde C=O, then loss of water gives the C=C conjugated with both the ring and the C=O (a chalcone).",
+    "traps": [
+      {
+        "smiles": "O=C(CC(O)c1ccccc1)c1ccccc1",
+        "explains": "That's the aldol addition product. Losing water here gives a C=C conjugated with both the ring and the C=O, so dehydration goes easily."
+      },
+      {
+        "smiles": "CC(=CC(=O)c1ccccc1)c1ccccc1",
+        "explains": "That's acetophenone condensing with itself. Benzaldehyde's C=O is the more reactive electrophile, so the crossed product wins."
+      },
+      {
+        "smiles": "O=C(CCc1ccccc1)c1ccccc1",
+        "explains": "Nothing here reduces the C=C. The dehydration step leaves the conjugated alkene in the product."
+      }
+    ],
+    "confusableWith": ["u4-aldol-condensation-propanal", "u4-crossed-claisen-benzoate-acetone"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=Cc1ccccc1.CC=O",
+          "reagent": "NaOH, heat",
+          "explains": "Acetaldehyde's enolate gives cinnamaldehyde (PhCH=CHCHO), an aldehyde, not the phenyl ketone."
+        },
+        {
+          "precursor": "O=C(Cl)C=Cc1ccccc1",
+          "reagent": "1. C6H5MgBr  2. H3O+",
+          "explains": "A Grignard adds twice to an acid chloride, giving a tertiary alcohol, not the ketone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "aldol", "crossed aldol", "condensation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-intramolecular-aldol-hexanedione",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Intramolecular aldol: 2,5-hexanedione → cyclopentenone",
+    "reactants": ["[CH3:1][C:2](=[O:3])[CH2:4][CH2:5][C:6](=[O:7])[CH3:8]"],
+    "reagents": [],
+    "reagentDisplay": "NaOH, H2O, heat",
+    "reagentAliases": ["NaOH, heat", "NaOH", "KOH, heat", "NaOEt, heat", "base, heat", "hydroxide, heat"],
+    "product": "[O:3]=[C:2]1[CH:1]=[C:6]([CH3:8])[CH2:5][CH2:4]1",
+    "byproducts": ["[OH2:7]"],
+    "keyStep": {
+      "species": ["[CH2:1]=[C:2]([O-:3])[CH2:4][CH2:5][C:6](=[O:7])[CH3:8]"],
+      "nucleophileAtom": 1,
+      "electrophileAtom": 6,
+      "arrows": [
+        {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 6}},
+        {"from": {"bond": [6, 7]}, "to": {"atom": 7}}
+      ]
+    },
+    "why": "Enolate + pattern A, inside one molecule: the enolate of a terminal CH3 attacks the other C=O, closing a strain-free five-membered ring. Dehydration with heat gives the conjugated enone, 3-methylcyclopent-2-en-1-one.",
+    "traps": [
+      {
+        "smiles": "CC1(O)CCC(=O)C1",
+        "explains": "That's the aldol addition product. With heat it loses water to give the conjugated cyclopentenone."
+      },
+      {
+        "smiles": "CC1=CC(=O)CCC1",
+        "explains": "Count the atoms: 2,5-hexanedione closes a five-membered ring. The cyclohexenone comes from 2,6-heptanedione."
+      },
+      {
+        "smiles": "CC1=CCCC1=O",
+        "explains": "The methyl ends up on the β-carbon (the former C=O carbon that was attacked), not on the α-carbon next to the remaining C=O."
+      }
+    ],
+    "confusableWith": ["u4-aldol-condensation-propanal", "u4-dieckmann-diethyl-adipate", "u4-robinson-cyclohexanone-mvk"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC(=O)CCCC(C)=O",
+          "reagent": "NaOH, heat",
+          "explains": "2,6-Heptanedione closes a six-membered ring, giving 3-methylcyclohex-2-en-1-one."
+        },
+        {
+          "precursor": "O=C1C=CCC1",
+          "reagent": "1. (CH3)2CuLi  2. H3O+",
+          "explains": "The cuprate adds 1,4, giving 3-methylcyclopentanone; the C=C is gone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "aldol", "intramolecular", "ring formation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-claisen-ethyl-acetate",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Claisen condensation: 2 ethyl acetate → β-keto ester",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][CH2:5][CH3:6]", "[CH3:7][C:8](=[O:9])[O:10][CH2:11][CH3:12]"],
+    "reagents": [],
+    "reagentDisplay": "1. NaOEt, EtOH  2. H3O+",
+    "reagentAliases": ["NaOEt", "NaOEt, EtOH", "sodium ethoxide", "NaOCH2CH3", "EtONa", "NaOEt then H3O+"],
+    "product": "[CH3:1][C:2](=[O:3])[CH2:7][C:8](=[O:9])[O:10][CH2:11][CH3:12]",
+    "byproducts": ["[CH3:6][CH2:5][OH:4]"],
+    "keyStep": {
+      "species": ["[CH2:7]=[C:8]([O-:9])[O:10][CH2:11][CH3:12]", "[CH3:1][C:2](=[O:3])[O:4][CH2:5][CH3:6]"],
+      "nucleophileAtom": 7,
+      "electrophileAtom": 2,
+      "arrows": [
+        {"from": {"lonePair": 9}, "to": {"bond": [8, 9]}},
+        {"from": {"bond": [7, 8]}, "to": {"atom": 2}},
+        {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+      ]
+    },
+    "why": "Enolate + pattern B: the ester enolate adds to a second ester's C=O, and because esters have a leaving group the tetrahedral intermediate kicks out EtO⁻ instead of becoming an alcohol (contrast aldol = enolate + pattern A). Ethoxide then deprotonates the acidic β-keto ester, which drives the reaction; H3O+ workup gives ethyl acetoacetate.",
+    "traps": [
+      {
+        "smiles": "CCOC(C)(O)CC(=O)OCC",
+        "explains": "That's aldol thinking (pattern A). An ester's tetrahedral intermediate expels EtO⁻ and re-forms the C=O, so the product is a ketone."
+      },
+      {
+        "smiles": "CC(C)=O",
+        "explains": "Losing CO2 needs the ester hydrolysed and then heat (as in the acetoacetic ester synthesis). Mild H3O+ workup only protonates the enolate."
+      },
+      {
+        "smiles": "CC(=O)CC(=O)O",
+        "explains": "The workup is mild acid at room temperature, so the ethyl ester survives. Only the enolate is protonated."
+      }
+    ],
+    "confusableWith": [
+      "u4-aldol-condensation-propanal",
+      "u4-dieckmann-diethyl-adipate",
+      "u4-crossed-claisen-benzoate-acetone",
+      "u2-grignard-ester",
+      "u4-aldol-addition-acetaldehyde",
+      "u4-acetoacetic-ester-2-pentanone"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCOC(C)=O",
+          "reagent": "1. NaOH, H2O  2. H3O+",
+          "explains": "Hydroxide saponifies the ester to acetic acid; no C–C bond forms."
+        },
+        {
+          "precursor": "CCOC(C)=O",
+          "reagent": "1. CH3MgBr (excess)  2. H3O+",
+          "explains": "A Grignard adds twice to the ester, giving 2-methyl-2-propanol."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "Claisen", "beta-keto ester"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-dieckmann-diethyl-adipate",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Dieckmann: diethyl hexanedioate → cyclic β-keto ester",
+    "reactants": ["[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][CH2:7][CH2:8][CH2:9][C:10](=[O:11])[O:12][CH2:13][CH3:14]"],
+    "reagents": [],
+    "reagentDisplay": "1. NaOEt, EtOH  2. H3O+",
+    "reagentAliases": ["NaOEt", "NaOEt, EtOH", "sodium ethoxide", "NaOCH2CH3", "EtONa", "NaOEt then H3O+"],
+    "product": "[O:5]=[C:4]1[CH2:6][CH2:7][CH2:8][CH:9]1[C:10](=[O:11])[O:12][CH2:13][CH3:14]",
+    "byproducts": ["[CH3:1][CH2:2][OH:3]"],
+    "keyStep": {
+      "species": ["[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][CH2:7][CH2:8][CH:9]=[C:10]([O-:11])[O:12][CH2:13][CH3:14]"],
+      "nucleophileAtom": 9,
+      "electrophileAtom": 4,
+      "arrows": [
+        {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+        {"from": {"bond": [9, 10]}, "to": {"atom": 4}},
+        {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+      ]
+    },
+    "why": "A Dieckmann is an intramolecular Claisen (enolate + pattern B): the enolate α to one ester attacks the other ester's C=O, and EtO⁻ leaves, closing a five-membered ring. Deprotonation of the cyclic β-keto ester drives it; H3O+ workup gives ethyl 2-oxocyclopentanecarboxylate.",
+    "traps": [
+      {
+        "smiles": "CCOC(=O)C1CCCCC1=O",
+        "explains": "Count the ring: the α-carbon and the other C=O carbon of a hexanedioate are five atoms apart, so a five-membered ring forms. The cyclohexanone comes from the heptanedioate."
+      },
+      {
+        "smiles": "O=C1CCCC1",
+        "explains": "Losing the ester as CO2 needs hydrolysis and heat. Mild H3O+ workup leaves the β-keto ester intact."
+      },
+      {
+        "smiles": "CCOC(=O)C1CCC(=O)C1",
+        "explains": "The enolate carbon bonds directly to the other C=O, so the ester ends up on the carbon between the two carbonyls (a β-keto ester), not one carbon further away."
+      }
+    ],
+    "confusableWith": ["u4-claisen-ethyl-acetate", "u4-intramolecular-aldol-hexanedione"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCOC(=O)CCCCCC(=O)OCC",
+          "reagent": "1. NaOEt, EtOH  2. H3O+",
+          "explains": "Diethyl heptanedioate closes a six-membered ring, giving ethyl 2-oxocyclohexanecarboxylate."
+        },
+        {
+          "precursor": "CCOC(=O)CCCCC(=O)OCC",
+          "reagent": "1. NaOH, H2O  2. H3O+",
+          "explains": "Hydroxide saponifies both esters, giving hexanedioic (adipic) acid; no ring forms."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "Claisen", "Dieckmann", "ring formation", "beta-keto ester"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-crossed-claisen-benzoate-acetone",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Crossed Claisen: ketone + non-enolizable ester → 1,3-diketone",
+    "reactants": [
+      "[CH3:1][CH2:2][O:3][C:4](=[O:5])[c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1",
+      "[CH3:12][C:13](=[O:14])[CH3:15]"
+    ],
+    "reagents": [],
+    "reagentDisplay": "1. NaOEt, EtOH  2. H3O+",
+    "reagentAliases": ["NaOEt", "NaOEt, EtOH", "sodium ethoxide", "NaH", "NaOCH2CH3", "EtONa"],
+    "product": "[O:5]=[C:4]([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)[CH2:12][C:13](=[O:14])[CH3:15]",
+    "byproducts": ["[CH3:1][CH2:2][OH:3]"],
+    "keyStep": {
+      "species": [
+        "[CH2:12]=[C:13]([O-:14])[CH3:15]",
+        "[CH3:1][CH2:2][O:3][C:4](=[O:5])[c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1"
+      ],
+      "nucleophileAtom": 12,
+      "electrophileAtom": 4,
+      "arrows": [
+        {"from": {"lonePair": 14}, "to": {"bond": [13, 14]}},
+        {"from": {"bond": [12, 13]}, "to": {"atom": 4}},
+        {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+      ]
+    },
+    "why": "Ethyl benzoate has no α-H, so it can only be the electrophile. The acetone enolate does pattern B on the ester C=O and EtO⁻ leaves; deprotonation of the very acidic 1,3-diketone pulls the reaction through, and workup gives 1-phenylbutane-1,3-dione.",
+    "traps": [
+      {
+        "smiles": "CCOC(O)(CC(C)=O)c1ccccc1",
+        "explains": "That's aldol (pattern A) thinking. An ester has a leaving group, so the tetrahedral intermediate expels EtO⁻ and a ketone forms."
+      },
+      {
+        "smiles": "CC(=O)C=C(C)C",
+        "explains": "That's acetone condensing with itself. The self-aldol is reversible, while the 1,3-diketone is trapped as its stable enolate, so the crossed Claisen product wins."
+      },
+      {
+        "smiles": "CC(=O)C(=O)c1ccccc1",
+        "explains": "The bond forms from acetone's α-carbon, not its C=O carbon, so a CH2 sits between the two C=O groups (a 1,3-, not a 1,2-dicarbonyl)."
+      }
+    ],
+    "confusableWith": ["u4-claisen-ethyl-acetate", "u4-claisen-schmidt-chalcone"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=Cc1ccccc1.CC(C)=O",
+          "reagent": "NaOH, heat",
+          "explains": "With an aldehyde this is an aldol condensation, giving the enone PhCH=CHCOCH3, not a 1,3-diketone."
+        },
+        {
+          "precursor": "CCOC(=O)c1ccccc1",
+          "reagent": "1. CH3MgBr (excess)  2. H3O+",
+          "explains": "A Grignard adds twice to the ester, giving 2-phenyl-2-propanol."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "Claisen", "crossed Claisen", "1,3-dicarbonyl"],
+    "review": "The 1,3-diketone is drawn as the diketo form; in reality 1-phenylbutane-1,3-dione exists largely as its enol tautomer. Acetone self-aldol is a competing side reaction (the self-condensation trap explains why the crossed product dominates). Check the substrate pair is acceptable or swap to ethyl benzoate + ethyl acetate.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-michael-malonate-mvk",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Michael addition: malonate enolate + enone → 1,5-dicarbonyl",
+    "reactants": [
+      "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+      "[CH2:12]=[CH:13][C:14](=[O:15])[CH3:16]"
+    ],
+    "reagents": [],
+    "reagentDisplay": "1. NaOEt, EtOH  2. H3O+",
+    "reagentAliases": ["NaOEt", "NaOEt, EtOH", "sodium ethoxide", "NaOCH2CH3", "EtONa", "base"],
+    "product": "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]([CH2:12][CH2:13][C:14](=[O:15])[CH3:16])[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+    "keyStep": {
+      "species": [
+        "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]=[C:7]([O-:8])[O:9][CH2:10][CH3:11]",
+        "[CH2:12]=[CH:13][C:14](=[O:15])[CH3:16]"
+      ],
+      "nucleophileAtom": 6,
+      "electrophileAtom": 12,
+      "arrows": [
+        {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+        {"from": {"bond": [6, 7]}, "to": {"atom": 12}},
+        {"from": {"bond": [12, 13]}, "to": {"bond": [13, 14]}},
+        {"from": {"bond": [14, 15]}, "to": {"atom": 15}}
+      ]
+    },
+    "why": "Enolate + pattern C: the stabilized (soft) malonate enolate adds 1,4 to the β-carbon of the enone rather than to its C=O. Protonation of the new enolate on workup gives a 1,5-dicarbonyl compound.",
+    "traps": [
+      {
+        "smiles": "C=CC(C)(O)C(C(=O)OCC)C(=O)OCC",
+        "explains": "That's 1,2-addition to the C=O, the hard-nucleophile result. A stabilized malonate enolate is soft and adds 1,4."
+      },
+      {
+        "smiles": "CCOC(=O)C(C(=O)OCC)C(C)C(C)=O",
+        "explains": "The nucleophile bonds to the β-carbon (the CH2 end of the C=C), not the α-carbon next to the C=O."
+      },
+      {
+        "smiles": "CC(=O)CCCC(=O)O",
+        "explains": "Hydrolysis and loss of CO2 need H3O+ with heat. A mild workup leaves both esters in place."
+      }
+    ],
+    "confusableWith": [
+      "u3-grignard-enone-12",
+      "u3-gilman-enone",
+      "u4-robinson-cyclohexanone-mvk",
+      "u4-malonic-ester-butanoic-acid"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCOC(=O)CC(=O)OCC.C=CC(C)=O",
+          "reagent": "1. NaOEt, EtOH  2. H3O+, heat",
+          "explains": "Hot aqueous acid also hydrolyses the esters and decarboxylates, giving 5-oxohexanoic acid."
+        },
+        {
+          "precursor": "CCOC(=O)CC(=O)OCC.CC=CC=O",
+          "reagent": "1. NaOEt, EtOH  2. H3O+",
+          "explains": "Michael addition to crotonaldehyde gives a branched aldehyde, (EtO2C)2CH–CH(CH3)–CH2–CHO, not the methyl ketone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "Michael", "conjugate addition", "1,4"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-robinson-cyclohexanone-mvk",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Robinson annulation: cyclohexanone + MVK → bicyclic enone",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH2:8]=[CH:9][C:10](=[O:11])[CH3:12]"],
+    "reagents": [],
+    "reagentDisplay": "NaOEt, EtOH, heat",
+    "reagentAliases": ["NaOEt, heat", "NaOEt", "NaOH, heat", "KOH, heat", "base, heat", "NaOH"],
+    "product": "[O:11]=[C:10]1[CH:12]=[C:2]2[CH2:7][CH2:6][CH2:5][CH2:4][CH:3]2[CH2:8][CH2:9]1",
+    "byproducts": ["[OH2:1]"],
+    "keyStep": {
+      "species": ["[O-:1][C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH2:8]=[CH:9][C:10](=[O:11])[CH3:12]"],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 8,
+      "arrows": [
+        {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+        {"from": {"bond": [2, 3]}, "to": {"atom": 8}},
+        {"from": {"bond": [8, 9]}, "to": {"bond": [9, 10]}},
+        {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+      ]
+    },
+    "why": "Robinson annulation = Michael (enolate + pattern C) then intramolecular aldol condensation (enolate + pattern A). The key step drilled is the Michael: the cyclohexanone enolate adds 1,4 to MVK; then the methyl ketone's enolate closes a six-membered ring onto the ring C=O, and dehydration gives the conjugated bicyclic enone.",
+    "traps": [
+      {
+        "smiles": "CC(=O)CCC1CCCCC1=O",
+        "explains": "That's only the Michael adduct. With base and heat it goes on to an intramolecular aldol condensation that closes the second ring."
+      },
+      {
+        "smiles": "O=C1CCC2CCCCC2(O)C1",
+        "explains": "That's the aldol addition product (β-hydroxy ketone). Heat drives the loss of water to the conjugated enone."
+      },
+      {
+        "smiles": "C=CC(C)(O)C1CCCCC1=O",
+        "explains": "The enolate adds 1,4 to the β-carbon of MVK, not 1,2 to its C=O."
+      }
+    ],
+    "confusableWith": ["u4-michael-malonate-mvk", "u4-intramolecular-aldol-hexanedione"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C1CCCC1.C=CC(C)=O",
+          "reagent": "NaOEt, EtOH, heat",
+          "explains": "Starting from cyclopentanone gives the 5,6-fused enone (a hexahydroindenone), one ring carbon short."
+        },
+        {
+          "precursor": "CC1CCCCC1=O.C=CC(C)=O",
+          "reagent": "NaOEt, EtOH, heat",
+          "explains": "2-Methylcyclohexanone gives the octalone with an extra angular methyl at the ring fusion."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "Michael", "aldol", "Robinson annulation", "ring formation"],
+    "review": "Key step is the Michael step only (stated in why). Check the conditions shown (NaOEt, EtOH, heat; one pot) match the course convention; some texts write 1. NaOEt, 2. heat or use KOH/MeOH.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-malonic-ester-butanoic-acid",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Malonic ester synthesis → carboxylic acid",
+    "reactants": ["[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][C:7](=[O:8])[O:9][CH2:10][CH3:11]"],
+    "reagents": ["[CH3:12][CH2:13][Br:14]", "[OH2:15]", "[OH2:16]"],
+    "reagentDisplay": "1. NaOEt, EtOH  2. CH3CH2Br  3. H3O+, heat",
+    "reagentAliases": [
+      "NaOEt, CH3CH2Br, H3O+",
+      "NaOEt, EtBr, H3O+ heat",
+      "1. NaOEt 2. EtBr 3. H3O+, heat",
+      "NaOEt then CH3CH2Br then H3O+",
+      "NaOEt, EtBr"
+    ],
+    "product": "[CH3:12][CH2:13][CH2:6][C:4](=[O:5])[OH:15]",
+    "byproducts": ["[O:8]=[C:7]=[O:16]", "[CH3:1][CH2:2][OH:3]", "[CH3:11][CH2:10][OH:9]", "[Br-:14]"],
+    "keyStep": {
+      "species": ["[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]=[C:7]([O-:8])[O:9][CH2:10][CH3:11]", "[CH3:12][CH2:13][Br:14]"],
+      "nucleophileAtom": 6,
+      "electrophileAtom": 13,
+      "arrows": [
+        {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+        {"from": {"bond": [6, 7]}, "to": {"atom": 13}},
+        {"from": {"bond": [13, 14]}, "to": {"atom": 14}}
+      ]
+    },
+    "why": "Ethoxide removes the acidic H between the two esters, and that enolate's α-carbon does SN2 on the 1° alkyl bromide. Hot aqueous acid then hydrolyses both esters and the resulting malonic acid loses CO2, leaving RCH2COOH (here butanoic acid).",
+    "traps": [
+      {"smiles": "CCC(C(=O)O)C(=O)O", "explains": "Heat makes the 1,3-diacid lose CO2. Only one COOH stays."},
+      {
+        "smiles": "CCC(CC)C(=O)O",
+        "explains": "One equivalent of base and alkyl halide gives one alkylation. A second ethyl would need a second round of NaOEt and EtBr."
+      },
+      {
+        "smiles": "CCC(=O)O",
+        "explains": "Count carbons: the malonate CH2 and one COOH stay, and the ethyl group is added to that CH2, so the acid has four carbons."
+      }
+    ],
+    "confusableWith": [
+      "u4-acetoacetic-ester-2-pentanone",
+      "u4-michael-malonate-mvk",
+      "side-sn2-2-bromobutane-cyanide",
+      "u4-decarboxylation-beta-keto-acid",
+      "u4-enolate-alkylation-lda"
+    ],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCOC(=O)CC(C)=O",
+          "reagent": "1. NaOEt, EtOH  2. CH3CH2Br  3. H3O+, heat",
+          "explains": "The acetoacetic ester synthesis gives a methyl ketone (2-pentanone), not a carboxylic acid."
+        },
+        {
+          "precursor": "CCOC(=O)CC(=O)OCC",
+          "reagent": "1. NaOEt, EtOH  2. CH3CH2CH2Br  3. H3O+, heat",
+          "explains": "A propyl group gives one carbon too many: pentanoic acid."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "alkylation", "malonic ester", "decarboxylation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-acetoacetic-ester-2-pentanone",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Acetoacetic ester synthesis → methyl ketone",
+    "reactants": ["[CH3:1][C:2](=[O:3])[CH2:4][C:5](=[O:6])[O:7][CH2:8][CH3:9]"],
+    "reagents": ["[CH3:10][CH2:11][Br:12]", "[OH2:13]"],
+    "reagentDisplay": "1. NaOEt, EtOH  2. CH3CH2Br  3. H3O+, heat",
+    "reagentAliases": [
+      "NaOEt, CH3CH2Br, H3O+",
+      "NaOEt, EtBr, H3O+ heat",
+      "1. NaOEt 2. EtBr 3. H3O+, heat",
+      "NaOEt then CH3CH2Br then H3O+",
+      "NaOEt, EtBr"
+    ],
+    "product": "[CH3:1][C:2](=[O:3])[CH2:4][CH2:11][CH3:10]",
+    "byproducts": ["[O:6]=[C:5]=[O:13]", "[CH3:9][CH2:8][OH:7]", "[Br-:12]"],
+    "keyStep": {
+      "species": ["[CH3:1][C:2]([O-:3])=[CH:4][C:5](=[O:6])[O:7][CH2:8][CH3:9]", "[CH3:10][CH2:11][Br:12]"],
+      "nucleophileAtom": 4,
+      "electrophileAtom": 11,
+      "arrows": [
+        {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [2, 4]}, "to": {"atom": 11}},
+        {"from": {"bond": [11, 12]}, "to": {"atom": 12}}
+      ]
+    },
+    "why": "Ethoxide removes the acidic H between the ketone and ester C=O, and the enolate's α-carbon does SN2 on the alkyl bromide. Hot aqueous acid hydrolyses the ester to a β-keto acid, which loses CO2, so the product is a methyl ketone: CH3CO–CH2–R (here 2-pentanone).",
+    "traps": [
+      {
+        "smiles": "CCOC(=O)C(CC)C(C)=O",
+        "explains": "That's the alkylated β-keto ester before step 3. Hot H3O+ hydrolyses the ester and the β-keto acid loses CO2."
+      },
+      {
+        "smiles": "CCCC(=O)O",
+        "explains": "That's the malonic ester result. Starting from ethyl acetoacetate, the acetyl group stays, giving a methyl ketone."
+      },
+      {
+        "smiles": "CCC(CC)C(C)=O",
+        "explains": "One equivalent of base and EtBr adds one ethyl. Dialkylation needs a second round of NaOEt and RX."
+      }
+    ],
+    "confusableWith": ["u4-malonic-ester-butanoic-acid", "u4-claisen-ethyl-acetate", "u4-decarboxylation-beta-keto-acid"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCOC(=O)CC(=O)OCC",
+          "reagent": "1. NaOEt, EtOH  2. CH3CH2Br  3. H3O+, heat",
+          "explains": "The malonic ester synthesis gives a carboxylic acid (butanoic acid), not a methyl ketone."
+        },
+        {
+          "precursor": "CCOC(=O)CC(C)=O",
+          "reagent": "1. NaOEt, EtOH  2. CH3CH2CH2Br  3. H3O+, heat",
+          "explains": "A propyl group gives 2-hexanone, one carbon too many."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enolate", "alkylation", "acetoacetic ester", "decarboxylation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-decarboxylation-beta-keto-acid",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Decarboxylation of a β-keto acid (heat) → ketone + CO2",
+    "reactants": ["[O:1]=[C:2]1[CH:3]([C:8](=[O:9])[OH:10])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": [],
+    "reagentDisplay": "heat",
+    "reagentAliases": ["heat", "Δ", "warm", "H3O+, heat", "heat, -CO2"],
+    "product": "[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[O:9]=[C:8]=[O:10]"],
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 1,
+      "arrows": [
+        {"from": {"lonePair": 10}, "to": {"bond": [8, 10]}},
+        {"from": {"bond": [3, 8]}, "to": {"bond": [2, 3]}},
+        {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+      ]
+    },
+    "why": "A β-keto acid loses CO2 through a cyclic six-membered transition state: the acid H moves to the ketone O while the C–C bond to the COOH breaks, giving CO2 and an enol. The enol then tautomerizes to the ketone.",
+    "traps": [
+      {
+        "smiles": "OC(=O)C1CCCCC1",
+        "explains": "The carbon that leaves is the COOH carbon, as CO2. The ring ketone stays."
+      },
+      {
+        "smiles": "OC1=CCCCC1",
+        "explains": "The enol is the first product, but it tautomerizes to the much more stable keto form."
+      },
+      {"smiles": "O=C1CCCC1", "explains": "Only the COOH carbon is lost; the six-membered ring stays intact."}
+    ],
+    "confusableWith": ["u4-malonic-ester-butanoic-acid", "u4-acetoacetic-ester-2-pentanone"],
+    "tags": ["decarboxylation", "enol", "beta-keto acid"],
+    "review": "Key-step arrows are simplified: the validator can't reference explicit H atoms, so the O–H → ketone-O proton transfer of the cyclic TS is drawn as 'O lone pair forms C=O of CO2; C–C bond forms the enol C=C; C=O π goes to the ketone O' (three arrows, no H). nucleophileAtom = the OH oxygen, electrophileAtom = the ketone O that picks up the H. Check this is acceptable.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u4-stork-enamine-allyl",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Stork enamine alkylation → α-allyl ketone",
+    "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[NH:8]1[CH2:9][CH2:10][CH2:11][CH2:12]1", "[CH2:13]=[CH:14][CH2:15][Br:16]", "[OH2:17]"],
+    "reagentDisplay": "1. pyrrolidine, H+ (cat.)  2. CH2=CHCH2Br  3. H3O+",
+    "reagentAliases": [
+      "pyrrolidine",
+      "pyrrolidine, H+",
+      "pyrrolidine, TsOH",
+      "enamine",
+      "Stork enamine",
+      "pyrrolidine then allyl bromide"
+    ],
+    "product": "[O:17]=[C:2]1[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "byproducts": ["[OH2:1]", "[NH:8]1[CH2:9][CH2:10][CH2:11][CH2:12]1", "[Br-:16]"],
+    "keyStep": {
+      "species": [
+        "[CH2:12]1[CH2:11][CH2:10][CH2:9][N:8]1[C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+        "[CH2:13]=[CH:14][CH2:15][Br:16]"
+      ],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 15,
+      "arrows": [
+        {"from": {"lonePair": 8}, "to": {"bond": [2, 8]}},
+        {"from": {"bond": [2, 3]}, "to": {"atom": 15}},
+        {"from": {"bond": [15, 16]}, "to": {"atom": 16}}
+      ]
+    },
+    "why": "The ketone and a 2° amine form an enamine, a neutral enolate equivalent: the N lone pair pushes into the C=C, and the α-carbon does SN2 on the reactive allyl bromide. Aqueous acid then hydrolyses the iminium back to the C=O, giving the mono-alkylated ketone without needing a strong base.",
+    "traps": [
+      {
+        "smiles": "C=CCC1(O)CCCCC1",
+        "explains": "That's what an allyl Grignard would do. Here the ketone's α-carbon (via the enamine) is the nucleophile and allyl bromide is the electrophile."
+      },
+      {
+        "smiles": "C=CCC1CCCC(CC=C)C1=O",
+        "explains": "The alkylated iminium can't react again, so the Stork method gives clean mono-alkylation."
+      },
+      {
+        "smiles": "C=CCC1CCCC=C1N1CCCC1",
+        "explains": "Step 3 (H3O+) hydrolyses the iminium/enamine back to the ketone, releasing pyrrolidine."
+      }
+    ],
+    "confusableWith": ["u4-enolate-alkylation-lda", "u4-kinetic-enolate-alkylation"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "O=C1CCCCC1",
+          "reagent": "1. CH2=CHCH2MgBr  2. H3O+",
+          "explains": "A Grignard adds to the C=O, giving 1-allylcyclohexanol, not an α-allyl ketone."
+        },
+        {
+          "precursor": "O=C1C=CCCC1",
+          "reagent": "1. (CH2=CHCH2)2CuLi  2. H3O+",
+          "explains": "The cuprate adds 1,4, putting the allyl group on the β-carbon: 3-allylcyclohexanone."
+        }
+      ]
+    },
+    "tags": ["C-C bond", "enamine", "alkylation", "Stork"],
     "verified": false,
     "verifiedBy": null
   }

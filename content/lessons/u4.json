@@ -1,0 +1,98 @@
+[
+  {
+    "id": "lesson-u4",
+    "unit": 4,
+    "title": "Enolates: the α-carbon attacks",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Step 1 shows the acetone enolate drawn as the C=C–O⁻ resonance form with the α-carbon lit as the nucleophile. Step 3 says ester enolate + ester forms a β-keto ester 'kicking out EtO⁻'; step 9 treats 2-methylcyclohexanone + LDA at −78 °C as deprotonating C6 (the CH2 side). Please confirm the wording of the kinetic/thermodynamic explanation.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "A base removes an **α-H**, the H on the carbon next to a C=O. The enolate that forms reacts through that α-carbon, so it is a carbon nucleophile. It then runs a pattern you know: A on an aldehyde or ketone (aldol), B on an ester (Claisen), C on an enone (Michael), or SN2 on an alkyl halide (alkylation).",
+        "smiles": "[CH2:1]=[C:2]([O-:3])[CH3:4]",
+        "lit": {"1": "nu"}
+      },
+      {
+        "kind": "tap",
+        "text": "Pentan-3-one plus base. Tap an **α-carbon** the base can deprotonate.",
+        "smiles": "[CH3:1][CH2:2][C:3](=[O:4])[CH2:5][CH3:6]",
+        "answer": [2, 5],
+        "explain": "The α-carbons are the two CH2 groups right next to C=O (they are equivalent here). Their C–H is acidic because the negative charge left behind spreads onto the oxygen. The CH3 groups at the ends are β, not α."
+      },
+      {
+        "kind": "choice",
+        "text": "An enolate is mixed with CH3I. Which kind of reaction is that?",
+        "options": [
+          {
+            "text": "SN2: the α-carbon attacks CH3 and pushes out I⁻ (alkylation)",
+            "correct": true,
+            "explains": "CH3I has no C=O; it is a methyl halide, the best SN2 substrate. The enolate is just the nucleophile."
+          },
+          {
+            "text": "Pattern A: addition to a C=O",
+            "explains": "Pattern A needs an aldehyde or ketone C=O to add to. CH3I has none."
+          },
+          {
+            "text": "Pattern B: acyl substitution, because I⁻ leaves",
+            "explains": "A leaving group alone isn't pattern B; that needs a C=O carbon carrying the leaving group (an acid derivative). Here I⁻ leaves from an sp³ carbon: SN2."
+          },
+          {
+            "text": "Pattern C: conjugate addition",
+            "explains": "Pattern C needs a C=C next to a C=O (an enone). CH3I has neither."
+          }
+        ]
+      },
+      {
+        "kind": "worked",
+        "reaction": "u4-aldol-addition-acetaldehyde",
+        "text": "Enolate + pattern A. The O⁻ pushes down, the α-carbon attacks the other aldehyde's C=O, and those π electrons go onto O."
+      },
+      {
+        "kind": "card",
+        "reaction": "u4-aldol-condensation-propanal",
+        "card": "arrows",
+        "given": 1,
+        "text": "Same key step with propanal. The first arrow (O⁻ pushing down) is drawn; add the other two."
+      },
+      {"kind": "card", "reaction": "u4-claisen-ethyl-acetate", "card": "product"},
+      {
+        "kind": "choice",
+        "text": "Aldol gives a β-hydroxy carbonyl, but Claisen gives a β-keto ester. **Why** the difference?",
+        "options": [
+          {
+            "text": "In Claisen the enolate adds to an ester, whose C=O carbon has a leaving group (EtO⁻), so the intermediate collapses back to C=O. An aldehyde has no leaving group, so the alkoxide is just protonated.",
+            "correct": true,
+            "explains": "Right: aldol = enolate + pattern A, Claisen = enolate + pattern B."
+          },
+          {
+            "text": "Claisen uses ethoxide and aldol uses hydroxide; the base decides the product.",
+            "explains": "The base only makes the enolate (NaOEt is used with ethyl esters to avoid swapping the ester group). What happens after attack depends on the electrophile."
+          },
+          {
+            "text": "In Claisen the β-hydroxy ester forms first and is then oxidised to the ketone.",
+            "explains": "No oxidant is present. The C=O re-forms because EtO⁻ leaves, not by oxidation."
+          },
+          {
+            "text": "In Claisen the alkoxide loses water, as in aldol condensation.",
+            "explains": "Losing water (E1cB) makes a C=C, not a C=O. The ketone in the Claisen product comes from losing EtO⁻."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "u4-michael-malonate-mvk", "card": "where"},
+      {
+        "kind": "tap",
+        "text": "**Kinetic vs thermodynamic.** LDA is a strong, bulky base, and at −78 °C it removes a proton fast and for good. On 2-methylcyclohexanone, tap the α-carbon LDA deprotonates.",
+        "smiles": "[O:1]=[C:2]1[CH:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+        "answer": [7],
+        "explain": "LDA takes the most accessible H, on the CH2 side (C6). That gives the less substituted, kinetic enolate. A weaker base at room temperature deprotonates reversibly, so it ends up at the more substituted, more stable thermodynamic enolate on C2, the carbon with the methyl."
+      },
+      {
+        "kind": "card",
+        "reaction": "u4-thermodynamic-enolate-alkylation",
+        "card": "product",
+        "text": "Same ketone, different conditions."
+      }
+    ]
+  }
+]

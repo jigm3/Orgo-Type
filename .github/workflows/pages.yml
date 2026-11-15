@@ -18,8 +18,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - run: pip install -r requirements.txt
       - run: python tools/test_validate.py
+      - run: node tests/engine.test.js
       - run: python build.py   # validates content first; only verified cards ship
       - uses: actions/upload-pages-artifact@v3
         with:

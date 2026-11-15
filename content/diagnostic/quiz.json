@@ -1,0 +1,776 @@
+[
+  {
+    "id": "dx-a-grignard-alcohol-class",
+    "form": "A",
+    "pair": "grignard-alcohol-class",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "CC(=O)C(C)C",
+    "reagentDisplay": "1. CH3CH2MgBr, ether  2. H3O+",
+    "options": [
+      {
+        "smiles": "CC(O)C(C)C",
+        "explains": "Grignard reagents deliver a carbon group, not hydride. This is the NaBH4/LiAlH4 product."
+      },
+      {"smiles": "CCC(C)(O)C(C)C", "correct": true},
+      {
+        "smiles": "CCC(=O)C(C)C",
+        "explains": "Treats the ketone like an ester, with the ethyl replacing the methyl. CH3⁻ is not a leaving group: R adds and the C=O becomes C–OH, giving a 3° alcohol."
+      },
+      {
+        "smiles": "CCC(C)C(C)C",
+        "explains": "The oxygen isn't lost. The alkoxide is protonated in the workup to give an alcohol."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-nabh4-chemoselectivity",
+    "form": "A",
+    "pair": "nabh4-chemoselectivity",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "CC(=O)c1ccc(cc1)C(=O)OC",
+    "reagentDisplay": "NaBH4, CH3OH, 0 °C",
+    "options": [
+      {"smiles": "CC(O)c1ccc(cc1)C(=O)OC", "correct": true},
+      {
+        "smiles": "CC(O)c1ccc(CO)cc1",
+        "explains": "Both groups reduced: that's LiAlH4. NaBH4 is too mild to reduce an ester."
+      },
+      {
+        "smiles": "CC(=O)c1ccc(CO)cc1",
+        "explains": "Reactivity backwards: the ketone is more electrophilic than the ester, and NaBH4 reduces only the ketone."
+      },
+      {
+        "smiles": "CCc1ccc(cc1)C(=O)OC",
+        "explains": "Full removal of the C=O oxygen needs Wolff–Kishner or Clemmensen conditions. A hydride gives an alcohol."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-enamine-secondary-amine",
+    "form": "A",
+    "pair": "enamine-secondary-amine",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "CCC(=O)CC",
+    "reagentDisplay": "morpholine, H+ (cat.), −H2O",
+    "options": [
+      {
+        "smiles": "CCC(O)(CC)N1CCOCC1",
+        "explains": "The carbinolamine is an intermediate. With acid and water removal it loses H2O."
+      },
+      {
+        "smiles": "CCC(CC)=[N+]1CCOCC1",
+        "explains": "The iminium ion forms, but the nitrogen has no H to lose, so a C–H next to it is removed instead, giving the neutral enamine."
+      },
+      {"smiles": "CCC(=CC)N1CCOCC1", "correct": true},
+      {
+        "smiles": "CCC(CC)N1CCOCC1",
+        "explains": "That's reductive amination, which needs a reducing agent such as NaBH3CN. None is present."
+      }
+    ],
+    "review": "Enamine drawn without E/Z geometry (C=C between C3 and C4 of the pentane chain); check that's acceptable.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-ester-dibal",
+    "form": "A",
+    "pair": "ester-dibal",
+    "pattern": "B",
+    "prompt": "What is the major organic product?",
+    "start": "CCOC(=O)C1CCCCCC1",
+    "reagentDisplay": "1. DIBAL-H (1 equiv), toluene, −78 °C  2. H2O",
+    "options": [
+      {
+        "smiles": "OCC1CCCCCC1",
+        "explains": "Over-reduction to the 1° alcohol is what LiAlH4 does. One equivalent of DIBAL-H at −78 °C stops at the aldehyde."
+      },
+      {"smiles": "O=CC1CCCCCC1", "correct": true},
+      {
+        "smiles": "CCOC(O)C1CCCCCC1",
+        "explains": "This hemiacetal is the intermediate, held as its aluminum salt at −78 °C. It collapses to the aldehyde on workup."
+      },
+      {
+        "smiles": "O=C(O)C1CCCCCC1",
+        "explains": "DIBAL-H reduces. Water in the workup quenches it but doesn't hydrolyze the ester."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-acid-chloride-cuprate",
+    "form": "A",
+    "pair": "acid-chloride-cuprate",
+    "pattern": "B",
+    "prompt": "What is the major organic product?",
+    "start": "CC(C)C(=O)Cl",
+    "reagentDisplay": "1. (CH3CH2)2CuLi, ether, −78 °C  2. H2O",
+    "options": [
+      {"smiles": "CCC(=O)C(C)C", "correct": true},
+      {
+        "smiles": "CCC(O)(CC)C(C)C",
+        "explains": "Adding twice is what a Grignard does. A Gilman reagent is softer and less reactive: it substitutes the Cl once and doesn't attack the ketone."
+      },
+      {"smiles": "CC(C)C=O", "explains": "A cuprate transfers an alkyl group, not hydride."},
+      {
+        "smiles": "CC(C)C(=O)O",
+        "explains": "That's hydrolysis by the water in the workup. The cuprate has already reacted with the acid chloride by then."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-ester-hydrolysis-product",
+    "form": "A",
+    "pair": "ester-hydrolysis-product",
+    "pattern": "B",
+    "prompt": "After the reaction, which product contains the original C=O carbon?",
+    "start": "CC(C)CC(=O)OCc1ccccc1",
+    "reagentDisplay": "1. NaOH, H2O, heat  2. H3O+",
+    "options": [
+      {
+        "smiles": "O=C(O)c1ccccc1",
+        "explains": "Wrong bond: the benzyl CH2 isn't a carbonyl carbon. Hydroxide attacks the C=O, and the benzyl part leaves as benzyl alcohol."
+      },
+      {"smiles": "CC(C)CC(=O)O", "correct": true},
+      {
+        "smiles": "CC(C)CCO",
+        "explains": "Hydroxide is a nucleophile, not a hydride source. Hydrolysis keeps the oxidation level: ester → carboxylic acid."
+      },
+      {
+        "smiles": "CC(C)CC(O)(O)OCc1ccccc1",
+        "explains": "The tetrahedral intermediate doesn't survive. It expels the alkoxide and re-forms C=O."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-enone-cuprate-14",
+    "form": "A",
+    "pair": "enone-cuprate-14",
+    "pattern": "C",
+    "prompt": "What is the major organic product?",
+    "start": "O=C1C=CCCCC1",
+    "reagentDisplay": "1. (CH3)2CuLi, ether  2. H3O+",
+    "options": [
+      {
+        "smiles": "CC1(O)C=CCCCC1",
+        "explains": "1,2-addition is what Grignard and organolithium reagents do. Soft cuprates add 1,4 to the β-carbon."
+      },
+      {"smiles": "CC1CCCCC(=O)C1", "correct": true},
+      {
+        "smiles": "CC1=CCCCCC1=O",
+        "explains": "The α-carbon is nucleophilic in an enone. The electrophilic carbon is β, so that's where the methyl goes."
+      },
+      {
+        "smiles": "CC1CCCCC(C)(O)C1",
+        "explains": "The 1,4-adduct is an enolate until workup, and the cuprate doesn't add to it again."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-enone-grignard-12",
+    "form": "A",
+    "pair": "enone-grignard-12",
+    "pattern": "C",
+    "prompt": "What is the major organic product?",
+    "start": "CC=CC(C)=O",
+    "reagentDisplay": "1. CH3CH2MgBr, ether  2. NH4Cl, H2O",
+    "options": [
+      {
+        "smiles": "CCC(C)CC(C)=O",
+        "explains": "1,4-addition is what a cuprate does. A Grignard is a hard nucleophile and adds 1,2, directly to the C=O."
+      },
+      {"smiles": "CC=CC(C)O", "explains": "Grignard reagents deliver a carbon group, not hydride."},
+      {"smiles": "CCC(C)(O)C=CC", "correct": true},
+      {
+        "smiles": "CCC(C)CC(C)(O)CC",
+        "explains": "Adding both 1,4 and 1,2 would need the Grignard to add to the C=C first. It adds once, at the C=O."
+      }
+    ],
+    "review": "Start drawn without E/Z (pent-3-en-2-one, normally E). Textbook rule assumed: Grignard adds 1,2 to an unhindered acyclic enone; real mixtures can contain some 1,4.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-aldol-vs-claisen",
+    "form": "A",
+    "pair": "aldol-vs-claisen",
+    "pattern": "D",
+    "prompt": "Two molecules of this ester react. What is the major organic product?",
+    "start": "CCC(=O)OCC",
+    "reagentDisplay": "1. NaOEt, EtOH  2. H3O+",
+    "options": [
+      {
+        "smiles": "CCC(O)(OCC)C(C)C(=O)OCC",
+        "explains": "This is aldol-style thinking (keeping an OH). An ester's tetrahedral intermediate expels ethoxide and re-forms C=O, giving a β-keto ester (Claisen)."
+      },
+      {
+        "smiles": "CCC(=O)CCC(=O)OCC",
+        "explains": "Wrong carbon: the new C–C bond forms at the α-carbon (next to C=O), so the α-carbon carries a methyl branch."
+      },
+      {"smiles": "CCC(=O)C(C)C(=O)OCC", "correct": true},
+      {
+        "smiles": "CCC(=O)C(C)C(=O)O",
+        "explains": "The H3O+ step only neutralizes the enolate. Hydrolyzing the ester would need heat with aqueous acid."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-kinetic-enolate",
+    "form": "A",
+    "pair": "kinetic-enolate",
+    "pattern": "D",
+    "prompt": "What is the major organic product?",
+    "start": "CC1CCCC1=O",
+    "reagentDisplay": "1. LDA, THF, −78 °C  2. CH3CH2I",
+    "options": [
+      {
+        "smiles": "CCC1(C)CCCC1=O",
+        "explains": "Alkylation at the more substituted α-carbon comes from the thermodynamic enolate (weaker base, warmer). LDA at −78 °C removes the less hindered H."
+      },
+      {
+        "smiles": "CCOC1=CCCC1C",
+        "explains": "Enolates alkylate on carbon with alkyl halides. O-alkylation is a minor pathway."
+      },
+      {"smiles": "CCC1CCC(C)C1=O", "correct": true},
+      {
+        "smiles": "CCC1CCC(C)(CC)C1=O",
+        "explains": "One equivalent of LDA forms the enolate completely, and one alkylation follows."
+      }
+    ],
+    "review": "Kinetic product drawn without cis/trans stereo (mixture of diastereomers).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-acetoacetic-malonic",
+    "form": "A",
+    "pair": "acetoacetic-malonic",
+    "pattern": "D",
+    "prompt": "What is the major organic product?",
+    "start": "CCOC(=O)CC(C)=O",
+    "reagentDisplay": "1. NaOEt, EtOH  2. C6H5CH2Br  3. H3O+, heat",
+    "options": [
+      {
+        "smiles": "CCOC(=O)C(Cc1ccccc1)C(C)=O",
+        "explains": "Step 3 (H3O+, heat) hydrolyzes the ester. It doesn't stop at the alkylated ester."
+      },
+      {
+        "smiles": "CC(=O)C(Cc1ccccc1)C(=O)O",
+        "explains": "A β-keto acid loses CO2 on heating, so this doesn't survive step 3."
+      },
+      {
+        "smiles": "O=C(O)CCc1ccccc1",
+        "explains": "That's the malonic ester product. Acetoacetic ester keeps its CH3C=O and gives a methyl ketone."
+      },
+      {"smiles": "CC(=O)CCCc1ccccc1", "correct": true}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-syn-grignard-oxidize",
+    "form": "A",
+    "pair": "syn-grignard-oxidize",
+    "pattern": "SYN",
+    "prompt": "Which reagent sequence turns benzaldehyde (shown) into propiophenone, C6H5COCH2CH3?",
+    "start": "O=Cc1ccccc1",
+    "reagentDisplay": "?",
+    "options": [
+      {
+        "text": "1. CH3CH2MgBr, ether  2. H3O+",
+        "explains": "This stops at the 2° alcohol, 1-phenylpropan-1-ol. An oxidation is still needed to reach the ketone."
+      },
+      {
+        "text": "1. (CH3CH2)2CuLi  2. H3O+",
+        "explains": "An aldehyde has no leaving group, so no reagent can swap H for ethyl directly. At best a cuprate would give the alcohol."
+      },
+      {"text": "1. CH3CH2MgBr, ether  2. H3O+  3. PCC, CH2Cl2", "correct": true},
+      {
+        "text": "1. NaBH4, CH3OH  2. CH3CH2Br",
+        "explains": "NaBH4 makes benzyl alcohol, which loses the carbon count. No new C–C bond forms."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-syn-protecting-group",
+    "form": "A",
+    "pair": "syn-protecting-group",
+    "pattern": "SYN",
+    "prompt": "Which sequence turns this keto ester into 4-(hydroxymethyl)cyclohexan-1-one, reducing the ester and keeping the ketone?",
+    "start": "COC(=O)C1CCC(=O)CC1",
+    "reagentDisplay": "?",
+    "options": [
+      {
+        "text": "1. LiAlH4, ether  2. H3O+",
+        "explains": "LiAlH4 reduces the ketone too. The ketone has to be protected first."
+      },
+      {
+        "text": "1. NaBH4, CH3OH  2. H3O+",
+        "explains": "Backwards: NaBH4 reduces the ketone and leaves the ester untouched."
+      },
+      {
+        "text": "1. HOCH2CH2OH, H+ (cat.), −H2O  2. NaBH4, CH3OH  3. H3O+",
+        "explains": "The acetal protection is right, but NaBH4 is too weak to reduce an ester."
+      },
+      {"text": "1. HOCH2CH2OH, H+ (cat.), −H2O  2. LiAlH4, ether  3. H3O+", "correct": true}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-sn2-secondary",
+    "form": "A",
+    "pair": "sn2-secondary",
+    "pattern": "S",
+    "prompt": "Which mechanism mainly operates?",
+    "start": "BrC1CCCC1",
+    "reagentDisplay": "NaN3, DMF",
+    "options": [
+      {
+        "text": "SN1",
+        "explains": "A 2° carbocation doesn't form readily in a polar aprotic solvent, and a strong nucleophile is present, so it attacks directly."
+      },
+      {"text": "SN2", "correct": true},
+      {
+        "text": "E1",
+        "explains": "E1 needs a carbocation (3° substrate, weak base, protic solvent, heat). None of those apply."
+      },
+      {
+        "text": "E2",
+        "explains": "Azide is a good nucleophile but a weak base, so a 2° halide gives substitution, not elimination."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-a-e2-zaitsev-tertiary",
+    "form": "A",
+    "pair": "e2-zaitsev-tertiary",
+    "pattern": "S",
+    "prompt": "What is the major organic product?",
+    "start": "CC1(Br)CCCCC1",
+    "reagentDisplay": "NaOCH2CH3, CH3CH2OH, heat",
+    "options": [
+      {
+        "smiles": "C=C1CCCCC1",
+        "explains": "The less substituted (Hofmann) alkene needs a bulky base such as KOtBu. Ethoxide is small, so the more substituted alkene wins."
+      },
+      {
+        "smiles": "CCOC1(C)CCCCC1",
+        "explains": "With a 3° halide, a strong base and heat, elimination (E2) beats substitution. SN2 can't happen at a 3° carbon."
+      },
+      {"smiles": "CC1=CCCCC1", "correct": true},
+      {
+        "smiles": "CC1CCCC=C1",
+        "explains": "The C=C must include the carbon that held the Br. This alkene would need a shift that E2 doesn't do."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-grignard-alcohol-class",
+    "form": "B",
+    "pair": "grignard-alcohol-class",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "O=C1CCCC1",
+    "reagentDisplay": "1. C6H5MgBr, ether  2. H3O+",
+    "options": [
+      {
+        "smiles": "OC1CCCC1",
+        "explains": "Grignard reagents deliver a carbon group, not hydride. This is the NaBH4/LiAlH4 product."
+      },
+      {
+        "smiles": "CCCCC(=O)c1ccccc1",
+        "explains": "Treats the ketone like an ester, breaking a ring C–C bond. A ketone has no leaving group: Ph adds and the C=O becomes C–OH, giving a 3° alcohol."
+      },
+      {
+        "smiles": "c1ccc(cc1)C1CCCC1",
+        "explains": "The oxygen isn't lost. The alkoxide is protonated in the workup to give an alcohol."
+      },
+      {"smiles": "OC1(CCCC1)c1ccccc1", "correct": true}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-nabh4-chemoselectivity",
+    "form": "B",
+    "pair": "nabh4-chemoselectivity",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "O=Cc1ccc(cc1)C(=O)OCC",
+    "reagentDisplay": "NaBH4, CH3OH, 0 °C",
+    "options": [
+      {
+        "smiles": "O=Cc1ccc(CO)cc1",
+        "explains": "Reactivity backwards: the aldehyde is more electrophilic than the ester, and NaBH4 reduces only the aldehyde."
+      },
+      {
+        "smiles": "Cc1ccc(cc1)C(=O)OCC",
+        "explains": "Full removal of the C=O oxygen needs Wolff–Kishner or Clemmensen conditions. A hydride gives an alcohol."
+      },
+      {"smiles": "OCc1ccc(cc1)C(=O)OCC", "correct": true},
+      {
+        "smiles": "OCc1ccc(CO)cc1",
+        "explains": "Both groups reduced: that's LiAlH4. NaBH4 is too mild to reduce an ester."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-enamine-secondary-amine",
+    "form": "B",
+    "pair": "enamine-secondary-amine",
+    "pattern": "A",
+    "prompt": "What is the major organic product?",
+    "start": "O=C1CCCC1",
+    "reagentDisplay": "piperidine, H+ (cat.), −H2O",
+    "options": [
+      {"smiles": "C1CCN(CC1)C1=CCCC1", "correct": true},
+      {
+        "smiles": "C1CCC(C1)N1CCCCC1",
+        "explains": "That's reductive amination, which needs a reducing agent such as NaBH3CN. None is present."
+      },
+      {
+        "smiles": "OC1(CCCC1)N1CCCCC1",
+        "explains": "The carbinolamine is an intermediate. With acid and water removal it loses H2O."
+      },
+      {
+        "smiles": "C1CCC(C1)=[N+]1CCCCC1",
+        "explains": "The iminium ion forms, but the nitrogen has no H to lose, so a C–H next to it is removed instead, giving the neutral enamine."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-ester-dibal",
+    "form": "B",
+    "pair": "ester-dibal",
+    "pattern": "B",
+    "prompt": "What is the major organic product?",
+    "start": "COC(=O)CCc1ccccc1",
+    "reagentDisplay": "1. DIBAL-H (1 equiv), toluene, −78 °C  2. H2O",
+    "options": [
+      {
+        "smiles": "O=C(O)CCc1ccccc1",
+        "explains": "DIBAL-H reduces. Water in the workup quenches it but doesn't hydrolyze the ester."
+      },
+      {
+        "smiles": "COC(O)CCc1ccccc1",
+        "explains": "This hemiacetal is the intermediate, held as its aluminum salt at −78 °C. It collapses to the aldehyde on workup."
+      },
+      {
+        "smiles": "OCCCc1ccccc1",
+        "explains": "Over-reduction to the 1° alcohol is what LiAlH4 does. One equivalent of DIBAL-H at −78 °C stops at the aldehyde."
+      },
+      {"smiles": "O=CCCc1ccccc1", "correct": true}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-acid-chloride-cuprate",
+    "form": "B",
+    "pair": "acid-chloride-cuprate",
+    "pattern": "B",
+    "prompt": "What is the major organic product?",
+    "start": "CCCC(=O)Cl",
+    "reagentDisplay": "1. (C6H5)2CuLi, ether, −78 °C  2. H2O",
+    "options": [
+      {"smiles": "CCCC=O", "explains": "A cuprate transfers an aryl or alkyl group, not hydride."},
+      {
+        "smiles": "CCCC(=O)O",
+        "explains": "That's hydrolysis by the water in the workup. The cuprate has already reacted with the acid chloride by then."
+      },
+      {"smiles": "CCCC(=O)c1ccccc1", "correct": true},
+      {
+        "smiles": "CCCC(O)(c1ccccc1)c1ccccc1",
+        "explains": "Adding twice is what a Grignard does. A Gilman reagent is softer and less reactive: it substitutes the Cl once and doesn't attack the ketone."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-ester-hydrolysis-product",
+    "form": "B",
+    "pair": "ester-hydrolysis-product",
+    "pattern": "B",
+    "prompt": "After the reaction, which product contains the original C=O carbon?",
+    "start": "O=C(OCc1ccccc1)C1CCCC1",
+    "reagentDisplay": "1. NaOH, H2O, heat  2. H3O+",
+    "options": [
+      {
+        "smiles": "OC(O)(OCc1ccccc1)C1CCCC1",
+        "explains": "The tetrahedral intermediate doesn't survive. It expels the alkoxide and re-forms C=O."
+      },
+      {
+        "smiles": "OCC1CCCC1",
+        "explains": "Hydroxide is a nucleophile, not a hydride source. Hydrolysis keeps the oxidation level: ester → carboxylic acid."
+      },
+      {
+        "smiles": "O=C(O)c1ccccc1",
+        "explains": "Wrong bond: the benzyl CH2 isn't a carbonyl carbon. Hydroxide attacks the C=O, and the benzyl part leaves as benzyl alcohol."
+      },
+      {"smiles": "O=C(O)C1CCCC1", "correct": true}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-enone-cuprate-14",
+    "form": "B",
+    "pair": "enone-cuprate-14",
+    "pattern": "C",
+    "prompt": "What is the major organic product?",
+    "start": "CC(=O)C=Cc1ccccc1",
+    "reagentDisplay": "1. (CH3)2CuLi, ether  2. H3O+",
+    "options": [
+      {
+        "smiles": "CC(C)(O)CC(C)c1ccccc1",
+        "explains": "The 1,4-adduct is an enolate until workup, and the cuprate doesn't add to it again."
+      },
+      {"smiles": "CC(=O)CC(C)c1ccccc1", "correct": true},
+      {
+        "smiles": "CC(C)(O)C=Cc1ccccc1",
+        "explains": "1,2-addition is what Grignard and organolithium reagents do. Soft cuprates add 1,4 to the β-carbon."
+      },
+      {
+        "smiles": "CC(=O)C(C)=Cc1ccccc1",
+        "explains": "The α-carbon is nucleophilic in an enone. The electrophilic carbon is β, so that's where the methyl goes."
+      }
+    ],
+    "review": "Start (benzalacetone, normally E) and the α-methyl distractor are drawn without E/Z; the product has one stereocenter (racemic), drawn flat.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-enone-grignard-12",
+    "form": "B",
+    "pair": "enone-grignard-12",
+    "pattern": "C",
+    "prompt": "What is the major organic product?",
+    "start": "CC(C)=CC(C)=O",
+    "reagentDisplay": "1. CH3MgBr, ether  2. NH4Cl, H2O",
+    "options": [
+      {"smiles": "CC(C)=CC(C)(C)O", "correct": true},
+      {
+        "smiles": "CC(C)(C)CC(C)=O",
+        "explains": "1,4-addition is what a cuprate does. A Grignard is a hard nucleophile and adds 1,2, directly to the C=O."
+      },
+      {
+        "smiles": "CC(C)(C)CC(C)(C)O",
+        "explains": "Adding both 1,4 and 1,2 would need the Grignard to add to the C=C first. It adds once, at the C=O."
+      },
+      {"smiles": "CC(O)C=C(C)C", "explains": "Grignard reagents deliver a carbon group, not hydride."}
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-aldol-vs-claisen",
+    "form": "B",
+    "pair": "aldol-vs-claisen",
+    "pattern": "D",
+    "prompt": "Two molecules of this aldehyde react. What is the major organic product?",
+    "start": "CCCC=O",
+    "reagentDisplay": "NaOH, H2O, 5 °C",
+    "options": [
+      {
+        "smiles": "CCCC(=O)C(CC)C=O",
+        "explains": "This is Claisen thinking. An aldehyde has no leaving group, so the alkoxide is protonated and an OH remains (aldol)."
+      },
+      {"smiles": "CCCC(O)C(CC)C=O", "correct": true},
+      {
+        "smiles": "CCCC(O)CCCC=O",
+        "explains": "Wrong carbon: the new C–C bond forms at the α-carbon (next to C=O), so the α-carbon carries an ethyl branch."
+      },
+      {
+        "smiles": "CCCC=C(CC)C=O",
+        "explains": "Dehydration to the enal needs heat. At 5 °C the aldol addition product is isolated."
+      }
+    ],
+    "review": "Butanal dehydrates easily; at 5 °C the β-hydroxy aldehyde is taken as the product, matching the deck's convention (cold = addition, heat = condensation).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-kinetic-enolate",
+    "form": "B",
+    "pair": "kinetic-enolate",
+    "pattern": "D",
+    "prompt": "What is the major organic product?",
+    "start": "CC1CCCCCC1=O",
+    "reagentDisplay": "1. LDA, THF, −78 °C  2. C6H5CH2Br",
+    "options": [
+      {"smiles": "CC1CCCCC(Cc2ccccc2)C1=O", "correct": true},
+      {
+        "smiles": "CC1(Cc2ccccc2)CCCCC1=O",
+        "explains": "Alkylation at the more substituted α-carbon comes from the thermodynamic enolate (weaker base, warmer). LDA at −78 °C removes the less hindered H."
+      },
+      {
+        "smiles": "CC1CCCCC(Cc2ccccc2)(Cc2ccccc2)C1=O",
+        "explains": "One equivalent of LDA forms the enolate completely, and one alkylation follows."
+      },
+      {
+        "smiles": "CC1CCCCC=C1OCc1ccccc1",
+        "explains": "Enolates alkylate on carbon with alkyl halides. O-alkylation is a minor pathway."
+      }
+    ],
+    "review": "Kinetic product drawn without cis/trans stereo (mixture of diastereomers).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-acetoacetic-malonic",
+    "form": "B",
+    "pair": "acetoacetic-malonic",
+    "pattern": "D",
+    "prompt": "What is the major organic product?",
+    "start": "CCOC(=O)CC(=O)OCC",
+    "reagentDisplay": "1. NaOEt, EtOH  2. C6H5CH2Br  3. H3O+, heat",
+    "options": [
+      {"smiles": "O=C(O)CCc1ccccc1", "correct": true},
+      {
+        "smiles": "CC(=O)CCc1ccccc1",
+        "explains": "That's the acetoacetic ester product. Diethyl malonate has two esters and gives a carboxylic acid."
+      },
+      {
+        "smiles": "O=C(O)C(Cc1ccccc1)C(=O)O",
+        "explains": "A malonic (1,3-di)acid loses CO2 on heating, so this doesn't survive step 3."
+      },
+      {
+        "smiles": "CCOC(=O)C(Cc1ccccc1)C(=O)OCC",
+        "explains": "Step 3 (H3O+, heat) hydrolyzes the esters. It doesn't stop at the alkylated diester."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-syn-grignard-oxidize",
+    "form": "B",
+    "pair": "syn-grignard-oxidize",
+    "pattern": "SYN",
+    "prompt": "Which reagent sequence turns cyclohexanecarbaldehyde (shown) into cyclohexyl methyl ketone, C6H11COCH3?",
+    "start": "O=CC1CCCCC1",
+    "reagentDisplay": "?",
+    "options": [
+      {"text": "1. CH3MgBr, ether  2. H3O+  3. H2CrO4 (CrO3, H2SO4, H2O)", "correct": true},
+      {
+        "text": "1. NaBH4, CH3OH  2. CH3I",
+        "explains": "NaBH4 makes the 1° alcohol, which loses the carbon count. No new C–C bond forms."
+      },
+      {
+        "text": "1. CH3MgBr, ether  2. H3O+",
+        "explains": "This stops at the 2° alcohol, 1-cyclohexylethanol. An oxidation is still needed to reach the ketone."
+      },
+      {
+        "text": "1. (CH3)2CuLi  2. H3O+",
+        "explains": "An aldehyde has no leaving group, so no reagent can swap H for methyl directly. At best a cuprate would give the alcohol."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-syn-protecting-group",
+    "form": "B",
+    "pair": "syn-protecting-group",
+    "pattern": "SYN",
+    "prompt": "Which sequence turns this keto ester into 1-[3-(hydroxymethyl)phenyl]ethan-1-one, reducing the ester and keeping the ketone?",
+    "start": "CCOC(=O)c1cccc(c1)C(C)=O",
+    "reagentDisplay": "?",
+    "options": [
+      {"text": "1. HOCH2CH2OH, H+ (cat.), −H2O  2. LiAlH4, ether  3. H3O+", "correct": true},
+      {
+        "text": "1. HOCH2CH2OH, H+ (cat.), −H2O  2. NaBH4, CH3OH  3. H3O+",
+        "explains": "The acetal protection is right, but NaBH4 is too weak to reduce an ester."
+      },
+      {
+        "text": "1. LiAlH4, ether  2. H3O+",
+        "explains": "LiAlH4 reduces the ketone too. The ketone has to be protected first."
+      },
+      {
+        "text": "1. NaBH4, CH3OH  2. H3O+",
+        "explains": "Backwards: NaBH4 reduces the ketone and leaves the ester untouched."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-sn2-secondary",
+    "form": "B",
+    "pair": "sn2-secondary",
+    "pattern": "S",
+    "prompt": "Which mechanism mainly operates?",
+    "start": "CCCC(C)Br",
+    "reagentDisplay": "NaI, acetone",
+    "options": [
+      {
+        "text": "SN1",
+        "explains": "A 2° carbocation doesn't form readily in a polar aprotic solvent, and a strong nucleophile is present, so it attacks directly."
+      },
+      {"text": "SN2", "correct": true},
+      {
+        "text": "E1",
+        "explains": "E1 needs a carbocation (3° substrate, weak base, protic solvent, heat). None of those apply."
+      },
+      {
+        "text": "E2",
+        "explains": "Iodide is an excellent nucleophile but a very weak base, so a 2° halide gives substitution, not elimination."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "dx-b-e2-zaitsev-tertiary",
+    "form": "B",
+    "pair": "e2-zaitsev-tertiary",
+    "pattern": "S",
+    "prompt": "What is the major organic product?",
+    "start": "CCCC(C)(C)Br",
+    "reagentDisplay": "NaOCH2CH3, CH3CH2OH, heat",
+    "options": [
+      {"smiles": "CCC=C(C)C", "correct": true},
+      {
+        "smiles": "CCCC(C)=C",
+        "explains": "The less substituted (Hofmann) alkene needs a bulky base such as KOtBu. Ethoxide is small, so the more substituted alkene wins."
+      },
+      {
+        "smiles": "CC=CC(C)C",
+        "explains": "The C=C must include the carbon that held the Br. This alkene would need a shift that E2 doesn't do."
+      },
+      {
+        "smiles": "CCCC(C)(C)OCC",
+        "explains": "With a 3° halide, a strong base and heat, elimination (E2) beats substitution. SN2 can't happen at a 3° carbon."
+      }
+    ],
+    "verified": false,
+    "verifiedBy": null
+  }
+]

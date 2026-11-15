@@ -13,20 +13,868 @@
     "keyStep": {
       "nucleophileAtom": 11,
       "electrophileAtom": 7,
-      "arrows": [
-        { "from": { "bond": [11, 12] }, "to": { "atom": 7 } },
-        { "from": { "bond": [7, 8] }, "to": { "atom": 8 } }
-      ]
+      "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
     "why": "The first methyl adds and methoxide leaves (add, then eliminate), giving a ketone. That ketone is more reactive than the starting ester, so a second equivalent adds right away. Two identical R groups end up on the old carbonyl carbon.",
     "traps": [
-      { "smiles": "CC(=O)c1ccccc1", "explains": "The ketone does form, but it's more reactive than the ester and the Grignard is still there, so it doesn't stop. To stop at a ketone, use R2CuLi with an acid chloride." },
-      { "smiles": "COC(C)(O)c1ccccc1", "explains": "This tetrahedral intermediate doesn't survive. An ester carbon has a leaving group (methoxide), so it collapses back to C=O." },
-      { "smiles": "CC(O)c1ccccc1", "explains": "This has only one new methyl and an extra H. Grignards deliver carbon, not hydride, and they add twice to esters." }
+      {
+        "smiles": "CC(=O)c1ccccc1",
+        "explains": "The ketone does form, but it's more reactive than the ester and the Grignard is still there, so it doesn't stop. To stop at a ketone, use R2CuLi with an acid chloride."
+      },
+      {
+        "smiles": "COC(C)(O)c1ccccc1",
+        "explains": "This tetrahedral intermediate doesn't survive. An ester carbon has a leaving group (methoxide), so it collapses back to C=O."
+      },
+      {
+        "smiles": "CC(O)c1ccccc1",
+        "explains": "This has only one new methyl and an extra H. Grignards deliver carbon, not hydride, and they add twice to esters."
+      }
     ],
-    "confusableWith": ["u1-grignard-ketone"],
+    "confusableWith": [
+      "u1-grignard-ketone",
+      "u2-nitrile-grignard-ketone",
+      "u3-gilman-acid-chloride",
+      "u2-ester-lialh4-alcohol",
+      "u1-grignard-aldehyde",
+      "u2-acid-grignard-trap",
+      "u4-claisen-ethyl-acetate"
+    ],
     "tags": ["C-C bond", "organometallic", "alcohol synthesis", "adds twice"],
     "review": "Key step shown is the first addition (Grignard + ester). Check this is the step students should be drilled on.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-socl2-acid-chloride",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Carboxylic acid + SOCl2 → acid chloride",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:9]"],
+    "reagents": ["[O:10]=[S:11]([Cl:12])[Cl:13]"],
+    "reagentDisplay": "SOCl2",
+    "reagentAliases": ["SOCl2", "thionyl chloride", "Cl2SO", "OSCl2", "SOCl2, heat", "SOCl2, pyridine"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[Cl:12]",
+    "byproducts": ["[O:9]=[S:11]=[O:10]", "[ClH:13]"],
+    "keyStep": {
+      "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][S:11](=[O:10])[Cl:13]", "[Cl-:12]"],
+      "nucleophileAtom": 12,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "You normally can't climb the reactivity ladder (acid chloride > anhydride > ester ≈ acid > amide), but SOCl2 first turns the OH into a chlorosulfite, an excellent leaving group. Chloride then attacks the acyl carbon and the leaving group falls apart into SO2 and Cl⁻, so the reaction is driven by loss of SO2 gas.",
+    "traps": [
+      {
+        "smiles": "OC(=O)c1ccccc1",
+        "explains": "No reaction is the wrong call. Direct substitution can't go up the ladder, but SOCl2 activates the OH (chlorosulfite) so chloride can displace it."
+      },
+      {
+        "smiles": "ClCc1ccccc1",
+        "explains": "SOCl2 swaps only the OH for Cl; the C=O stays. Turning C–OH into C–Cl with loss of the carbonyl is not what happens (alcohols give alkyl chlorides, acids give acid chlorides)."
+      },
+      {
+        "smiles": "O=C(OS(=O)Cl)c1ccccc1",
+        "explains": "This acyl chlorosulfite is the activated intermediate. It doesn't survive: chloride attacks the acyl carbon and SO2 + Cl⁻ leave."
+      }
+    ],
+    "confusableWith": ["u2-acid-chloride-water"],
+    "tags": ["acid chloride synthesis", "activation", "up the ladder"],
+    "review": "Key step shown is chloride attacking the acyl chlorosulfite (the acyl-substitution step); the earlier attack of the acid on sulfur is not drilled. Check that this is the step you want and that the chlorosulfite species is drawn the way your course draws it.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-chloride-water",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Acid chloride + H2O → carboxylic acid",
+    "reactants": ["[CH3:1][C:2](=[O:3])[Cl:4]"],
+    "reagents": ["[OH2:5]"],
+    "reagentDisplay": "H2O",
+    "reagentAliases": ["H2O", "water", "HOH", "OH2"],
+    "product": "[CH3:1][C:2](=[O:3])[OH:5]",
+    "byproducts": ["[ClH:4]"],
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "Acid chlorides are at the top of the reactivity ladder, so even water, a weak nucleophile, adds to the C=O carbon. The tetrahedral intermediate collapses, chloride (a great leaving group) leaves, and HCl is the byproduct.",
+    "traps": [
+      {
+        "smiles": "CC(O)(O)Cl",
+        "explains": "This is the tetrahedral intermediate. It collapses back to C=O and expels chloride, the best leaving group on that carbon."
+      },
+      {
+        "smiles": "CC(=O)[O-]",
+        "explains": "No base is present. The reaction releases HCl, so the solution is acidic and the acid stays protonated."
+      },
+      {
+        "smiles": "CC(=O)OC(C)=O",
+        "explains": "An anhydride forms from an acid chloride plus a carboxylate. Here water is the nucleophile, so you simply get the acid."
+      }
+    ],
+    "confusableWith": [
+      "u2-acid-chloride-alcohol-ester",
+      "u2-acid-socl2-acid-chloride",
+      "u2-acid-chloride-carboxylate-anhydride"
+    ],
+    "tags": ["hydrolysis", "down the ladder"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-chloride-alcohol-ester",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Acid chloride + alcohol (pyridine) → ester",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[Cl:9]"],
+    "reagents": ["[CH3:10][CH2:11][OH:12]"],
+    "reagentDisplay": "CH3CH2OH, pyridine",
+    "reagentAliases": ["CH3CH2OH, pyridine", "EtOH, pyridine", "ethanol, pyridine", "EtOH, py", "CH3CH2OH", "EtOH", "ethanol"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:12][CH2:11][CH3:10]",
+    "byproducts": ["[ClH:9]"],
+    "keyStep": {
+      "nucleophileAtom": 12,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "The alcohol oxygen attacks the very reactive acid chloride carbonyl, and chloride leaves: a step down the reactivity ladder from acid chloride to ester. Pyridine is a weak base that soaks up the HCl formed.",
+    "traps": [
+      {
+        "smiles": "OC(=O)c1ccccc1",
+        "explains": "That's hydrolysis by water. Here the nucleophile is the ethanol oxygen, so the ethoxy group ends up on the carbonyl."
+      },
+      {
+        "smiles": "CCC(=O)c1ccccc1",
+        "explains": "The alcohol bonds through its oxygen, not through carbon, so no ketone forms. Making a ketone from an acid chloride needs a carbon nucleophile such as R2CuLi."
+      },
+      {
+        "smiles": "CCOCc1ccccc1",
+        "explains": "Acyl substitution keeps the C=O; only the chlorine is replaced. The carbonyl oxygen does not leave to give an ether."
+      }
+    ],
+    "confusableWith": [
+      "u2-acid-chloride-water",
+      "u2-fischer-esterification",
+      "u2-anhydride-alcohol-ester",
+      "u2-acid-chloride-amine-amide"
+    ],
+    "tags": ["ester synthesis", "down the ladder"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-chloride-amine-amide",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Acid chloride + 2 amine → amide",
+    "reactants": ["[CH3:1][C:2](=[O:3])[Cl:4]"],
+    "reagents": ["[CH3:5][NH2:6]", "[CH3:7][NH2:8]"],
+    "reagentDisplay": "CH3NH2 (2 equiv)",
+    "reagentAliases": ["CH3NH2", "2 CH3NH2", "MeNH2", "2 MeNH2", "methylamine", "excess CH3NH2"],
+    "product": "[CH3:1][C:2](=[O:3])[NH:6][CH3:5]",
+    "byproducts": ["[CH3:7][NH3+:8].[Cl-:4]"],
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "The amine nitrogen attacks the acid chloride and chloride leaves, going down the ladder to the most stable derivative, the amide. The HCl formed would protonate the amine and make it non-nucleophilic, so a second equivalent of amine is added just to mop up the HCl as CH3NH3⁺ Cl⁻.",
+    "traps": [
+      {
+        "smiles": "C[NH3+].[Cl-]",
+        "explains": "This salt does form, but it's the byproduct: the second equivalent of amine acting as a base to trap HCl. The organic product is the amide."
+      },
+      {
+        "smiles": "CC(=O)N(C)C(C)=O",
+        "explains": "The amide N doesn't react again: its lone pair is delocalized into the C=O, so it is not nucleophilic enough. The second equivalent of amine is only a base."
+      },
+      {
+        "smiles": "CCNC",
+        "explains": "Acyl substitution keeps the C=O. Turning an amide into an amine needs a reduction (LiAlH4)."
+      }
+    ],
+    "confusableWith": ["u2-ester-aminolysis", "u2-acid-chloride-alcohol-ester"],
+    "tags": ["amide synthesis", "down the ladder"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-chloride-carboxylate-anhydride",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Acid chloride + carboxylate → anhydride",
+    "reactants": ["[CH3:1][C:2](=[O:3])[Cl:4]"],
+    "reagents": ["[CH3:5][C:6](=[O:7])[O-:8].[Na+:9]"],
+    "reagentDisplay": "CH3CO2Na",
+    "reagentAliases": ["CH3CO2Na", "CH3COONa", "NaOAc", "AcONa", "sodium acetate", "CH3CO2-", "CH3COO-"],
+    "product": "[CH3:1][C:2](=[O:3])[O:8][C:6](=[O:7])[CH3:5]",
+    "byproducts": ["[Na+:9].[Cl-:4]"],
+    "keyStep": {
+      "nucleophileAtom": 8,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "The negatively charged carboxylate oxygen attacks the acid chloride carbonyl and chloride leaves. Acid chloride → anhydride is one step down the reactivity ladder, so it goes readily.",
+    "traps": [
+      {
+        "smiles": "CC(=O)O",
+        "explains": "There's no water here. The carboxylate is the nucleophile and stays bonded to the acyl carbon, giving an anhydride rather than just being protonated."
+      },
+      {
+        "smiles": "CC(=O)OC(C)([O-])Cl",
+        "explains": "This tetrahedral intermediate collapses: the C=O re-forms and chloride, the best leaving group, is expelled."
+      },
+      {
+        "smiles": "CC(C)=O",
+        "explains": "A carboxylate is an oxygen nucleophile, not a carbon nucleophile, so no C–C bond forms. A ketone from an acid chloride needs R2CuLi."
+      }
+    ],
+    "confusableWith": ["u2-anhydride-alcohol-ester", "u2-acid-chloride-water"],
+    "tags": ["anhydride synthesis", "down the ladder"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-fischer-esterification",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Fischer esterification (acid + alcohol, H+)",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:9]"],
+    "reagents": ["[CH3:10][OH:11]"],
+    "reagentDisplay": "CH3OH (excess), H2SO4 (cat.), heat",
+    "reagentAliases": [
+      "CH3OH, H2SO4",
+      "MeOH, H2SO4",
+      "CH3OH, H+",
+      "MeOH, H+",
+      "methanol, H2SO4",
+      "methanol, acid",
+      "CH3OH, HCl"
+    ],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:11][CH3:10]",
+    "byproducts": ["[OH2:9]"],
+    "keyStep": {
+      "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[OH+:8])[OH:9]", "[CH3:10][OH:11]"],
+      "nucleophileAtom": 11,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "Acid protonates the C=O, making the carbonyl carbon electrophilic enough for neutral methanol to attack; after proton transfers, water leaves. Acid and ester sit at about the same level on the ladder, so every step is reversible: use excess alcohol or remove water to push it to the ester.",
+    "traps": [
+      {
+        "smiles": "OC(=O)c1ccccc1",
+        "explains": "It does react. Acid ≈ ester on the ladder, so it is an equilibrium, and excess methanol (or removing water) drives it toward the ester."
+      },
+      {
+        "smiles": "COC(O)(O)c1ccccc1",
+        "explains": "This is the tetrahedral intermediate. After a proton transfer it loses water and the C=O re-forms."
+      },
+      {
+        "smiles": "O=C(OC(=O)c1ccccc1)c1ccccc1",
+        "explains": "Two acids don't condense to an anhydride under these conditions. Methanol is present in excess and is the nucleophile."
+      }
+    ],
+    "confusableWith": ["u2-ester-acid-hydrolysis", "u2-acid-chloride-alcohol-ester"],
+    "tags": ["ester synthesis", "reversible", "acid catalysis"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-ester-acid-hydrolysis",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Ester + H3O+ → carboxylic acid (acid hydrolysis)",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][CH2:5][CH3:6]"],
+    "reagents": ["[OH2:7]"],
+    "reagentDisplay": "H3O+ (excess H2O), heat",
+    "reagentAliases": ["H3O+, heat", "H3O+", "H2O, H2SO4", "H2O, H+", "H2SO4, H2O, heat", "HCl, H2O", "aq. acid, heat"],
+    "product": "[CH3:1][C:2](=[O:3])[OH:7]",
+    "byproducts": ["[CH3:6][CH2:5][OH:4]"],
+    "keyStep": {
+      "species": ["[CH3:1][C:2](=[OH+:3])[O:4][CH2:5][CH3:6]", "[OH2:7]"],
+      "nucleophileAtom": 7,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "This is Fischer esterification run backwards: acid protonates the C=O, water attacks, and ethanol leaves after proton transfers. Every step is reversible, so a large excess of water is used to push the equilibrium toward the acid + alcohol.",
+    "traps": [
+      {
+        "smiles": "CC(=O)[O-]",
+        "explains": "The carboxylate is what base (saponification) gives. In acid the product stays protonated as the carboxylic acid."
+      },
+      {
+        "smiles": "CCOC(C)=O",
+        "explains": "It is an equilibrium, but with a large excess of water and heat it shifts to acid + alcohol. To make the ester you'd use excess alcohol instead (Fischer)."
+      },
+      {
+        "smiles": "CCOC(C)(O)O",
+        "explains": "This is the tetrahedral intermediate. It loses ethanol (after a proton transfer) and the C=O re-forms."
+      }
+    ],
+    "confusableWith": ["u2-fischer-esterification", "u2-saponification"],
+    "tags": ["hydrolysis", "reversible", "acid catalysis"],
+    "review": "Both acetic acid and ethanol are products; the card treats the acyl-containing piece (acetic acid) as 'the product' and lists ethanol as a byproduct. Check that this framing is OK.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-saponification",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Saponification: ester + NaOH → acid (after workup)",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH3:10]"],
+    "reagents": ["[OH-:11].[Na+:12]"],
+    "reagentDisplay": "1. NaOH, H2O, heat  2. H3O+",
+    "reagentAliases": ["NaOH, H2O", "NaOH", "aq. NaOH", "NaOH, heat", "KOH, H2O", "KOH", "LiOH", "hydroxide"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:11]",
+    "byproducts": ["[CH3:10][OH:9]"],
+    "keyStep": {
+      "nucleophileAtom": 11,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "Hydroxide attacks the ester carbonyl and methoxide leaves. The acid formed is immediately deprotonated to the carboxylate, which is negatively charged and no longer electrophilic, so unlike acid hydrolysis this is irreversible. Step 2 (H3O+) protonates the carboxylate to give the carboxylic acid.",
+    "traps": [
+      {
+        "smiles": "O=C([O-])c1ccccc1.[Na+]",
+        "explains": "Sodium benzoate is what's in the flask after step 1. The H3O+ workup in step 2 protonates it to benzoic acid."
+      },
+      {
+        "smiles": "OCc1ccccc1",
+        "explains": "Hydroxide is a nucleophile, not a hydride source. Reducing an ester to a 1° alcohol needs LiAlH4."
+      },
+      {
+        "smiles": "COC(O)(O)c1ccccc1",
+        "explains": "This tetrahedral intermediate collapses: the C=O re-forms and methoxide leaves."
+      }
+    ],
+    "confusableWith": ["u2-ester-acid-hydrolysis", "u2-amide-hydrolysis"],
+    "tags": ["hydrolysis", "irreversible", "base"],
+    "review": "Product is drawn as benzoic acid after the H3O+ workup (step 2 is in reagentDisplay). Product O is mapped from hydroxide; after proton transfer the two carboxylate oxygens are equivalent, so this is a bookkeeping choice.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-amide-hydrolysis",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Amide + H3O+, heat → carboxylic acid",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[NH2:9]"],
+    "reagents": ["[OH2:10]"],
+    "reagentDisplay": "H3O+, heat",
+    "reagentAliases": ["H3O+, heat", "H3O+", "H2SO4, H2O, heat", "HCl, H2O, heat", "H2O, H+, heat", "aq. acid, heat"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:10]",
+    "byproducts": ["[NH4+:9]"],
+    "keyStep": {
+      "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[OH+:8])[NH2:9]", "[OH2:10]"],
+      "nucleophileAtom": 10,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "Amides are at the bottom of the reactivity ladder, so hydrolysis needs strong acid (or base) and prolonged heating. In acid, water attacks the protonated carbonyl and NH3 leaves; it is trapped as NH4⁺, which makes the reaction irreversible. Hot NaOH also works, giving the carboxylate (acid after H3O+ workup) and NH3.",
+    "traps": [
+      {
+        "smiles": "NCc1ccccc1",
+        "explains": "That's LiAlH4 reduction of the amide (C=O → CH2). Hot aqueous acid hydrolyzes the C–N bond instead."
+      },
+      {
+        "smiles": "O=C([O-])c1ccccc1",
+        "explains": "The carboxylate is what basic hydrolysis gives before acidification. In hot aqueous acid you get the carboxylic acid and NH4⁺."
+      },
+      {
+        "smiles": "N#Cc1ccccc1",
+        "explains": "Dehydrating a 1° amide (SOCl2 or P2O5) gives a nitrile. Here water is added, not removed."
+      }
+    ],
+    "confusableWith": ["u2-nitrile-hydrolysis", "u2-saponification", "u2-amide-lialh4-amine"],
+    "tags": ["hydrolysis", "amide"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-nitrile-hydrolysis",
+    "unit": 2,
+    "pattern": "A",
+    "title": "Nitrile + H3O+, heat → carboxylic acid",
+    "reactants": ["[CH3:1][CH2:2][C:3]#[N:4]"],
+    "reagents": ["[OH2:5]", "[OH2:6]"],
+    "reagentDisplay": "H3O+, heat",
+    "reagentAliases": ["H3O+, heat", "H3O+", "H2SO4, H2O, heat", "HCl, H2O, heat", "H2O, H+, heat", "aq. acid, heat"],
+    "product": "[CH3:1][CH2:2][C:3](=[O:5])[OH:6]",
+    "byproducts": ["[NH4+:4]"],
+    "keyStep": {
+      "species": ["[CH3:1][CH2:2][C:3]#[NH+:4]", "[OH2:5]"],
+      "nucleophileAtom": 5,
+      "electrophileAtom": 3,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+    },
+    "why": "Acid protonates the nitrile N, and water adds to the nitrile carbon; tautomerization gives an amide. Under the hot aqueous acid the amide is hydrolyzed further, so the nitrile carbon ends up as a COOH and the nitrogen leaves as NH4⁺.",
+    "traps": [
+      {
+        "smiles": "CCC(N)=O",
+        "explains": "The amide is an intermediate. With heat and excess aqueous acid it is hydrolyzed on to the carboxylic acid."
+      },
+      {
+        "smiles": "CCCN",
+        "explains": "That's LiAlH4 reduction of the nitrile. Water adds O to the nitrile carbon; nothing delivers hydride."
+      },
+      {
+        "smiles": "CCC(=O)[O-]",
+        "explains": "The carboxylate comes from basic hydrolysis (before acidification). In hot aqueous acid you get the neutral carboxylic acid."
+      }
+    ],
+    "confusableWith": ["u2-amide-hydrolysis", "u2-nitrile-lialh4-amine", "side-sn2-2-bromobutane-cyanide"],
+    "tags": ["hydrolysis", "nitrile"],
+    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so. The key step shown is the first water addition to the protonated nitrile; the amide stage is not drilled.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-nitrile-grignard-ketone",
+    "unit": 2,
+    "pattern": "A",
+    "title": "Nitrile + RMgX → ketone (adds once)",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]#[N:8]"],
+    "reagents": ["[CH3:9][Mg:10][Br:11]", "[OH2:12]"],
+    "reagentDisplay": "1. CH3MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard", "CH3MgI", "MeMgI"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:12])[CH3:9]",
+    "byproducts": ["[NH4+:8]"],
+    "keyStep": {
+      "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]#[N:8]", "[CH3:9][Mg:10][Br:11]"],
+      "nucleophileAtom": 9,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "The Grignard carbon adds once to the nitrile carbon, giving a negatively charged imine salt (C=N⁻ MgBr⁺) that won't accept a second Grignard. Aqueous acid workup then hydrolyzes the imine to a ketone, so unlike an ester, a nitrile stops at the ketone.",
+    "traps": [
+      {
+        "smiles": "CC(C)(O)c1ccccc1",
+        "explains": "That's the ester result (adds twice). The nitrile gives an imine anion that is already negatively charged, so a second Grignard doesn't add."
+      },
+      {
+        "smiles": "CC(=N)c1ccccc1",
+        "explains": "The imine forms after protonation, but aqueous acid workup hydrolyzes it to the ketone."
+      },
+      {
+        "smiles": "OC(=O)c1ccccc1",
+        "explains": "That's nitrile hydrolysis (H3O+, heat). The Grignard first adds a carbon, so the product has a new C–C bond."
+      }
+    ],
+    "confusableWith": ["u2-grignard-ester", "u1-grignard-ketone", "u2-nitrile-lialh4-amine", "u2-grignard-co2-acid"],
+    "tags": ["C-C bond", "organometallic", "ketone synthesis", "nitrile", "adds once"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "COC(=O)c1ccccc1",
+          "reagent": "1. CH3MgBr  2. H3O+",
+          "explains": "An ester doesn't stop at the ketone: the ketone is more reactive than the ester, so a second CH3MgBr adds and you get the 3° alcohol."
+        },
+        {
+          "precursor": "O=Cc1ccccc1",
+          "reagent": "1. CH3MgBr  2. H3O+",
+          "explains": "An aldehyde has no leaving group, so the Grignard just adds and you get the 2° alcohol, 1-phenylethanol, not the ketone."
+        }
+      ]
+    },
+    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-nitrile-lialh4-amine",
+    "unit": 2,
+    "pattern": "A",
+    "title": "Nitrile + LiAlH4 → 1° amine",
+    "reactants": ["[CH3:1][CH2:2][CH2:3][C:4]#[N:5]"],
+    "reagents": ["[H:6][Al-:7]([H])([H])[H].[Li+]"],
+    "reagentDisplay": "1. LiAlH4, ether  2. H2O",
+    "reagentAliases": ["LiAlH4", "LAH", "lithium aluminum hydride", "lithium aluminium hydride"],
+    "product": "[CH3:1][CH2:2][CH2:3][CH2:4][NH2:5]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
+    },
+    "why": "Hydride adds to the nitrile carbon to give an imine anion; LiAlH4 is strong enough to add a second hydride to that C=N. Water workup protonates the nitrogen, so the C≡N becomes CH2–NH2 with no carbons gained or lost.",
+    "traps": [
+      {
+        "smiles": "CCCC=O",
+        "explains": "DIBAL-H adds one hydride and the imine is hydrolyzed to an aldehyde. LiAlH4 adds a second hydride, so the nitrogen is kept as an amine."
+      },
+      {
+        "smiles": "CCCC=N",
+        "explains": "The imine (anion) is an intermediate. LiAlH4 adds a second hydride to the C=N."
+      },
+      {
+        "smiles": "CCCC(=O)O",
+        "explains": "That's nitrile hydrolysis (H3O+, heat). LiAlH4 is a reducing agent: it adds H, not O."
+      }
+    ],
+    "confusableWith": ["u2-amide-lialh4-amine", "u2-nitrile-hydrolysis", "u2-nitrile-grignard-ketone"],
+    "tags": ["reduction", "amine synthesis", "nitrile", "hydride"],
+    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so. Key step shown is the first hydride addition.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-ester-lialh4-alcohol",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Ester + LiAlH4 → 1° alcohol",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH2:10][CH3:11]"],
+    "reagents": ["[H:12][Al-:13]([H])([H])[H].[Li+]"],
+    "reagentDisplay": "1. LiAlH4, ether  2. H3O+",
+    "reagentAliases": ["LiAlH4", "LAH", "lithium aluminum hydride", "lithium aluminium hydride"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][OH:8]",
+    "byproducts": ["[CH3:11][CH2:10][OH:9]"],
+    "keyStep": {
+      "nucleophileAtom": 12,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [12, 13]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "Hydride adds and ethoxide leaves, giving an aldehyde. The aldehyde is more reactive than the ester, so a second hydride adds at once, and workup gives a 1° alcohol (plus the ethanol that left).",
+    "traps": [
+      {
+        "smiles": "O=Cc1ccccc1",
+        "explains": "LiAlH4 doesn't stop at the aldehyde: the aldehyde is more reactive than the ester and gets reduced again. DIBAL-H at −78 °C does stop there."
+      },
+      {
+        "smiles": "CCOC(=O)c1ccccc1",
+        "explains": "No reaction would be NaBH4, which is too weak to reduce esters. LiAlH4 is strong enough."
+      },
+      {
+        "smiles": "CCOCc1ccccc1",
+        "explains": "The ethoxy group leaves after the first hydride adds; it isn't kept. The C=O carbon ends up as CH2OH."
+      }
+    ],
+    "confusableWith": [
+      "u2-ester-dibal-aldehyde",
+      "u2-acid-lialh4-alcohol",
+      "u2-amide-lialh4-amine",
+      "u2-grignard-ester",
+      "u1-nabh4-ketone",
+      "u2-acid-chloride-lialhotbu3-aldehyde"
+    ],
+    "tags": ["reduction", "alcohol synthesis", "hydride", "adds twice"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-ester-dibal-aldehyde",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Ester + DIBAL-H (−78 °C) → aldehyde",
+    "reactants": ["[CH3:1][CH2:2][CH2:3][CH2:4][C:5](=[O:6])[O:7][CH3:8]"],
+    "reagents": ["[H:9][Al:10](CC(C)C)CC(C)C"],
+    "reagentDisplay": "1. DIBAL-H, toluene, −78 °C  2. H2O",
+    "reagentAliases": ["DIBAL-H", "DIBAL", "DIBALH", "iBu2AlH", "i-Bu2AlH", "(iBu)2AlH", "diisobutylaluminum hydride"],
+    "product": "[CH3:1][CH2:2][CH2:3][CH2:4][CH:5]=[O:6]",
+    "byproducts": ["[CH3:8][OH:7]"],
+    "keyStep": {
+      "nucleophileAtom": 9,
+      "electrophileAtom": 5,
+      "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 5}}, {"from": {"bond": [5, 6]}, "to": {"atom": 6}}]
+    },
+    "why": "DIBAL-H delivers only one hydride, and at −78 °C the tetrahedral aluminum intermediate is stable and doesn't collapse. It only breaks down to the aldehyde during aqueous workup, when no hydride is left to reduce it further.",
+    "traps": [
+      {
+        "smiles": "CCCCCO",
+        "explains": "Over-reduction to the 1° alcohol is what LiAlH4 gives (or DIBAL if warmed or in excess). One equivalent at −78 °C stops at the aldehyde."
+      },
+      {
+        "smiles": "CCCCC(O)OC",
+        "explains": "The hemiacetal is the intermediate held at −78 °C (as its Al salt). On aqueous workup it collapses to the aldehyde and methanol."
+      },
+      {
+        "smiles": "CCCCC(=O)O",
+        "explains": "DIBAL-H is a reducing agent; it adds hydride, not hydroxide. Ester → acid is hydrolysis (H3O+ or NaOH)."
+      }
+    ],
+    "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-chloride-lialhotbu3-aldehyde", "u1-nabh4-aldehyde"],
+    "tags": ["reduction", "aldehyde synthesis", "hydride", "low temperature"],
+    "review": "Real mechanism first coordinates the C=O oxygen to Al (Lewis acid) before hydride transfer; the key step shows only the hydride transfer. DIBAL drawn as neutral iBu2Al–H with the isobutyl atoms unmapped.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-chloride-lialhotbu3-aldehyde",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Acid chloride + LiAlH(OtBu)3 → aldehyde",
+    "reactants": ["[CH2:1]1[CH2:2][CH2:3][CH:4]([C:7](=[O:8])[Cl:9])[CH2:5][CH2:6]1"],
+    "reagents": ["[H:10][Al-:11](OC(C)(C)C)(OC(C)(C)C)OC(C)(C)C.[Li+]"],
+    "reagentDisplay": "1. LiAlH(OtBu)3, −78 °C  2. H2O",
+    "reagentAliases": [
+      "LiAlH(OtBu)3",
+      "LiAlH(O-t-Bu)3",
+      "LiAlH(OC(CH3)3)3",
+      "LiAl(OtBu)3H",
+      "lithium tri-tert-butoxyaluminum hydride"
+    ],
+    "product": "[CH2:1]1[CH2:2][CH2:3][CH:4]([CH:7]=[O:8])[CH2:5][CH2:6]1",
+    "byproducts": ["[Cl-:9]"],
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "LiAlH(OtBu)3 is a bulky, mild hydride with only one H to give. It reduces the very reactive acid chloride (chloride leaves) but reacts only slowly with the less reactive aldehyde product, especially at low temperature, so it stops at the aldehyde.",
+    "traps": [
+      {
+        "smiles": "OCC1CCCCC1",
+        "explains": "LiAlH4 would reduce the acid chloride all the way to the 1° alcohol. The bulky, weaker LiAlH(OtBu)3 stops at the aldehyde."
+      },
+      {
+        "smiles": "CC(C)(C)OC(=O)C1CCCCC1",
+        "explains": "The tert-butoxy groups stay on aluminum. The reagent transfers hydride, so no tert-butyl ester forms."
+      },
+      {
+        "smiles": "O=C(O)C1CCCCC1",
+        "explains": "That's hydrolysis by water. The reagent's hydride is the nucleophile, so the C–Cl becomes C–H."
+      }
+    ],
+    "confusableWith": ["u2-ester-dibal-aldehyde", "u2-ester-lialh4-alcohol"],
+    "tags": ["reduction", "aldehyde synthesis", "hydride"],
+    "review": "−78 °C in reagentDisplay: many textbooks write just 'LiAlH(OtBu)3' (sometimes −78 °C, ether/THF). Check this matches your course.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-amide-lialh4-amine",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Amide + LiAlH4 → amine",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[NH:9][CH3:10]"],
+    "reagents": ["[H:11][Al-:12]([H])([H])[H].[Li+]"],
+    "reagentDisplay": "1. LiAlH4, ether  2. H2O",
+    "reagentAliases": ["LiAlH4", "LAH", "lithium aluminum hydride", "lithium aluminium hydride"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][NH:9][CH3:10]",
+    "keyStep": {
+      "nucleophileAtom": 11,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "why": "Hydride adds to the amide C=O, but then the oxygen (bound to aluminum) is lost instead of the nitrogen, giving an iminium ion. A second hydride reduces the iminium, so the C=O becomes CH2 and the C–N bond is kept: an amine, not an alcohol.",
+    "traps": [
+      {
+        "smiles": "OCc1ccccc1",
+        "explains": "With an ester the OR leaves, but with an amide the oxygen leaves (as an Al–O species) and the nitrogen stays, so you get an amine, not an alcohol."
+      },
+      {
+        "smiles": "O=Cc1ccccc1",
+        "explains": "LiAlH4 doesn't stop partway. The intermediate iminium ion is reduced again, and the nitrogen is kept."
+      },
+      {
+        "smiles": "CNC(=O)c1ccccc1",
+        "explains": "No reaction would be NaBH4, which can't reduce amides. LiAlH4 is strong enough."
+      }
+    ],
+    "confusableWith": ["u2-ester-lialh4-alcohol", "u2-nitrile-lialh4-amine", "u2-amide-hydrolysis"],
+    "tags": ["reduction", "amine synthesis", "hydride", "amide"],
+    "review": "Key step shown is the first hydride addition; the loss of O to form the iminium and the second hydride addition are not drilled. No byproduct listed for the lost oxygen (it ends up in aluminum salts).",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-lialh4-alcohol",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Carboxylic acid + LiAlH4 → 1° alcohol",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][C:8](=[O:9])[OH:10]"],
+    "reagents": ["[H:11][Al-:12]([H])([H])[H].[Li+]"],
+    "reagentDisplay": "1. LiAlH4, ether  2. H3O+",
+    "reagentAliases": ["LiAlH4", "LAH", "lithium aluminum hydride", "lithium aluminium hydride"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][CH2:8][OH:9]",
+    "keyStep": {
+      "species": [
+        "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][C:8](=[O:9])[O-:10]",
+        "[H:11][Al-:12]([H])([H])[H].[Li+]"
+      ],
+      "nucleophileAtom": 11,
+      "electrophileAtom": 8,
+      "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}]
+    },
+    "why": "LiAlH4 first deprotonates the acid (H2 gas is released), then hydride reduces the aluminum carboxylate through an aldehyde stage that is reduced again at once. Workup gives the 1° alcohol; NaBH4 is too weak to reduce a carboxylic acid.",
+    "traps": [
+      {
+        "smiles": "O=CCc1ccccc1",
+        "explains": "LiAlH4 doesn't stop at the aldehyde; the aldehyde is more reactive than the acid and is reduced right away."
+      },
+      {
+        "smiles": "O=C(O)Cc1ccccc1",
+        "explains": "No reaction would be NaBH4, which can't reduce carboxylic acids. LiAlH4 (or BH3) can."
+      },
+      {
+        "smiles": "CCc1ccccc1",
+        "explains": "Reduction stops at the alcohol. LiAlH4 does not remove the C–O bond to give a CH3 group."
+      }
+    ],
+    "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-grignard-trap"],
+    "tags": ["reduction", "alcohol synthesis", "hydride"],
+    "review": "Mechanism simplified: key step shows hydride adding to the carboxylate (drawn as free RCO2⁻, really an O–Al carboxylate) after the initial acid–base step. Which O is lost is a bookkeeping choice. Check this is how your course wants it drilled, or whether the acid–base step should be shown instead.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-grignard-co2-acid",
+    "unit": 2,
+    "pattern": "A",
+    "title": "RMgX + CO2 → carboxylic acid",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[Mg:7][Br:8]"],
+    "reagents": ["[O:9]=[C:10]=[O:11]"],
+    "reagentDisplay": "1. CO2  2. H3O+",
+    "reagentAliases": ["CO2", "carbon dioxide", "dry ice", "CO2(s)", "solid CO2"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:10](=[O:9])[OH:11]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 10,
+      "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 10}}, {"from": {"bond": [10, 9]}, "to": {"atom": 9}}]
+    },
+    "why": "The Grignard carbon adds to the electrophilic carbon of CO2, forming a new C–C bond and a magnesium carboxylate. The negatively charged carboxylate doesn't react with more Grignard, and H3O+ workup protonates it to the carboxylic acid with one more carbon.",
+    "traps": [
+      {
+        "smiles": "O=C(c1ccccc1)c1ccccc1",
+        "explains": "The magnesium carboxylate is negatively charged and not electrophilic, so a second Grignard doesn't add."
+      },
+      {
+        "smiles": "c1ccccc1",
+        "explains": "That's what water does to a Grignard (protonation). Here CO2 is added first; water only comes in the workup."
+      },
+      {
+        "smiles": "O=C([O-])c1ccccc1",
+        "explains": "The carboxylate is what's present after step 1. H3O+ workup protonates it to benzoic acid."
+      }
+    ],
+    "confusableWith": ["u2-acid-grignard-trap", "u2-nitrile-grignard-ketone"],
+    "tags": ["C-C bond", "organometallic", "carboxylic acid synthesis", "carboxylation"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "Brc1ccccc1",
+          "reagent": "1. NaCN  2. H3O+, heat",
+          "explains": "Aryl halides don't undergo SN2, so cyanide can't displace the bromide and no nitrile forms to hydrolyze."
+        },
+        {
+          "precursor": "COC(=O)c1ccccc1",
+          "reagent": "1. LiAlH4  2. H3O+",
+          "explains": "LiAlH4 reduces the ester to benzyl alcohol; it can't stop at, or form, the carboxylic acid."
+        }
+      ]
+    },
+    "review": "Pattern set to A: CO2 has no leaving group, so this is nucleophilic addition to C=O. Included in unit 2 as the classic acid synthesis.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-acid-grignard-trap",
+    "unit": 2,
+    "pattern": "X",
+    "title": "Carboxylic acid + RMgX → acid–base only (trap)",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][H:10]"],
+    "reagents": ["[CH3:11][Mg:12][Br:13]"],
+    "reagentDisplay": "1. CH3MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:9]",
+    "byproducts": ["[CH4:11]"],
+    "keyStep": {
+      "nucleophileAtom": 11,
+      "electrophileAtom": 10,
+      "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 10}}, {"from": {"bond": [9, 10]}, "to": {"atom": 9}}]
+    },
+    "why": "A Grignard is a very strong base, so it simply removes the acidic O–H proton and becomes methane; no C–C bond forms. The carboxylate salt is negatively charged and not electrophilic enough for the Grignard to add, so H3O+ workup just gives back the starting acid.",
+    "traps": [
+      {
+        "smiles": "CC(=O)c1ccccc1",
+        "explains": "The Grignard never adds to the C=O: it is destroyed by the acidic O–H first, and the carboxylate left behind is not electrophilic. (Ketones from acids need 2 equiv of an organolithium.)"
+      },
+      {
+        "smiles": "CC(C)(O)c1ccccc1",
+        "explains": "Adding twice is what happens with an ester, which has no acidic proton. An acid just protonates the Grignard."
+      },
+      {
+        "smiles": "O=C([O-])c1ccccc1",
+        "explains": "The carboxylate (as its MgBr⁺ salt) is what forms in step 1, but H3O+ workup protonates it back to the carboxylic acid."
+      }
+    ],
+    "confusableWith": ["u2-grignard-co2-acid", "u2-grignard-ester", "u2-acid-lialh4-alcohol"],
+    "tags": ["acid-base", "organometallic", "trap", "no reaction"],
+    "review": "Product is drawn as the recovered starting acid (after H3O+ workup), with methane as the byproduct; the carboxylate salt is a trap. Check the app copes with a product identical to the reactant, and whether you'd rather make the answer the carboxylate salt (drop step 2). Pattern set to X (acid–base, not acyl substitution); key step is proton transfer from O–H to the Grignard carbon, with the H drawn explicitly.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-ester-aminolysis",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Ester + NH3 → amide (aminolysis)",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][CH3:5]"],
+    "reagents": ["[NH3:6]"],
+    "reagentDisplay": "NH3 (excess), heat",
+    "reagentAliases": ["NH3", "ammonia", "excess NH3", "NH3, heat", "aq. NH3"],
+    "product": "[CH3:1][C:2](=[O:3])[NH2:6]",
+    "byproducts": ["[CH3:5][OH:4]"],
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "Ammonia attacks the ester carbonyl and methoxide leaves (then grabs a proton to become methanol). Ester → amide is a step down the reactivity ladder, so it is favorable, but esters are much less reactive than acid chlorides, so it is slower and usually needs heat.",
+    "traps": [
+      {
+        "smiles": "CC(=O)O",
+        "explains": "That's hydrolysis by water. Here NH3 is the nucleophile, so nitrogen ends up on the carbonyl."
+      },
+      {
+        "smiles": "CN",
+        "explains": "NH3 attacks the electrophilic C=O carbon, not the methyl group. The methoxy group is what leaves."
+      },
+      {
+        "smiles": "CC(=O)[O-].[NH4+]",
+        "explains": "Ammonium acetate would need acetic acid to deprotonate. An ester has no acidic O–H; NH3 adds to the C=O instead."
+      }
+    ],
+    "confusableWith": ["u2-acid-chloride-amine-amide"],
+    "tags": ["amide synthesis", "down the ladder"],
+    "review": "Optional record. Conditions vary by textbook (often just 'NH3' or 'NH3, heat'); check reagentDisplay. The 'CN' (methylamine via SN2 on the methyl) trap is minor real chemistry for methyl esters; replace it if that's too subtle.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "u2-anhydride-alcohol-ester",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Anhydride + alcohol → ester",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][C:5](=[O:6])[CH3:7]"],
+    "reagents": ["[CH3:8][OH:9]"],
+    "reagentDisplay": "CH3OH, pyridine",
+    "reagentAliases": ["CH3OH, pyridine", "MeOH, pyridine", "methanol, pyridine", "MeOH, py", "CH3OH", "MeOH", "methanol"],
+    "product": "[CH3:1][C:2](=[O:3])[O:9][CH3:8]",
+    "byproducts": ["[CH3:7][C:5](=[O:6])[OH:4]"],
+    "keyStep": {
+      "nucleophileAtom": 9,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "why": "Methanol attacks one carbonyl of the anhydride and acetate (a good, resonance-stabilized leaving group) leaves. Anhydride → ester is down the reactivity ladder; the byproduct is a carboxylic acid instead of the HCl an acid chloride would give.",
+    "traps": [
+      {
+        "smiles": "CC(=O)OC(C)(O)OC",
+        "explains": "This is the tetrahedral intermediate. It collapses, re-forming C=O and expelling acetate, a good leaving group."
+      },
+      {
+        "smiles": "CC(C)=O",
+        "explains": "The alcohol attacks through oxygen, so no C–C bond forms. A ketone would need a carbon nucleophile."
+      },
+      {
+        "smiles": "CC(=O)OC(C)=O",
+        "explains": "No reaction is wrong: anhydrides are above esters on the reactivity ladder, so an alcohol converts them to an ester readily."
+      }
+    ],
+    "confusableWith": ["u2-acid-chloride-alcohol-ester", "u2-acid-chloride-carboxylate-anhydride"],
+    "tags": ["ester synthesis", "down the ladder"],
+    "review": "Optional record. Pyridine is often included (or the reaction is just warmed with the alcohol); check reagentDisplay matches your course.",
     "verified": false,
     "verifiedBy": null
   }

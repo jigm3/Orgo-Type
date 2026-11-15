@@ -21,7 +21,7 @@ GOLD, BLUE = (0.94, 0.71, 0.30), (0.50, 0.70, 1.0)
 
 
 def svg(smiles, lit=None, w=260, h=170):
-    m = Chem.MolFromSmiles(smiles)
+    m = validate.parse(smiles)
     if m is None:
         return f'<div class="bad">unparseable: {html.escape(smiles)}</div>'
     lit = lit or {}

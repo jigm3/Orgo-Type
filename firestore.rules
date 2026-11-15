@@ -1,0 +1,22 @@
+rules_version = '2';
+// Firestore rules for Orgo Type sync codes.
+// A sync code is a 12-character secret; each code is one document. No listing, so codes can't be enumerated.
+// Problem reports can be created by anyone but only read from the Firebase console.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /sync/{code} {
+      allow get, create, update: if code.matches('^[A-Z0-9]{12}$')
+        && (request.resource == null || request.resource.data.json.size() < 900000);
+      allow list, delete: if false;
+    }
+    match /syncdev/{code} {
+      allow get, create, update: if code.matches('^[A-Z0-9]{12}$')
+        && (request.resource == null || request.resource.data.json.size() < 900000);
+      allow list, delete: if false;
+    }
+    match /reports/{id} {
+      allow create: if request.resource.data.text is string && request.resource.data.text.size() < 2000;
+      allow read, update, delete: if false;
+    }
+  }
+}
