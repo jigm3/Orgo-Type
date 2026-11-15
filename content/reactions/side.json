@@ -773,7 +773,7 @@
     ],
     "confusableWith": ["side-pcc-1-butanol", "side-chromic-cyclohexanol"],
     "tags": ["oxidation", "alcohol", "carboxylic acid"],
-    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't.Mechanism: each chromate-ester formation is drawn as attack at Cr, one intramolecular proton transfer, loss of water; hydrate formation is drawn as neutral water attack then proton transfers (to match the key step). Courses draw these parts differently, so check it matches your course.",
+    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't. Mechanism: each chromate-ester formation is drawn as attack at Cr, one intramolecular proton transfer, loss of water; hydrate formation is drawn as neutral water attack then proton transfers (to match the key step). Courses draw these parts differently, so check it matches your course.",
     "verified": false,
     "verifiedBy": null
   },
