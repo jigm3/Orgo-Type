@@ -15,6 +15,33 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The first CH3MgBr adds to the ester carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH3:10]", "[CH3:11][Mg:12][Br:13]"],
+          "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "The C–Mg bond acts like CH3⁻; the C=O π electrons move onto oxygen."
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and methoxide leaves",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([O-:8])([O:9][CH3:10])[CH3:11]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}],
+          "note": "The product of the first addition is a ketone, which is more reactive than the ester."
+        },
+        {
+          "label": "A second CH3MgBr adds to the ketone carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[CH3:11]", "[CH3:14][Mg:15][Br:16]"],
+          "arrows": [{"from": {"bond": [14, 15]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "The ketone can't be stopped at: it reacts faster than the remaining ester, so two R groups add."
+        },
+        {
+          "label": "Acid workup protonates the alkoxide",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([O-:8])([CH3:11])[CH3:14]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
+    },
     "why": "The first methyl adds and methoxide leaves (add, then eliminate), giving a ketone. That ketone is more reactive than the starting ester, so a second equivalent adds right away. Two identical R groups end up on the old carbonyl carbon.",
     "traps": [
       {
@@ -61,6 +88,49 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The acid's OH oxygen attacks sulfur; the S=O π electrons move onto oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][H:30]", "[O:10]=[S:11]([Cl:12])[Cl:13]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 11}}, {"from": {"bond": [10, 11]}, "to": {"atom": 10}}],
+          "note": "SOCl2 is attacked at sulfur first, turning the OH into a far better leaving group."
+        },
+        {
+          "label": "S=O reforms and a chloride ion is expelled from sulfur",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O+:9]([H:30])[S:11]([O-:10])([Cl:12])[Cl:13]"],
+          "arrows": [
+            {"from": {"lonePair": 10}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [11, 12]}, "to": {"atom": 12}}
+          ]
+        },
+        {
+          "label": "A chloride ion removes the proton from the oxonium oxygen, giving the acyl chlorosulfite",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O+:9]([H:30])[S:11](=[O:10])[Cl:13]",
+            "[Cl-:12]",
+            "[Cl-:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [9, 30]}, "to": {"atom": 9}}],
+          "note": "HCl gas is released."
+        },
+        {
+          "label": "Chloride attacks the carbonyl carbon of the acyl chlorosulfite",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][S:11](=[O:10])[Cl:13]", "[Cl-:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "C=O reforms and the chlorosulfite leaves, falling apart into SO2 and Cl⁻",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([O-:8])([Cl:12])[O:9][S:11](=[O:10])[Cl:13]"],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [7, 9]}, "to": {"bond": [9, 11]}},
+            {"from": {"bond": [11, 13]}, "to": {"atom": 13}}
+          ],
+          "note": "SO2 and HCl leave as gases, which drives the reaction to completion."
+        }
+      ]
+    },
     "why": "You normally can't climb the reactivity ladder (acid chloride > anhydride > ester ≈ acid > amide), but SOCl2 first turns the OH into a chlorosulfite, an excellent leaving group. Chloride then attacks the acyl carbon and the leaving group falls apart into SO2 and Cl⁻, so the reaction is driven by loss of SO2 gas.",
     "traps": [
       {
@@ -78,7 +148,7 @@
     ],
     "confusableWith": ["u2-acid-chloride-water"],
     "tags": ["acid chloride synthesis", "activation", "up the ladder"],
-    "review": "Key step shown is chloride attacking the acyl chlorosulfite (the acyl-substitution step); the earlier attack of the acid on sulfur is not drilled. Check that this is the step you want and that the chlorosulfite species is drawn the way your course draws it.",
+    "review": "Key step shown is chloride attacking the acyl chlorosulfite (the acyl-substitution step); the earlier attack of the acid on sulfur is not drilled. Check that this is the step you want and that the chlorosulfite species is drawn the way your course draws it. Mechanism: substitution at sulfur is drawn as addition then elimination (some books show one concerted step); the proton is removed by a second chloride ion (map 31) because the record maps the chloride that ends on carbon as the one expelled from SOCl2. Last step shows the chlorosulfite fragmenting to SO2 + Cl⁻ in the same step as C=O reforming.",
     "verified": false,
     "verifiedBy": null
   },
@@ -97,6 +167,26 @@
       "nucleophileAtom": 5,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Water attacks the carbonyl carbon",
+          "species": ["[CH3:1][C:2](=[O:3])[Cl:4]", "[OH2:5]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and chloride leaves",
+          "species": ["[CH3:1][C:2]([O-:3])([Cl:4])[OH2+:5]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "Cl⁻ is an excellent leaving group, which is why acid chlorides react even with water."
+        },
+        {
+          "label": "Water removes the proton from the protonated acid",
+          "species": ["[CH3:1][C:2](=[O:3])[OH+:5][H:30]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [5, 30]}, "to": {"atom": 5}}]
+        }
+      ]
     },
     "why": "Acid chlorides are at the top of the reactivity ladder, so even water, a weak nucleophile, adds to the C=O carbon. The tetrahedral intermediate collapses, chloride (a great leaving group) leaves, and HCl is the byproduct.",
     "traps": [
@@ -137,6 +227,29 @@
       "nucleophileAtom": 12,
       "electrophileAtom": 7,
       "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks the carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[Cl:9]", "[CH3:10][CH2:11][OH:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and chloride leaves",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([O-:8])([Cl:9])[OH+:12][CH2:11][CH3:10]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Pyridine removes the proton from the oxonium oxygen",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O+:12]([H:36])[CH2:11][CH3:10]",
+            "[cH:30]1[cH:31][cH:32][cH:33][cH:34][n:35]1"
+          ],
+          "arrows": [{"from": {"lonePair": 35}, "to": {"atom": 36}}, {"from": {"bond": [12, 36]}, "to": {"atom": 12}}],
+          "note": "Pyridine soaks up the HCl so it can't build up and protonate things."
+        }
+      ]
     },
     "why": "The alcohol oxygen attacks the very reactive acid chloride carbonyl, and chloride leaves: a step down the reactivity ladder from acid chloride to ester. Pyridine is a weak base that soaks up the HCl formed.",
     "traps": [
@@ -179,6 +292,26 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The amine nitrogen attacks the carbonyl carbon",
+          "species": ["[CH3:1][C:2](=[O:3])[Cl:4]", "[CH3:5][NH2:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and chloride leaves",
+          "species": ["[CH3:1][C:2]([O-:3])([Cl:4])[NH2+:6][CH3:5]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}]
+        },
+        {
+          "label": "A second molecule of amine removes the proton from nitrogen",
+          "species": ["[CH3:1][C:2](=[O:3])[NH+:6]([H:30])[CH3:5]", "[CH3:7][NH2:8]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 30}}, {"from": {"bond": [6, 30]}, "to": {"atom": 6}}],
+          "note": "This is why 2 equivalents of amine are needed: the second one ends up as CH3NH3⁺ Cl⁻."
+        }
+      ]
+    },
     "why": "The amine nitrogen attacks the acid chloride and chloride leaves, going down the ladder to the most stable derivative, the amide. The HCl formed would protonate the amine and make it non-nucleophilic, so a second equivalent of amine is added just to mop up the HCl as CH3NH3⁺ Cl⁻.",
     "traps": [
       {
@@ -214,6 +347,21 @@
       "nucleophileAtom": 8,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The carboxylate oxygen attacks the carbonyl carbon",
+          "species": ["[CH3:1][C:2](=[O:3])[Cl:4]", "[CH3:5][C:6](=[O:7])[O-:8].[Na+:9]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and chloride leaves",
+          "species": ["[CH3:1][C:2]([O-:3])([Cl:4])[O:8][C:6](=[O:7])[CH3:5]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "The carboxylate is already anionic, so no proton transfer is needed at the end."
+        }
+      ]
     },
     "why": "The negatively charged carboxylate oxygen attacks the acid chloride carbonyl and chloride leaves. Acid chloride → anhydride is one step down the reactivity ladder, so it goes readily.",
     "traps": [
@@ -260,6 +408,49 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid protonates the carbonyl oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[OH:9]", "[H:40][OH+:41][CH3:42]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}],
+          "note": "Protonation makes the carbonyl carbon much more electrophilic, so a weak nucleophile (CH3OH) can attack."
+        },
+        {
+          "label": "Methanol attacks the protonated carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[OH+:8])[OH:9]", "[CH3:10][OH:11]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Methanol removes the proton from the added oxygen",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([OH:9])[O+:11]([H:43])[CH3:10]",
+            "[CH3:45][OH:44]"
+          ],
+          "arrows": [{"from": {"lonePair": 44}, "to": {"atom": 43}}, {"from": {"bond": [11, 43]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "Acid protonates one OH group, turning it into a good leaving group",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([OH:9])[O:11][CH3:10]",
+            "[H:46][OH+:47][CH3:48]"
+          ],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 46}}, {"from": {"bond": [46, 47]}, "to": {"atom": 47}}],
+          "note": "Either OH can be protonated; protonating the original OH leads on to the ester."
+        },
+        {
+          "label": "Water leaves as the remaining OH reforms the C=O",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([OH2+:9])[O:11][CH3:10]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Methanol removes the proton from the carbonyl oxygen, giving the ester and regenerating the acid catalyst",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O+:8][H:49])[O:11][CH3:10]", "[CH3:51][OH:50]"],
+          "arrows": [{"from": {"lonePair": 50}, "to": {"atom": 49}}, {"from": {"bond": [8, 49]}, "to": {"atom": 8}}],
+          "note": "Every step is reversible; excess methanol (and removing water) pushes the equilibrium to the ester."
+        }
+      ]
+    },
     "why": "Acid protonates the C=O, making the carbonyl carbon electrophilic enough for neutral methanol to attack; after proton transfers, water leaves. Acid and ester sit at about the same level on the ladder, so every step is reversible: use excess alcohol or remove water to push it to the ester.",
     "traps": [
       {
@@ -297,6 +488,41 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid protonates the carbonyl oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[O:4][CH2:5][CH3:6]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        },
+        {
+          "label": "Water attacks the protonated carbonyl carbon",
+          "species": ["[CH3:1][C:2](=[OH+:3])[O:4][CH2:5][CH3:6]", "[OH2:7]"],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen",
+          "species": ["[CH3:1][C:2]([OH:3])([O:4][CH2:5][CH3:6])[OH+:7][H:42]", "[OH2:43]"],
+          "arrows": [{"from": {"lonePair": 43}, "to": {"atom": 42}}, {"from": {"bond": [7, 42]}, "to": {"atom": 7}}]
+        },
+        {
+          "label": "Acid protonates the OCH2CH3 oxygen, turning it into a good leaving group",
+          "species": ["[CH3:1][C:2]([OH:3])([O:4][CH2:5][CH3:6])[OH:7]", "[H:44][OH2+:45]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 44}}, {"from": {"bond": [44, 45]}, "to": {"atom": 45}}]
+        },
+        {
+          "label": "Ethanol leaves as an OH reforms the C=O",
+          "species": ["[CH3:1][C:2]([OH:3])([OH:7])[OH+:4][CH2:5][CH3:6]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}]
+        },
+        {
+          "label": "Water removes the proton from the carbonyl oxygen, giving the acid and regenerating H3O⁺",
+          "species": ["[CH3:1][C:2](=[O+:3][H:46])[OH:7]", "[OH2:47]"],
+          "arrows": [{"from": {"lonePair": 47}, "to": {"atom": 46}}, {"from": {"bond": [3, 46]}, "to": {"atom": 3}}],
+          "note": "This is Fischer esterification run backwards; a large excess of water drives it toward the acid."
+        }
+      ]
+    },
     "why": "This is Fischer esterification run backwards: acid protonates the C=O, water attacks, and ethanol leaves after proton transfers. Every step is reversible, so a large excess of water is used to push the equilibrium toward the acid + alcohol.",
     "traps": [
       {
@@ -333,6 +559,31 @@
       "nucleophileAtom": 11,
       "electrophileAtom": 7,
       "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide attacks the ester carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH3:10]", "[OH-:11].[Na+:12]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and methoxide leaves",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([O-:8])([O:9][CH3:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Methoxide removes the acidic proton from the carboxylic acid",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:11][H:30]", "[CH3:10][O-:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 30}}, {"from": {"bond": [11, 30]}, "to": {"atom": 11}}],
+          "note": "This acid–base step is essentially irreversible, which is why saponification goes to completion."
+        },
+        {
+          "label": "Acid workup protonates the carboxylate",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O-:11]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
     },
     "why": "Hydroxide attacks the ester carbonyl and methoxide leaves. The acid formed is immediately deprotonated to the carboxylate, which is negatively charged and no longer electrophilic, so unlike acid hydrolysis this is irreversible. Step 2 (H3O+) protonates the carboxylate to give the carboxylic acid.",
     "traps": [
@@ -372,6 +623,43 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid protonates the carbonyl oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[NH2:9]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}],
+          "note": "The carbonyl O, not the N, is protonated: the N lone pair is tied up in resonance with C=O."
+        },
+        {
+          "label": "Water attacks the protonated carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[OH+:8])[NH2:9]", "[OH2:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([NH2:9])[OH+:10][H:42]", "[OH2:43]"],
+          "arrows": [{"from": {"lonePair": 43}, "to": {"atom": 42}}, {"from": {"bond": [10, 42]}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "Acid protonates the nitrogen, turning NH2 into a leaving group",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([NH2:9])[OH:10]", "[H:44][OH2+:45]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 44}}, {"from": {"bond": [44, 45]}, "to": {"atom": 45}}],
+          "note": "Once the C=O is gone the nitrogen is an ordinary amine, the most basic site."
+        },
+        {
+          "label": "NH3 leaves as an OH reforms the C=O",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([NH3+:9])[OH:10]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Water removes the proton from the carbonyl oxygen, giving the carboxylic acid",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O+:8][H:46])[OH:10]", "[OH2:47]"],
+          "arrows": [{"from": {"lonePair": 47}, "to": {"atom": 46}}, {"from": {"bond": [8, 46]}, "to": {"atom": 8}}],
+          "note": "The NH3 released is protonated to NH4⁺ in the acid, so it can't attack back: that makes the hydrolysis irreversible."
+        }
+      ]
+    },
     "why": "Amides are at the bottom of the reactivity ladder, so hydrolysis needs strong acid (or base) and prolonged heating. In acid, water attacks the protonated carbonyl and NH3 leaves; it is trapped as NH4⁺, which makes the reaction irreversible. Hot NaOH also works, giving the carboxylate (acid after H3O+ workup) and NH3.",
     "traps": [
       {
@@ -408,6 +696,71 @@
       "nucleophileAtom": 5,
       "electrophileAtom": 3,
       "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid protonates the nitrile nitrogen",
+          "species": ["[CH3:1][CH2:2][C:3]#[N:4]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        },
+        {
+          "label": "Water attacks the nitrile carbon",
+          "species": ["[CH3:1][CH2:2][C:3]#[NH+:4]", "[OH2:5]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen, giving an imidic acid",
+          "species": ["[CH3:1][CH2:2][C:3](=[NH:4])[OH+:5][H:42]", "[OH2:43]"],
+          "arrows": [{"from": {"lonePair": 43}, "to": {"atom": 42}}, {"from": {"bond": [5, 42]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "Acid protonates the imidic acid nitrogen",
+          "species": ["[CH3:1][CH2:2][C:3](=[NH:4])[OH:5]", "[H:44][OH2+:45]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 44}}, {"from": {"bond": [44, 45]}, "to": {"atom": 45}}]
+        },
+        {
+          "label": "Water removes the O–H proton; C=O forms and the C=N π electrons move onto nitrogen, giving the amide",
+          "species": ["[CH3:1][CH2:2][C:3](=[NH2+:4])[O:5][H:46]", "[OH2:47]"],
+          "arrows": [
+            {"from": {"lonePair": 47}, "to": {"atom": 46}},
+            {"from": {"bond": [5, 46]}, "to": {"bond": [5, 3]}},
+            {"from": {"bond": [3, 4]}, "to": {"atom": 4}}
+          ],
+          "note": "Steps 4–5 are the imidic acid → amide tautomerization. The amide is then hydrolysed like any amide."
+        },
+        {
+          "label": "Acid protonates the amide carbonyl oxygen",
+          "species": ["[CH3:1][CH2:2][C:3](=[O:5])[NH2:4]", "[H:48][OH2+:49]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 48}}, {"from": {"bond": [48, 49]}, "to": {"atom": 49}}]
+        },
+        {
+          "label": "A second water attacks the protonated carbonyl carbon",
+          "species": ["[CH3:1][CH2:2][C:3](=[OH+:5])[NH2:4]", "[OH2:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 5]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "Water removes a proton from the newly added oxygen",
+          "species": ["[CH3:1][CH2:2][C:3]([OH:5])([NH2:4])[OH+:6][H:50]", "[OH2:51]"],
+          "arrows": [{"from": {"lonePair": 51}, "to": {"atom": 50}}, {"from": {"bond": [6, 50]}, "to": {"atom": 6}}]
+        },
+        {
+          "label": "Acid protonates the nitrogen",
+          "species": ["[CH3:1][CH2:2][C:3]([OH:5])([NH2:4])[OH:6]", "[H:52][OH2+:53]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 52}}, {"from": {"bond": [52, 53]}, "to": {"atom": 53}}]
+        },
+        {
+          "label": "NH3 leaves as an OH reforms the C=O",
+          "species": ["[CH3:1][CH2:2][C:3]([OH:5])([NH3+:4])[OH:6]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"bond": [3, 5]}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
+        },
+        {
+          "label": "Water removes the proton from the carbonyl oxygen, giving the carboxylic acid",
+          "species": ["[CH3:1][CH2:2][C:3](=[O+:5][H:54])[OH:6]", "[OH2:55]"],
+          "arrows": [{"from": {"lonePair": 55}, "to": {"atom": 54}}, {"from": {"bond": [5, 54]}, "to": {"atom": 5}}],
+          "note": "NH3 is trapped as NH4⁺ in the acid, which pulls the whole sequence forward."
+        }
+      ]
     },
     "why": "Acid protonates the nitrile N, and water adds to the nitrile carbon; tautomerization gives an amide. Under the hot aqueous acid the amide is hydrolyzed further, so the nitrile carbon ends up as a COOH and the nitrogen leaves as NH4⁺.",
     "traps": [
@@ -447,6 +800,52 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "CH3MgBr adds to the nitrile carbon, giving an imine anion",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]#[N:8]", "[CH3:9][Mg:10][Br:11]"],
+          "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "The negatively charged imine salt can't be attacked again, so only one R group adds."
+        },
+        {
+          "label": "Workup: acid protonates the imine anion nitrogen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[N-:8])[CH3:9]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        },
+        {
+          "label": "Acid protonates the imine nitrogen, giving an iminium ion",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[NH:8])[CH3:9]", "[H:42][OH2+:43]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 42}}, {"from": {"bond": [42, 43]}, "to": {"atom": 43}}],
+          "note": "From here on this is imine hydrolysis."
+        },
+        {
+          "label": "Water attacks the iminium carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[NH2+:8])[CH3:9]", "[OH2:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([NH2:8])([CH3:9])[OH+:12][H:44]", "[OH2:45]"],
+          "arrows": [{"from": {"lonePair": 45}, "to": {"atom": 44}}, {"from": {"bond": [12, 44]}, "to": {"atom": 12}}]
+        },
+        {
+          "label": "Acid protonates the nitrogen, turning NH2 into a leaving group",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([NH2:8])([CH3:9])[OH:12]", "[H:46][OH2+:47]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 46}}, {"from": {"bond": [46, 47]}, "to": {"atom": 47}}]
+        },
+        {
+          "label": "NH3 leaves as the OH reforms a C=O",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([NH3+:8])([CH3:9])[OH:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"bond": [7, 12]}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Water removes the proton from the carbonyl oxygen, giving the ketone",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O+:12][H:48])[CH3:9]", "[OH2:49]"],
+          "arrows": [{"from": {"lonePair": 49}, "to": {"atom": 48}}, {"from": {"bond": [12, 48]}, "to": {"atom": 12}}]
+        }
+      ]
+    },
     "why": "The Grignard carbon adds once to the nitrile carbon, giving a negatively charged imine salt (C=N⁻ MgBr⁺) that won't accept a second Grignard. Aqueous acid workup then hydrolyzes the imine to a ketone, so unlike an ester, a nitrile stops at the ketone.",
     "traps": [
       {
@@ -478,7 +877,7 @@
         }
       ]
     },
-    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so.",
+    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so. Mechanism: the imine anion is drawn as a free N⁻ (MgBr⁺ dropped) and the workup is shown as full acid-catalysed imine hydrolysis (8 steps total). Check whether your course expects the hydrolysis steps or just 'workup gives the ketone'.",
     "verified": false,
     "verifiedBy": null
   },
@@ -497,6 +896,31 @@
       "electrophileAtom": 4,
       "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from AlH4⁻ adds to the nitrile carbon",
+          "species": ["[CH3:1][CH2:2][CH2:3][C:4]#[N:5]", "[H:6][Al-:7]([H])([H])[H].[Li+]"],
+          "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "A second hydride adds to the imine anion carbon",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]=[N-:5]", "[H:30][Al-:31]([H])([H])[H]"],
+          "arrows": [{"from": {"bond": [30, 31]}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "Unlike the Grignard case, the small hydride adds a second time, giving a dianion (really held by aluminum)."
+        },
+        {
+          "label": "Workup: water protonates the nitrogen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][N-2:5]", "[H:40][OH:41]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        },
+        {
+          "label": "A second water protonates the nitrogen, giving the primary amine",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][NH-:5]", "[H:42][OH:43]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 42}}, {"from": {"bond": [42, 43]}, "to": {"atom": 43}}]
+        }
+      ]
+    },
     "why": "Hydride adds to the nitrile carbon to give an imine anion; LiAlH4 is strong enough to add a second hydride to that C=N. Water workup protonates the nitrogen, so the C≡N becomes CH2–NH2 with no carbons gained or lost.",
     "traps": [
       {
@@ -514,7 +938,7 @@
     ],
     "confusableWith": ["u2-amide-lialh4-amine", "u2-nitrile-hydrolysis", "u2-nitrile-grignard-ketone"],
     "tags": ["reduction", "amine synthesis", "nitrile", "hydride"],
-    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so. Key step shown is the first hydride addition.",
+    "review": "Pattern set to A (nucleophilic addition) for all three nitrile records because the drilled step is addition to C≡N with no leaving group on that carbon. Could be argued as B; change all three together if so. Key step shown is the first hydride addition. Mechanism: the N–Al bonds are omitted, so the intermediate after two hydride additions is drawn as a free N²⁻ dianion and workup as two separate water protonations. Check this simplification is OK.",
     "verified": false,
     "verifiedBy": null
   },
@@ -533,6 +957,34 @@
       "nucleophileAtom": 12,
       "electrophileAtom": 7,
       "arrows": [{"from": {"bond": [12, 13]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from AlH4⁻ adds to the ester carbonyl carbon",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+            "[H:12][Al-:13]([H])([H])[H].[Li+]"
+          ],
+          "arrows": [{"from": {"bond": [12, 13]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and ethoxide leaves",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH:7]([O-:8])[O:9][CH2:10][CH3:11]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}],
+          "note": "The aldehyde formed is more reactive than the ester, so it can't be isolated with LiAlH4."
+        },
+        {
+          "label": "A second hydride adds to the aldehyde carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH:7]=[O:8]", "[H:30][Al-:31]([H])([H])[H]"],
+          "arrows": [{"from": {"bond": [30, 31]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Acid workup protonates the alkoxide",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][O-:8]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
     },
     "why": "Hydride adds and ethoxide leaves, giving an aldehyde. The aldehyde is more reactive than the ester, so a second hydride adds at once, and workup gives a 1° alcohol (plus the ethanol that left).",
     "traps": [
@@ -577,6 +1029,22 @@
       "electrophileAtom": 5,
       "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 5}}, {"from": {"bond": [5, 6]}, "to": {"atom": 6}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "DIBAL delivers a hydride to the ester carbonyl carbon",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][C:5](=[O:6])[O:7][CH3:8]", "[H:9][Al:10](CC(C)C)CC(C)C"],
+          "arrows": [{"from": {"bond": [9, 10]}, "to": {"atom": 5}}, {"from": {"bond": [5, 6]}, "to": {"atom": 6}}],
+          "note": "At −78 °C this tetrahedral intermediate (its O held by aluminum) is stable, so no second hydride adds."
+        },
+        {
+          "label": "On aqueous workup the tetrahedral intermediate collapses: C=O reforms and methoxide leaves",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][CH:5]([O-:6])[O:7][CH3:8]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"bond": [5, 6]}}, {"from": {"bond": [5, 7]}, "to": {"atom": 7}}],
+          "note": "By the time the aldehyde forms, the DIBAL has been destroyed by the water, so it survives."
+        }
+      ]
+    },
     "why": "DIBAL-H delivers only one hydride, and at −78 °C the tetrahedral aluminum intermediate is stable and doesn't collapse. It only breaks down to the aldehyde during aqueous workup, when no hydride is left to reduce it further.",
     "traps": [
       {
@@ -594,7 +1062,7 @@
     ],
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-chloride-lialhotbu3-aldehyde", "u1-nabh4-aldehyde"],
     "tags": ["reduction", "aldehyde synthesis", "hydride", "low temperature"],
-    "review": "Real mechanism first coordinates the C=O oxygen to Al (Lewis acid) before hydride transfer; the key step shows only the hydride transfer. DIBAL drawn as neutral iBu2Al–H with the isobutyl atoms unmapped.",
+    "review": "Real mechanism first coordinates the C=O oxygen to Al (Lewis acid) before hydride transfer; the key step shows only the hydride transfer. DIBAL drawn as neutral iBu2Al–H with the isobutyl atoms unmapped. Mechanism: drawn in 2 steps without the O→Al coordination (to match the key step); the Al-bound intermediate is shown as a free alkoxide and its collapse is put at workup. Some courses add a Lewis acid–base step first and a hemiacetal hydrolysis at workup.",
     "verified": false,
     "verifiedBy": null
   },
@@ -619,6 +1087,24 @@
       "nucleophileAtom": 10,
       "electrophileAtom": 7,
       "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "LiAlH(OtBu)3 delivers a hydride to the acid chloride carbonyl carbon",
+          "species": [
+            "[CH2:1]1[CH2:2][CH2:3][CH:4]([C:7](=[O:8])[Cl:9])[CH2:5][CH2:6]1",
+            "[H:10][Al-:11](OC(C)(C)C)(OC(C)(C)C)OC(C)(C)C.[Li+]"
+          ],
+          "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "The bulky, weak hydride donor has only one H, and it reacts with the very reactive acid chloride faster than with the aldehyde."
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and chloride leaves",
+          "species": ["[CH2:1]1[CH2:2][CH2:3][CH:4]([CH:7]([O-:8])[Cl:9])[CH2:5][CH2:6]1"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [7, 8]}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        }
+      ]
     },
     "why": "LiAlH(OtBu)3 is a bulky, mild hydride with only one H to give. It reduces the very reactive acid chloride (chloride leaves) but reacts only slowly with the less reactive aldehyde product, especially at low temperature, so it stops at the aldehyde.",
     "traps": [
@@ -656,6 +1142,35 @@
       "electrophileAtom": 7,
       "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride from AlH4⁻ adds to the amide carbonyl carbon",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[NH:9][CH3:10]",
+            "[H:11][Al-:12]([H])([H])[H].[Li+]"
+          ],
+          "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "The alkoxide oxygen bonds to aluminum (AlH3), making it a leaving group",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH:7]([O-:8])[NH:9][CH3:10]", "[AlH3:12]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 12}}],
+          "note": "Oxygen bound to aluminum leaves far more easily than a bare O²⁻ would."
+        },
+        {
+          "label": "The nitrogen lone pair pushes out the O–Al group, forming an iminium ion",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH:7]([O:8][AlH3-:12])[NH:9][CH3:10]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [7, 9]}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "Here N, the better electron donor, kicks out O: the opposite of what happens with esters, so the C–N bond survives."
+        },
+        {
+          "label": "A second hydride adds to the iminium carbon, giving the amine",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH:7]=[NH+:9][CH3:10]", "[H:30][Al-:31]([H])([H])[H]"],
+          "arrows": [{"from": {"bond": [30, 31]}, "to": {"atom": 7}}, {"from": {"bond": [7, 9]}, "to": {"atom": 9}}]
+        }
+      ]
+    },
     "why": "Hydride adds to the amide C=O, but then the oxygen (bound to aluminum) is lost instead of the nitrogen, giving an iminium ion. A second hydride reduces the iminium, so the C=O becomes CH2 and the C–N bond is kept: an amine, not an alcohol.",
     "traps": [
       {
@@ -673,7 +1188,7 @@
     ],
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-nitrile-lialh4-amine", "u2-amide-hydrolysis"],
     "tags": ["reduction", "amine synthesis", "hydride", "amide"],
-    "review": "Key step shown is the first hydride addition; the loss of O to form the iminium and the second hydride addition are not drilled. No byproduct listed for the lost oxygen (it ends up in aluminum salts).",
+    "review": "Key step shown is the first hydride addition; the loss of O to form the iminium and the second hydride addition are not drilled. No byproduct listed for the lost oxygen (it ends up in aluminum salts). Mechanism: the initial deprotonation of the N–H by hydride (real for 1°/2° amides) is omitted, as in most textbooks; the oxygen leaves as an O–AlH3 group.",
     "verified": false,
     "verifiedBy": null
   },
@@ -696,6 +1211,48 @@
       "electrophileAtom": 8,
       "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid–base first: a hydride removes the acidic O–H proton, releasing H2",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][C:8](=[O:9])[O:10][H:30]",
+            "[H:31][Al-:32]([H])([H])[H]"
+          ],
+          "arrows": [{"from": {"bond": [31, 32]}, "to": {"atom": 30}}, {"from": {"bond": [10, 30]}, "to": {"atom": 10}}],
+          "note": "LiAlH4 is a strong base, so the first equivalent is spent making H2 gas and the carboxylate."
+        },
+        {
+          "label": "Hydride from another AlH4⁻ adds to the carboxylate carbon",
+          "species": [
+            "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][C:8](=[O:9])[O-:10]",
+            "[H:11][Al-:12]([H])([H])[H].[Li+]"
+          ],
+          "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "One oxygen bonds to aluminum (AlH3), making it a leaving group",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][CH:8]([O-:9])[O-:10]", "[AlH3:12]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 12}}]
+        },
+        {
+          "label": "C=O reforms and the O–Al group leaves, giving an aldehyde",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][CH:8]([O-:9])[O:10][AlH3-:12]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [8, 9]}}, {"from": {"bond": [8, 10]}, "to": {"atom": 10}}],
+          "note": "The aldehyde is more reactive than the starting material, so it is reduced at once."
+        },
+        {
+          "label": "A further hydride adds to the aldehyde carbonyl carbon",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][CH:8]=[O:9]", "[H:40][Al-:41]([H])([H])[H]"],
+          "arrows": [{"from": {"bond": [40, 41]}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Acid workup protonates the alkoxide",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[CH2:7][CH2:8][O-:9]", "[H:42][OH2+:43]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 42}}, {"from": {"bond": [42, 43]}, "to": {"atom": 43}}]
+        }
+      ]
+    },
     "why": "LiAlH4 first deprotonates the acid (H2 gas is released), then hydride reduces the aluminum carboxylate through an aldehyde stage that is reduced again at once. Workup gives the 1° alcohol; NaBH4 is too weak to reduce a carboxylic acid.",
     "traps": [
       {
@@ -713,7 +1270,7 @@
     ],
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-grignard-trap"],
     "tags": ["reduction", "alcohol synthesis", "hydride"],
-    "review": "Mechanism simplified: key step shows hydride adding to the carboxylate (drawn as free RCO2⁻, really an O–Al carboxylate) after the initial acid–base step. Which O is lost is a bookkeeping choice. Check this is how your course wants it drilled, or whether the acid–base step should be shown instead.",
+    "review": "Mechanism simplified: key step shows hydride adding to the carboxylate (drawn as free RCO2⁻, really an O–Al carboxylate) after the initial acid–base step. Which O is lost is a bookkeeping choice. Check this is how your course wants it drilled, or whether the acid–base step should be shown instead. Mechanism: simplified to free carboxylate / alkoxide anions with Al bonding shown only where it creates the leaving group (step 3). Real intermediates are O–Al aluminates throughout.",
     "verified": false,
     "verifiedBy": null
   },
@@ -726,11 +1283,27 @@
     "reagents": ["[O:9]=[C:10]=[O:11]"],
     "reagentDisplay": "1. CO2  2. H3O+",
     "reagentAliases": ["CO2", "carbon dioxide", "dry ice", "CO2(s)", "solid CO2"],
-    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:10](=[O:9])[OH:11]",
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:10](=[O:11])[OH:9]",
     "keyStep": {
       "nucleophileAtom": 6,
       "electrophileAtom": 10,
       "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 10}}, {"from": {"bond": [10, 9]}, "to": {"atom": 9}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The Grignard carbon adds to the carbon of CO2",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[Mg:7][Br:8]", "[O:9]=[C:10]=[O:11]"],
+          "arrows": [{"from": {"bond": [6, 7]}, "to": {"atom": 10}}, {"from": {"bond": [10, 9]}, "to": {"atom": 9}}],
+          "note": "CO2 is just a C=O electrophile with no leaving group, so it stops at the carboxylate salt."
+        },
+        {
+          "label": "Acid workup protonates the carboxylate",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:10]([O-:9])=[O:11]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}],
+          "note": "The two carboxylate oxygens are equivalent by resonance, so it doesn't matter which one takes the proton."
+        }
+      ]
     },
     "why": "The Grignard carbon adds to the electrophilic carbon of CO2, forming a new C–C bond and a magnesium carboxylate. The negatively charged carboxylate doesn't react with more Grignard, and H3O+ workup protonates it to the carboxylic acid with one more carbon.",
     "traps": [
@@ -763,7 +1336,7 @@
         }
       ]
     },
-    "review": "Pattern set to A: CO2 has no leaving group, so this is nucleophilic addition to C=O. Included in unit 2 as the classic acid synthesis.",
+    "review": "Pattern set to A: CO2 has no leaving group, so this is nucleophilic addition to C=O. Included in unit 2 as the classic acid synthesis. Mechanism: because the product maps the OH as O11 (not the O9 that gets the charge in the key step), the workup step is drawn through the carboxylate resonance (3 arrows) instead of a plain O9 protonation.",
     "verified": false,
     "verifiedBy": null
   },
@@ -782,6 +1355,21 @@
       "nucleophileAtom": 11,
       "electrophileAtom": 10,
       "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 10}}, {"from": {"bond": [9, 10]}, "to": {"atom": 9}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The Grignard's carbon acts as a base and removes the acidic O–H proton",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][H:10]", "[CH3:11][Mg:12][Br:13]"],
+          "arrows": [{"from": {"bond": [11, 12]}, "to": {"atom": 10}}, {"from": {"bond": [9, 10]}, "to": {"atom": 9}}],
+          "note": "Acid–base is much faster than addition; CH4 bubbles off and the carboxylate is too unreactive to attack."
+        },
+        {
+          "label": "Acid workup protonates the carboxylate, giving back the starting acid",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O-:9]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
     },
     "why": "A Grignard is a very strong base, so it simply removes the acidic O–H proton and becomes methane; no C–C bond forms. The carboxylate salt is negatively charged and not electrophilic enough for the Grignard to add, so H3O+ workup just gives back the starting acid.",
     "traps": [
@@ -820,6 +1408,26 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ammonia attacks the ester carbonyl carbon",
+          "species": ["[CH3:1][C:2](=[O:3])[O:4][CH3:5]", "[NH3:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and methoxide leaves",
+          "species": ["[CH3:1][C:2]([O-:3])([O:4][CH3:5])[NH3+:6]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}]
+        },
+        {
+          "label": "Methoxide removes a proton from the nitrogen",
+          "species": ["[CH3:1][C:2](=[O:3])[NH2+:6][H:30]", "[CH3:5][O-:4]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 30}}, {"from": {"bond": [6, 30]}, "to": {"atom": 6}}],
+          "note": "The amide is much more stable than the ester, which is what makes this direction downhill."
+        }
+      ]
+    },
     "why": "Ammonia attacks the ester carbonyl and methoxide leaves (then grabs a proton to become methanol). Ester → amide is a step down the reactivity ladder, so it is favorable, but esters are much less reactive than acid chlorides, so it is slower and usually needs heat.",
     "traps": [
       {
@@ -837,7 +1445,7 @@
     ],
     "confusableWith": ["u2-acid-chloride-amine-amide"],
     "tags": ["amide synthesis", "down the ladder"],
-    "review": "Optional record. Conditions vary by textbook (often just 'NH3' or 'NH3, heat'); check reagentDisplay. The 'CN' (methylamine via SN2 on the methyl) trap is minor real chemistry for methyl esters; replace it if that's too subtle.",
+    "review": "Optional record. Conditions vary by textbook (often just 'NH3' or 'NH3, heat'); check reagentDisplay. The 'CN' (methylamine via SN2 on the methyl) trap is minor real chemistry for methyl esters; replace it if that's too subtle. Mechanism: many books move the N–H proton before the collapse (or use a second NH3 as base); here methoxide removes it after the collapse.",
     "verified": false,
     "verifiedBy": null
   },
@@ -856,6 +1464,26 @@
       "nucleophileAtom": 9,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Methanol attacks one carbonyl carbon of the anhydride",
+          "species": ["[CH3:1][C:2](=[O:3])[O:4][C:5](=[O:6])[CH3:7]", "[CH3:8][OH:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The tetrahedral intermediate collapses: C=O reforms and acetate leaves",
+          "species": ["[CH3:1][C:2]([O-:3])([O:4][C:5](=[O:6])[CH3:7])[OH+:9][CH3:8]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "Acetate is a good leaving group (weak base), so anhydrides are nearly as reactive as acid chlorides."
+        },
+        {
+          "label": "Pyridine removes the proton from the oxonium oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[O+:9]([H:36])[CH3:8]", "[cH:30]1[cH:31][cH:32][cH:33][cH:34][n:35]1"],
+          "arrows": [{"from": {"lonePair": 35}, "to": {"atom": 36}}, {"from": {"bond": [9, 36]}, "to": {"atom": 9}}]
+        }
+      ]
     },
     "why": "Methanol attacks one carbonyl of the anhydride and acetate (a good, resonance-stabilized leaving group) leaves. Anhydride → ester is down the reactivity ladder; the byproduct is a carboxylic acid instead of the HCl an acid chloride would give.",
     "traps": [
