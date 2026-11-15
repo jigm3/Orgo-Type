@@ -43,14 +43,14 @@ function renderLesson(view, id, i = 0) {
     } }).then(x => { mv = x; });
   } else if (st.kind === "choice") {
     body.innerHTML = `<div class="ltext">${md(st.text)}</div>${st.smiles ? '<div class="mbig"></div>' : ""}
-      <div class="opts list">${st.options.map((o, k) => `<button class="opt row" data-k="${k}"><span class="optl">${"ABCD"[k]}</span><span class="optt">${md(o.text)}</span></button>`).join("")}</div>`;
+      <div class="opts list">${shuffle(st.options.map((_, k) => k), Math.random).map((k, pos) => `<button class="opt row" data-k="${k}"><span class="optl">${"ABCD"[pos]}</span><span class="optt">${md(st.options[k].text)}</span></button>`).join("")}</div>`;
     if (st.smiles) molPanel(body.querySelector(".mbig"), st.smiles, { width: 360, height: 200 });
     const box = body.querySelector(".opts");
     box.onclick = e => {
       const b = e.target.closest(".opt"); if (!b || box.classList.contains("locked")) return;
       box.classList.add("locked");
       const o = st.options[+b.dataset.k], ok = !!o.correct;
-      box.querySelectorAll(".opt").forEach((x, k) => x.classList.add(st.options[k].correct ? "right" : x === b ? "wrong" : "other"));
+      box.querySelectorAll(".opt").forEach(x => x.classList.add(st.options[+x.dataset.k].correct ? "right" : x === b ? "wrong" : "other"));
       const right = st.options.find(x => x.correct);
       verdict(fb, ok, `<p>${md(ok ? (o.explains || right.explains || "") : o.explains)}</p>${!ok && right.explains ? `<p>${md(right.explains)}</p>` : ""}`);
       logStep(ok); ok ? chime() : buzz(); nextBtn();
