@@ -92,6 +92,22 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"bond": [8, 9]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The Grignard's methyl adds to the carbonyl carbon (1,2-addition), giving an alkoxide",
+          "species": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1", "[CH3:8][Mg:9][Br:10]"],
+          "arrows": [{"from": {"bond": [8, 9]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}],
+          "note": "Hard nucleophile, hard electrophile: the C=O carbon, not the β-carbon."
+        },
+        {
+          "label": "Acid workup: the alkoxide takes a proton",
+          "species": ["[O-:1][C:2]1([CH3:8])[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "The C=C is untouched: a tertiary allylic alcohol."
+        }
+      ]
+    },
     "why": "A Grignard is a hard, highly reactive nucleophile, so it attacks the hard, most positive carbon: the C=O carbon (1,2-addition), not the β-carbon. Workup protonates the alkoxide to a tertiary allylic alcohol; the C=C is untouched. Compare (CH3)2CuLi, which adds 1,4.",
     "traps": [
       {
@@ -147,6 +163,21 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The butyl group adds to the carbonyl carbon (1,2-addition), giving an alkoxide",
+          "species": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6]1", "[CH3:7][CH2:8][CH2:9][CH2:10][Li:11]"],
+          "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}],
+          "note": "Organolithiums are hard nucleophiles, like Grignards, so they add 1,2."
+        },
+        {
+          "label": "Acid workup: the alkoxide takes a proton",
+          "species": ["[O-:1][C:2]1([CH2:10][CH2:9][CH2:8][CH3:7])[CH:3]=[CH:4][CH2:5][CH2:6]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        }
+      ]
+    },
     "why": "Organolithiums, like Grignards, are hard carbon nucleophiles, so they add directly to the C=O carbon (1,2) of an enone. Workup gives a tertiary allylic alcohol with the C=C still in place.",
     "traps": [
       {
@@ -197,6 +228,21 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The cuprate's methyl adds to the acid chloride's carbonyl carbon, giving a tetrahedral intermediate",
+          "species": ["[O:1]=[C:2]([Cl:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[CH3:10][Cu-:11][CH3:12].[Li+:13]"],
+          "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "The C=O re-forms and chloride leaves, giving the ketone",
+          "species": ["[O-:1][C:2]([CH3:10])([Cl:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"bond": [1, 2]}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}],
+          "note": "Pattern B: addition then elimination. The cuprate is too weak to add to the ketone, so it stops here."
+        }
+      ]
+    },
     "why": "Gilman reagents (made from 2 CH3Li + CuI) are soft and much less reactive than Grignards: they substitute the Cl of a reactive acid chloride (pattern B) but do not attack the ketone that forms, so the reaction stops at the ketone. CH3MgBr would add a second time and give a tertiary alcohol.",
     "traps": [
       {
@@ -228,7 +274,7 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "ketone synthesis", "cuprate"],
-    "review": "Key-step arrows use the simplified 'carbanion adds to C=O' picture (like u3-gilman-enone), not the Cu(III) oxidative-addition/reductive-elimination mechanism. Also check the methyl benzoate retro distractor: cuprates are generally described as unreactive toward esters.",
+    "review": "Key-step arrows use the simplified 'carbanion adds to C=O' picture (like u3-gilman-enone), not the Cu(III) oxidative-addition/reductive-elimination mechanism. Also check the methyl benzoate retro distractor: cuprates are generally described as unreactive toward esters. Mechanism: drawn with the same simplified 'methyl anion adds, then Cl⁻ leaves' picture as the key step (no Cu(III) oxidative addition/reductive elimination); there is no acid-workup protonation step since the ketone forms directly.",
     "verified": false,
     "verifiedBy": null
   },

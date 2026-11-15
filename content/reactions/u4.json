@@ -19,6 +19,35 @@
         {"from": {"bond": [5, 6]}, "to": {"atom": 6}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide removes an α-H, giving an enolate",
+          "species": ["[CH2:1]([H:30])[CH:2]=[O:3]", "[OH-:31]"],
+          "arrows": [
+            {"from": {"lonePair": 31}, "to": {"atom": 30}},
+            {"from": {"bond": [1, 30]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "Only a small amount of enolate forms (pKa about 17 vs 15.7 for water), and most aldehyde is left to be attacked."
+        },
+        {
+          "label": "The enolate's α-carbon adds to the carbonyl carbon of a second aldehyde",
+          "species": ["[CH2:1]=[CH:2][O-:3]", "[CH3:4][CH:5]=[O:6]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 5}},
+            {"from": {"bond": [5, 6]}, "to": {"atom": 6}}
+          ]
+        },
+        {
+          "label": "Water protonates the alkoxide, giving the β-hydroxy aldehyde",
+          "species": ["[O:3]=[CH:2][CH2:1][CH:5]([O-:6])[CH3:4]", "[H:32][OH:33]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 32}}, {"from": {"bond": [32, 33]}, "to": {"atom": 33}}],
+          "note": "Hydroxide is regenerated: the base is a catalyst."
+        }
+      ]
+    },
     "why": "Hydroxide removes an α-H to make an enolate. Its α-carbon then runs pattern A on a second aldehyde: nucleophilic addition to the C=O carbon. Protonating the alkoxide gives a β-hydroxy aldehyde.",
     "traps": [
       {
@@ -61,6 +90,40 @@
         {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Acid protonates the carbonyl oxygen",
+          "species": ["[CH2:1]([H:32])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Water removes an α-H, giving the enol",
+          "species": ["[CH2:1]([H:32])[C:2](=[O+:3][H:30])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH2:33]"],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 32}},
+            {"from": {"bond": [1, 32]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "Acid-catalysed enol formation is the slow step, so the rate doesn't depend on [Br2]."
+        },
+        {
+          "label": "The enol's C=C attacks Br2, and bromide leaves",
+          "species": ["[CH2:1]=[C:2]([O:3][H:30])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[Br:10][Br:11]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ]
+        },
+        {
+          "label": "Bromide removes the proton from the oxygen, giving the α-bromo ketone",
+          "species": ["[Br:10][CH2:1][C:2](=[O+:3][H:30])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[Br-:11]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 30}}, {"from": {"bond": [30, 3]}, "to": {"atom": 3}}],
+          "note": "The Br makes the carbonyl O less basic, so a second enolization (and a second Br) is slow in acid."
+        }
+      ]
+    },
     "why": "Acid catalyses formation of the enol, whose α-carbon attacks Br2. Once one Br is on, the C=O is less basic, so enol formation slows and the reaction stops at the mono-bromo ketone (in base, every α-H is replaced).",
     "traps": [
       {
@@ -97,6 +160,87 @@
       "nucleophileAtom": 16,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 16}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide removes an α-H, giving an enolate",
+          "species": ["[C:1]([H:30])([H:31])([H:32])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:40]"],
+          "arrows": [
+            {"from": {"lonePair": 40}, "to": {"atom": 30}},
+            {"from": {"bond": [1, 30]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ]
+        },
+        {
+          "label": "The enolate attacks I2, and iodide leaves",
+          "species": ["[C:1]([H:31])([H:32])=[C:2]([O-:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[I:10][I:11]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ]
+        },
+        {
+          "label": "Hydroxide removes an α-H, giving an enolate (second round)",
+          "species": ["[C:1]([I:10])([H:31])([H:32])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:41]"],
+          "arrows": [
+            {"from": {"lonePair": 41}, "to": {"atom": 31}},
+            {"from": {"bond": [1, 31]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "Each iodine makes the remaining α-H more acidic, so the same carbon is iodinated until all three H are replaced."
+        },
+        {
+          "label": "The enolate attacks I2, and iodide leaves",
+          "species": ["[C:1]([I:10])([H:32])=[C:2]([O-:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[I:12][I:13]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 12}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+          ]
+        },
+        {
+          "label": "Hydroxide removes an α-H, giving an enolate (third round)",
+          "species": ["[C:1]([I:10])([I:12])([H:32])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[OH-:42]"],
+          "arrows": [
+            {"from": {"lonePair": 42}, "to": {"atom": 32}},
+            {"from": {"bond": [1, 32]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ]
+        },
+        {
+          "label": "The enolate attacks I2, and iodide leaves",
+          "species": ["[C:1]([I:10])([I:12])=[C:2]([O-:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[I:14][I:15]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 14}},
+            {"from": {"bond": [14, 15]}, "to": {"atom": 15}}
+          ]
+        },
+        {
+          "label": "Hydroxide adds to the carbonyl carbon, giving a tetrahedral intermediate",
+          "species": ["[C:1]([I:10])([I:12])([I:14])[C:2](=[O:3])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:33][O-:16]"],
+          "arrows": [{"from": {"lonePair": 16}, "to": {"atom": 2}}, {"from": {"bond": [2, 3]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "The C=O re-forms and kicks out CI3⁻ as the leaving group",
+          "species": ["[C:1]([I:10])([I:12])([I:14])[C:2]([O-:3])([O:16][H:33])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}],
+          "note": "Three iodines stabilize the carbanion enough for a C–C bond to break."
+        },
+        {
+          "label": "Proton transfer: CI3⁻ takes the acid's proton, giving iodoform and a carboxylate",
+          "species": ["[O:3]=[C:2]([O:16][H:33])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[C-:1]([I:10])([I:12])[I:14]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 33}}, {"from": {"bond": [33, 16]}, "to": {"atom": 16}}],
+          "note": "CHI3 is the yellow precipitate of the iodoform test."
+        },
+        {
+          "label": "Acid workup protonates the carboxylate",
+          "species": ["[O:3]=[C:2]([O-:16])[c:4]1[cH:5][cH:6][cH:7][cH:8][cH:9]1", "[H:34][OH2+:35]"],
+          "arrows": [{"from": {"lonePair": 16}, "to": {"atom": 34}}, {"from": {"bond": [34, 35]}, "to": {"atom": 35}}]
+        }
+      ]
     },
     "why": "In base each α-iodination makes the remaining α-H's more acidic, so all three H's on the methyl are replaced. Hydroxide then does pattern B on the C=O with CI3⁻ as the leaving group, giving a carboxylate (an acid after workup) and yellow iodoform, CHI3.",
     "traps": [
@@ -138,6 +282,32 @@
         {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
         {"from": {"bond": [2, 7]}, "to": {"atom": 12}},
         {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "LDA removes an α-H from the less substituted α-carbon, giving the kinetic enolate",
+          "species": [
+            "[O:1]=[C:2]1[CH:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH:7]1[H:30]",
+            "[CH3:31][CH:32]([CH3:33])[N-:34][CH:35]([CH3:36])[CH3:37]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 34}, "to": {"atom": 30}},
+            {"from": {"bond": [7, 30]}, "to": {"bond": [2, 7]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "Bulky LDA reaches the less hindered CH2 H fastest; at −78 °C deprotonation is irreversible."
+        },
+        {
+          "label": "The enolate's α-carbon attacks CH3I (SN2), and iodide leaves",
+          "species": ["[O-:1][C:2]1=[CH:7][CH2:6][CH2:5][CH2:4][CH:3]1[CH3:8]", "[CH3:12][I:13]"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 7]}, "to": {"atom": 12}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+          ]
+        }
       ]
     },
     "why": "LDA is a strong, bulky base: at −78 °C it removes the most accessible α-H (on the CH2 side) fast and irreversibly, giving the kinetic (less substituted) enolate. Its α-carbon then does SN2 on CH3I, giving 2,6-dimethylcyclohexanone.",
@@ -193,6 +363,29 @@
         {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
         {"from": {"bond": [2, 3]}, "to": {"atom": 12}},
         {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes the α-H on the more substituted carbon, giving the more stable enolate",
+          "species": ["[O:1]=[C:2]1[C:3]([H:30])([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:31][CH2:32][O-:33]"],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 30}},
+            {"from": {"bond": [3, 30]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "With a small base at room temperature both enolates form reversibly, so the more substituted C=C wins."
+        },
+        {
+          "label": "The enolate's α-carbon attacks CH3I (SN2), and iodide leaves",
+          "species": ["[O-:1][C:2]1=[C:3]([CH3:8])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:12][I:13]"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 12}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 13}}
+          ]
+        }
       ]
     },
     "why": "A weaker base at room temperature deprotonates reversibly, so the enolates equilibrate and the more substituted (more stable) C=C enolate wins. Its α-carbon does SN2 on CH3I, putting the second methyl on the carbon that already has one.",
@@ -258,6 +451,32 @@
         {"from": {"bond": [8, 9]}, "to": {"atom": 8}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "LDA removes an α-H, giving the lithium enolate",
+          "species": [
+            "[O:1]=[C:2]1[CH:3]([H:30])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH3:31][CH:32]([CH3:33])[N-:34][CH:35]([CH3:36])[CH3:37]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 34}, "to": {"atom": 30}},
+            {"from": {"bond": [3, 30]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "LDA is strong enough (pKa of iPr2NH about 36) to convert all the ketone to enolate."
+        },
+        {
+          "label": "The enolate's α-carbon attacks the 1° alkyl bromide (SN2), and bromide leaves",
+          "species": ["[O-:1][C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[Br:8][CH2:9][CH2:10][CH3:11]"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 9}},
+            {"from": {"bond": [8, 9]}, "to": {"atom": 8}}
+          ]
+        }
+      ]
+    },
     "why": "LDA converts all of the ketone to its enolate, so there is no leftover ketone to self-condense. The enolate α-carbon then does SN2 on the unhindered 1° alkyl bromide, making a new C–C bond next to the C=O.",
     "traps": [
       {
@@ -317,6 +536,53 @@
         {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
         {"from": {"bond": [6, 7]}, "to": {"atom": 3}},
         {"from": {"bond": [3, 4]}, "to": {"atom": 4}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide removes an α-H, giving an enolate",
+          "species": ["[CH3:5][C:6]([H:30])([H:32])[CH:7]=[O:8]", "[OH-:31]"],
+          "arrows": [
+            {"from": {"lonePair": 31}, "to": {"atom": 30}},
+            {"from": {"bond": [6, 30]}, "to": {"bond": [6, 7]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ]
+        },
+        {
+          "label": "The enolate's α-carbon adds to the carbonyl carbon of a second propanal",
+          "species": ["[CH3:5][C:6]([H:32])=[CH:7][O-:8]", "[CH3:1][CH2:2][CH:3]=[O:4]"],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [6, 7]}, "to": {"atom": 3}},
+            {"from": {"bond": [3, 4]}, "to": {"atom": 4}}
+          ]
+        },
+        {
+          "label": "Water protonates the alkoxide, giving the β-hydroxy aldehyde (aldol)",
+          "species": ["[CH3:1][CH2:2][CH:3]([O-:4])[C:6]([H:32])([CH3:5])[CH:7]=[O:8]", "[H:33][OH:34]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 33}}, {"from": {"bond": [33, 34]}, "to": {"atom": 34}}]
+        },
+        {
+          "label": "Hydroxide removes the remaining α-H, giving a new enolate",
+          "species": ["[CH3:1][CH2:2][CH:3]([OH:4])[C:6]([H:32])([CH3:5])[CH:7]=[O:8]", "[OH-:35]"],
+          "arrows": [
+            {"from": {"lonePair": 35}, "to": {"atom": 32}},
+            {"from": {"bond": [6, 32]}, "to": {"bond": [6, 7]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "Heat drives this dehydration."
+        },
+        {
+          "label": "The enolate pushes out hydroxide from the β-carbon (E1cB), giving the conjugated C=C",
+          "species": ["[CH3:1][CH2:2][CH:3]([OH:4])[C:6]([CH3:5])=[CH:7][O-:8]"],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [6, 7]}, "to": {"bond": [3, 6]}},
+            {"from": {"bond": [3, 4]}, "to": {"atom": 4}}
+          ],
+          "note": "OH⁻ is a poor leaving group, but E1cB works because the product C=C is conjugated with C=O."
+        }
       ]
     },
     "why": "Enolate + pattern A: the enolate α-carbon adds to the C=O carbon of a second propanal, giving a β-hydroxy aldehyde. With heat, base removes the now doubly-activated α-H and expels OH⁻ (E1cB), giving the conjugated C=C: 2-methylpent-2-enal.",
@@ -385,6 +651,65 @@
         {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide removes an α-H from the ketone's methyl, giving an enolate",
+          "species": ["[CH:9]([H:30])([H:32])[C:10](=[O:11])[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2", "[OH-:31]"],
+          "arrows": [
+            {"from": {"lonePair": 31}, "to": {"atom": 30}},
+            {"from": {"bond": [9, 30]}, "to": {"bond": [9, 10]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ],
+          "note": "Benzaldehyde has no α-H, so only the ketone can form an enolate."
+        },
+        {
+          "label": "The enolate's α-carbon adds to the carbonyl carbon of benzaldehyde",
+          "species": [
+            "[CH:9]([H:32])=[C:10]([O-:11])[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2",
+            "[O:1]=[CH:2][c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [9, 10]}, "to": {"atom": 2}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "The aldehyde C=O is the more reactive electrophile, so the crossed product wins."
+        },
+        {
+          "label": "Water protonates the alkoxide, giving the β-hydroxy ketone",
+          "species": [
+            "[O-:1][CH:2]([c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1)[CH:9]([H:32])[C:10](=[O:11])[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2",
+            "[H:33][OH:34]"
+          ],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 33}}, {"from": {"bond": [33, 34]}, "to": {"atom": 34}}]
+        },
+        {
+          "label": "Hydroxide removes the remaining α-H, giving a new enolate",
+          "species": [
+            "[OH:1][CH:2]([c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1)[CH:9]([H:32])[C:10](=[O:11])[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2",
+            "[OH-:35]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 35}, "to": {"atom": 32}},
+            {"from": {"bond": [9, 32]}, "to": {"bond": [9, 10]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ]
+        },
+        {
+          "label": "The enolate pushes out hydroxide (E1cB), giving the conjugated enone",
+          "species": [
+            "[OH:1][CH:2]([c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1)[CH:9]=[C:10]([O-:11])[c:12]2[cH:13][cH:14][cH:15][cH:16][cH:17]2"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [9, 10]}, "to": {"bond": [2, 9]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "The new C=C is conjugated with both the C=O and the ring, so dehydration is especially easy here."
+        }
+      ]
+    },
     "why": "Benzaldehyde has no α-H, so it can only be the electrophile, and as an aldehyde it is a better one than the ketone. Enolate + pattern A on the aldehyde C=O, then loss of water gives the C=C conjugated with both the ring and the C=O (a chalcone).",
     "traps": [
       {
@@ -440,6 +765,52 @@
         {"from": {"bond": [6, 7]}, "to": {"atom": 7}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide removes an α-H from a terminal methyl, giving an enolate",
+          "species": ["[CH:1]([H:30])([H:32])[C:2](=[O:3])[CH2:4][CH2:5][C:6](=[O:7])[CH3:8]", "[OH-:31]"],
+          "arrows": [
+            {"from": {"lonePair": 31}, "to": {"atom": 30}},
+            {"from": {"bond": [1, 30]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "Other enolates form too, but only this one can close a strain-free five-membered ring."
+        },
+        {
+          "label": "The enolate's α-carbon attacks the other C=O in the same molecule, closing a five-membered ring",
+          "species": ["[CH:1]([H:32])=[C:2]([O-:3])[CH2:4][CH2:5][C:6](=[O:7])[CH3:8]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 6}},
+            {"from": {"bond": [6, 7]}, "to": {"atom": 7}}
+          ]
+        },
+        {
+          "label": "Water protonates the alkoxide",
+          "species": ["[O:3]=[C:2]1[CH:1]([H:32])[C:6]([O-:7])([CH3:8])[CH2:5][CH2:4]1", "[H:33][OH:34]"],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 33}}, {"from": {"bond": [33, 34]}, "to": {"atom": 34}}]
+        },
+        {
+          "label": "Hydroxide removes the α-H between the C=O and the new C–OH, giving an enolate",
+          "species": ["[O:3]=[C:2]1[CH:1]([H:32])[C:6]([OH:7])([CH3:8])[CH2:5][CH2:4]1", "[OH-:35]"],
+          "arrows": [
+            {"from": {"lonePair": 35}, "to": {"atom": 32}},
+            {"from": {"bond": [1, 32]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ]
+        },
+        {
+          "label": "The enolate pushes out hydroxide (E1cB), giving the cyclopentenone",
+          "species": ["[O-:3][C:2]1=[CH:1][C:6]([OH:7])([CH3:8])[CH2:5][CH2:4]1"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"bond": [1, 6]}},
+            {"from": {"bond": [6, 7]}, "to": {"atom": 7}}
+          ]
+        }
+      ]
+    },
     "why": "Enolate + pattern A, inside one molecule: the enolate of a terminal CH3 attacks the other C=O, closing a strain-free five-membered ring. Dehydration with heat gives the conjugated enone, 3-methylcyclopent-2-en-1-one.",
     "traps": [
       {
@@ -493,6 +864,54 @@
         {"from": {"lonePair": 9}, "to": {"bond": [8, 9]}},
         {"from": {"bond": [7, 8]}, "to": {"atom": 2}},
         {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes an α-H, giving an ester enolate",
+          "species": ["[CH:7]([H:30])([H:32])[C:8](=[O:9])[O:10][CH2:11][CH3:12]", "[CH3:31][CH2:33][O-:34]"],
+          "arrows": [
+            {"from": {"lonePair": 34}, "to": {"atom": 30}},
+            {"from": {"bond": [7, 30]}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [8, 9]}, "to": {"atom": 9}}
+          ],
+          "note": "The ester α-H (pKa about 25) is far less acidic than ethanol, so only a little enolate forms at a time."
+        },
+        {
+          "label": "The enolate's α-carbon adds to the carbonyl carbon of a second ester",
+          "species": ["[CH:7]([H:32])=[C:8]([O-:9])[O:10][CH2:11][CH3:12]", "[CH3:1][C:2](=[O:3])[O:4][CH2:5][CH3:6]"],
+          "arrows": [
+            {"from": {"lonePair": 9}, "to": {"bond": [8, 9]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 2}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ]
+        },
+        {
+          "label": "The C=O re-forms and ethoxide leaves, giving the β-keto ester",
+          "species": ["[CH3:1][C:2]([O-:3])([O:4][CH2:5][CH3:6])[CH:7]([H:32])[C:8](=[O:9])[O:10][CH2:11][CH3:12]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"bond": [2, 3]}}, {"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "Pattern B: a ketone forms instead of an alcohol because ethoxide is a leaving group."
+        },
+        {
+          "label": "Ethoxide removes the very acidic H between the two C=O groups",
+          "species": ["[CH3:1][C:2](=[O:3])[CH:7]([H:32])[C:8](=[O:9])[O:10][CH2:11][CH3:12]", "[CH3:6][CH2:5][O-:4]"],
+          "arrows": [
+            {"from": {"lonePair": 4}, "to": {"atom": 32}},
+            {"from": {"bond": [7, 32]}, "to": {"bond": [2, 7]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "This favourable deprotonation (pKa about 11) drives the whole equilibrium; it's why a full equivalent of base is needed."
+        },
+        {
+          "label": "Acid workup protonates the α-carbon, giving the neutral β-keto ester",
+          "species": ["[CH3:1][C:2]([O-:3])=[CH:7][C:8](=[O:9])[O:10][CH2:11][CH3:12]", "[H:40][OH2+:41]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [2, 7]}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}}
+          ]
+        }
       ]
     },
     "why": "Enolate + pattern B: the ester enolate adds to a second ester's C=O, and because esters have a leaving group the tetrahedral intermediate kicks out EtO⁻ instead of becoming an alcohol (contrast aldol = enolate + pattern A). Ethoxide then deprotonates the acidic β-keto ester, which drives the reaction; H3O+ workup gives ethyl acetoacetate.",
@@ -557,6 +976,66 @@
         {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes an α-H next to one ester, giving an enolate",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][CH2:7][CH2:8][C:9]([H:30])([H:32])[C:10](=[O:11])[O:12][CH2:13][CH3:14]",
+            "[CH3:31][CH2:33][O-:34]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 34}, "to": {"atom": 30}},
+            {"from": {"bond": [9, 30]}, "to": {"bond": [9, 10]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ]
+        },
+        {
+          "label": "The enolate attacks the other ester's carbonyl carbon, closing a five-membered ring",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH2:6][CH2:7][CH2:8][C:9]([H:32])=[C:10]([O-:11])[O:12][CH2:13][CH3:14]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [9, 10]}, "to": {"atom": 4}},
+            {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+          ],
+          "note": "An intramolecular Claisen: 1,6-diesters give five-membered rings, 1,7-diesters six."
+        },
+        {
+          "label": "The C=O re-forms and ethoxide leaves, giving the cyclic β-keto ester",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4]1([O-:5])[CH2:6][CH2:7][CH2:8][C:9]1([H:32])[C:10](=[O:11])[O:12][CH2:13][CH3:14]"
+          ],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"bond": [4, 5]}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Ethoxide removes the acidic H between the two C=O groups",
+          "species": [
+            "[O:5]=[C:4]1[CH2:6][CH2:7][CH2:8][C:9]1([H:32])[C:10](=[O:11])[O:12][CH2:13][CH3:14]",
+            "[CH3:1][CH2:2][O-:3]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"atom": 32}},
+            {"from": {"bond": [9, 32]}, "to": {"bond": [4, 9]}},
+            {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+          ],
+          "note": "As in the Claisen, this irreversible-in-practice deprotonation drives the reaction."
+        },
+        {
+          "label": "Acid workup protonates the α-carbon, giving the neutral β-keto ester",
+          "species": [
+            "[O-:5][C:4]1=[C:9]([C:10](=[O:11])[O:12][CH2:13][CH3:14])[CH2:8][CH2:7][CH2:6]1",
+            "[H:40][OH2+:41]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 5}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [4, 9]}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}}
+          ]
+        }
+      ]
+    },
     "why": "A Dieckmann is an intramolecular Claisen (enolate + pattern B): the enolate α to one ester attacks the other ester's C=O, and EtO⁻ leaves, closing a five-membered ring. Deprotonation of the cyclic β-keto ester drives it; H3O+ workup gives ethyl 2-oxocyclopentanecarboxylate.",
     "traps": [
       {
@@ -616,6 +1095,64 @@
         {"from": {"lonePair": 14}, "to": {"bond": [13, 14]}},
         {"from": {"bond": [12, 13]}, "to": {"atom": 4}},
         {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes an α-H from acetone, giving an enolate",
+          "species": ["[CH:12]([H:30])([H:32])[C:13](=[O:14])[CH3:15]", "[CH3:31][CH2:33][O-:34]"],
+          "arrows": [
+            {"from": {"lonePair": 34}, "to": {"atom": 30}},
+            {"from": {"bond": [12, 30]}, "to": {"bond": [12, 13]}},
+            {"from": {"bond": [13, 14]}, "to": {"atom": 14}}
+          ],
+          "note": "Ethyl benzoate has no α-H, so acetone is the only enolate source."
+        },
+        {
+          "label": "The enolate's α-carbon adds to the ester's carbonyl carbon",
+          "species": [
+            "[CH:12]([H:32])=[C:13]([O-:14])[CH3:15]",
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 14}, "to": {"bond": [13, 14]}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 4}},
+            {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+          ]
+        },
+        {
+          "label": "The C=O re-forms and ethoxide leaves, giving the 1,3-diketone",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4]([O-:5])([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)[CH:12]([H:32])[C:13](=[O:14])[CH3:15]"
+          ],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"bond": [4, 5]}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Ethoxide removes the acidic H between the two C=O groups",
+          "species": [
+            "[O:5]=[C:4]([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)[CH:12]([H:32])[C:13](=[O:14])[CH3:15]",
+            "[CH3:1][CH2:2][O-:3]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"atom": 32}},
+            {"from": {"bond": [12, 32]}, "to": {"bond": [12, 13]}},
+            {"from": {"bond": [13, 14]}, "to": {"atom": 14}}
+          ],
+          "note": "This deprotonation (pKa about 9) drives the reaction to completion."
+        },
+        {
+          "label": "Acid workup protonates the α-carbon, giving the neutral 1,3-diketone",
+          "species": [
+            "[O:5]=[C:4]([c:6]1[cH:7][cH:8][cH:9][cH:10][cH:11]1)[CH:12]=[C:13]([O-:14])[CH3:15]",
+            "[H:40][OH2+:41]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 14}, "to": {"bond": [13, 14]}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}}
+          ]
+        }
       ]
     },
     "why": "Ethyl benzoate has no α-H, so it can only be the electrophile. The acetone enolate does pattern B on the ester C=O and EtO⁻ leaves; deprotonation of the very acidic 1,3-diketone pulls the reaction through, and workup gives 1-phenylbutane-1,3-dione.",
@@ -785,6 +1322,97 @@
         {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes an α-H from cyclohexanone, giving an enolate",
+          "species": ["[O:1]=[C:2]1[CH:3]([H:30])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH3:31][CH2:32][O-:33]"],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 30}},
+            {"from": {"bond": [3, 30]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ]
+        },
+        {
+          "label": "Michael addition: the enolate's α-carbon adds to the β-carbon of MVK",
+          "species": [
+            "[O-:1][C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH2:8]=[CH:9][C:10](=[O:11])[CH:12]([H:34])[H:35]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 8}},
+            {"from": {"bond": [8, 9]}, "to": {"bond": [9, 10]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ],
+          "note": "Step one of the annulation: a 1,4-addition builds a 1,5-diketone."
+        },
+        {
+          "label": "Ethanol protonates the new enolate at its α-carbon, giving the 1,5-diketone",
+          "species": [
+            "[O:1]=[C:2]1[CH:3]([CH2:8][CH:9]=[C:10]([O-:11])[CH:12]([H:34])[H:35])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH3:31][CH2:32][O:33][H:30]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [9, 10]}, "to": {"atom": 30}},
+            {"from": {"bond": [30, 33]}, "to": {"atom": 33}}
+          ]
+        },
+        {
+          "label": "Ethoxide removes an α-H from the methyl ketone end, giving a new enolate",
+          "species": [
+            "[O:1]=[C:2]1[CH:3]([CH2:8][CH2:9][C:10](=[O:11])[CH:12]([H:34])[H:35])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH3:31][CH2:32][O-:33]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 34}},
+            {"from": {"bond": [12, 34]}, "to": {"bond": [10, 12]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ],
+          "note": "Several enolates form reversibly; this one is productive because it can close a six-membered ring."
+        },
+        {
+          "label": "Intramolecular aldol: the enolate attacks the ring C=O, closing a six-membered ring",
+          "species": ["[O:1]=[C:2]1[CH:3]([CH2:8][CH2:9][C:10]([O-:11])=[CH:12][H:35])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [10, 12]}, "to": {"atom": 2}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ]
+        },
+        {
+          "label": "Ethanol protonates the alkoxide",
+          "species": [
+            "[O-:1][C:2]12[CH:3]([CH2:8][CH2:9][C:10](=[O:11])[CH:12]1[H:35])[CH2:4][CH2:5][CH2:6][CH2:7]2",
+            "[CH3:31][CH2:32][O:33][H:34]"
+          ],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 34}}, {"from": {"bond": [34, 33]}, "to": {"atom": 33}}]
+        },
+        {
+          "label": "Ethoxide removes the α-H next to the C–OH, giving an enolate",
+          "species": [
+            "[OH:1][C:2]12[CH:3]([CH2:8][CH2:9][C:10](=[O:11])[CH:12]1[H:35])[CH2:4][CH2:5][CH2:6][CH2:7]2",
+            "[CH3:31][CH2:32][O-:33]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 35}},
+            {"from": {"bond": [12, 35]}, "to": {"bond": [10, 12]}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+          ]
+        },
+        {
+          "label": "The enolate pushes out hydroxide (E1cB), giving the conjugated bicyclic enone",
+          "species": ["[OH:1][C:2]12[CH:3]([CH2:8][CH2:9][C:10]([O-:11])=[CH:12]1)[CH2:4][CH2:5][CH2:6][CH2:7]2"],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"bond": [10, 11]}},
+            {"from": {"bond": [10, 12]}, "to": {"bond": [2, 12]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "Michael + aldol + dehydration = a new six-membered ring with an α,β-unsaturated ketone."
+        }
+      ]
+    },
     "why": "Robinson annulation = Michael (enolate + pattern C) then intramolecular aldol condensation (enolate + pattern A). The key step drilled is the Michael: the cyclohexanone enolate adds 1,4 to MVK; then the methyl ketone's enolate closes a six-membered ring onto the ring C=O, and dehydration gives the conjugated bicyclic enone.",
     "traps": [
       {
@@ -816,7 +1444,7 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Michael", "aldol", "Robinson annulation", "ring formation"],
-    "review": "Key step is the Michael step only (stated in why). Check the conditions shown (NaOEt, EtOH, heat; one pot) match the course convention; some texts write 1. NaOEt, 2. heat or use KOH/MeOH.",
+    "review": "Key step is the Michael step only (stated in why). Check the conditions shown (NaOEt, EtOH, heat; one pot) match the course convention; some texts write 1. NaOEt, 2. heat or use KOH/MeOH. Mechanism: the Michael enolate and the aldol alkoxide are protonated by ethanol (the solvent), and ethoxide does the later deprotonations; check this one-pot NaOEt/EtOH picture matches how the course draws it.",
     "verified": false,
     "verifiedBy": null
   },
@@ -845,6 +1473,145 @@
         {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
         {"from": {"bond": [6, 7]}, "to": {"atom": 13}},
         {"from": {"bond": [13, 14]}, "to": {"atom": 14}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes the acidic α-H between the two esters, giving a stabilized enolate",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]([H:30])[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+            "[CH3:31][CH2:32][O-:33]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 30}},
+            {"from": {"bond": [6, 30]}, "to": {"bond": [6, 7]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "pKa about 13: ethoxide deprotonates malonate essentially completely."
+        },
+        {
+          "label": "The enolate's α-carbon attacks ethyl bromide (SN2), and bromide leaves",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]=[C:7]([O-:8])[O:9][CH2:10][CH3:11]",
+            "[CH3:12][CH2:13][Br:14]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [6, 7]}, "to": {"atom": 13}},
+            {"from": {"bond": [13, 14]}, "to": {"atom": 14}}
+          ]
+        },
+        {
+          "label": "Ester hydrolysis begins: acid protonates both ester C=O groups",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]([CH2:13][CH3:12])[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+            "[H:40][OH2+:41]",
+            "[H:42][OH2+:43]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 5}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}},
+            {"from": {"lonePair": 8}, "to": {"atom": 42}},
+            {"from": {"bond": [42, 43]}, "to": {"atom": 43}}
+          ],
+          "note": "Both esters hydrolyse the same way; the steps are shown for both at once."
+        },
+        {
+          "label": "Water attacks each protonated carbonyl carbon",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O+:5][H:40])[CH:6]([CH2:13][CH3:12])[C:7](=[O+:8][H:42])[O:9][CH2:10][CH3:11]",
+            "[H:44][OH:15]",
+            "[H:46][O:16][H:47]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 15}, "to": {"atom": 4}},
+            {"from": {"bond": [4, 5]}, "to": {"atom": 5}},
+            {"from": {"lonePair": 16}, "to": {"atom": 7}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ]
+        },
+        {
+          "label": "Water removes a proton from each added oxygen",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4]([OH+:15][H:44])([O:5][H:40])[CH:6]([CH2:13][CH3:12])[C:7]([O+:16]([H:46])[H:47])([O:8][H:42])[O:9][CH2:10][CH3:11]",
+            "[OH2:50]",
+            "[OH2:51]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 50}, "to": {"atom": 44}},
+            {"from": {"bond": [44, 15]}, "to": {"atom": 15}},
+            {"from": {"lonePair": 51}, "to": {"atom": 46}},
+            {"from": {"bond": [46, 16]}, "to": {"atom": 16}}
+          ]
+        },
+        {
+          "label": "Acid protonates each ethoxy oxygen, making it a good leaving group",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4]([OH:15])([O:5][H:40])[CH:6]([CH2:13][CH3:12])[C:7]([O:16][H:47])([O:8][H:42])[O:9][CH2:10][CH3:11]",
+            "[H:52][OH2+:53]",
+            "[H:54][OH2+:55]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"atom": 52}},
+            {"from": {"bond": [52, 53]}, "to": {"atom": 53}},
+            {"from": {"lonePair": 9}, "to": {"atom": 54}},
+            {"from": {"bond": [54, 55]}, "to": {"atom": 55}}
+          ]
+        },
+        {
+          "label": "Each C=O re-forms and ethanol leaves",
+          "species": [
+            "[CH3:1][CH2:2][OH+:3][C:4]([OH:15])([O:5][H:40])[CH:6]([CH2:13][CH3:12])[C:7]([O:16][H:47])([O:8][H:42])[OH+:9][CH2:10][CH3:11]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 5}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [3, 4]}, "to": {"atom": 3}},
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [7, 9]}, "to": {"atom": 9}}
+          ]
+        },
+        {
+          "label": "Water removes the proton from each C=O, giving the diacid",
+          "species": [
+            "[OH:15][C:4](=[O+:5][H:40])[CH:6]([CH2:13][CH3:12])[C:7]([O:16][H:47])=[O+:8][H:42]",
+            "[OH2:56]",
+            "[OH2:57]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 56}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 5]}, "to": {"atom": 5}},
+            {"from": {"lonePair": 57}, "to": {"atom": 42}},
+            {"from": {"bond": [42, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "A substituted malonic acid: a β-dicarboxylic acid, set up to lose CO2."
+        },
+        {
+          "label": "Heat: decarboxylation through a six-membered cyclic transition state gives an enol and CO2",
+          "species": ["[OH:15][C:4](=[O:5])[CH:6]([CH2:13][CH3:12])[C:7](=[O:8])[O:16][H:47]"],
+          "arrows": [
+            {"from": {"lonePair": 5}, "to": {"atom": 47}},
+            {"from": {"bond": [47, 16]}, "to": {"bond": [7, 16]}},
+            {"from": {"bond": [6, 7]}, "to": {"bond": [4, 6]}},
+            {"from": {"bond": [4, 5]}, "to": {"atom": 5}}
+          ],
+          "note": "Only acids with a C=O β to the COOH lose CO2 this easily."
+        },
+        {
+          "label": "Tautomerization: acid protonates the enol's α-carbon",
+          "species": ["[OH:15][C:4]([O:5][H:47])=[CH:6][CH2:13][CH3:12]", "[H:58][OH2+:59]"],
+          "arrows": [
+            {"from": {"lonePair": 5}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [4, 6]}, "to": {"atom": 58}},
+            {"from": {"bond": [58, 59]}, "to": {"atom": 59}}
+          ]
+        },
+        {
+          "label": "Water removes the proton from the C=O, giving the carboxylic acid",
+          "species": ["[OH:15][C:4](=[O+:5][H:47])[CH2:6][CH2:13][CH3:12]", "[OH2:60]"],
+          "arrows": [{"from": {"lonePair": 60}, "to": {"atom": 47}}, {"from": {"bond": [47, 5]}, "to": {"atom": 5}}],
+          "note": "Net result: ethyl bromide + CH2COOH, i.e. a carboxylic acid two carbons longer than the alkyl halide."
+        }
       ]
     },
     "why": "Ethoxide removes the acidic H between the two esters, and that enolate's α-carbon does SN2 on the 1° alkyl bromide. Hot aqueous acid then hydrolyses both esters and the resulting malonic acid loses CO2, leaving RCH2COOH (here butanoic acid).",
@@ -881,6 +1648,7 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "malonic ester", "decarboxylation"],
+    "review": "Mechanism: the two ester hydrolyses are drawn in parallel (each step applies the same arrows to both esters) to keep the card to 11 steps; the water-mediated proton transfers are written as separate deprotonation/protonation steps.",
     "verified": false,
     "verifiedBy": null
   },
@@ -909,6 +1677,95 @@
         {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
         {"from": {"bond": [2, 4]}, "to": {"atom": 11}},
         {"from": {"bond": [11, 12]}, "to": {"atom": 12}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes the acidic α-H between the ketone and the ester, giving a stabilized enolate",
+          "species": ["[CH3:1][C:2](=[O:3])[CH:4]([H:30])[C:5](=[O:6])[O:7][CH2:8][CH3:9]", "[CH3:31][CH2:32][O-:33]"],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 30}},
+            {"from": {"bond": [4, 30]}, "to": {"bond": [2, 4]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ]
+        },
+        {
+          "label": "The enolate's α-carbon attacks ethyl bromide (SN2), and bromide leaves",
+          "species": ["[CH3:1][C:2]([O-:3])=[CH:4][C:5](=[O:6])[O:7][CH2:8][CH3:9]", "[CH3:10][CH2:11][Br:12]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [2, 4]}, "to": {"atom": 11}},
+            {"from": {"bond": [11, 12]}, "to": {"atom": 12}}
+          ]
+        },
+        {
+          "label": "Ester hydrolysis begins: acid protonates the ester C=O",
+          "species": ["[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5](=[O:6])[O:7][CH2:8][CH3:9]", "[H:40][OH2+:41]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        },
+        {
+          "label": "Water attacks the protonated carbonyl carbon",
+          "species": [
+            "[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5](=[O+:6][H:40])[O:7][CH2:8][CH3:9]",
+            "[H:44][O:13][H:45]"
+          ],
+          "arrows": [{"from": {"lonePair": 13}, "to": {"atom": 5}}, {"from": {"bond": [5, 6]}, "to": {"atom": 6}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen",
+          "species": [
+            "[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5]([O+:13]([H:44])[H:45])([O:6][H:40])[O:7][CH2:8][CH3:9]",
+            "[OH2:46]"
+          ],
+          "arrows": [{"from": {"lonePair": 46}, "to": {"atom": 44}}, {"from": {"bond": [44, 13]}, "to": {"atom": 13}}]
+        },
+        {
+          "label": "Acid protonates the ethoxy oxygen, making it a good leaving group",
+          "species": [
+            "[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5]([O:13][H:45])([O:6][H:40])[O:7][CH2:8][CH3:9]",
+            "[H:47][OH2+:48]"
+          ],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 47}}, {"from": {"bond": [47, 48]}, "to": {"atom": 48}}]
+        },
+        {
+          "label": "The C=O re-forms and ethanol leaves",
+          "species": [
+            "[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5]([O:13][H:45])([O:6][H:40])[OH+:7][CH2:8][CH3:9]"
+          ],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"bond": [5, 6]}}, {"from": {"bond": [5, 7]}, "to": {"atom": 7}}]
+        },
+        {
+          "label": "Water removes the proton from the C=O, giving the β-keto acid",
+          "species": ["[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5]([O:13][H:45])=[O+:6][H:40]", "[OH2:49]"],
+          "arrows": [{"from": {"lonePair": 49}, "to": {"atom": 40}}, {"from": {"bond": [40, 6]}, "to": {"atom": 6}}]
+        },
+        {
+          "label": "Heat: decarboxylation through a six-membered cyclic transition state gives an enol and CO2",
+          "species": ["[CH3:1][C:2](=[O:3])[CH:4]([CH2:11][CH3:10])[C:5](=[O:6])[O:13][H:45]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"atom": 45}},
+            {"from": {"bond": [45, 13]}, "to": {"bond": [5, 13]}},
+            {"from": {"bond": [4, 5]}, "to": {"bond": [2, 4]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "The ketone C=O β to the COOH accepts the proton, which is what makes β-keto acids lose CO2 so easily."
+        },
+        {
+          "label": "Tautomerization: acid protonates the enol's α-carbon",
+          "species": ["[CH3:1][C:2]([O:3][H:45])=[CH:4][CH2:11][CH3:10]", "[H:50][OH2+:51]"],
+          "arrows": [
+            {"from": {"lonePair": 3}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [2, 4]}, "to": {"atom": 50}},
+            {"from": {"bond": [50, 51]}, "to": {"atom": 51}}
+          ]
+        },
+        {
+          "label": "Water removes the proton from the oxygen, giving the methyl ketone",
+          "species": ["[CH3:1][C:2](=[O+:3][H:45])[CH2:4][CH2:11][CH3:10]", "[OH2:52]"],
+          "arrows": [{"from": {"lonePair": 52}, "to": {"atom": 45}}, {"from": {"bond": [45, 3]}, "to": {"atom": 3}}],
+          "note": "Net result: the alkyl halide + CH2COCH3, i.e. a methyl ketone."
+        }
       ]
     },
     "why": "Ethoxide removes the acidic H between the ketone and ester C=O, and the enolate's α-carbon does SN2 on the alkyl bromide. Hot aqueous acid hydrolyses the ester to a β-keto acid, which loses CO2, so the product is a methyl ketone: CH3CO–CH2–R (here 2-pentanone).",
@@ -965,6 +1822,36 @@
         {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Heat: in a six-membered cyclic transition state the ketone O takes the acid's H, CO2 leaves, and an enol forms",
+          "species": ["[O:1]=[C:2]1[CH:3]([C:8](=[O:9])[O:10][H:30])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"atom": 30}},
+            {"from": {"bond": [30, 10]}, "to": {"bond": [8, 10]}},
+            {"from": {"bond": [3, 8]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "All bonds change at once (pericyclic): no ions form."
+        },
+        {
+          "label": "Tautomerization: acid protonates the enol's α-carbon",
+          "species": ["[H:30][O:1][C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:31][OH2+:32]"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 31}},
+            {"from": {"bond": [31, 32]}, "to": {"atom": 32}}
+          ]
+        },
+        {
+          "label": "Water removes the proton from the oxygen, giving the ketone",
+          "species": ["[H:30][O+:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[OH2:33]"],
+          "arrows": [{"from": {"lonePair": 33}, "to": {"atom": 30}}, {"from": {"bond": [30, 1]}, "to": {"atom": 1}}],
+          "note": "The keto form is more stable than the enol, so tautomerization runs this way."
+        }
+      ]
+    },
     "why": "A β-keto acid loses CO2 through a cyclic six-membered transition state: the acid H moves to the ketone O while the C–C bond to the COOH breaks, giving CO2 and an enol. The enol then tautomerizes to the ketone.",
     "traps": [
       {
@@ -979,7 +1866,7 @@
     ],
     "confusableWith": ["u4-malonic-ester-butanoic-acid", "u4-acetoacetic-ester-2-pentanone"],
     "tags": ["decarboxylation", "enol", "beta-keto acid"],
-    "review": "Key-step arrows are simplified: the validator can't reference explicit H atoms, so the O–H → ketone-O proton transfer of the cyclic TS is drawn as 'O lone pair forms C=O of CO2; C–C bond forms the enol C=C; C=O π goes to the ketone O' (three arrows, no H). nucleophileAtom = the OH oxygen, electrophileAtom = the ketone O that picks up the H. Check this is acceptable.",
+    "review": "Key-step arrows are simplified: the validator can't reference explicit H atoms, so the O–H → ketone-O proton transfer of the cyclic TS is drawn as 'O lone pair forms C=O of CO2; C–C bond forms the enol C=C; C=O π goes to the ketone O' (three arrows, no H). nucleophileAtom = the OH oxygen, electrophileAtom = the ketone O that picks up the H. Check this is acceptable. Mechanism: the enol→ketone tautomerization is drawn as acid-catalysed (H3O+/H2O) although only heat is listed; trace acid (e.g. the β-keto acid itself) catalyses it in practice.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1014,6 +1901,109 @@
         {"from": {"bond": [15, 16]}, "to": {"atom": 16}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Enamine formation: acid protonates the carbonyl oxygen",
+          "species": ["[O:1]=[C:2]1[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[H:30][OH2+:31]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        },
+        {
+          "label": "Pyrrolidine's nitrogen attacks the protonated carbonyl carbon",
+          "species": [
+            "[H:30][O+:1]=[C:2]1[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[N:8]1([H:32])[CH2:9][CH2:10][CH2:11][CH2:12]1"
+          ],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Water removes the proton from nitrogen, giving the carbinolamine",
+          "species": [
+            "[H:30][O:1][C:2]1([N+:8]2([H:32])[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:33]"
+          ],
+          "arrows": [{"from": {"lonePair": 33}, "to": {"atom": 32}}, {"from": {"bond": [32, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Acid protonates the OH, making it a good leaving group",
+          "species": [
+            "[H:30][O:1][C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[H:34][OH2+:35]"
+          ],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 34}}, {"from": {"bond": [34, 35]}, "to": {"atom": 35}}]
+        },
+        {
+          "label": "Nitrogen's lone pair pushes out water, giving an iminium ion",
+          "species": [
+            "[H:30][O+:1]([H:34])[C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1"
+          ],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"bond": [2, 8]}}, {"from": {"bond": [1, 2]}, "to": {"atom": 1}}]
+        },
+        {
+          "label": "Water removes an α-H, giving the enamine",
+          "species": [
+            "[C:2]1(=[N+:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([H:36])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:37]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 37}, "to": {"atom": 36}},
+            {"from": {"bond": [3, 36]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [2, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "A 2° amine can't lose an H from N (it has none left), so it loses an α-H from carbon instead."
+        },
+        {
+          "label": "The enamine's α-carbon attacks allyl bromide (SN2), and bromide leaves",
+          "species": [
+            "[CH2:12]1[CH2:11][CH2:10][CH2:9][N:8]1[C:2]1=[CH:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[CH2:13]=[CH:14][CH2:15][Br:16]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [2, 8]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 15}},
+            {"from": {"bond": [15, 16]}, "to": {"atom": 16}}
+          ],
+          "note": "Enamines are neutral enolate equivalents: nucleophilic at the α-carbon, no strong base needed."
+        },
+        {
+          "label": "Hydrolysis: water attacks the iminium carbon",
+          "species": [
+            "[C:2]1(=[N+:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[H:40][O:17][H:41]"
+          ],
+          "arrows": [{"from": {"lonePair": 17}, "to": {"atom": 2}}, {"from": {"bond": [2, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Water removes a proton from the added oxygen",
+          "species": [
+            "[H:40][O+:17]([H:41])[C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[OH2:42]"
+          ],
+          "arrows": [{"from": {"lonePair": 42}, "to": {"atom": 40}}, {"from": {"bond": [40, 17]}, "to": {"atom": 17}}]
+        },
+        {
+          "label": "Acid protonates the nitrogen, making the amine a good leaving group",
+          "species": [
+            "[O:17]([H:41])[C:2]1([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1",
+            "[H:43][OH2+:44]"
+          ],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 43}}, {"from": {"bond": [43, 44]}, "to": {"atom": 44}}]
+        },
+        {
+          "label": "The oxygen's lone pair forms C=O and pushes out pyrrolidine",
+          "species": [
+            "[O:17]([H:41])[C:2]1([NH+:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1"
+          ],
+          "arrows": [{"from": {"lonePair": 17}, "to": {"bond": [2, 17]}}, {"from": {"bond": [2, 8]}, "to": {"atom": 8}}]
+        },
+        {
+          "label": "Water removes the proton from the C=O, giving the α-allyl ketone",
+          "species": ["[H:41][O+:17]=[C:2]1[CH:3]([CH2:15][CH:14]=[CH2:13])[CH2:4][CH2:5][CH2:6][CH2:7]1", "[OH2:45]"],
+          "arrows": [{"from": {"lonePair": 45}, "to": {"atom": 41}}, {"from": {"bond": [41, 17]}, "to": {"atom": 17}}],
+          "note": "Pyrrolidine is released; the overall result is α-alkylation of the ketone."
+        }
+      ]
+    },
     "why": "The ketone and a 2° amine form an enamine, a neutral enolate equivalent: the N lone pair pushes into the C=C, and the α-carbon does SN2 on the reactive allyl bromide. Aqueous acid then hydrolyses the iminium back to the C=O, giving the mono-alkylated ketone without needing a strong base.",
     "traps": [
       {
@@ -1045,6 +2035,7 @@
       ]
     },
     "tags": ["C-C bond", "enamine", "alkylation", "Stork"],
+    "review": "Mechanism: enamine formation and iminium hydrolysis are drawn with H3O+/H2O as the acid/base; with catalytic TsOH and pyrrolidine the deprotonations could equally be drawn with the amine as base.",
     "verified": false,
     "verifiedBy": null
   }
