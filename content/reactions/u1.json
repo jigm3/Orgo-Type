@@ -1,0 +1,32 @@
+[
+  {
+    "id": "u1-grignard-ketone",
+    "unit": 1,
+    "pattern": "A",
+    "title": "Grignard + ketone → 3° alcohol",
+    "reactants": ["[CH3:1][C:2](=[O:3])[CH3:4]"],
+    "reagents": ["[CH3:5][Mg:6][Br:7]"],
+    "reagentDisplay": "1. CH3MgBr, ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard", "CH3MgI", "MeMgI"],
+    "product": "[CH3:1][C:2]([OH:3])([CH3:4])[CH3:5]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 2,
+      "arrows": [
+        { "from": { "bond": [5, 6] }, "to": { "atom": 2 } },
+        { "from": { "bond": [2, 3] }, "to": { "atom": 3 } }
+      ]
+    },
+    "why": "The C=O carbon is electrophilic and the Grignard carbon is a strong carbon nucleophile. A ketone has no leaving group, so the methyl just adds; acid workup then protonates the alkoxide.",
+    "traps": [
+      { "smiles": "CC(C)O", "explains": "That's what a hydride (NaBH4) gives. A Grignard delivers a carbon, so a new C–C bond forms." },
+      { "smiles": "COC(C)C", "explains": "The Grignard carbon bonds to the electrophilic carbonyl carbon, not to the oxygen. No ether forms." },
+      { "smiles": "C=C(C)C", "explains": "Mild aqueous acid workup only protonates the alkoxide. Dehydrating the alcohol to an alkene would need heat and strong acid." }
+    ],
+    "confusableWith": ["u2-grignard-ester", "u3-gilman-enone"],
+    "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
+    "review": "Check trap 2 (methyl ether) is a misconception students actually have; swap for a better distractor if not.",
+    "verified": false,
+    "verifiedBy": null
+  }
+]

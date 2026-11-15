@@ -5,10 +5,13 @@ Assembles src/index.html with the CSS and JS modules inlined (one page, like Ana
 copies static files, and writes a service worker whose cache name is a hash of everything built,
 so phones pick up each new version.
 
-    python3 build.py            # build into dist/
+    python3 build.py            # build into dist/ (only verified reaction cards are included)
+    python3 build.py --dev      # include unverified cards too, for authoring
     python3 build.py --serve    # build, then serve dist/ on http://localhost:8000
+
+Content is validated first (tools/validate.py, needs `pip install -r requirements.txt`); any error stops the build.
 """
-import hashlib, json, shutil, sys
+import hashlib, json, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -29,11 +32,28 @@ def module(rel):
     return f"/* ===== {rel} ===== */\n{read(rel).rstrip()}\n"
 
 
-def main():
+def content(dev):
+    """Validate, then write dist/content/reactions.json and dist/review.html."""
+    if subprocess.run([sys.executable, str(ROOT / "tools/validate.py"), "--quiet"]).returncode:
+        sys.exit("build stopped: fix the content errors above")
+    records = []
+    for f in sorted((ROOT / "content/reactions").glob("*.json")):
+        records += json.loads(f.read_text(encoding="utf-8"))
+    shipped = [r for r in records if dev or r.get("verified") is True]
+    shipped = [r for r in shipped if r.get("source", "shared") == "shared"]
+    out = DIST / "content"
+    out.mkdir()
+    (out / "reactions.json").write_text(json.dumps(shipped, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    subprocess.run([sys.executable, str(ROOT / "tools/review_sheet.py"), str(DIST / "review.html")], check=True)
+    print(f"content: {len(shipped)} of {len(records)} reaction cards shipped ({'dev: unverified included' if dev else 'verified only'})")
+
+
+def main(dev=False):
     rdkit_version = (ROOT / "vendor/rdkit/VERSION").read_text().strip()
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
+    content(dev)
 
     for rel in STATIC:
         src, dst = ROOT / rel, DIST / rel
@@ -63,7 +83,7 @@ def main():
     v = f"?v={rdkit_version}"
     core = ["./", "index.html", "manifest.webmanifest",
             "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png", "icons/favicon.png",
-            "vendor/rdkit/RDKit_minimal.js" + v, "vendor/rdkit/RDKit_minimal.wasm" + v]
+            "vendor/rdkit/RDKit_minimal.js" + v, "vendor/rdkit/RDKit_minimal.wasm" + v, "content/reactions.json"]
     sw = read("sw.js").replace("__CACHE_ID__", build_id).replace("__CORE__", json.dumps(core))
     (DIST / "sw.js").write_text(sw, encoding="utf-8")
 
@@ -73,7 +93,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(dev="--dev" in sys.argv)
     if "--serve" in sys.argv:
         import functools, http.server
         handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(DIST))

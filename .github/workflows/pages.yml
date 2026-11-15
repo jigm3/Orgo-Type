@@ -18,8 +18,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      # Phase 1 adds: pip install rdkit && python tools/validate.py
-      - run: python build.py
+      - run: pip install -r requirements.txt
+      - run: python tools/test_validate.py
+      - run: python build.py   # validates content first; only verified cards ship
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

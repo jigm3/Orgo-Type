@@ -1,0 +1,32 @@
+[
+  {
+    "id": "side-sn2-2-bromobutane-cyanide",
+    "unit": "side",
+    "pattern": "S",
+    "title": "SN2 on a 2° halide: inversion",
+    "reactants": ["[CH3:1][CH2:2][C@@H:3]([Br:4])[CH3:5]"],
+    "reagents": ["[C-:6]#[N:7].[Na+:8]"],
+    "reagentDisplay": "NaCN, DMSO",
+    "reagentAliases": ["NaCN", "KCN", "cyanide", "sodium cyanide", "CN-"],
+    "product": "[CH3:1][CH2:2][C@H:3]([C:6]#[N:7])[CH3:5]",
+    "byproducts": ["[Br-:4]"],
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 3,
+      "arrows": [
+        { "from": { "lonePair": 6 }, "to": { "atom": 3 } },
+        { "from": { "bond": [3, 4] }, "to": { "atom": 4 } }
+      ]
+    },
+    "why": "Cyanide is a strong nucleophile but a weak base, and DMSO is polar aprotic, so a 2° halide goes SN2. Backside attack inverts the stereocenter: (S)-2-bromobutane gives (R)-2-methylbutanenitrile.",
+    "traps": [
+      { "smiles": "CC[C@H](C)C#N", "explains": "That's retention, the (S) nitrile. SN2 is a backside attack, so the configuration inverts." },
+      { "smiles": "CCC(C)C#N", "explains": "A racemic mixture comes from SN1 (a planar carbocation). A strong nucleophile in a polar aprotic solvent on a 2° carbon means SN2, a single inverted product." },
+      { "smiles": "C/C=C/C", "explains": "Cyanide is a weak base, so it substitutes rather than eliminates. E2 needs a strong (often bulky) base." }
+    ],
+    "confusableWith": [],
+    "tags": ["SN2", "stereochemistry", "decision"],
+    "verified": false,
+    "verifiedBy": null
+  }
+]

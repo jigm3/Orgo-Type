@@ -1,0 +1,33 @@
+[
+  {
+    "id": "u2-grignard-ester",
+    "unit": 2,
+    "pattern": "B",
+    "title": "Ester + 2 RMgX → 3° alcohol (adds twice)",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7](=[O:8])[O:9][CH3:10]"],
+    "reagents": ["[CH3:11][Mg:12][Br:13]", "[CH3:14][Mg:15][Br:16]"],
+    "reagentDisplay": "1. CH3MgBr (2 equiv or excess), ether  2. H3O+",
+    "reagentAliases": ["CH3MgBr", "MeMgBr", "methylmagnesium bromide", "methyl grignard", "2 CH3MgBr", "excess CH3MgBr"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[C:7]([OH:8])([CH3:11])[CH3:14]",
+    "byproducts": ["[CH3:10][OH:9]"],
+    "keyStep": {
+      "nucleophileAtom": 11,
+      "electrophileAtom": 7,
+      "arrows": [
+        { "from": { "bond": [11, 12] }, "to": { "atom": 7 } },
+        { "from": { "bond": [7, 8] }, "to": { "atom": 8 } }
+      ]
+    },
+    "why": "The first methyl adds and methoxide leaves (add, then eliminate), giving a ketone. That ketone is more reactive than the starting ester, so a second equivalent adds right away. Two identical R groups end up on the old carbonyl carbon.",
+    "traps": [
+      { "smiles": "CC(=O)c1ccccc1", "explains": "The ketone does form, but it's more reactive than the ester and the Grignard is still there, so it doesn't stop. To stop at a ketone, use R2CuLi with an acid chloride." },
+      { "smiles": "COC(C)(O)c1ccccc1", "explains": "This tetrahedral intermediate doesn't survive. An ester carbon has a leaving group (methoxide), so it collapses back to C=O." },
+      { "smiles": "CC(O)c1ccccc1", "explains": "This has only one new methyl and an extra H. Grignards deliver carbon, not hydride, and they add twice to esters." }
+    ],
+    "confusableWith": ["u1-grignard-ketone"],
+    "tags": ["C-C bond", "organometallic", "alcohol synthesis", "adds twice"],
+    "review": "Key step shown is the first addition (Grignard + ester). Check this is the step students should be drilled on.",
+    "verified": false,
+    "verifiedBy": null
+  }
+]

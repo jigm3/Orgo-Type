@@ -1,0 +1,34 @@
+[
+  {
+    "id": "u4-aldol-addition-acetaldehyde",
+    "unit": 4,
+    "pattern": "D",
+    "title": "Aldol addition: enolate + aldehyde → β-hydroxy aldehyde",
+    "reactants": ["[CH3:1][CH:2]=[O:3]", "[CH3:4][CH:5]=[O:6]"],
+    "reagents": [],
+    "reagentDisplay": "NaOH, H2O, 5 °C",
+    "reagentAliases": ["NaOH", "dilute NaOH", "hydroxide", "KOH", "base", "NaOEt"],
+    "product": "[O:3]=[CH:2][CH2:1][CH:5]([OH:6])[CH3:4]",
+    "keyStep": {
+      "species": ["[CH2:1]=[CH:2][O-:3]", "[CH3:4][CH:5]=[O:6]"],
+      "nucleophileAtom": 1,
+      "electrophileAtom": 5,
+      "arrows": [
+        { "from": { "lonePair": 3 }, "to": { "bond": [2, 3] } },
+        { "from": { "bond": [1, 2] }, "to": { "atom": 5 } },
+        { "from": { "bond": [5, 6] }, "to": { "atom": 6 } }
+      ]
+    },
+    "why": "Hydroxide removes an α-H to make an enolate. Its α-carbon then runs pattern A on a second aldehyde: nucleophilic addition to the C=O carbon. Protonating the alkoxide gives a β-hydroxy aldehyde.",
+    "traps": [
+      { "smiles": "CC=CC=O", "explains": "That's the aldol condensation product. Losing water to form the C=C needs heat; at low temperature the reaction stops at the β-hydroxy aldehyde." },
+      { "smiles": "CCC(O)C=O", "explains": "The new C–C bond joins the α-carbon of one aldehyde to the carbonyl carbon of the other, so the OH ends up on the β-carbon, not the α-carbon." },
+      { "smiles": "CC(O)CCO", "explains": "Hydroxide isn't a reducing agent. The aldehyde C=O survives; only the attacked C=O becomes an alcohol." }
+    ],
+    "confusableWith": [],
+    "tags": ["C-C bond", "enolate", "aldol"],
+    "review": "Check the conditions (NaOH, 5 °C = addition; heat = condensation) follow the usual textbook split.",
+    "verified": false,
+    "verifiedBy": null
+  }
+]

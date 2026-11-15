@@ -1,0 +1,33 @@
+[
+  {
+    "id": "u3-gilman-enone",
+    "unit": 3,
+    "pattern": "C",
+    "title": "Enone + R2CuLi → 1,4 (conjugate) addition",
+    "reactants": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[CH3:8][Cu-:9][CH3:10].[Li+:11]"],
+    "reagentDisplay": "1. (CH3)2CuLi, ether  2. H3O+",
+    "reagentAliases": ["(CH3)2CuLi", "Me2CuLi", "lithium dimethylcuprate", "dimethylcuprate", "gilman", "gilman reagent", "R2CuLi"],
+    "product": "[O:1]=[C:2]1[CH2:3][CH:4]([CH3:8])[CH2:5][CH2:6][CH2:7]1",
+    "keyStep": {
+      "nucleophileAtom": 8,
+      "electrophileAtom": 4,
+      "arrows": [
+        { "from": { "bond": [8, 9] }, "to": { "atom": 4 } },
+        { "from": { "bond": [3, 4] }, "to": { "bond": [2, 3] } },
+        { "from": { "bond": [1, 2] }, "to": { "atom": 1 } }
+      ]
+    },
+    "why": "Cuprates are soft nucleophiles, so they add to the soft β-carbon (1,4) rather than the C=O carbon. The enolate that forms is protonated on workup and tautomerizes back to the ketone, now carrying a methyl at the β-position.",
+    "traps": [
+      { "smiles": "CC1(O)C=CCCC1", "explains": "That's 1,2-addition, which is what a hard nucleophile like CH3MgBr or CH3Li does. Cuprates add 1,4." },
+      { "smiles": "CC1CCCCC1=O", "explains": "The methyl lands on the β-carbon (two carbons from C=O), not the α-carbon next to it." },
+      { "smiles": "CC1CCCC(O)C1", "explains": "Cuprates don't reduce the C=O. After workup the ketone is still there." }
+    ],
+    "confusableWith": ["u1-grignard-ketone"],
+    "tags": ["C-C bond", "organometallic", "conjugate addition", "1,4"],
+    "review": "Arrows show the simplified 'carbanion adds to β-carbon' picture, not the Cu(III) oxidative-addition mechanism. Check this is acceptable as the drilled key step (it is the standard textbook simplification).",
+    "verified": false,
+    "verifiedBy": null
+  }
+]
