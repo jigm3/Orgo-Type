@@ -29,17 +29,17 @@
         "text": "Which conversion works in one step?",
         "options": [
           {
-            "text": "Acetyl chloride + CH3OH (pyridine) → methyl acetate",
-            "correct": true,
-            "explains": "Downhill on the ladder: Cl⁻ is a much better leaving group than CH3O⁻, so the ester is the more stable product. (Going up needs a special reagent, like SOCl2 to turn an acid into an acid chloride.)"
-          },
-          {
             "text": "Methyl acetate + NaCl → acetyl chloride",
             "explains": "That's uphill. Even if Cl⁻ added, the intermediate would just push out Cl⁻ again, because Cl⁻ is the better leaving group. A nucleophile can't replace a group that leaves worse than it does."
           },
           {
             "text": "N-methylacetamide + CH3OH → methyl acetate",
             "explains": "Amides are the bottom rung. ⁻NHCH3 is a terrible leaving group, so methanol can't push it out. Amides need strong acid or base and heat even to hydrolyse."
+          },
+          {
+            "text": "Acetyl chloride + CH3OH (pyridine) → methyl acetate",
+            "correct": true,
+            "explains": "Downhill on the ladder: Cl⁻ is a much better leaving group than CH3O⁻, so the ester is the more stable product. (Going up needs a special reagent, like SOCl2 to turn an acid into an acid chloride.)"
           },
           {
             "text": "Acetic anhydride + NaCl → acetyl chloride",
@@ -66,13 +66,13 @@
         "text": "A ketone adds a nucleophile and stops at the alkoxide (pattern A). **Why** does an ester's tetrahedral intermediate collapse instead?",
         "options": [
           {
+            "text": "Esters are more electrophilic than ketones, so they react further.",
+            "explains": "Esters are actually less electrophilic than ketones: the OR oxygen donates electrons into the C=O. Reactivity doesn't decide this; having a leaving group does."
+          },
+          {
             "text": "The ester carbon carries a group that can leave as a fairly stable anion (CH3O⁻), so the O⁻ pushes it out and the strong C=O re-forms.",
             "correct": true,
             "explains": "Right. The leaving group is the whole difference between pattern A and pattern B."
-          },
-          {
-            "text": "Esters are more electrophilic than ketones, so they react further.",
-            "explains": "Esters are actually less electrophilic than ketones: the OR oxygen donates electrons into the C=O. Reactivity doesn't decide this; having a leaving group does."
           },
           {
             "text": "Ketones collapse too, but they lose H⁻ or R⁻ instead.",
@@ -90,11 +90,6 @@
         "smiles": "CCCCC(=O)OC",
         "options": [
           {
-            "text": "(1) pentan-1-ol; (2) pentanal",
-            "correct": true,
-            "explains": "LiAlH4 adds hydride, CH3O⁻ leaves, and the aldehyde formed is more reactive than the ester, so it is reduced again to the 1° alcohol. DIBAL-H gives one hydride, and at −78 °C its tetrahedral intermediate holds together until workup, when it falls apart to the aldehyde."
-          },
-          {
             "text": "(1) pentanal; (2) pentan-1-ol",
             "explains": "Swapped. LiAlH4 is the strong, unselective one; DIBAL-H at low temperature is the one that stops at the aldehyde."
           },
@@ -105,6 +100,11 @@
           {
             "text": "Both give pentan-1-ol.",
             "explains": "This misses the low-temperature trick: DIBAL-H's intermediate doesn't collapse to the aldehyde until water is added, when no hydride is left to reduce it."
+          },
+          {
+            "text": "(1) pentan-1-ol; (2) pentanal",
+            "correct": true,
+            "explains": "LiAlH4 adds hydride, CH3O⁻ leaves, and the aldehyde formed is more reactive than the ester, so it is reduced again to the 1° alcohol. DIBAL-H gives one hydride, and at −78 °C its tetrahedral intermediate holds together until workup, when it falls apart to the aldehyde."
           }
         ]
       },

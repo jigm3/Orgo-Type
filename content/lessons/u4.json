@@ -25,11 +25,6 @@
         "text": "An enolate is mixed with CH3I. Which kind of reaction is that?",
         "options": [
           {
-            "text": "SN2: the α-carbon attacks CH3 and pushes out I⁻ (alkylation)",
-            "correct": true,
-            "explains": "CH3I has no C=O; it is a methyl halide, the best SN2 substrate. The enolate is just the nucleophile."
-          },
-          {
             "text": "Pattern A: addition to a C=O",
             "explains": "Pattern A needs an aldehyde or ketone C=O to add to. CH3I has none."
           },
@@ -40,6 +35,11 @@
           {
             "text": "Pattern C: conjugate addition",
             "explains": "Pattern C needs a C=C next to a C=O (an enone). CH3I has neither."
+          },
+          {
+            "text": "SN2: the α-carbon attacks CH3 and pushes out I⁻ (alkylation)",
+            "correct": true,
+            "explains": "CH3I has no C=O; it is a methyl halide, the best SN2 substrate. The enolate is just the nucleophile."
           }
         ]
       },
@@ -61,13 +61,13 @@
         "text": "Aldol gives a β-hydroxy carbonyl, but Claisen gives a β-keto ester. **Why** the difference?",
         "options": [
           {
+            "text": "Claisen uses ethoxide and aldol uses hydroxide; the base decides the product.",
+            "explains": "The base only makes the enolate (NaOEt is used with ethyl esters to avoid swapping the ester group). What happens after attack depends on the electrophile."
+          },
+          {
             "text": "In Claisen the enolate adds to an ester, whose C=O carbon has a leaving group (EtO⁻), so the intermediate collapses back to C=O. An aldehyde has no leaving group, so the alkoxide is just protonated.",
             "correct": true,
             "explains": "Right: aldol = enolate + pattern A, Claisen = enolate + pattern B."
-          },
-          {
-            "text": "Claisen uses ethoxide and aldol uses hydroxide; the base decides the product.",
-            "explains": "The base only makes the enolate (NaOEt is used with ethyl esters to avoid swapping the ester group). What happens after attack depends on the electrophile."
           },
           {
             "text": "In Claisen the β-hydroxy ester forms first and is then oxidised to the ketone.",

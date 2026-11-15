@@ -47,13 +47,13 @@
         "text": "**Why** does (CH3)2CuLi add 1,4 to cyclohexenone when CH3MgBr adds 1,2?",
         "options": [
           {
+            "text": "The cuprate is bulkier, so it can't reach the C=O carbon.",
+            "explains": "Both deliver the same small CH3 group. The choice is about hard vs soft, not size."
+          },
+          {
             "text": "The cuprate is a soft, less reactive nucleophile, so it adds to the soft β-carbon at the end of the conjugated system. The C=O is kept.",
             "correct": true,
             "explains": "Right: hard goes to the C=O carbon (the most positive atom), soft goes to the β-carbon."
-          },
-          {
-            "text": "The cuprate is bulkier, so it can't reach the C=O carbon.",
-            "explains": "Both deliver the same small CH3 group. The choice is about hard vs soft, not size."
           },
           {
             "text": "The Grignard also adds 1,4 first, then moves over to the C=O.",
@@ -71,11 +71,6 @@
         "smiles": "O=C1C=CCC1",
         "options": [
           {
-            "text": "1. (CH3CH2)2CuLi  2. H3O+",
-            "correct": true,
-            "explains": "A cuprate adds 1,4: the ethyl lands on the β-carbon (C3) and the ketone survives."
-          },
-          {
             "text": "1. CH3CH2MgBr  2. H3O+",
             "explains": "A Grignard is hard and adds 1,2, giving 1-ethylcyclopent-2-en-1-ol: the C=O is gone and the C=C is still there."
           },
@@ -86,6 +81,11 @@
           {
             "text": "1. H2, Pd  2. CH3CH2MgBr  3. H3O+",
             "explains": "Hydrogenation removes the C=C, so the Grignard then adds to the C=O carbon: 1-ethylcyclopentanol, with the ethyl in the wrong place."
+          },
+          {
+            "text": "1. (CH3CH2)2CuLi  2. H3O+",
+            "correct": true,
+            "explains": "A cuprate adds 1,4: the ethyl lands on the β-carbon (C3) and the ketone survives."
           }
         ]
       },

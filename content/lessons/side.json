@@ -18,13 +18,13 @@
         "text": "2-Bromo-2-methylbutane is stirred in water at 25 °C. Which mechanism gives the major product?",
         "smiles": "CCC(C)(C)Br",
         "options": [
+          {"text": "SN2", "explains": "A 3° carbon is too crowded for backside attack, so SN2 is out."},
+          {"text": "E2", "explains": "E2 needs a strong base. Water is a very weak base."},
           {
             "text": "SN1",
             "correct": true,
             "explains": "A 3° halide ionises to a stable 3° carbocation in a protic solvent, and water is a weak nucleophile. Without heat or a strong base, substitution wins: 2-methylbutan-2-ol."
           },
-          {"text": "SN2", "explains": "A 3° carbon is too crowded for backside attack, so SN2 is out."},
-          {"text": "E2", "explains": "E2 needs a strong base. Water is a very weak base."},
           {
             "text": "E1",
             "explains": "E1 shares the carbocation with SN1 but needs heat to become the main path. At 25 °C it is only the minor product."
@@ -69,11 +69,6 @@
         "smiles": "CC(C)(Br)C(C)C",
         "options": [
           {
-            "text": "tert-Butoxide is bulky, so it removes an easy-to-reach H on a CH3 group instead of the hindered H on the inner C–H.",
-            "correct": true,
-            "explains": "Right. A small base reaches the internal H and gives the more substituted (more stable) alkene; a bulky base takes the accessible one."
-          },
-          {
             "text": "The Hofmann alkene is the more stable one.",
             "explains": "It's the less stable one: a disubstituted C=C versus a tetrasubstituted one. It forms because it is easier to reach, not because it is more stable."
           },
@@ -84,6 +79,11 @@
           {
             "text": "tert-Butoxide is a weaker base than ethoxide.",
             "explains": "It is at least as strong a base. Its size, not its strength, is what changes which H it removes."
+          },
+          {
+            "text": "tert-Butoxide is bulky, so it removes an easy-to-reach H on a CH3 group instead of the hindered H on the inner C–H.",
+            "correct": true,
+            "explains": "Right. A small base reaches the internal H and gives the more substituted (more stable) alkene; a bulky base takes the accessible one."
           }
         ]
       },
@@ -98,13 +98,13 @@
         "text": "You want **tert-butyl methyl ether**, (CH3)3C–O–CH3, by a Williamson synthesis. Which pair works?",
         "options": [
           {
+            "text": "CH3O⁻ Na⁺ + (CH3)3CBr",
+            "explains": "A 3° halide can't do SN2, and methoxide is a strong base, so you get E2: 2-methylpropene."
+          },
+          {
             "text": "(CH3)3CO⁻ Na⁺ + CH3I",
             "correct": true,
             "explains": "SN2 on CH3I, the least hindered halide there is. The bulky alkoxide is fine as the nucleophile."
-          },
-          {
-            "text": "CH3O⁻ Na⁺ + (CH3)3CBr",
-            "explains": "A 3° halide can't do SN2, and methoxide is a strong base, so you get E2: 2-methylpropene."
           },
           {
             "text": "(CH3)3COH + CH3OH, no catalyst",
