@@ -15,6 +15,16 @@
       "electrophileAtom": 3,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Cyanide attacks the carbon from the back side as bromide leaves",
+          "species": ["[CH3:1][CH2:2][C@@H:3]([Br:4])[CH3:5]", "[C-:6]#[N:7]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}],
+          "note": "One concerted step: the nucleophile comes in opposite the C–Br bond, so the stereocenter inverts."
+        }
+      ]
+    },
     "why": "Cyanide is a strong nucleophile but a weak base, and DMSO is polar aprotic, so a 2° halide goes SN2. Backside attack inverts the stereocenter: (S)-2-bromobutane gives (R)-2-methylbutanenitrile.",
     "traps": [
       {
@@ -61,6 +71,16 @@
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Azide attacks the CH2 carbon from the back side as bromide leaves",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][Br:5]", "[N-:6]=[N+:7]=[N-:8]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "Unhindered 1° carbon and a polar aprotic solvent: a fast, single-step SN2."
+        }
+      ]
+    },
     "why": "A 1° carbon is unhindered and cannot form a stable carbocation, so it reacts by SN2. Azide is a strong nucleophile but a weak base, and DMF (polar aprotic) leaves it unsolvated and reactive, so it does one-step backside attack on the carbon bearing Br.",
     "traps": [
       {
@@ -101,6 +121,28 @@
       "nucleophileAtom": 6,
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The C–Br bond breaks on its own, leaving a 3° carbocation",
+          "species": ["[CH3:1][C:2]([CH3:3])([Br:4])[CH3:5]"],
+          "arrows": [{"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "Slow, rate-determining step: only the substrate is involved, so the rate doesn't depend on ethanol."
+        },
+        {
+          "label": "Ethanol's oxygen attacks the carbocation",
+          "species": ["[CH3:1][C+:2]([CH3:3])[CH3:5]", "[OH:6][CH2:7][CH3:8]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}],
+          "note": "A weak, neutral nucleophile is fine here: the carbocation is very reactive."
+        },
+        {
+          "label": "Another ethanol removes the proton from the oxonium ion",
+          "species": ["[CH3:1][C:2]([CH3:3])([CH3:5])[O+:6]([H:30])[CH2:7][CH3:8]", "[OH:31][CH2:32][CH3:33]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [6, 30]}, "to": {"atom": 6}}],
+          "note": "The solvent acts as the base; the by-product is protonated ethanol (with Br⁻, i.e. HBr)."
+        }
+      ]
     },
     "why": "A 3° carbon is too crowded for backside attack but forms a stable 3° carbocation, and ethanol is a weak nucleophile in a protic solvent that stabilises ions, so the halide ionizes (SN1). Ethanol then adds to the planar cation and loses a proton to give the ether; without heat or a strong base, substitution beats elimination.",
     "traps": [
@@ -147,6 +189,20 @@
         {"from": {"bond": [2, 4]}, "to": {"atom": 4}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes a β-H as the C=C forms and bromide leaves, all at once",
+          "species": ["[CH3:1][C:2]([CH3:3])([Br:4])[C:5]([H:20])([CH3:6])[CH3:7]", "[O-:8][CH2:9][CH3:10]"],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"atom": 20}},
+            {"from": {"bond": [5, 20]}, "to": {"bond": [2, 5]}},
+            {"from": {"bond": [2, 4]}, "to": {"atom": 4}}
+          ],
+          "note": "E2 is one concerted step. The H taken is on the more substituted β-carbon, giving the Zaitsev alkene."
+        }
+      ]
+    },
     "why": "A 3° halide can't do SN2, and ethoxide is a strong base, so E2 wins over SN1. Ethoxide is small, so it can reach the internal β-H and gives the more substituted (Zaitsev) alkene, here tetrasubstituted 2,3-dimethylbut-2-ene.",
     "traps": [
       {
@@ -191,6 +247,23 @@
         {"from": {"lonePair": 8}, "to": {"atom": 20}},
         {"from": {"bond": [3, 20]}, "to": {"bond": [2, 3]}},
         {"from": {"bond": [2, 4]}, "to": {"atom": 4}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "tert-Butoxide removes a β-H from the CH3 group as the C=C forms and bromide leaves",
+          "species": [
+            "[CH3:1][C:2]([CH2:3][H:20])([Br:4])[CH:5]([CH3:6])[CH3:7]",
+            "[O-:8][C:9]([CH3:10])([CH3:11])[CH3:12]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"atom": 20}},
+            {"from": {"bond": [3, 20]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [2, 4]}, "to": {"atom": 4}}
+          ],
+          "note": "One concerted step. The bulky base reaches the exposed CH3 hydrogens, not the hindered CH, so the less substituted (Hofmann) alkene forms."
+        }
       ]
     },
     "why": "A 3° halide with a strong base goes E2. tert-Butoxide is bulky, so it pulls off the most accessible β-H on a CH3 group rather than the hindered internal one, giving the less substituted (Hofmann) alkene, 2,3-dimethylbut-1-ene.",
@@ -275,6 +348,28 @@
       "electrophileAtom": 20,
       "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 20}}, {"from": {"bond": [5, 20]}, "to": {"bond": [2, 5]}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Sulfuric acid protonates the OH group",
+          "species": ["[CH3:1][C:2]([CH3:3])([OH:4])[CH:5]([H:20])[CH3:6]", "[H:30][O:7][S:8](=[O:9])(=[O:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 30}}, {"from": {"bond": [7, 30]}, "to": {"atom": 7}}],
+          "note": "OH⁻ is a poor leaving group; protonation turns it into water, a good one."
+        },
+        {
+          "label": "Water leaves, giving a 3° carbocation",
+          "species": ["[CH3:1][C:2]([CH3:3])([OH2+:4])[CH:5]([H:20])[CH3:6]"],
+          "arrows": [{"from": {"bond": [2, 4]}, "to": {"atom": 4}}],
+          "note": "Rate-determining step."
+        },
+        {
+          "label": "Water removes a β-H next to the carbocation, forming the C=C",
+          "species": ["[CH3:1][C+:2]([CH3:3])[CH:5]([H:20])[CH3:6]", "[OH2:4]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 20}}, {"from": {"bond": [5, 20]}, "to": {"bond": [2, 5]}}],
+          "note": "Losing the H from the CH (not a CH3) gives the more substituted, Zaitsev alkene."
+        }
+      ]
+    },
     "why": "Strong acid protonates the OH into water, a good leaving group, and the 3° alcohol ionizes to a 3° carbocation (E1). With heat and only weak nucleophiles (H2O, HSO4-), a weak base removes a β-H, giving the more substituted (Zaitsev) alkene, 2-methylbut-2-ene.",
     "traps": [
       {
@@ -312,6 +407,27 @@
       "nucleophileAtom": 9,
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 4}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The C–Br bond breaks on its own, leaving a planar 3° carbocation",
+          "species": ["[CH3:1][CH2:2][CH2:3][C@:4]([CH3:5])([Br:6])[CH2:7][CH3:8]"],
+          "arrows": [{"from": {"bond": [4, 6]}, "to": {"atom": 6}}],
+          "note": "The carbocation is sp2 and flat: the stereocenter is lost here."
+        },
+        {
+          "label": "Water attacks the carbocation (from either face)",
+          "species": ["[CH3:1][CH2:2][CH2:3][C+:4]([CH3:5])[CH2:7][CH3:8]", "[OH2:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 4}}],
+          "note": "Attack from the top or bottom face is about equally likely, so both enantiomers form."
+        },
+        {
+          "label": "Another water removes a proton from the oxonium ion",
+          "species": ["[CH3:1][CH2:2][CH2:3][C:4]([CH3:5])([OH+:9][H:30])[CH2:7][CH3:8]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [9, 30]}, "to": {"atom": 9}}]
+        }
+      ]
     },
     "why": "A 3° halide with a weak nucleophile (water) in a protic solvent goes SN1. The leaving group departs first to give a planar carbocation, and water can add to either face, so (R)-3-bromo-3-methylhexane gives racemic 3-methylhexan-3-ol.",
     "traps": [
@@ -393,6 +509,26 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The C–Br bond breaks, leaving a resonance-stabilized benzylic carbocation",
+          "species": ["[CH3:1][CH:2]([Br:9])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1"],
+          "arrows": [{"from": {"bond": [2, 9]}, "to": {"atom": 9}}],
+          "note": "The positive charge is delocalized into the ring, which is why a 2° benzylic halide goes SN1."
+        },
+        {
+          "label": "Methanol's oxygen attacks the carbocation",
+          "species": ["[CH3:1][CH+:2][c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1", "[CH3:10][OH:11]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}]
+        },
+        {
+          "label": "Another methanol removes the proton from the oxonium ion",
+          "species": ["[CH3:1][CH:2]([O+:11]([H:30])[CH3:10])[c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1", "[CH3:31][OH:32]"],
+          "arrows": [{"from": {"lonePair": 32}, "to": {"atom": 30}}, {"from": {"bond": [11, 30]}, "to": {"atom": 11}}]
+        }
+      ]
+    },
     "why": "A plain 2° halide in methanol reacts slowly, but this one is benzylic: losing Br- gives a carbocation stabilized by resonance into the ring. Methanol is a weak nucleophile and a protic solvent, so the reaction goes SN1, and methanol adds at the benzylic carbon to give the methyl ether.",
     "traps": [
       {
@@ -436,6 +572,47 @@
         {"from": {"bond": [5, 6]}, "to": {"atom": 6}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks chromium; a Cr=O π bond moves onto oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:20])[O:5][H:30]", "[Cl:9][Cr:6](=[O:7])(=[O:8])[O-:10]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}],
+          "note": "Like a nucleophile adding to a C=O, but at chromium."
+        },
+        {
+          "label": "Proton transfer from the oxonium oxygen to another oxygen on chromium",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:20])[O+:5]([H:30])[Cr:6]([O-:7])(=[O:8])([Cl:9])[O-:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 30}}, {"from": {"bond": [5, 30]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "Pyridinium protonates the Cr–OH, making it a good leaving group",
+          "species": [
+            "[CH3:1][CH2:2][CH2:3][CH:4]([H:20])[O:5][Cr:6]([O-:7])(=[O:8])([Cl:9])[OH:10]",
+            "[cH:11]1[cH:12][cH:13][cH:14][cH:15][n+:16]1[H:31]"
+          ],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 31}}, {"from": {"bond": [16, 31]}, "to": {"atom": 16}}]
+        },
+        {
+          "label": "The Cr=O reforms and water leaves, giving the chromate ester",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:20])[O:5][Cr:6]([O-:7])(=[O:8])([Cl:9])[OH2+:10]"],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"bond": [6, 7]}}, {"from": {"bond": [6, 10]}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "Pyridine removes the α-H; the C=O forms as the O–Cr bond breaks",
+          "species": [
+            "[CH3:1][CH2:2][CH2:3][CH:4]([H:20])[O:5][Cr:6](=[O:7])(=[O:8])[Cl:9]",
+            "[cH:11]1[cH:12][cH:13][cH:14][cH:15][n:16]1"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 16}, "to": {"atom": 20}},
+            {"from": {"bond": [4, 20]}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [5, 6]}, "to": {"atom": 6}}
+          ],
+          "note": "An E2-like elimination: chromium takes the electrons and is reduced from Cr(VI) to Cr(IV)."
+        }
+      ]
+    },
     "why": "PCC is a mild chromium(VI) oxidant used without water (in CH2Cl2), so a 1° alcohol stops at the aldehyde: no water means no hydrate to oxidize further. The alcohol forms a chromate ester, then a base removes the C–H on the carbinol carbon as the O–Cr bond breaks, forming C=O. DMP and Swern oxidation do the same job.",
     "traps": [
       {
@@ -453,7 +630,7 @@
     ],
     "confusableWith": ["side-jones-1-butanol", "side-chromic-cyclohexanol", "side-socl2-1-butanol"],
     "tags": ["oxidation", "alcohol", "aldehyde"],
-    "review": "Key step drawn as pyridine removing the α-H from a chloro-chromate ester (RO–CrO2Cl) as Cr–O breaks; textbooks draw the ester and base differently. DMP and Swern are in the aliases as reagents giving the same product.",
+    "review": "Key step drawn as pyridine removing the α-H from a chloro-chromate ester (RO–CrO2Cl) as Cr–O breaks; textbooks draw the ester and base differently. DMP and Swern are in the aliases as reagents giving the same product. Mechanism: chromate-ester formation drawn as attack at Cr, proton transfer, protonation by pyridinium, loss of water; courses vary a lot here (some show Cl⁻ leaving instead, or skip straight to the ester), so check it matches your course.",
     "verified": false,
     "verifiedBy": null
   },
@@ -473,6 +650,81 @@
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks chromium; a Cr=O π bond moves onto oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:21])[O:5][H:30]", "[OH:7][Cr:8](=[O:9])(=[O:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}]
+        },
+        {
+          "label": "Proton transfer from the oxonium oxygen to a Cr–OH",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:21])[O+:5]([H:30])[Cr:8]([OH:7])([O-:9])(=[O:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 30}}, {"from": {"bond": [5, 30]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "The Cr=O reforms and water leaves, giving the chromate ester",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:21])[O:5][Cr:8]([OH2+:7])([O-:9])(=[O:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [8, 9]}}, {"from": {"bond": [8, 7]}, "to": {"atom": 7}}]
+        },
+        {
+          "label": "Water removes an α-H; C=O forms as the O–Cr bond breaks, giving the aldehyde",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([H:21])[O:5][Cr:8](=[O:9])(=[O:10])[OH:11]", "[OH2:32]"],
+          "arrows": [
+            {"from": {"lonePair": 32}, "to": {"atom": 21}},
+            {"from": {"bond": [4, 21]}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [5, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "With PCC (no water) the reaction stops here, at the aldehyde."
+        },
+        {
+          "label": "Water adds to the aldehyde C=O",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]=[O:5]", "[OH2:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "The water in the chromic acid mixture turns the aldehyde into a hydrate, which can be oxidized again."
+        },
+        {
+          "label": "Hydronium protonates the alkoxide oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([O-:5])[OH2+:6]", "[H:33][OH2+:34]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 33}}, {"from": {"bond": [33, 34]}, "to": {"atom": 34}}]
+        },
+        {
+          "label": "Water removes a proton from the other oxygen, giving the hydrate",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH:4]([O:5][H:33])[OH+:6][H:35]", "[OH2:36]"],
+          "arrows": [{"from": {"lonePair": 36}, "to": {"atom": 35}}, {"from": {"bond": [6, 35]}, "to": {"atom": 6}}]
+        },
+        {
+          "label": "A hydrate OH attacks a second chromic acid; a Cr=O π bond moves onto oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][C:4]([H:22])([O:5][H:33])[OH:6]", "[OH:41][Cr:42](=[O:43])(=[O:44])[OH:45]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 42}}, {"from": {"bond": [42, 43]}, "to": {"atom": 43}}]
+        },
+        {
+          "label": "Proton transfer from the oxonium oxygen to a Cr–OH",
+          "species": [
+            "[CH3:1][CH2:2][CH2:3][C:4]([H:22])([O+:5]([H:33])[Cr:42]([OH:41])([O-:43])(=[O:44])[OH:45])[OH:6]"
+          ],
+          "arrows": [{"from": {"lonePair": 41}, "to": {"atom": 33}}, {"from": {"bond": [5, 33]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "The Cr=O reforms and water leaves, giving a new chromate ester",
+          "species": ["[CH3:1][CH2:2][CH2:3][C:4]([H:22])([O:5][Cr:42]([OH2+:41])([O-:43])(=[O:44])[OH:45])[OH:6]"],
+          "arrows": [
+            {"from": {"lonePair": 43}, "to": {"bond": [42, 43]}},
+            {"from": {"bond": [42, 41]}, "to": {"atom": 41}}
+          ]
+        },
+        {
+          "label": "Water removes the C–H; C=O forms as the O–Cr bond breaks, giving the carboxylic acid",
+          "species": ["[CH3:1][CH2:2][CH2:3][C:4]([H:22])([O:5][Cr:42](=[O:43])(=[O:44])[OH:45])[OH:6]", "[OH2:46]"],
+          "arrows": [
+            {"from": {"lonePair": 46}, "to": {"atom": 22}},
+            {"from": {"bond": [4, 22]}, "to": {"bond": [4, 5]}},
+            {"from": {"bond": [5, 42]}, "to": {"atom": 42}}
+          ],
+          "note": "Same elimination as before; the carbon has now been oxidized twice."
+        }
+      ]
+    },
     "why": "Chromic acid is a strong Cr(VI) oxidant used in water. The 1° alcohol is first oxidized to the aldehyde, which adds water to form a hydrate (the key step shown); the hydrate is itself an alcohol, so it is oxidized again to the carboxylic acid.",
     "traps": [
       {
@@ -490,7 +742,7 @@
     ],
     "confusableWith": ["side-pcc-1-butanol", "side-chromic-cyclohexanol"],
     "tags": ["oxidation", "alcohol", "carboxylic acid"],
-    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't. The chromate-ester steps are not drawn.",
+    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't. The chromate-ester steps are not drawn. Mechanism: each chromate-ester formation is drawn as attack at Cr, one intramolecular proton transfer, loss of water; hydrate formation is drawn as neutral water attack then proton transfers (to match the key step). Courses draw these parts differently, so check it matches your course.",
     "verified": false,
     "verifiedBy": null
   },
@@ -514,6 +766,45 @@
         {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks chromium; a Cr=O π bond moves onto oxygen",
+          "species": [
+            "[CH2:2]1[CH2:3][CH2:4][CH2:5][CH2:6][C:1]1([H:20])[O:7][H:30]",
+            "[OH:13][Cr:8](=[O:9])(=[O:10])[OH:11]"
+          ],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 8}}, {"from": {"bond": [8, 9]}, "to": {"atom": 9}}],
+          "note": "Like a nucleophile adding to a C=O, but at chromium."
+        },
+        {
+          "label": "Proton transfer from the oxonium oxygen to a Cr–OH",
+          "species": [
+            "[CH2:2]1[CH2:3][CH2:4][CH2:5][CH2:6][C:1]1([H:20])[O+:7]([H:30])[Cr:8]([OH:13])([O-:9])(=[O:10])[OH:11]"
+          ],
+          "arrows": [{"from": {"lonePair": 13}, "to": {"atom": 30}}, {"from": {"bond": [7, 30]}, "to": {"atom": 7}}],
+          "note": "In acid this is really two steps (deprotonate, then protonate) through the solvent."
+        },
+        {
+          "label": "The Cr=O reforms and water leaves, giving the chromate ester",
+          "species": ["[CH2:2]1[CH2:3][CH2:4][CH2:5][CH2:6][C:1]1([H:20])[O:7][Cr:8]([OH2+:13])([O-:9])(=[O:10])[OH:11]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"bond": [8, 9]}}, {"from": {"bond": [8, 13]}, "to": {"atom": 13}}]
+        },
+        {
+          "label": "Water removes the H on the carbinol carbon; C=O forms as the O–Cr bond breaks",
+          "species": [
+            "[CH2:2]1[CH2:3][CH2:4][CH2:5][CH2:6][C:1]1([H:20])[O:7][Cr:8](=[O:9])(=[O:10])[OH:11]",
+            "[OH2:12]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 12}, "to": {"atom": 20}},
+            {"from": {"bond": [1, 20]}, "to": {"bond": [1, 7]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "An E2-like elimination: chromium takes the electrons and is reduced from Cr(VI) to Cr(IV)."
+        }
+      ]
+    },
     "why": "A 2° alcohol has one H on the carbinol carbon, so oxidation gives a ketone. The alcohol forms a chromate ester, then water removes that C–H as the O–Cr bond breaks, making C=O. The ketone has no C–H left on the carbonyl carbon, so it isn't oxidized further.",
     "traps": [
       {
@@ -532,7 +823,8 @@
     "confusableWith": ["side-jones-1-butanol", "side-pcc-1-butanol"],
     "tags": ["oxidation", "alcohol", "ketone"],
     "verified": false,
-    "verifiedBy": null
+    "verifiedBy": null,
+    "review": "Mechanism: chromate-ester formation drawn as attack at Cr, one proton transfer, loss of water; courses draw this part differently (some skip straight to the ester), so check it matches your course."
   },
   {
     "id": "side-tosylate-2-butanol",
@@ -549,6 +841,28 @@
       "nucleophileAtom": 4,
       "electrophileAtom": 6,
       "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 6}}, {"from": {"bond": [6, 16]}, "to": {"atom": 16}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks sulfur and chloride leaves",
+          "species": [
+            "[CH3:1][CH2:2][C@H:3]([O:4][H:30])[CH3:5]",
+            "[Cl:16][S:6](=[O:7])(=[O:8])[c:9]1[cH:10][cH:11][c:12]([CH3:13])[cH:14][cH:15]1"
+          ],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 6}}, {"from": {"bond": [6, 16]}, "to": {"atom": 16}}],
+          "note": "The C–O bond is never touched, so the stereocenter keeps its configuration."
+        },
+        {
+          "label": "Pyridine removes the proton from the oxygen",
+          "species": [
+            "[CH3:1][CH2:2][C@H:3]([O+:4]([H:30])[S:6](=[O:7])(=[O:8])[c:9]1[cH:10][cH:11][c:12]([CH3:13])[cH:14][cH:15]1)[CH3:5]",
+            "[cH:31]1[cH:32][cH:33][cH:34][cH:35][n:36]1"
+          ],
+          "arrows": [{"from": {"lonePair": 36}, "to": {"atom": 30}}, {"from": {"bond": [4, 30]}, "to": {"atom": 4}}],
+          "note": "Pyridine mops up the HCl so the solution doesn't become acidic."
+        }
+      ]
     },
     "why": "The alcohol oxygen attacks sulfur and chloride leaves; pyridine mops up the HCl. The C–O bond of the stereocenter is never broken, so (R)-butan-2-ol gives the (R) tosylate with retention, now carrying a good leaving group.",
     "traps": [
@@ -586,6 +900,22 @@
       "electrophileAtom": 3,
       "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks phosphorus and a bromide leaves",
+          "species": ["[CH3:1][CH2:2][C@H:3]([O:4][H:30])[CH3:5]", "[P:6]([Br:7])([Br:8])[Br:9]"],
+          "arrows": [{"from": {"lonePair": 4}, "to": {"atom": 6}}, {"from": {"bond": [6, 9]}, "to": {"atom": 9}}],
+          "note": "This turns OH into an excellent leaving group (O–PBr2) without making a carbocation."
+        },
+        {
+          "label": "Bromide attacks the carbon from the back side, displacing the oxygen group (SN2)",
+          "species": ["[CH3:1][CH2:2][C@H:3]([O+:4]([H:30])[P:6]([Br:7])[Br:8])[CH3:5]", "[Br-:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 3}}, {"from": {"bond": [3, 4]}, "to": {"atom": 4}}],
+          "note": "Back-side attack: the stereocenter inverts."
+        }
+      ]
+    },
     "why": "PBr3 turns the OH into a good leaving group (O–PBr2), and the bromide released then attacks the carbon from the back in an SN2 step. No carbocation forms, so there is no rearrangement and the stereocenter inverts: (R)-butan-2-ol gives (S)-2-bromobutane.",
     "traps": [
       {
@@ -604,7 +934,8 @@
     "confusableWith": ["side-socl2-1-butanol", "side-tosylate-2-butanol", "side-sn2-2-bromobutane-cyanide"],
     "tags": ["SN2", "stereochemistry", "alcohol", "alkyl halide"],
     "verified": false,
-    "verifiedBy": null
+    "verifiedBy": null,
+    "review": "Mechanism: SN2 step drawn on the protonated R–O(H)–PBr2 (Klein-style, leaving group HOPBr2); the key step shows the deprotonated ROPBr2, as some texts do. The arrows are the same."
   },
   {
     "id": "side-socl2-1-butanol",
@@ -622,6 +953,31 @@
       "nucleophileAtom": 9,
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alcohol oxygen attacks sulfur and a chloride leaves",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][O:5][H:30]", "[O:7]=[S:6]([Cl:8])[Cl:9]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 6}}, {"from": {"bond": [6, 9]}, "to": {"atom": 9}}],
+          "note": "This turns OH into a chlorosulfite, an excellent leaving group."
+        },
+        {
+          "label": "Pyridine removes the proton from the oxygen",
+          "species": [
+            "[CH3:1][CH2:2][CH2:3][CH2:4][O+:5]([H:30])[S:6](=[O:7])[Cl:8]",
+            "[cH:31]1[cH:32][cH:33][cH:34][cH:35][n:36]1",
+            "[Cl-:9]"
+          ],
+          "arrows": [{"from": {"lonePair": 36}, "to": {"atom": 30}}, {"from": {"bond": [5, 30]}, "to": {"atom": 5}}]
+        },
+        {
+          "label": "Chloride attacks the carbon from the back side, displacing the chlorosulfite (SN2)",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][O:5][S:6](=[O:7])[Cl:8]", "[Cl-:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "The leaving group falls apart into SO2 and Cl⁻, which drives the reaction."
+        }
+      ]
     },
     "why": "SOCl2 converts the OH into a chlorosulfite, an excellent leaving group that falls apart into SO2 and Cl-. Chloride then attacks the unhindered 1° carbon in an SN2 step, so there is no carbocation and no rearrangement.",
     "traps": [
@@ -641,7 +997,8 @@
     "confusableWith": ["side-pbr3-2-butanol", "side-tosylate-2-butanol", "side-pcc-1-butanol"],
     "tags": ["SN2", "alcohol", "alkyl halide"],
     "verified": false,
-    "verifiedBy": null
+    "verifiedBy": null,
+    "review": "Mechanism: attack at S drawn as one concerted displacement of Cl⁻ (some texts show S=O addition then loss of Cl⁻ as two steps)."
   },
   {
     "id": "side-williamson-tert-butoxide-methyl-iodide",
@@ -659,6 +1016,22 @@
       "nucleophileAtom": 5,
       "electrophileAtom": 6,
       "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride removes the O–H proton, giving the alkoxide",
+          "species": ["[CH3:1][C:2]([CH3:3])([CH3:4])[O:5][H:30]", "[H-:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [5, 30]}, "to": {"atom": 5}}],
+          "note": "H2 gas bubbles off, so this step is irreversible."
+        },
+        {
+          "label": "The alkoxide attacks the methyl carbon and iodide leaves (SN2)",
+          "species": ["[CH3:1][C:2]([CH3:3])([CH3:4])[O-:5]", "[CH3:6][I:7]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}],
+          "note": "SN2 at an unhindered CH3; the bulky alkoxide is fine as the nucleophile."
+        }
+      ]
     },
     "why": "The Williamson synthesis is SN2, so the halide must be methyl or 1°. NaH turns tert-butanol into tert-butoxide, which attacks unhindered CH3I to give tert-butyl methyl ether. The other pairing (CH3O- with tert-butyl bromide) fails: a 3° halide with a strong base gives E2.",
     "traps": [
@@ -696,6 +1069,28 @@
       "electrophileAtom": 2,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The acid protonates the epoxide oxygen",
+          "species": ["[CH3:1][C:2]1([CH3:3])[CH2:4][O:5]1", "[CH3:32][OH+:31][H:30]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}],
+          "note": "Protonated methanol (from CH3OH + H2SO4) is the acid in the flask."
+        },
+        {
+          "label": "Methanol attacks the more substituted carbon as the C–O bond breaks",
+          "species": ["[CH3:1][C:2]1([CH3:3])[CH2:4][OH+:5]1", "[CH3:7][OH:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 2}}, {"from": {"bond": [2, 5]}, "to": {"atom": 5}}],
+          "note": "The more substituted C–O bond is weaker and that carbon carries more δ+, so it is attacked."
+        },
+        {
+          "label": "Methanol removes the proton from the oxonium ion",
+          "species": ["[CH3:1][C:2]([CH3:3])([O+:6]([H:36])[CH3:7])[CH2:4][OH:5]", "[CH3:37][OH:38]"],
+          "arrows": [{"from": {"lonePair": 38}, "to": {"atom": 36}}, {"from": {"bond": [6, 36]}, "to": {"atom": 6}}],
+          "note": "The acid is regenerated: it is a catalyst."
+        }
+      ]
+    },
     "why": "Acid protonates the epoxide oxygen, and the C–O bond to the more substituted carbon weakens most because that carbon carries more of the positive charge (SN1-like). Methanol, a weak nucleophile, attacks that 3° carbon from the back (anti to the O), giving 2-methoxy-2-methylpropan-1-ol.",
     "traps": [
       {
@@ -730,6 +1125,21 @@
       "nucleophileAtom": 6,
       "electrophileAtom": 4,
       "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Methoxide attacks the less hindered CH2 carbon and the ring opens (SN2)",
+          "species": ["[CH3:1][C:2]1([CH3:3])[CH2:4][O:5]1", "[CH3:7][O-:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 4}}, {"from": {"bond": [4, 5]}, "to": {"atom": 5}}],
+          "note": "A strong nucleophile with no acid follows SN2 rules: least hindered carbon."
+        },
+        {
+          "label": "Workup: water protonates the alkoxide",
+          "species": ["[CH3:1][C:2]([CH3:3])([O-:5])[CH2:4][O:6][CH3:7]", "[H:30][OH:31]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 30}}, {"from": {"bond": [30, 31]}, "to": {"atom": 31}}]
+        }
+      ]
     },
     "why": "Methoxide is a strong nucleophile, and the ring strain lets the epoxide O act as a leaving group without acid. The reaction is SN2, so methoxide attacks the less hindered CH2 carbon, and workup protonates the alkoxide to give 1-methoxy-2-methylpropan-2-ol.",
     "traps": [
