@@ -348,9 +348,12 @@ def check_mechanism(r, where, rep, in_atoms, product):
         if errs:
             return
         last = i == len(steps) - 1
-        ok, msg = mechsim.check_step(st["species"], st["arrows"],
+        try:
+            ok, msg = mechsim.check_step(st["species"], st["arrows"],
                                      next_species=None if last else steps[i + 1].get("species", []),
                                      product=r["product"] if last else None, keep_maps=keep)
+        except Exception as e:  # noqa: BLE001 - report, don't crash the whole run
+            ok, msg = False, f"simulator error: {e}"
         if not ok:
             rep.err(where, "mech-step-mismatch", f"{lab}: {msg}")
             return

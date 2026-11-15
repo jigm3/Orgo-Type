@@ -26,6 +26,30 @@
         {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The cuprate's methyl adds to the β-carbon (1,4-addition), giving an enolate",
+          "species": ["[O:1]=[C:2]1[CH:3]=[CH:4][CH2:5][CH2:6][CH2:7]1", "[CH3:8][Cu-:9][CH3:10].[Li+:11]"],
+          "arrows": [
+            {"from": {"bond": [8, 9]}, "to": {"atom": 4}},
+            {"from": {"bond": [3, 4]}, "to": {"bond": [2, 3]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
+          ],
+          "note": "Soft nucleophile, soft (β) carbon. The negative charge ends up shared between the α-carbon and oxygen."
+        },
+        {
+          "label": "Acid workup: the enolate's α-carbon takes a proton, giving the ketone",
+          "species": ["[O-:1][C:2]1=[CH:3][CH:4]([CH3:8])[CH2:5][CH2:6][CH2:7]1", "[H:20][OH2+:21]"],
+          "arrows": [
+            {"from": {"lonePair": 1}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 20}},
+            {"from": {"bond": [20, 21]}, "to": {"atom": 21}}
+          ],
+          "note": "Protonating oxygen first gives the enol, which tautomerizes to this same ketone."
+        }
+      ]
+    },
     "why": "Cuprates are soft nucleophiles, so they add to the soft β-carbon (1,4) rather than the C=O carbon. The enolate that forms is protonated on workup and tautomerizes back to the ketone, now carrying a methyl at the β-position.",
     "traps": [
       {

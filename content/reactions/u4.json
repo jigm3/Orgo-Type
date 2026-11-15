@@ -680,6 +680,50 @@
         {"from": {"bond": [14, 15]}, "to": {"atom": 15}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Ethoxide removes the acidic α-H between the two esters, giving a stabilized enolate",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]([H:30])[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+            "[CH3:31][CH2:32][O-:33]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 33}, "to": {"atom": 30}},
+            {"from": {"bond": [6, 30]}, "to": {"bond": [6, 7]}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ],
+          "note": "That H sits between two C=O groups (pKa about 13), so ethoxide removes it easily."
+        },
+        {
+          "label": "The enolate's α-carbon adds to the β-carbon of the enone (1,4-addition)",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]=[C:7]([O-:8])[O:9][CH2:10][CH3:11]",
+            "[CH2:12]=[CH:13][C:14](=[O:15])[CH3:16]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 8}, "to": {"bond": [7, 8]}},
+            {"from": {"bond": [6, 7]}, "to": {"atom": 12}},
+            {"from": {"bond": [12, 13]}, "to": {"bond": [13, 14]}},
+            {"from": {"bond": [14, 15]}, "to": {"atom": 15}}
+          ],
+          "note": "Pattern D + pattern C: an enolate (soft nucleophile) doing conjugate addition."
+        },
+        {
+          "label": "Protonation: the new enolate's α-carbon takes a proton",
+          "species": [
+            "[CH3:1][CH2:2][O:3][C:4](=[O:5])[CH:6]([CH2:12][CH:13]=[C:14]([O-:15])[CH3:16])[C:7](=[O:8])[O:9][CH2:10][CH3:11]",
+            "[H:40][OH2+:41]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 15}, "to": {"bond": [14, 15]}},
+            {"from": {"bond": [13, 14]}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}}
+          ],
+          "note": "In the flask, ethanol often supplies this proton before workup; either way the ketone forms."
+        }
+      ]
+    },
     "why": "Enolate + pattern C: the stabilized (soft) malonate enolate adds 1,4 to the β-carbon of the enone rather than to its C=O. Protonation of the new enolate on workup gives a 1,5-dicarbonyl compound.",
     "traps": [
       {

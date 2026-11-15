@@ -171,6 +171,8 @@ def check_step(species, arrows, next_species=None, product=None, keep_maps=()):
         return False, str(e)
     here = set().union(*(maps_of(f) for f in frags(load(species))))
     want_prod = canon_smiles(product) if product else None
+    if product and want_prod is None:
+        return False, "the product doesn't parse"
     keep = set(keep_maps)
     last = None
     for res in results:
@@ -179,6 +181,8 @@ def check_step(species, arrows, next_species=None, product=None, keep_maps=()):
             nxt = []
             for s_ in next_species:
                 m = Chem.MolFromSmiles(s_, _P)
+                if m is None:
+                    return False, f"the next step's species {s_!r} doesn't parse"
                 nxt += list(frags(m))
             nxt_c = {canon(f): maps_of(f) for f in nxt}
             bad = [c for c, mp in nxt_c.items() if c not in got and mp & here]
