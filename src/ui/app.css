@@ -179,3 +179,9 @@ h2{font-size:17px;margin:24px 0 8px}
 .toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--bg2);border:1px solid var(--line2);border-radius:999px;padding:8px 16px;font-family:var(--f-mono);font-size:12px;color:var(--soft);z-index:40}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
 .chips [aria-current]{color:var(--ink);border-color:var(--ink)}
+
+/* topic focus */
+.focus{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0 6px}
+.focus .pill{font-size:12px;padding:7px 12px;min-height:34px}
+.focus .pill[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.fsep{width:1px;height:20px;background:var(--line2);margin:0 4px}

@@ -185,5 +185,27 @@ test("confusable siblings of the same card type sit next to each other", () => {
   assert.strictEqual(adjacent, 20);
 });
 
+test("topic focus: sessions draw only from the chosen units; the streak still counts every due review", () => {
+  const E = engine();
+  let t = new Date(2026, 10, 2, 9).getTime(); E.clock.now = () => new Date(t);
+  E.settings().unlocked = { 2: true, 3: true, 4: true };
+  // day 1: everything, so both Orgo 1 and Orgo 2 cards get introduced
+  let s = E.buildSession({ seed: 1 });
+  const units = q => new Set(q.map(id => String(E.RX[E.parseCard(id).rid].unit)));
+  assert.ok(units(s.queue).has("side") && [...units(s.queue)].some(u => u !== "side"), "unfocused sessions mix Orgo 1 and Orgo 2");
+  s.queue.forEach(id => E.recordAnswer(id, "good"));
+  t += 4 * 864e5;
+  E.settings().focus = ["side"];
+  s = E.buildSession({ seed: 2 });
+  assert.ok(s.queue.length > 0, "something to practise in the side deck");
+  assert.deepStrictEqual([...units(s.queue)], ["side"], "Orgo 1 focus only draws side-deck cards");
+  assert.ok(E.dueCards(true).length > E.dueCards().length, "reviews outside the focus are still counted as due overall");
+  E.settings().focus = ["1", "2"];
+  s = E.buildSession({ seed: 3 });
+  assert.ok([...units(s.queue)].every(u => u === "1" || u === "2"));
+  E.settings().focus = [];
+  assert.strictEqual(E.dueCards().length, E.dueCards(true).length);
+});
+
 process.exitCode = failures ? 1 : 0;
 console.log(failures ? `${failures} failing` : "all engine tests passed");

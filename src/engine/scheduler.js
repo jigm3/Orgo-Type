@@ -18,9 +18,12 @@ const scheduler = FSRS.fsrs(FSRS.generatorParameters({ request_retention: 0.9, e
 const RATING = { again: FSRS.Rating.Again, hard: FSRS.Rating.Hard, good: FSRS.Rating.Good, easy: FSRS.Rating.Easy };
 
 function settings() {
-  store.settings = Object.assign({ newPerDay: 15, unlocked: {} }, store.settings || {});
+  store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [] }, store.settings || {});
   return store.settings;
 }
+/* topic focus: which units a session draws from (empty = everything). Stored as strings ("1", "side"). */
+const FOCUS_PRESETS = { all: [], orgo2: ["0", "1", "2", "3", "4", "5"], orgo1: ["side"] };
+const inFocus = id => { const f = settings().focus; return !f.length || f.includes(String(RX[parseCard(id).rid].unit)); };
 function cardState(id) { return (store.cards = store.cards || {})[id]; }
 const reviveF = f => Object.assign({}, f, { due: new Date(f.due), last_review: f.last_review ? new Date(f.last_review) : undefined });
 const freezeF = f => Object.assign({}, f, { due: f.due.toISOString(), last_review: f.last_review ? f.last_review.toISOString() : undefined });
@@ -85,9 +88,9 @@ function cardUnlocked(id) {
 
 /* ---- queue building ---- */
 function introducedToday() { const d = today(); return Object.values(store.cards || {}).filter(c => c.intro === d).length; }
-function dueCards() {
+function dueCards(everything = false) {
   const end = endOfToday().getTime();
-  return ALL_CARDS.filter(id => { const c = cardState(id); return c && new Date(c.f.due).getTime() <= end; })
+  return ALL_CARDS.filter(id => { const c = cardState(id); return c && (everything || inFocus(id)) && new Date(c.f.due).getTime() <= end; })
     .sort((a, b) => new Date(cardState(a).f.due) - new Date(cardState(b).f.due));
 }
 function newCandidates() {
@@ -95,7 +98,7 @@ function newCandidates() {
   const out = [];
   for (const r of REACTIONS) {
     const t = typesFor(r).find(t => !cardState(cardId(r.id, t)) && cardUnlocked(cardId(r.id, t)));
-    if (t) out.push(cardId(r.id, t));
+    if (t && inFocus(cardId(r.id, t))) out.push(cardId(r.id, t));
   }
   const order = u => UNITS.indexOf(u);
   return out.sort((a, b) => order(RX[parseCard(a).rid].unit) - order(RX[parseCard(b).rid].unit));
@@ -152,5 +155,5 @@ function afterAnswer(session, id, correct) {
 
 function summary() {
   const due = dueCards().length, newLeft = newCardsForToday().length;
-  return { due, newLeft, total: ALL_CARDS.length, mastered: ALL_CARDS.filter(isMastered).length, seen: ALL_CARDS.filter(id => cardState(id)).length };
+  return { due, newLeft, dueAll: dueCards(true).length, total: ALL_CARDS.length, mastered: ALL_CARDS.filter(isMastered).length, seen: ALL_CARDS.filter(id => cardState(id)).length };
 }

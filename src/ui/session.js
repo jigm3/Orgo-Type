@@ -62,7 +62,7 @@ function renderSession(view) {
 
 function renderSessionDone(view) {
   const ft = S.firstTry, pct = ft.total ? Math.round(100 * ft.right / ft.total) : 0;
-  const cleared = dueCards().length === 0;
+  const cleared = dueCards(true).length === 0;   // the streak needs every due review cleared, not just the focused ones
   markStudyDay(cleared);
   save();
   view.innerHTML = `<section class="done">
@@ -70,7 +70,8 @@ function renderSessionDone(view) {
     <h1>${ft.total} card${ft.total === 1 ? "" : "s"} · ${pct}% right first try</h1>
     <p class="lead">${S.misses ? `You fixed ${S.misses} miss${S.misses === 1 ? "" : "es"} before finishing. Those cards come back tomorrow.` : "No misses."}
       ${S.mastered.length ? ` ${S.mastered.length} card${S.mastered.length === 1 ? "" : "s"} newly mastered (+${S.mastered.length * XP_PER_MASTERY} XP).` : ""}</p>
-    <p class="lead">${cleared ? `All due reviews cleared. Streak: <b>${streak()} day${streak() === 1 ? "" : "s"}</b>.` : "Some reviews are still due."}</p>
+    <p class="lead">${cleared ? `All due reviews cleared. Streak: <b>${streak()} day${streak() === 1 ? "" : "s"}</b>.`
+      : settings().focus.length ? `${dueCards(true).length} review${dueCards(true).length === 1 ? " is" : "s are"} still due in topics outside your focus; clear them to keep your streak.` : "Some reviews are still due."}</p>
     <div class="actions">${btn("Home", "primary home")}</div></section>`;
   view.querySelector(".home").onclick = () => { S = null; go("#/"); };
 }

@@ -19,6 +19,8 @@ acyl substitution, 1,2 vs 1,4 addition, enolates) instead of by chapter. Same fa
   they're right. A card is mastered when it's right on the first try on 3 separate days. 15 new cards per day by
   default; sessions interleave patterns and put confusable reactions next to each other.
 - **Lessons** per unit: worked example → faded step (some arrows drawn for you) → solve, with "why" questions.
+- **Topic focus:** "Practising" on the home screen picks what sessions draw from: everything, all of Orgo 2, or any
+  mix of units and the Orgo 1 review deck. Mixing still happens inside the chosen topics.
 - **Game layer:** pattern map, streak (days you clear all due reviews), XP for first-time mastery and lessons, unit
   unlocks (60% of earlier units learned, or open early by hand), first-visit tour, "report a problem" on every card.
 - **Pilot tools:** check-up quiz with parallel forms A/B, progress export, `tools/pilot_report.py` (see docs/PILOT.md).
@@ -45,10 +47,13 @@ catches structural mistakes (bad SMILES, broken atom maps, arrows to atoms that 
 is actually the answer), but **not** chemistry mistakes, so every item starts as `"verified": false`.
 To publish an item:
 
-1. Open the review sheet (or `#/card/<id>/<type>` in the preview to play any card) and check it against a trusted source.
-   Items with a `review` note have a specific doubt written on them.
-2. Fix it if needed, then set `"verified": true, "verifiedBy": "<your name>"`.
-3. `python3 tools/fmt_content.py && python3 tools/validate.py`, commit, push.
+1. Open `/review.html` on the live site (phone or laptop), type your name at the top, and go through the items unit by
+   unit. Press **Looks right** or **Needs a fix** (with a note). Choices are saved in your browser, so you can stop
+   and come back. Yellow boxes are the author's own doubts: start there. Each item links to its playable cards.
+2. Press **Copy results** and paste them to Claude, or save them as `results.json` and run
+   `python3 tools/apply_review.py results.json`. Approved items become `"verified": true` with your name; items that
+   need a fix are listed so they can be corrected (they stay unverified).
+3. Commit and push. The next deploy includes the approved items in the real app.
 
 Only verified material ships to the main app; a lesson ships once it and every reaction it uses are verified.
 

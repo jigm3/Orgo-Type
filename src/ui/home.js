@@ -21,7 +21,8 @@ function renderHome(view) {
       <div class="actions">${s.due + s.newLeft || !nextLesson ? btn(startLabel, "primary big start", s.due + s.newLeft ? "" : "disabled")
         : `<a class="btn primary big" href="#/lesson/${encodeURIComponent(nextLesson.id)}">Lesson: ${esc(nextLesson.title)}</a>`}
         ${s.due + s.newLeft && nextLesson ? `<a class="btn" href="#/lesson/${encodeURIComponent(nextLesson.id)}">Next lesson: ${esc(nextLesson.title)}</a>` : ""}</div>
-      <p class="mute small">Mixed practice from every open unit. Cards you miss come back until you get them; a card is <b>mastered</b> once you've got it right on three separate days.</p>
+      ${focusRow()}
+      <p class="mute small">Mixed practice from ${settings().focus.length ? "the topics you picked" : "every open unit"}. Cards you miss come back until you get them; a card is <b>mastered</b> once you've got it right on three separate days.</p>
     </section>
 
     <div class="eyebrow">Pattern map</div>
@@ -42,12 +43,33 @@ function renderHome(view) {
       <span>build ${BUILD_ID}</span><span id="fOff"></span>
     </footer>`;
   const st0 = view.querySelector(".start"); if (st0) st0.onclick = () => startSession();
+  view.querySelectorAll("[data-preset]").forEach(b => b.onclick = () => { settings().focus = [...FOCUS_PRESETS[b.dataset.preset]]; save(); renderHome(view); });
+  view.querySelectorAll("[data-focus]").forEach(b => b.onclick = () => {
+    const f = settings().focus, u = b.dataset.focus, i = f.indexOf(u);
+    if (i >= 0) f.splice(i, 1); else f.push(u);
+    save(); renderHome(view);
+  });
   view.querySelectorAll("[data-unlock]").forEach(b => b.onclick = () => {
     const u = isNaN(+b.dataset.unlock) ? b.dataset.unlock : +b.dataset.unlock;
     if (confirm(`Open “${UNIT_NAME[u]}” now? Its cards build on the earlier units.`)) { settings().unlocked[u] = true; save(); renderHome(view); }
   });
   renderPatterns();
   offlineStatus();
+}
+
+/* "Practising:" presets and unit chips; empty focus = everything */
+function focusRow() {
+  const f = settings().focus, same = (a, b) => a.length === b.length && a.every(x => b.includes(x));
+  const preset = (k, label) => `<button class="pill" data-preset="${k}" aria-pressed="${same(f, FOCUS_PRESETS[k])}">${label}</button>`;
+  const units = UNITS.filter(u => cardsOfUnit(u).length).map(u => {
+    const open = unitOpen(u), on = f.includes(String(u));
+    return `<button class="pill" data-focus="${u}" aria-pressed="${on}" ${open ? "" : 'title="locked"'}>${u === "side" ? "Orgo 1 review" : "Unit " + u}${open ? "" : " 🔒"}</button>`;
+  }).join("");
+  const s = summary(), hidden = s.dueAll - s.due;
+  return `<div class="focus" role="group" aria-label="Topics to practise"><span class="mute small">Practising:</span>
+    ${preset("all", "Everything")}${preset("orgo2", "All of Orgo 2")}<span class="fsep"></span>${units}</div>
+    ${f.length && hidden ? `<p class="mute small">${hidden} review${hidden === 1 ? " is" : "s are"} due outside these topics.</p>` : ""}
+    ${f.length && !s.due && !s.newLeft && f.some(u => lessonsOfUnit(isNaN(+u) ? u : +u).some(l => !lessonDone(l.id))) ? `<p class="mute small">New cards in these topics start after their lesson (see Units below).</p>` : ""}`;
 }
 
 function unitRow(u) {
