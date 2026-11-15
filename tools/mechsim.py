@@ -134,6 +134,15 @@ def frags(mol):
     return Chem.GetMolFrags(mol, asMols=True, sanitizeFrags=False)
 
 
+def canon_no_ez(mol):
+    """canon() without cis/trans on double bonds (arrow pushing can't know E/Z; that comes from 3D geometry)."""
+    m = Chem.Mol(mol)
+    for b in m.GetBonds():
+        b.SetStereo(Chem.BondStereo.STEREONONE)
+        b.SetBondDir(Chem.BondDir.NONE)
+    return canon(m)
+
+
 def canon_smiles(smi):
     m = Chem.MolFromSmiles(smi, _P)
     return canon(m) if m is not None else None
@@ -193,7 +202,8 @@ def check_step(species, arrows, next_species=None, product=None, keep_maps=()):
             if lost:
                 last = f"the arrows give {', '.join(lost)}, which the next step doesn't show"
                 continue
-        if want_prod and want_prod not in got:
+        if want_prod and want_prod not in got and \
+                canon_no_ez(Chem.MolFromSmiles(product, _P)) not in {canon_no_ez(f) for f in frags(res)}:
             last = f"the last step gives {', '.join(c for c in got)}, not the product {want_prod}"
             continue
         return True, ""

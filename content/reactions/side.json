@@ -306,6 +306,20 @@
         {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
       ]
     },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Concerted E2: the base removes a β-H anti-periplanar to the leaving group as the C=C forms and bromide leaves",
+          "species": ["[CH3:1][CH:2]([Br:3])[CH:4]([H:20])[CH3:5]", "[O-:6][CH2:7][CH3:8].[Na+:9]"],
+          "arrows": [
+            {"from": {"lonePair": 6}, "to": {"atom": 20}},
+            {"from": {"bond": [4, 20]}, "to": {"bond": [2, 4]}},
+            {"from": {"bond": [2, 3]}, "to": {"atom": 3}}
+          ],
+          "note": "One step, so the H and Br must be anti (180°) in the starting conformation; that fixes which alkene isomer forms."
+        }
+      ]
+    },
     "why": "On a 2° halide the deciding factor is the reagent: ethoxide is a strong base (unlike cyanide), and heat favours elimination, so E2 is major. The small base gives the Zaitsev alkene, and the trans (E) isomer is more stable than cis, so (E)-but-2-ene is the major product.",
     "traps": [
       {
@@ -469,6 +483,23 @@
         {"from": {"lonePair": 17}, "to": {"atom": 20}},
         {"from": {"bond": [9, 20]}, "to": {"bond": [2, 9]}},
         {"from": {"bond": [2, 1]}, "to": {"atom": 1}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Concerted E2: the base removes a β-H anti-periplanar to the leaving group as the C=C forms and bromide leaves",
+          "species": [
+            "[Br:1][C@@H:2]([c:3]1[cH:4][cH:5][cH:6][cH:7][cH:8]1)[C@:9]([H:20])([CH3:10])[c:11]1[cH:12][cH:13][cH:14][cH:15][cH:16]1",
+            "[O-:17][CH2:18][CH3:19].[Na+:21]"
+          ],
+          "arrows": [
+            {"from": {"lonePair": 17}, "to": {"atom": 20}},
+            {"from": {"bond": [9, 20]}, "to": {"bond": [2, 9]}},
+            {"from": {"bond": [2, 1]}, "to": {"atom": 1}}
+          ],
+          "note": "One step, so the H and Br must be anti (180°) in the starting conformation; that fixes which alkene isomer forms."
+        }
       ]
     },
     "why": "Ethoxide is a strong base and heat favours elimination, so E2. E2 needs the β-H and Br anti-periplanar, and C2 has only one H, so only one conformation can react: in (1R,2R)-1-bromo-1,2-diphenylpropane that conformation puts the two phenyls on the same side, giving only (Z)-1,2-diphenylpropene.",
@@ -742,7 +773,7 @@
     ],
     "confusableWith": ["side-pcc-1-butanol", "side-chromic-cyclohexanol"],
     "tags": ["oxidation", "alcohol", "carboxylic acid"],
-    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't. The chromate-ester steps are not drawn. Mechanism: each chromate-ester formation is drawn as attack at Cr, one intramolecular proton transfer, loss of water; hydrate formation is drawn as neutral water attack then proton transfers (to match the key step). Courses draw these parts differently, so check it matches your course.",
+    "review": "Key step chosen is hydrate formation (water adding to the intermediate aldehyde), the step that explains why chromic acid over-oxidizes and PCC doesn't.Mechanism: each chromate-ester formation is drawn as attack at Cr, one intramolecular proton transfer, loss of water; hydrate formation is drawn as neutral water attack then proton transfers (to match the key step). Courses draw these parts differently, so check it matches your course.",
     "verified": false,
     "verifiedBy": null
   },
