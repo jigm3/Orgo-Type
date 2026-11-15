@@ -11,8 +11,12 @@ acyl substitution, 1,2 vs 1,4 addition, enolates) instead of by chapter. Same fa
 
 ## What's in it
 
-- **Eight card types per reaction**, unlocking in order: where does it react (tap the nucleophile and electrophile),
-  arrows for the key step, product (multiple choice, every wrong option explains its mistake), reagent (typed, with
+- **Full mechanisms, step by step** (the priority): for 79 of 81 reactions, every elementary step including proton
+  transfers and workup. Draw each step's arrows, commit once, see the right arrows and the next intermediate.
+  Every step is machine-checked by an arrow-pushing simulator (`tools/mechsim.py`). "Mechanisms only" on the home
+  screen drills just these.
+- **Nine card types per reaction**, unlocking in order: where does it react (tap the nucleophile and electrophile),
+  arrows for the key step, the full mechanism, product (multiple choice, every wrong option explains its mistake), reagent (typed, with
   fuzzy matching), why (self-graded), what changed (new C–C bonds, carbons added), one step back (retrosynthesis), and
   a paper round (draw it by hand, then check).
 - **Scheduling:** FSRS (target retention 0.9), with successive relearning: misses come back in the same session until
