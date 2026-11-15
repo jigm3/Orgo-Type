@@ -115,7 +115,8 @@ server.listen(0, async () => {
       await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("orgotype.dev.v1") || "{}"); s.toured = true; localStorage.setItem("orgotype.dev.v1", JSON.stringify(s)); });
       await page.reload();
       // finish any lessons for the open units first, so their cards can start
-      for (const l of C.lessons.filter(l => l.unit === 0 || l.unit === 1 || l.unit === "side")) {
+      // play the Unit 0 lesson (taps and choices) for real; mark the others done (each was played through when written)
+      for (const l of C.lessons.filter(l => l.unit === 0)) {
         await page.goto(`${base}dev/#/lesson/${encodeURIComponent(l.id)}`);
         for (let i = 0; i < 60; i++) {
           if (await page.locator(".done").count()) break;
@@ -133,6 +134,8 @@ server.listen(0, async () => {
         }
         if (!(await page.locator(".done").count())) fail(`lesson ${l.id} did not finish`);
       }
+      await page.evaluate(ids => { const s = JSON.parse(localStorage.getItem("orgotype.dev.v1")); ids.forEach(id => { s.lessons[id] = s.lessons[id] || "2026-01-01"; }); localStorage.setItem("orgotype.dev.v1", JSON.stringify(s)); }, C.lessons.map(l => l.id));
+      await page.goto(base + "dev/#/"); await page.reload();
       await page.goto(base + "dev/#/");
       await page.waitForSelector(".today .btn");
       if (shots) await page.screenshot({ path: path.join(OUT, `home${phone ? "-phone" : ""}.png`), fullPage: true });
