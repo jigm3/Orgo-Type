@@ -207,5 +207,18 @@ test("topic focus: sessions draw only from the chosen units; the streak still co
   assert.strictEqual(E.dueCards().length, E.dueCards(true).length);
 });
 
+test("mechanisms-only mode serves mechanism cards straight away, skipping the unlock chain", () => {
+  const E = engine();
+  let t = new Date(2026, 10, 2, 9).getTime(); E.clock.now = () => new Date(t);
+  E.settings().unlocked = { 2: true, 3: true, 4: true };
+  const withMech = E.ALL_CARDS.filter(id => id.endsWith(":mechanism"));
+  if (!withMech.length) return;
+  E.settings().focusTypes = ["mechanism"];
+  const q = E.buildSession({ seed: 5 }).queue;
+  assert.ok(q.length > 0 && q.every(id => id.endsWith(":mechanism")), "only mechanism cards: " + q.slice(0, 4));
+  E.settings().focusTypes = [];
+  assert.ok(!E.cardUnlocked(withMech[0]), "normally a mechanism card waits for its arrows card");
+});
+
 process.exitCode = failures ? 1 : 0;
 console.log(failures ? `${failures} failing` : "all engine tests passed");

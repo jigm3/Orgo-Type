@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 CSS = ["ui/tokens.css", "ui/app.css"]
 JS = ["engine/store.js", "chem/rdkit.js", "engine/grade.js", "engine/deck.js", "engine/scheduler.js", "engine/game.js",
       "engine/sync.js", "ui/molview.js", "cards/common.js", "cards/where.js", "cards/arrows.js", "cards/product.js",
-      "cards/reagent.js", "cards/why.js", "cards/change.js", "cards/back.js", "cards/paper.js",
+      "cards/mechanism.js", "cards/reagent.js", "cards/why.js", "cards/change.js", "cards/back.js", "cards/paper.js",
       "ui/session.js", "ui/lesson.js", "ui/home.js", "ui/settings.js", "ui/tour.js", "ui/diag.js", "ui/app.js"]
 STATIC = ["manifest.webmanifest", "icons", "vendor/rdkit/RDKit_minimal.js", "vendor/rdkit/RDKit_minimal.wasm",
           "vendor/rdkit/LICENSE", "vendor/fsrs/ts-fsrs.umd.js", "vendor/fsrs/LICENSE", ".nojekyll"]

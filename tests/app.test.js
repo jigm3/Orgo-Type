@@ -40,6 +40,16 @@ async function playCard(page, base, r, type, right = true) {
     if (right) for (const ar of ks.arrows) { const [t, h] = arrowKeys(ar); await tap(page, t); await tap(page, h); }
     else { const [t, h] = arrowKeys(ks.arrows[0]); await tap(page, h); await tap(page, t); }   // one arrow, backwards
     await page.click(".check");
+  } else if (type === "mechanism") {
+    const steps = r.mechanism.steps;
+    for (let i = 0; i < steps.length; i++) {
+      await page.waitForSelector(".mstep .board .hit");
+      const tapStep = key => page.locator(`.mstep .board .hit[data-key="${key}"]`).first().dispatchEvent("click");
+      if (right || i > 0) for (const ar of steps[i].arrows) { const [t, h] = arrowKeys(ar); await tapStep(t); await tapStep(h); }
+      else { const [t, h] = arrowKeys(steps[i].arrows[0]); await tapStep(h); await tapStep(t); }
+      await page.click(".check");
+      if (i < steps.length - 1) await page.click(".nstep");
+    }
   } else if (type === "product") {
     const opts = page.locator(".opt");
     const n = await opts.count();
@@ -94,14 +104,14 @@ server.listen(0, async () => {
     let n = 0;
     for (const r of C.reactions.filter(r => !only || r.id === only)) {
       const skip = r.skipCards || [];
-      const types = ["where", "arrows", "product", "reagent", "why", "paper"].concat(r._newCC.length ? ["change"] : []).concat(r.retro ? ["back"] : []).filter(t => !skip.includes(t));
+      const types = ["where", "arrows"].concat(r.mechanism ? ["mechanism"] : []).concat(["product", "reagent", "why", "paper"]).concat(r._newCC.length ? ["change"] : []).concat(r.retro ? ["back"] : []).filter(t => !skip.includes(t));
       for (const t of types) {
         const res = await playCard(page, base, r, t, true).catch(e => "error: " + e.message.split("\n")[0]);
         n++;
         if (res !== "correct") fail(`${r.id} ${t}: right answer graded "${res}"`);
       }
       // and a wrong answer on the auto-graded types must grade wrong
-      for (const t of ["where", "arrows", "product", "reagent"].filter(t => !skip.includes(t))) {
+      for (const t of ["where", "arrows", "product", "reagent"].concat(r.mechanism ? ["mechanism"] : []).filter(t => !skip.includes(t))) {
         const res = await playCard(page, base, r, t, false).catch(e => "error: " + e.message.split("\n")[0]);
         n++;
         if (res !== "wrong") fail(`${r.id} ${t}: wrong answer graded "${res}"`);

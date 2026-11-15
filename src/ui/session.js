@@ -35,7 +35,7 @@ function renderSession(view) {
   const commit = res => {
     if (committed) return; committed = true;
     const ms = performance.now() - t0;
-    const rating = res.rating || ratingFor(res.correct, ms);
+    const rating = res.rating || ratingFor(res.correct, ms / (res.nSteps || 1));   // multi-step cards get time per step
     const { newlyMastered } = recordAnswer(id, rating, { ms: Math.round(ms), type, detail: res.detail });
     if (!repeat) { S.firstTry.total++; if (res.correct) S.firstTry.right++; }
     if (newlyMastered) { S.mastered.push(id); store.xp = (store.xp || 0) + XP_PER_MASTERY; }

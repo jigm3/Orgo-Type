@@ -73,6 +73,8 @@ def compile_reaction(r):
     r["_display"] = display_for(r)
     r["_eq"] = equivalence(r["_display"])
     r["_start"] = ".".join(r["reactants"])
+    if r.get("mechanism"):
+        r["mechanism"] = {"steps": [dict(st, _eq=equivalence(".".join(st["species"]))) for st in r["mechanism"]["steps"]]}
     origin = {}
     for i, s in enumerate(r["reactants"] + r["reagents"]):
         for a in mol(s).GetAtoms():

@@ -18,6 +18,9 @@ from pathlib import Path
 
 from rdkit import Chem, RDLogger
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import mechsim  # noqa: E402
+
 RDLogger.DisableLog("rdApp.*")  # we report parse failures ourselves
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,7 +33,7 @@ ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 REQUIRED = {"id": str, "unit": (int, str), "pattern": str, "title": str, "reactants": list, "reagents": list,
             "reagentDisplay": str, "reagentAliases": list, "product": str, "keyStep": dict, "why": str,
             "traps": list, "confusableWith": list, "tags": list, "verified": bool}
-OPTIONAL = {"byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str, "retro": dict, "skipCards": list}
+OPTIONAL = {"byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str, "retro": dict, "skipCards": list, "mechanism": dict}
 MIN_TRAPS, MAX_TRAPS = 2, 4
 LONE_PAIR_ELEMENTS = {"N", "O", "S", "F", "Cl", "Br", "I", "P"}
 
@@ -283,9 +286,74 @@ def check_record(r, where, rep):
                     and str(d.get("reagent", "")).strip().lower() == r["reagentDisplay"].strip().lower():
                 rep.err(where, "retro-equals-answer", f"retro.distractors[{i}] is the correct route")
 
+    # ---- full mechanism (multi-step card) ----
+    if r.get("mechanism") is not None:
+        check_mechanism(r, where, rep, in_atoms, product)
+
     # stash for cross-record checks
     r["_reaction_key"] = ".".join(sorted(canon(m) for m in reactants)) + ">" + \
         ".".join(sorted(canon(m) for m in reagents)) + ">" + pc
+
+
+def arrow_shape_errors(arrows, sp_atoms, mols, lab):
+    """Shape checks shared by keyStep-style arrow lists: atoms exist, tail bonds exist, lone pairs are real."""
+    errs = []
+    for i, ar in enumerate(arrows if isinstance(arrows, list) else []):
+        src, dst = ar.get("from", {}), ar.get("to", {})
+        ends = [("from", src, ("lonePair", "bond")), ("to", dst, ("atom", "bond"))]
+        for side, e, kinds in ends:
+            k = next((k for k in kinds if k in e), None)
+            if k is None:
+                errs.append(("bad-arrow", f"{lab} arrow {i + 1}: '{side}' needs one of {kinds}")); continue
+            ms = e[k] if isinstance(e[k], list) else [e[k]]
+            miss = [m for m in ms if m not in sp_atoms]
+            if miss:
+                errs.append(("bad-step-atom", f"{lab} arrow {i + 1}: map {miss} isn't in this step's species")); continue
+            if k == "bond" and (len(ms) != 2 or not bond_between(mols, *ms)):
+                errs.append(("no-such-bond", f"{lab} arrow {i + 1}: no bond between maps {ms}"))
+            if k == "lonePair":
+                a = sp_atoms[ms[0]]
+                if a.GetSymbol() not in LONE_PAIR_ELEMENTS and a.GetFormalCharge() >= 0:
+                    errs.append(("no-lone-pair", f"{lab} arrow {i + 1}: {a.GetSymbol()} (map {ms[0]}) has no lone pair"))
+    return errs
+
+
+def check_mechanism(r, where, rep, in_atoms, product):
+    """Every step parses, its arrows point at real atoms/bonds, and pushing them gives the next step
+    (the last step gives the product). Atoms may be added along the way (e.g. H3O+ at workup) with new maps."""
+    steps = r["mechanism"].get("steps")
+    if not isinstance(steps, list) or not steps:
+        rep.err(where, "mech-empty", "mechanism.steps needs at least one step"); return
+    known = {n: a.GetSymbol() for n, a in in_atoms.items()}
+    keep = {a.GetAtomMapNum() for a in product.GetAtoms() if a.GetAtomMapNum() and a.GetAtomicNum() != 1}
+    for i, st in enumerate(steps):
+        lab = f"mechanism step {i + 1}"
+        if not str(st.get("label", "")).strip():
+            rep.err(where, "empty-text", f"{lab}: needs a label (e.g. 'Base removes the α-H')")
+        mols = [parse(x) for x in st.get("species", [])]
+        if not mols or None in mols:
+            rep.err(where, "bad-smiles", f"{lab}: species missing or unparseable"); return
+        sp_atoms = {}
+        for m in mols:
+            for n, a in mapped_atoms(m).items():
+                if n in known and known[n] != a.GetSymbol():
+                    rep.err(where, "map-element-changed", f"{lab}: map {n} is {a.GetSymbol()} here but {known[n]} earlier")
+                known.setdefault(n, a.GetSymbol())
+                sp_atoms[n] = a
+        if not st.get("arrows"):
+            rep.err(where, "no-arrows", f"{lab}: no arrows"); return
+        errs = arrow_shape_errors(st["arrows"], sp_atoms, mols, lab)
+        for code, msg in errs:
+            rep.err(where, code, msg)
+        if errs:
+            return
+        last = i == len(steps) - 1
+        ok, msg = mechsim.check_step(st["species"], st["arrows"],
+                                     next_species=None if last else steps[i + 1].get("species", []),
+                                     product=r["product"] if last else None, keep_maps=keep)
+        if not ok:
+            rep.err(where, "mech-step-mismatch", f"{lab}: {msg}")
+            return
 
 
 def check_all(records, rep):

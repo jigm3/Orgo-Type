@@ -185,3 +185,15 @@ h2{font-size:17px;margin:24px 0 8px}
 .focus .pill{font-size:12px;padding:7px 12px;min-height:34px}
 .focus .pill[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
 .fsep{width:1px;height:20px;background:var(--line2);margin:0 4px}
+
+/* full mechanism card */
+.msteps{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.mdone{border:1px solid var(--line2);border-radius:12px;padding:6px 10px;background:var(--bg2)}
+.mdone.good{border-color:color-mix(in srgb,var(--ok) 55%,var(--line2))}
+.mdone.bad{border-color:color-mix(in srgb,var(--bad) 55%,var(--line2))}
+.mdone .mbig{margin:0 auto;max-width:360px}
+.mdone .mbig svg{max-height:30vh}
+.mhead{font-size:14px;margin:4px 0}
+.mstep{margin-top:10px;border-top:1px dashed var(--line2);padding-top:6px}
+.mnext{border:1px dashed var(--line2);border-radius:12px;padding:4px 10px 6px;margin-top:6px;opacity:.85}
+.mnext .mol svg{max-height:20vh}

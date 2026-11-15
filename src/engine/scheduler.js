@@ -18,12 +18,16 @@ const scheduler = FSRS.fsrs(FSRS.generatorParameters({ request_retention: 0.9, e
 const RATING = { again: FSRS.Rating.Again, hard: FSRS.Rating.Hard, good: FSRS.Rating.Good, easy: FSRS.Rating.Easy };
 
 function settings() {
-  store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [] }, store.settings || {});
+  store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [], focusTypes: [] }, store.settings || {});
   return store.settings;
 }
 /* topic focus: which units a session draws from (empty = everything). Stored as strings ("1", "side"). */
 const FOCUS_PRESETS = { all: [], orgo2: ["0", "1", "2", "3", "4", "5"], orgo1: ["side"] };
-const inFocus = id => { const f = settings().focus; return !f.length || f.includes(String(RX[parseCard(id).rid].unit)); };
+/* card-type focus: e.g. ["mechanism"] for mechanism-only practice (empty = every card type) */
+const inFocus = id => {
+  const f = settings().focus, ft = settings().focusTypes, { rid, type } = parseCard(id);
+  return (!f.length || f.includes(String(RX[rid].unit))) && (!ft.length || ft.includes(type));
+};
 function cardState(id) { return (store.cards = store.cards || {})[id]; }
 const reviveF = f => Object.assign({}, f, { due: new Date(f.due), last_review: f.last_review ? new Date(f.last_review) : undefined });
 const freezeF = f => Object.assign({}, f, { due: f.due.toISOString(), last_review: f.last_review ? f.last_review.toISOString() : undefined });
@@ -81,7 +85,7 @@ function cardUnlocked(id) {
   const { rid, type } = parseCard(id), r = RX[rid];
   if (!r || !unitReady(r.unit)) return false;
   const p = prereqOf(r, type);
-  if (!p) return true;
+  if (!p || (settings().focusTypes || []).includes(type)) return true;   // focused practice skips the unlock chain
   const ps = cardState(cardId(rid, p));
   return !!(ps && ps.right > 0);
 }
@@ -97,8 +101,8 @@ function newCandidates() {
   // one candidate per record (its earliest unlocked, unseen card type), in unit order
   const out = [];
   for (const r of REACTIONS) {
-    const t = typesFor(r).find(t => !cardState(cardId(r.id, t)) && cardUnlocked(cardId(r.id, t)));
-    if (t && inFocus(cardId(r.id, t))) out.push(cardId(r.id, t));
+    const t = typesFor(r).find(t => inFocus(cardId(r.id, t)) && !cardState(cardId(r.id, t)) && cardUnlocked(cardId(r.id, t)));
+    if (t) out.push(cardId(r.id, t));
   }
   const order = u => UNITS.indexOf(u);
   return out.sort((a, b) => order(RX[parseCard(a).rid].unit) - order(RX[parseCard(b).rid].unit));

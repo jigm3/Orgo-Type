@@ -35,6 +35,35 @@ that is the human review (`verified` / `verifiedBy`), done on `dist/review.html`
 | `verified` | bool | Must be `true` for the card to ship in a normal build. |
 | `verifiedBy` | string / null | Who checked it. **(checked: required when verified)** |
 
+## mechanism (optional, but wanted for every reaction with a well-defined textbook mechanism)
+
+The full step-by-step mechanism for the multi-step **Mechanism** card. Each step is drawn for the student,
+who adds all of that step's arrows; then the next intermediate is shown.
+
+```json
+"mechanism": { "steps": [
+  { "label": "Ethoxide removes the acidic α-H, giving an enolate",
+    "species": ["[CH3:1]...[CH:6]([H:30])[C:7](=[O:8])...", "[CH3:31][CH2:32][O-:33]"],
+    "arrows": [ {"from": {"lonePair": 33}, "to": {"atom": 30}}, {"from": {"bond": [6, 30]}, "to": {"bond": [6, 7]}},
+                {"from": {"bond": [7, 8]}, "to": {"atom": 8}} ],
+    "note": "optional one-liner shown after the step" },
+  { "label": "...", "species": [...], "arrows": [...] }
+] }
+```
+
+- One step = one elementary step (a set of arrows that happen together). Typical: deprotonation, attack,
+  collapse of the tetrahedral intermediate, proton transfer, workup protonation.
+- Map numbers carry through the steps. Atoms from a reagent added later (H3O+ at workup) get new map numbers.
+- Any hydrogen that moves must be an explicit mapped atom (`[H:30]`), both where it starts and in the species
+  that donates it (`[H:40][OH2+:41]` for hydronium).
+- Labels say what happens in the step, not the answer to the arrows ("Workup: protonation of the alkoxide").
+- **(checked by the arrow-pushing simulator, tools/mechsim.py)**: every arrow points at real atoms and bonds;
+  pushing a step's arrows (electron bookkeeping → bond orders and formal charges) must produce every molecule shown
+  in the next step that contains atoms from this step, must not lose any fragment holding product atoms, and the
+  last step must produce the record's `product` exactly (heavy atoms, maps, charges, H counts).
+  Side products (CH3Cu, MgBr⁺, the alcohol that leaves) may simply drop out.
+- Arrow convention for a bond tail pointing at a new atom: the simulator tries both ends of the bond, so either works.
+
 ## Atom maps
 
 **(checked)**
