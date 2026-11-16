@@ -1,0 +1,121 @@
+[
+  {
+    "id": "lesson-o1-1",
+    "unit": "o1-1",
+    "title": "Acids, bases and the two arrows",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "pKa values follow Klein's table (acetic acid 4.8, H2CO3 6.4, phenol 10, thiol 10.6, water 15.7, ethanol 16, alkyne 25, H2 35, NH3 38, alkane about 50). Step 8 names resonance as the main reason acetic acid beats ethanol, with induction as a smaller help.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "An **acid** gives up H⁺; a **base** uses a lone pair to take it. Every proton transfer is two curved arrows: (1) from the base's lone pair to the H, and (2) from the H–A bond onto A. The arrows always start at electrons, never at the proton.",
+        "smiles": "[CH3:1][C:2](=[O:3])[OH:4]"
+      },
+      {
+        "kind": "worked",
+        "reaction": "o1-acid-acetic-naoh",
+        "text": "Hydroxide's lone pair grabs the O–H proton, and the O–H bond's electrons stay behind on oxygen as acetate."
+      },
+      {
+        "kind": "read",
+        "text": "**Lower pKa = stronger acid.** Compare the acid on each side: the equilibrium favours the **weaker acid** (higher pKa). Stronger acid + stronger base → weaker acid + weaker base; each pKa unit is a factor of 10. Anchors: HCl −7, RCOOH 5, H2CO3 6.4, phenol 10, H2O 15.7, ROH 16, RC≡CH 25, NH3 38, alkane 50."
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-acid-propyne-nanh2",
+        "card": "arrows",
+        "given": 1,
+        "text": "The first arrow (amide lone pair to the H) is drawn. Add the arrow that leaves the electrons on carbon."
+      },
+      {
+        "kind": "choice",
+        "text": "Ethanol is mixed with NaHCO3. Which way does the equilibrium lie?",
+        "options": [
+          {
+            "text": "Left: ethanol stays ethanol, because carbonic acid (pKa 6.4) is a much stronger acid than ethanol (pKa 16).",
+            "correct": true,
+            "explains": "Right. The equilibrium favours the weaker acid, and here that is ethanol on the left. Bicarbonate is far too weak a base."
+          },
+          {
+            "text": "Right: bicarbonate is a base, so it deprotonates any O–H.",
+            "explains": "Being a base isn't enough; it has to be a stronger base than the one it would form. Ethoxide (from pKa 16) is much stronger than bicarbonate (from pKa 6.4)."
+          },
+          {
+            "text": "Right, because CO2 bubbles off and pulls the reaction over.",
+            "explains": "CO2 only forms if carbonic acid forms, and with ethanol almost none does. The fizz is a sign of a carboxylic acid, not an alcohol."
+          },
+          {
+            "text": "Right: bicarbonate removes a C–H proton from ethanol.",
+            "explains": "C–H bonds in ethanol (pKa about 50) are even less acidic than the O–H. Bicarbonate can't touch them."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "o1-acid-methylamine-hcl", "card": "product"},
+      {
+        "kind": "read",
+        "text": "Why do acids differ? Look at the **conjugate base**: the more stable its negative charge, the stronger the acid. Check, in order: the **atom** carrying the charge (bigger down a group, more electronegative across a row), **resonance** spreading it, **induction** from nearby electronegative atoms, and the **orbital** (sp > sp2 > sp3)."
+      },
+      {
+        "kind": "choice",
+        "text": "Acetic acid (pKa 4.8) is about 10^11 times more acidic than ethanol (pKa 16). What is the main reason?",
+        "smiles": "CC(=O)O",
+        "options": [
+          {
+            "text": "In acetate the negative charge is shared by two oxygens through resonance; in ethoxide it sits on one oxygen.",
+            "correct": true,
+            "explains": "Right. Resonance stabilization of the conjugate base is the big effect. The electron-withdrawing C=O adds a smaller inductive push."
+          },
+          {
+            "text": "The charge in acetate is on a different, more electronegative atom.",
+            "explains": "The charge is on oxygen in both acetate and ethoxide, so the atom isn't the difference."
+          },
+          {
+            "text": "Acetic acid has more O–H bonds to give up.",
+            "explains": "Each molecule has one O–H. Acidity is about how stable the anion is, not how many H atoms there are."
+          },
+          {
+            "text": "The carbanion of acetic acid is stabilized by the C=O.",
+            "explains": "The proton that leaves is on oxygen, not carbon. Acetic acid's C–H bonds (pKa about 25) are not what makes it acidic."
+          }
+        ]
+      },
+      {
+        "kind": "tap",
+        "text": "Tap the atom that loses its proton first when one equivalent of NaNH2 is added.",
+        "smiles": "[CH:1]#[C:2][CH2:3][OH:4]",
+        "answer": [4],
+        "explain": "The O–H (pKa about 16) is far more acidic than the alkyne C–H (pKa 25), so the base takes the O–H proton first. Charge on electronegative oxygen beats the sp-carbon effect."
+      },
+      {
+        "kind": "choice",
+        "text": "You shake an unknown with aqueous NaHCO3 and it fizzes. Which compound could it be?",
+        "options": [
+          {
+            "text": "Benzoic acid (pKa 4.2)",
+            "correct": true,
+            "explains": "Right. A carboxylic acid is stronger than carbonic acid (pKa 6.4), so bicarbonate deprotonates it and the carbonic acid formed falls apart into CO2."
+          },
+          {
+            "text": "Phenol (pKa 10)",
+            "explains": "Phenol dissolves in NaOH but not NaHCO3: it is a weaker acid than carbonic acid (pKa 6.4), so the equilibrium lies left and no CO2 forms."
+          },
+          {
+            "text": "Cyclohexanol (pKa 16)",
+            "explains": "Alcohols are much weaker acids than carbonic acid; bicarbonate doesn't deprotonate them."
+          },
+          {
+            "text": "Benzaldehyde",
+            "explains": "Benzaldehyde has no acidic O–H at all, so there is nothing for bicarbonate to remove."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-acid-ethanol-h2so4",
+        "card": "arrows",
+        "text": "Now the alcohol is the base. Draw both arrows."
+      }
+    ]
+  }
+]

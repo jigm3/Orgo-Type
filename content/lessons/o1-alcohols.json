@@ -1,0 +1,145 @@
+[
+  {
+    "id": "lesson-o1-6",
+    "unit": "o1-6",
+    "title": "Alcohols, ethers and epoxides",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Step 11 says acid-catalysed opening attacks the more substituted carbon because it carries more δ+ (SN1-like), while still being backside (anti) attack; this matches Klein/Wade.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Alcohols react three ways. **Oxidize** the carbinol C–H (chromium reagents). **Activate** the OH, which is a poor leaving group, then substitute. **Deprotonate** the OH and use the alkoxide as a nucleophile (Williamson ether synthesis). Epoxides are strained ethers whose ring opens with a nucleophile.",
+        "smiles": "[CH3:1][CH2:2][CH:3]([OH:4])[CH3:5]"
+      },
+      {
+        "kind": "worked",
+        "reaction": "side-chromic-cyclohexanol",
+        "text": "The alcohol becomes a chromate ester, then the C–H on the carbinol carbon is removed as Cr takes the electrons. A 2° alcohol stops at the ketone."
+      },
+      {
+        "kind": "choice",
+        "text": "Butan-1-ol is treated with **PCC in CH2Cl2** in one flask and with **H2CrO4 in water** in another. Why do they give different products?",
+        "options": [
+          {
+            "text": "Without water, PCC stops at butanal; in water the aldehyde forms a hydrate, which chromic acid oxidizes again to butanoic acid.",
+            "correct": true,
+            "explains": "Right. The hydrate is itself an alcohol (it has a C–H and an OH), so it can be oxidized a second time."
+          },
+          {
+            "text": "PCC is a weaker oxidant, so it oxidizes only 1° alcohols, and chromic acid only 2° alcohols.",
+            "explains": "Both oxidize 1° and 2° alcohols. The difference with a 1° alcohol is water: PCC stops at the aldehyde, chromic acid continues to the acid."
+          },
+          {
+            "text": "Chromic acid removes a second C–H directly from the aldehyde C=O.",
+            "explains": "The aldehyde isn't oxidized directly. It must first add water to form a hydrate, which then forms a chromate ester like any alcohol."
+          },
+          {
+            "text": "PCC gives the ketone butan-2-one because it moves the carbonyl.",
+            "explains": "Oxidation happens at the carbon that holds the OH; no atoms move. A 1° alcohol gives an aldehyde."
+          }
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "To substitute an OH, first make it a **good leaving group**. **TsCl, pyridine** reacts at O and S only, so the C–O bond is untouched: the tosylate keeps the configuration (**retention**). **PBr3** and **SOCl2** activate the O, then halide attacks carbon from the back (SN2): **inversion**, and no carbocation, so no rearrangement."
+      },
+      {
+        "kind": "card",
+        "reaction": "side-pbr3-2-butanol",
+        "card": "arrows",
+        "given": 1,
+        "text": "The O–PBr2 group is already in place. Bromide attacks; add the arrow for the leaving group."
+      },
+      {"kind": "card", "reaction": "side-tosylate-2-butanol", "card": "product"},
+      {
+        "kind": "choice",
+        "text": "(R)-Butan-2-ol is turned into the tosylate (TsCl, pyridine) and separately into 2-bromobutane (PBr3). Why does one keep the configuration and the other invert it?",
+        "options": [
+          {
+            "text": "Tosylation forms an O–S bond and never breaks C–O; with PBr3, bromide breaks the C–O bond by backside SN2 attack.",
+            "correct": true,
+            "explains": "Right. Stereochemistry changes only where a bond to the stereocentre is broken and formed."
+          },
+          {
+            "text": "Pyridine flips the stereocentre back after an inversion.",
+            "explains": "Pyridine only mops up HCl. Nothing happens at the stereocentre carbon during tosylation."
+          },
+          {
+            "text": "PBr3 goes through a carbocation, which inverts the carbon.",
+            "explains": "A carbocation would give a racemic mixture, not clean inversion. PBr3 works by SN2, which inverts."
+          },
+          {
+            "text": "The tosylate is bigger, so it can't invert.",
+            "explains": "Size isn't the reason. The C–O bond is simply never broken during tosylation, so the configuration can't change."
+          }
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "**Williamson**: alkoxide + alkyl halide by SN2, so put the **methyl or 1° group on the halide** and the bulky group on the alkoxide; a 2° or 3° halide with an alkoxide gives E2. **Epoxides**: a strong nucleophile (base) attacks the **less substituted** carbon (SN2); under acid the nucleophile attacks the **more substituted** carbon.",
+        "smiles": "[CH3:1][C:2]1([CH3:3])[CH2:4][O:5]1",
+        "lit": {"2": "el", "4": "el"}
+      },
+      {
+        "kind": "choice",
+        "text": "You want **cyclohexyl methyl ether** (C6H11–O–CH3) by a Williamson synthesis. Which pairing works best?",
+        "options": [
+          {
+            "text": "Sodium cyclohexoxide + CH3I",
+            "correct": true,
+            "explains": "Right. SN2 on CH3I, which is unhindered and has no β-H, so it can't eliminate."
+          },
+          {
+            "text": "CH3O⁻ Na⁺ + bromocyclohexane",
+            "explains": "A 2° halide with a strong base mostly gives E2: cyclohexene. Put the CH3 on the halide instead."
+          },
+          {
+            "text": "Cyclohexanol + CH3OH with no catalyst",
+            "explains": "Neither OH is a leaving group and neither alcohol is a strong nucleophile, so nothing happens."
+          },
+          {
+            "text": "Cyclohexanol + CH3I, no base",
+            "explains": "A neutral alcohol is a weak nucleophile; the Williamson synthesis needs the alkoxide (made with NaH first)."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "side-epoxide-base-methoxide",
+        "card": "arrows",
+        "text": "Base conditions: methoxide opens the ring. Draw both arrows."
+      },
+      {
+        "kind": "choice",
+        "text": "Under acid, methanol opens 2,2-dimethyloxirane at the **more substituted** carbon. Why?",
+        "smiles": "CC1(C)CO1",
+        "options": [
+          {
+            "text": "After the O is protonated, the bond to the 3° carbon is weakest and that carbon carries more δ+, so the weak nucleophile attacks there.",
+            "correct": true,
+            "explains": "Right. The transition state is SN1-like: positive charge builds up on the carbon that best stabilizes it, though attack is still from the back."
+          },
+          {
+            "text": "The 3° carbon is less hindered.",
+            "explains": "It is more hindered. Steric hindrance is what sends a strong nucleophile to the CH2 under basic conditions."
+          },
+          {
+            "text": "A full carbocation forms first and rearranges.",
+            "explains": "The ring opens as the nucleophile attacks; there is no free carbocation and no rearrangement, which is why attack is anti."
+          },
+          {
+            "text": "Methanol is a strong nucleophile, so it does SN2 at the more substituted carbon.",
+            "explains": "Methanol is a weak nucleophile, and SN2 favours the less substituted carbon. Acid changes the rule, not the nucleophile."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "side-epoxide-acid-methanol",
+        "card": "product",
+        "text": "Same epoxide, now with acid. Where does the methoxy group go?"
+      }
+    ]
+  }
+]
