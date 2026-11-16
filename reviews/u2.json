@@ -1,0 +1,112 @@
+[
+ {
+  "id": "u2-grignard-ester",
+  "verdict": "pass",
+  "notes": "Product, traps, 4-step mechanism correct; first addition is a fine key step. Review note resolved and removed."
+ },
+ {
+  "id": "u2-acid-socl2-acid-chloride",
+  "verdict": "pass",
+  "notes": "Acyl chlorosulfite mechanism, traps and byproducts correct; extra Cl- as base and fragmentation step are acceptable textbook drawings. Review note removed."
+ },
+ {
+  "id": "u2-acid-chloride-water",
+  "verdict": "pass",
+  "notes": "Product, traps, mechanism correct."
+ },
+ {
+  "id": "u2-acid-chloride-alcohol-ester",
+  "verdict": "pass",
+  "notes": "Product, traps, aliases (alcohol with or without pyridine works) and mechanism correct."
+ },
+ {
+  "id": "u2-acid-chloride-amine-amide",
+  "verdict": "pass",
+  "notes": "2 equiv amine, product, imide/salt/amine traps and mechanism correct."
+ },
+ {
+  "id": "u2-acid-chloride-carboxylate-anhydride",
+  "verdict": "pass",
+  "notes": "Product, traps and mechanism correct."
+ },
+ {
+  "id": "u2-fischer-esterification",
+  "verdict": "pass",
+  "notes": "Six-step PADPED mechanism with CH3OH2+ as acid, traps and why correct."
+ },
+ {
+  "id": "u2-ester-acid-hydrolysis",
+  "verdict": "pass",
+  "notes": "Reverse Fischer mechanism, traps correct; treating acetic acid as product is fine. Review note removed."
+ },
+ {
+  "id": "u2-saponification",
+  "verdict": "pass",
+  "notes": "Mechanism (methoxide deprotonates acid), workup to benzoic acid and traps correct. Review note removed."
+ },
+ {
+  "id": "u2-amide-hydrolysis",
+  "verdict": "pass",
+  "notes": "Mechanism (O-protonation, N-protonation before loss of NH3), traps and why correct."
+ },
+ {
+  "id": "u2-nitrile-hydrolysis",
+  "verdict": "pass",
+  "notes": "Nitrile -> imidic acid -> amide -> acid mechanism and traps correct; pattern A is reasonable. Review note removed."
+ },
+ {
+  "id": "u2-nitrile-grignard-ketone",
+  "verdict": "pass",
+  "notes": "Imine anion stops second addition; imine hydrolysis mechanism, traps and both retro distractors (ester, aldehyde) correctly fail. Review note removed."
+ },
+ {
+  "id": "u2-nitrile-lialh4-amine",
+  "verdict": "pass",
+  "notes": "Product and traps correct; dianion + two water protonations matches Klein's drawing. Review note removed."
+ },
+ {
+  "id": "u2-ester-lialh4-alcohol",
+  "verdict": "pass",
+  "notes": "Product, traps, mechanism correct."
+ },
+ {
+  "id": "u2-ester-dibal-aldehyde",
+  "verdict": "fixed",
+  "notes": "Old mechanism transferred hydride from neutral iBu2AlH leaving a free iBu2Al+ cation. Rewrote as: O->Al coordination, intramolecular hydride transfer (new key-step species), water cleaves O-Al at workup, hemiacetal alkoxide collapses. Review note removed."
+ },
+ {
+  "id": "u2-acid-chloride-lialhotbu3-aldehyde",
+  "verdict": "pass",
+  "notes": "Product, conditions, traps and mechanism correct. Review note removed (-78 C is standard)."
+ },
+ {
+  "id": "u2-amide-lialh4-amine",
+  "verdict": "pass",
+  "notes": "Iminium pathway, 2 deg amine product and traps correct; omitting N-H deprotonation is the standard textbook simplification. Review note removed."
+ },
+ {
+  "id": "u2-acid-lialh4-alcohol",
+  "verdict": "pass",
+  "notes": "Product, traps, why correct. Mechanism draws free carboxylate/gem-dianion instead of aluminates; kept a short course-dependent review note."
+ },
+ {
+  "id": "u2-grignard-co2-acid",
+  "verdict": "pass",
+  "notes": "Product, traps and retro distractors (ArBr no SN2 with CN-, ester + LiAlH4) correct. Review note was stale (workup is a plain O9 protonation) and removed."
+ },
+ {
+  "id": "u2-acid-grignard-trap",
+  "verdict": "pass",
+  "notes": "Chemistry correct (acid-base only, workup returns the acid; traps right). Left the review note: it is an app-design question (product identical to reactant), not chemistry."
+ },
+ {
+  "id": "u2-ester-aminolysis",
+  "verdict": "fixed",
+  "notes": "Replaced trap 'CN' (N-methylation of NH3 by methyl ester is a real minor side reaction) with the tetrahedral intermediate CC(N)(O)OC. Rest correct. Review note removed."
+ },
+ {
+  "id": "u2-anhydride-alcohol-ester",
+  "verdict": "pass",
+  "notes": "Product, traps, mechanism correct. Review note removed (pyridine is a standard condition)."
+ }
+]
