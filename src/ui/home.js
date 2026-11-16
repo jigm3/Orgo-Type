@@ -1,10 +1,12 @@
 /* ---------- home: today's session, the pattern map, units and lessons ---------- */
+const aiReviewed = () => [...REACTIONS, ...CONTENT.lessons].some(x => String(x.verifiedBy || "").startsWith("AI review"));
 function renderHome(view) {
   const s = summary(), st = streak();
   const empty = !REACTIONS.length;
   const banner = CONTENT.dev
     ? `<div class="banner warn"><b>Preview build.</b> These cards haven't been checked by a reviewer yet, so some may contain mistakes. Use “Report a problem” on any card that looks wrong.</div>`
-    : empty ? `<div class="banner">No checked cards yet. While the content is being reviewed, you can try the <a href="dev/">preview build</a>.</div>` : "";
+    : empty ? `<div class="banner">No checked cards yet. While the content is being reviewed, you can try the <a href="dev/">preview build</a>.</div>`
+    : aiReviewed() ? `<div class="banner">These cards were checked by an independent AI review, not by a chemistry instructor. If anything looks wrong, tap “Report a problem” on the card. <a href="#/settings">More</a></div>` : "";
   const startLabel = s.due + s.newLeft ? `Start · ${s.due} review${s.due === 1 ? "" : "s"}${s.newLeft ? ` + ${s.newLeft} new` : ""}` : "All caught up";
   // the next lesson to do in an open unit (new cards in that unit wait for it)
   const nextLesson = UNITS.filter(unitOpen).flatMap(lessonsOfUnit).find(l => !lessonDone(l.id));

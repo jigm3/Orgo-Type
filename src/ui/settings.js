@@ -16,6 +16,11 @@ function renderSettings(view) {
     <p class="mute">Progress is saved in this browser${CONTENT.dev ? " (the preview build keeps its own separate progress)" : ""}. Export it to send to whoever is running the pilot, or as a backup.</p>
     <div class="actions">${btn("Export progress (.json)", "export")}${btn("Replay the tour", "tourb")}${btn("Reset all progress", "danger reset")}</div>
     ${(store.reports || []).length ? `<h2>Problems you reported</h2><ul class="reports">${store.reports.map(r => `<li><code>${esc(r.card)}</code> ${esc(r.text)}</li>`).join("")}</ul>` : ""}
+    <h2>About the content</h2>
+    <p class="mute">Every reaction, mechanism, lesson and quiz item was written for this app and then checked by an independent
+      AI reviewer (a separate model run that didn't write it, checking against standard textbook chemistry). Items it wasn't
+      confident about are left out of the main app. This is not the same as review by a chemistry instructor, so treat your
+      lecture notes as the final word and use “Report a problem” on anything that disagrees with them.</p>
     <h2>About</h2>
     <p class="mute">Orgo Type drills organic chemistry by mechanism pattern with spaced, mixed retrieval practice. Molecules are drawn with RDKit (BSD licence); scheduling uses FSRS (ts-fsrs, MIT). Build ${BUILD_ID}.</p>
   </section>`;
