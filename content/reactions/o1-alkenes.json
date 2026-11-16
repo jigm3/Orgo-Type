@@ -60,8 +60,8 @@
       ]
     },
     "tags": ["Markovnikov", "carbocation", "HX addition"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-hcl-hydride-shift",
@@ -104,7 +104,7 @@
     "traps": [
       {
         "smiles": "CC(Cl)C(C)C",
-        "explains": "That's the unrearranged product. The 2° carbocation lives long enough for a 1,2-hydride shift to the more stable 3° cation, and chloride adds there."
+        "explains": "That's the unrearranged product. The 2° carbocation lives long enough for a 1,2-hydride shift to the more stable 3° cation, and chloride adds there, so the 3° chloride is the expected major product."
       },
       {
         "smiles": "CC(C)CCCl",
@@ -118,7 +118,8 @@
     "confusableWith": ["o1-alkene-hbr-markovnikov", "o1-alkene-acid-hydration", "o1-alkene-oxymercuration"],
     "tags": ["Markovnikov", "carbocation", "rearrangement", "hydride shift", "HX addition"],
     "verified": false,
-    "verifiedBy": null
+    "verifiedBy": null,
+    "review": "Course-dependent: McMurry reports that HCl + 3-methyl-1-butene gives roughly equal amounts of 2-chloro-3-methylbutane (unrearranged) and 2-chloro-2-methylbutane, while Klein/Wade present the rearranged 3° chloride as the product. If the course follows McMurry, the unrearranged trap is a real co-product; consider confirming the convention or switching the trap/example."
   },
   {
     "id": "o1-alkene-acid-hydration",
@@ -194,8 +195,8 @@
       ]
     },
     "tags": ["Markovnikov", "carbocation", "rearrangement", "methyl shift", "hydration", "alcohol"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-oxymercuration",
@@ -251,9 +252,8 @@
       ]
     },
     "tags": ["Markovnikov", "no rearrangement", "mercurinium", "hydration", "alcohol"],
-    "review": "No mechanism card: the NaBH4 demercuration step is a radical process that the arrow simulator can't draw, and a mechanism has to end at the product. The key step shown is water opening the mercurinium ion at the more substituted carbon; the mercurinium is drawn as a three-membered ring with Hg⁺ bonded to one acetate. Please check that depiction.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-hydroboration-terminal",
@@ -350,8 +350,8 @@
       ]
     },
     "tags": ["anti-Markovnikov", "syn addition", "hydroboration", "no rearrangement", "alcohol"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-hydroboration-syn",
@@ -438,8 +438,8 @@
     ],
     "confusableWith": ["o1-alkene-hydroboration-terminal", "o1-alkene-halohydrin", "o1-alkene-oso4-syn-diol"],
     "tags": ["anti-Markovnikov", "syn addition", "hydroboration", "stereochemistry", "alcohol"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-br2-anti",
@@ -497,8 +497,8 @@
     ],
     "confusableWith": ["o1-alkene-halohydrin", "o1-alkene-oso4-syn-diol", "o1-alkene-hbr-markovnikov"],
     "tags": ["anti addition", "bromonium", "stereochemistry", "halogenation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-halohydrin",
@@ -557,8 +557,8 @@
     ],
     "confusableWith": ["o1-alkene-br2-anti", "o1-alkene-oxymercuration", "o1-alkene-hydroboration-syn"],
     "tags": ["anti addition", "bromonium", "halohydrin", "regiochemistry", "stereochemistry"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-mcpba-epoxidation",
@@ -618,8 +618,8 @@
     ],
     "confusableWith": ["o1-alkene-anti-dihydroxylation", "o1-alkene-oso4-syn-diol", "o1-alkene-ozonolysis"],
     "tags": ["epoxide", "syn addition", "stereospecific", "stereochemistry", "oxidation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-oso4-syn-diol",
@@ -661,7 +661,7 @@
       },
       {
         "smiles": "O=CCCCCC=O",
-        "explains": "Breaking the C=C completely needs ozonolysis or hot, acidic KMnO4. OsO4 (or cold, dilute KMnO4) keeps the C–C bond and adds two OH groups."
+        "explains": "Breaking the C=C completely is ozonolysis (O3 then DMS gives this dialdehyde; hot KMnO4 would go on to the diacid). OsO4 (or cold, dilute KMnO4) keeps the C–C bond and adds two OH groups."
       }
     ],
     "confusableWith": ["o1-alkene-anti-dihydroxylation", "o1-alkene-mcpba-epoxidation", "o1-alkene-br2-anti"],
@@ -680,9 +680,8 @@
       ]
     },
     "tags": ["syn addition", "diol", "dihydroxylation", "stereochemistry", "oxidation"],
-    "review": "No mechanism card: hydrolysis of the cyclic osmate ester (NaHSO3, H2O) isn't a clean textbook arrow sequence. The key step is the concerted [3+2] addition drawn as four arrows (π bond → O, other O's lone pair → C, both Os=O π bonds back onto Os/O, giving an Os(VI) osmate ester). Please check this depiction; the cold KMnO4 aliases are listed as accepted alternatives.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-anti-dihydroxylation",
@@ -773,8 +772,8 @@
       ]
     },
     "tags": ["anti addition", "diol", "epoxide", "dihydroxylation", "stereochemistry"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-ozonolysis",
@@ -835,8 +834,8 @@
       ]
     },
     "tags": ["oxidative cleavage", "ozonolysis", "carbonyl", "oxidation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-hydrogenation",
@@ -845,7 +844,7 @@
     "title": "Catalytic hydrogenation: syn addition of H2",
     "reactants": ["[CH3:7][C:1]1=[C:2]([CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6]1"],
     "reagents": ["[H:20][H:21]"],
-    "reagentDisplay": "H2, Pd/C",
+    "reagentDisplay": "H2, Pt",
     "reagentAliases": ["H2, Pd/C", "H2, Pd", "H2, Pt", "H2, PtO2", "H2, Ni", "Pd/C, H2", "catalytic hydrogenation"],
     "product": "[CH3:7][C@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@H:2]1[CH3:8]",
     "keyStep": {
@@ -871,8 +870,8 @@
     ],
     "confusableWith": ["o1-alkene-hydroboration-syn", "o1-alkene-oso4-syn-diol"],
     "tags": ["syn addition", "reduction", "hydrogenation", "stereochemistry"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkene-hbr-peroxides",
@@ -898,7 +897,7 @@
     ],
     "confusableWith": ["o1-alkene-hbr-markovnikov", "o1-alkene-hydroboration-terminal"],
     "tags": ["anti-Markovnikov", "radical", "HX addition"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

@@ -3,9 +3,8 @@
     "id": "lesson-o1-3",
     "unit": "o1-3",
     "title": "Alkenes: the π bond is the nucleophile",
-    "verified": false,
-    "verifiedBy": null,
-    "review": "Step 10 compares three ways to hydrate 3,3-dimethyl-1-butene: H2SO4/H2O gives 2,3-dimethylbutan-2-ol (methyl shift), oxymercuration gives 3,3-dimethylbutan-2-ol, hydroboration gives 3,3-dimethylbutan-1-ol. Please confirm the wording of step 5 (mercurinium described as bridged like bromonium).",
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",
