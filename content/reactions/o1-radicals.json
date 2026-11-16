@@ -1,0 +1,148 @@
+[
+  {
+    "id": "o1-radical-br2-2-methylbutane",
+    "unit": "o1-5",
+    "pattern": "R",
+    "title": "Radical bromination: Br2 picks the 3° C–H",
+    "reactants": ["[CH3:1][CH:2]([CH3:3])[CH2:4][CH3:5]"],
+    "reagents": ["[Br:6][Br:7]"],
+    "reagentDisplay": "Br2, hν",
+    "reagentAliases": ["Br2, hv", "Br2, light", "Br2, hν", "Br2, heat", "Br2, Δ", "Br2, uv light"],
+    "product": "[CH3:1][C:2]([CH3:3])([Br:6])[CH2:4][CH3:5]",
+    "why": "Light splits Br2 into Br atoms, and Br• removes the H that gives the most stable radical, 3° > 2° > 1°. H abstraction by Br• is uphill, so its transition state looks like the radical and the 3° site wins almost exclusively: 2-bromo-2-methylbutane.",
+    "traps": [
+      {
+        "smiles": "CC(C)C(C)Br",
+        "explains": "That's bromination at the 2° CH2. A 2° radical is less stable than the 3° one, and Br• is very selective, so the 3° product dominates."
+      },
+      {
+        "smiles": "BrCC(C)CC",
+        "explains": "There are more 1° hydrogens, but counting H atoms only matters for the unselective Cl•. Br• goes for the weakest C–H, the 3° one."
+      },
+      {
+        "smiles": "CC(C)CCBr",
+        "explains": "A 1° radical is the least stable. Radical halogenation doesn't favour the end of the chain; with Br2 it favours the most substituted carbon."
+      }
+    ],
+    "confusableWith": ["o1-radical-cl2-cyclohexane", "o1-radical-br2-methylcyclohexane"],
+    "tags": ["radical", "halogenation", "selectivity", "alkane"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC(C)CC",
+          "reagent": "HBr",
+          "explains": "Alkanes have no π bond or leaving group; HBr does nothing to them."
+        },
+        {
+          "precursor": "C=C(C)CC",
+          "reagent": "HBr, ROOR",
+          "explains": "Peroxides make HBr add anti-Markovnikov, giving 1-bromo-2-methylbutane, not the 3° bromide."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-radical-br2-methylcyclohexane",
+    "unit": "o1-5",
+    "pattern": "R",
+    "title": "Radical bromination of methylcyclohexane",
+    "reactants": ["[CH3:1][CH:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reagents": ["[Br:8][Br:9]"],
+    "reagentDisplay": "Br2, hν",
+    "reagentAliases": ["Br2, hv", "Br2, light", "Br2, hν", "Br2, heat", "Br2, Δ", "Br2, uv light"],
+    "product": "[CH3:1][C:2]1([Br:8])[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
+    "why": "Br• is highly selective and removes the hydrogen that leaves the most stable radical. The ring carbon bearing the methyl group is 3°, so bromine ends up there: 1-bromo-1-methylcyclohexane.",
+    "traps": [
+      {
+        "smiles": "CC1CCCCC1Br",
+        "explains": "That's a 2° position. The 3° radical is more stable, and Br• is selective enough to almost always pick it."
+      },
+      {"smiles": "BrCC1CCCCC1", "explains": "The CH3 gives a 1° radical, the least stable. Br• avoids it."},
+      {
+        "smiles": "CC1CCC(Br)CC1",
+        "explains": "There are many 2° ring hydrogens, but Br• doesn't go by numbers; it goes by radical stability, so the single 3° H wins."
+      }
+    ],
+    "confusableWith": ["o1-radical-br2-2-methylbutane", "o1-radical-cl2-cyclohexane"],
+    "tags": ["radical", "halogenation", "selectivity", "alkane"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-radical-cl2-cyclohexane",
+    "unit": "o1-5",
+    "pattern": "R",
+    "title": "Radical chlorination: one kind of H, one product",
+    "reactants": ["[CH2:1]1[CH2:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[Cl:7][Cl:8]"],
+    "reagentDisplay": "Cl2, hν",
+    "reagentAliases": ["Cl2, hv", "Cl2, light", "Cl2, hν", "Cl2, heat", "Cl2, Δ", "Cl2, uv light"],
+    "product": "[Cl:7][CH:1]1[CH2:2][CH2:3][CH2:4][CH2:5][CH2:6]1",
+    "why": "Light splits Cl2 into Cl atoms, Cl• removes an H to give a cyclohexyl radical, and that radical takes Cl from Cl2, passing the chain on. Cl• is not very selective, but here every H is equivalent, so there is only one monochlorination product: chlorocyclohexane (excess cyclohexane keeps it from going further).",
+    "traps": [
+      {
+        "smiles": "Cl[C@@H]1CCCC[C@H]1Cl",
+        "explains": "Adding Cl2 across a ring needs a C=C. Cyclohexane has no π bond, so Cl replaces one H (substitution) instead."
+      },
+      {
+        "smiles": "ClC1(Cl)CCCCC1",
+        "explains": "Further chlorination can happen, but using excess alkane keeps the main product monochlorinated."
+      },
+      {
+        "smiles": "C1=CCCCC1",
+        "explains": "Radical halogenation substitutes; it doesn't eliminate. No base is present to make an alkene."
+      }
+    ],
+    "confusableWith": ["o1-radical-br2-2-methylbutane", "o1-radical-br2-methylcyclohexane"],
+    "tags": ["radical", "halogenation", "chain mechanism", "alkane"],
+    "review": "Chosen with only one kind of H so the major product is clear-cut; Cl2's poor selectivity is taught in the lesson rather than on this card.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-radical-nbs-cyclohexene",
+    "unit": "o1-5",
+    "pattern": "R",
+    "title": "NBS: allylic bromination, not addition",
+    "reactants": ["[CH2:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[Br:7][N:8]1[C:9](=[O:10])[CH2:11][CH2:12][C:13]1=[O:14]"],
+    "reagentDisplay": "NBS, hν (or ROOR), CCl4",
+    "reagentAliases": ["NBS, hv", "NBS, light", "NBS, ROOR", "NBS, hν", "N-bromosuccinimide", "NBS, CCl4, hv", "NBS"],
+    "product": "[Br:7][CH:1]1[CH:2]=[CH:3][CH2:4][CH2:5][CH2:6]1",
+    "why": "The allylic C–H is weak because the allylic radical it gives is resonance-stabilized, so Br• removes it. NBS releases Br2 only slowly (from the HBr formed), keeping [Br2] so low that addition to the C=C can't compete with the radical chain: 3-bromocyclohexene (racemic).",
+    "traps": [
+      {
+        "smiles": "Br[C@@H]1CCCC[C@H]1Br",
+        "explains": "That's addition of Br2 across the C=C, which needs a high Br2 concentration. NBS keeps Br2 scarce, so allylic substitution wins."
+      },
+      {
+        "smiles": "BrC1CC=CCC1",
+        "explains": "C4 is not allylic (it's one carbon further away), so its radical gets no resonance help. Br goes on the carbon next to the C=C."
+      },
+      {
+        "smiles": "BrC1=CCCCC1",
+        "explains": "A vinylic C–H is strong and its radical isn't resonance-stabilized; Br• takes the weak allylic H instead."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-br2-anti", "o1-radical-br2-methylcyclohexane"],
+    "tags": ["radical", "allylic bromination", "NBS", "alkene"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "Br2, CH2Cl2",
+          "explains": "At normal concentration Br2 adds across the C=C, giving trans-1,2-dibromocyclohexane."
+        },
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "HBr",
+          "explains": "HBr adds across the C=C, giving bromocyclohexane; the double bond is lost."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  }
+]

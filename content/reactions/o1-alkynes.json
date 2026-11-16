@@ -1,0 +1,612 @@
+[
+  {
+    "id": "o1-alkyne-acetylide-alkylation",
+    "unit": "o1-4",
+    "pattern": "S",
+    "title": "Acetylide alkylation: NaNH2, then a 1° alkyl halide",
+    "reactants": ["[CH3:1][C:2]#[C:3][H:20]"],
+    "reagents": ["[NH2-:10].[Na+:11]", "[Br:7][CH2:4][CH2:5][CH3:6]"],
+    "reagentDisplay": "1. NaNH2, NH3(l)  2. CH3CH2CH2Br",
+    "reagentAliases": [
+      "1. NaNH2 2. CH3CH2CH2Br",
+      "NaNH2, then CH3CH2CH2Br",
+      "NaNH2, then 1-bromopropane",
+      "1. NaNH2, NH3 2. PrBr",
+      "NaNH2; CH3CH2CH2Br",
+      "NaNH2 then propyl bromide"
+    ],
+    "product": "[CH3:1][C:2]#[C:3][CH2:4][CH2:5][CH3:6]",
+    "byproducts": ["[Br-:7]"],
+    "keyStep": {
+      "species": ["[CH3:1][C:2]#[C-:3]", "[Br:7][CH2:4][CH2:5][CH3:6]"],
+      "nucleophileAtom": 3,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [4, 7]}, "to": {"atom": 7}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Amide ion removes the terminal alkyne C–H, giving an acetylide ion",
+          "species": ["[CH3:1][C:2]#[C:3][H:20]", "[NH2-:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 20}}, {"from": {"bond": [3, 20]}, "to": {"atom": 3}}],
+          "note": "The sp C–H has pKa about 25 and NH3 about 38, so the equilibrium lies far toward the acetylide."
+        },
+        {
+          "label": "The acetylide carbon attacks the CH2 bearing Br from the back side as bromide leaves",
+          "species": ["[CH3:1][C:2]#[C-:3]", "[Br:7][CH2:4][CH2:5][CH3:6]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [4, 7]}, "to": {"atom": 7}}],
+          "note": "SN2 on an unhindered 1° carbon: a new C–C bond."
+        }
+      ]
+    },
+    "why": "NaNH2 is a strong enough base to remove the terminal alkyne C–H (pKa about 25), giving an acetylide ion. The acetylide is a strong carbon nucleophile and does SN2 on the 1° alkyl halide, making a new C–C bond: hex-2-yne.",
+    "traps": [
+      {
+        "smiles": "C#CCCCC",
+        "explains": "The acidic H is on the sp carbon (pKa about 25), not on the CH3 (pKa about 50). The new C–C bond forms at the former alkyne C–H carbon."
+      },
+      {
+        "smiles": "C=CC",
+        "explains": "That's E2 on the alkyl halide. Acetylides are strong bases, so they eliminate with 2° and 3° halides, but on an unhindered 1° halide SN2 wins."
+      },
+      {
+        "smiles": "CCCN",
+        "explains": "NaNH2 is used up in step 1 making the acetylide; the halide is added afterwards. The acetylide, not NH2-, is the nucleophile."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-double-elimination"],
+    "tags": ["C-C bond", "acetylide", "SN2", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC#C",
+          "reagent": "1. NaOH, H2O  2. CH3CH2CH2Br",
+          "explains": "Hydroxide is far too weak a base (water pKa 15.7) to deprotonate an alkyne (pKa about 25), so no acetylide forms."
+        },
+        {
+          "precursor": "CC#C",
+          "reagent": "1. NaNH2, NH3(l)  2. CH3CH2CH2OH",
+          "explains": "An alcohol is an acid, not an electrophile: OH- can't leave, so the acetylide just takes a proton back from propanol."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-lindlar",
+    "unit": "o1-4",
+    "pattern": "X",
+    "title": "Lindlar's catalyst: alkyne to cis alkene",
+    "reactants": ["[CH3:1][CH2:2][C:3]#[C:4][CH2:5][CH3:6]"],
+    "reagents": ["[H:7][H:8]"],
+    "reagentDisplay": "H2, Lindlar's catalyst",
+    "reagentAliases": [
+      "H2, Lindlar",
+      "H2, Lindlar's catalyst",
+      "Lindlar",
+      "H2, Pd/CaCO3, quinoline",
+      "H2, Pd/BaSO4, quinoline",
+      "H2, poisoned Pd"
+    ],
+    "product": "[CH3:1][CH2:2]/[CH:3]=[CH:4]\\[CH2:5][CH3:6]",
+    "keyStep": {"nucleophileAtom": 7, "electrophileAtom": 3, "arrows": [{"from": {"bond": [7, 8]}, "to": {"atom": 3}}]},
+    "skipCards": ["where", "arrows", "paper"],
+    "why": "Lindlar's catalyst is palladium deliberately poisoned (Pb, quinoline) so it reduces an alkyne but not the alkene it makes. Both H atoms are delivered from the metal surface to the same face (syn addition), so the alkene is cis: (Z)-hex-3-ene.",
+    "traps": [
+      {
+        "smiles": "CC/C=C/CC",
+        "explains": "The trans alkene comes from Na in NH3(l). On Lindlar's catalyst both H atoms add to the same face (syn), giving cis."
+      },
+      {
+        "smiles": "CCCCCC",
+        "explains": "Full reduction to the alkane is what H2 with ordinary Pd/C does. Lindlar's catalyst is poisoned so it stops at the alkene."
+      },
+      {
+        "smiles": "C/C=C\\CCC",
+        "explains": "Hydrogenation doesn't move the double bond: the two H atoms add to the two carbons of the former triple bond."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-na-nh3", "o1-alkyne-hydrogenation-pd"],
+    "tags": ["reduction", "hydrogenation", "stereochemistry", "syn addition", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCC#CCC",
+          "reagent": "Na, NH3(l)",
+          "explains": "Dissolving-metal reduction gives the trans alkene, (E)-hex-3-ene."
+        },
+        {
+          "precursor": "CCC#CCC",
+          "reagent": "H2, Pd/C",
+          "explains": "Unpoisoned Pd reduces both π bonds, giving hexane."
+        }
+      ]
+    },
+    "review": "No real polar mechanism (surface chemistry), so the key step is only a placeholder H delivery and the where/arrows/paper cards are skipped.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-na-nh3",
+    "unit": "o1-4",
+    "pattern": "R",
+    "title": "Dissolving-metal reduction: alkyne to trans alkene",
+    "reactants": ["[CH3:1][CH2:2][C:3]#[C:4][CH2:5][CH3:6]"],
+    "reagents": [],
+    "reagentDisplay": "Na, NH3(l)",
+    "reagentAliases": ["Na, NH3", "Na, NH3(l)", "Li, NH3", "Na/NH3", "sodium in liquid ammonia", "Li, NH3(l)"],
+    "product": "[CH3:1][CH2:2]/[CH:3]=[CH:4]/[CH2:5][CH3:6]",
+    "why": "Sodium gives an electron to the alkyne, making a radical anion; protonation by NH3, a second electron and a second proton follow. The vinyl radical and vinyl anion intermediates adopt the less crowded trans geometry, so the product is the trans alkene, (E)-hex-3-ene.",
+    "traps": [
+      {
+        "smiles": "CC/C=C\\CC",
+        "explains": "The cis alkene is the Lindlar product (syn addition on a metal surface). Na/NH3 goes through radical and anion intermediates that settle into the trans geometry."
+      },
+      {
+        "smiles": "CCCCCC",
+        "explains": "Dissolving-metal reduction stops at the alkene: an isolated C=C doesn't accept an electron from Na. Only H2 with Pd/C goes on to the alkane."
+      },
+      {
+        "smiles": "CCC(N)=CCC",
+        "explains": "NH3 is the solvent and the proton source, not a group that adds. Only H atoms are added across the triple bond."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-lindlar", "o1-alkyne-hydrogenation-pd"],
+    "tags": ["reduction", "dissolving metal", "radical anion", "stereochemistry", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCC#CCC",
+          "reagent": "H2, Lindlar's catalyst",
+          "explains": "Lindlar's catalyst adds both H atoms to the same face, giving the cis alkene."
+        },
+        {
+          "precursor": "CCC#CCC",
+          "reagent": "H2, Pd/C",
+          "explains": "Unpoisoned Pd reduces the alkyne all the way to hexane."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-hydrogenation-pd",
+    "unit": "o1-4",
+    "pattern": "X",
+    "title": "H2, Pd/C: alkyne all the way to alkane",
+    "reactants": ["[CH3:1][CH2:2][C:3]#[C:4][CH2:5][CH3:6]"],
+    "reagents": ["[H:7][H:8]", "[H:9][H:10]"],
+    "reagentDisplay": "H2 (excess), Pd/C",
+    "reagentAliases": ["H2, Pd/C", "H2, Pd", "H2, Pt", "H2, Ni", "2 H2, Pd/C", "H2, PtO2"],
+    "product": "[CH3:1][CH2:2][CH2:3][CH2:4][CH2:5][CH3:6]",
+    "keyStep": {"nucleophileAtom": 7, "electrophileAtom": 3, "arrows": [{"from": {"bond": [7, 8]}, "to": {"atom": 3}}]},
+    "skipCards": ["where", "arrows", "paper"],
+    "why": "An ordinary hydrogenation catalyst (Pd, Pt or Ni) reduces the alkyne to an alkene, and that alkene is reduced on the same surface faster than it can escape. With excess H2 two equivalents add and the product is the alkane, hexane.",
+    "traps": [
+      {
+        "smiles": "CC/C=C\\CC",
+        "explains": "Stopping at the cis alkene needs a poisoned catalyst (Lindlar's). Plain Pd/C keeps going to the alkane."
+      },
+      {
+        "smiles": "CC/C=C/CC",
+        "explains": "The trans alkene comes from Na in NH3(l), a different mechanism. Catalytic hydrogenation doesn't stop at an alkene here."
+      },
+      {
+        "smiles": "CCC#CCC",
+        "explains": "Triple bonds are not too strong to hydrogenate; both π bonds are reduced on the metal surface."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-lindlar", "o1-alkyne-na-nh3"],
+    "tags": ["reduction", "hydrogenation", "alkyne"],
+    "review": "Surface chemistry: the key step is only a placeholder H delivery and the where/arrows/paper cards are skipped.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-hydration-hgso4",
+    "unit": "o1-4",
+    "pattern": "E",
+    "title": "Hg2+-catalysed hydration: terminal alkyne to methyl ketone",
+    "reactants": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]"],
+    "reagents": ["[OH2:7]", "[Hg+2:8]"],
+    "reagentDisplay": "H2SO4, H2O, HgSO4",
+    "reagentAliases": ["H2SO4, H2O, HgSO4", "HgSO4, H2SO4, H2O", "HgSO4, H3O+", "H3O+, HgSO4", "Hg2+, H2SO4, H2O", "HgSO4"],
+    "product": "[CH3:1][C:2](=[O:7])[CH2:3][CH2:4][CH2:5][CH3:6]",
+    "keyStep": {
+      "species": ["[Hg+:8][CH:1]=[C+:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[OH2:7]"],
+      "nucleophileAtom": 7,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The alkyne π bond attacks Hg2+; the positive charge ends up on the more substituted carbon",
+          "species": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[Hg+2:8]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 8}}],
+          "note": "Textbooks often draw a bridged mercurinium ion here; either way water ends up on the internal carbon (Markovnikov)."
+        },
+        {
+          "label": "Water attacks the internal carbon",
+          "species": ["[Hg+:8][CH:1]=[C+:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[OH2:7]"],
+          "arrows": [{"from": {"lonePair": 7}, "to": {"atom": 2}}]
+        },
+        {
+          "label": "Water removes a proton from the oxonium ion, giving a mercury-bearing enol",
+          "species": ["[Hg+:8][CH:1]=[C:2]([OH+:7][H:30])[CH2:3][CH2:4][CH2:5][CH3:6]", "[OH2:31]"],
+          "arrows": [{"from": {"lonePair": 31}, "to": {"atom": 30}}, {"from": {"bond": [7, 30]}, "to": {"atom": 7}}]
+        },
+        {
+          "label": "The C=C takes a proton at the carbon bearing Hg, helped by the OH lone pair",
+          "species": ["[Hg+:8][CH:1]=[C:2]([OH:7])[CH2:3][CH2:4][CH2:5][CH3:6]", "[H:40][OH2+:41]"],
+          "arrows": [
+            {"from": {"lonePair": 7}, "to": {"bond": [7, 2]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 40}},
+            {"from": {"bond": [40, 41]}, "to": {"atom": 41}}
+          ]
+        },
+        {
+          "label": "Hg2+ leaves, giving the enol",
+          "species": ["[Hg+:8][CH2:1][C:2](=[OH+:7])[CH2:3][CH2:4][CH2:5][CH3:6]"],
+          "arrows": [{"from": {"bond": [8, 1]}, "to": {"bond": [1, 2]}}, {"from": {"bond": [2, 7]}, "to": {"atom": 7}}],
+          "note": "Hg2+ is released, so only a catalytic amount is needed."
+        },
+        {
+          "label": "Tautomerization, part 1: the enol C=C takes a proton on its CH2 carbon",
+          "species": ["[CH2:1]=[C:2]([OH:7])[CH2:3][CH2:4][CH2:5][CH3:6]", "[H:42][OH2+:43]"],
+          "arrows": [
+            {"from": {"lonePair": 7}, "to": {"bond": [7, 2]}},
+            {"from": {"bond": [1, 2]}, "to": {"atom": 42}},
+            {"from": {"bond": [42, 43]}, "to": {"atom": 43}}
+          ],
+          "note": "The OH lone pair pushes the π electrons onto carbon, so carbon (not oxygen) is protonated."
+        },
+        {
+          "label": "Tautomerization, part 2: water removes the proton from oxygen, giving the ketone",
+          "species": ["[CH3:1][C:2](=[O+:7][H:44])[CH2:3][CH2:4][CH2:5][CH3:6]", "[OH2:45]"],
+          "arrows": [{"from": {"lonePair": 45}, "to": {"atom": 44}}, {"from": {"bond": [7, 44]}, "to": {"atom": 7}}]
+        }
+      ]
+    },
+    "why": "Hg2+ and acid add water across the triple bond with Markovnikov regiochemistry: the OH goes on the internal carbon. The first product is an enol, which tautomerizes under the acidic conditions to the more stable keto form, so a terminal alkyne gives a methyl ketone (hexan-2-one).",
+    "traps": [
+      {
+        "smiles": "O=CCCCCC",
+        "explains": "The aldehyde is the anti-Markovnikov product from hydroboration with a bulky borane. Hg2+/H3O+ puts the oxygen on the internal (more substituted) carbon."
+      },
+      {
+        "smiles": "C=C(O)CCCC",
+        "explains": "That enol is only an intermediate. Under acid it tautomerizes to the ketone, which is far more stable."
+      },
+      {
+        "smiles": "CC(O)(O)CCCC",
+        "explains": "Only one water adds across the triple bond; the enol then tautomerizes. A second water doesn't add to give a 1,1-diol (which would lose water anyway)."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-hydroboration", "o1-alkyne-hbr-2-equiv"],
+    "tags": ["hydration", "Markovnikov", "tautomerization", "enol", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C#CCCCC",
+          "reagent": "1. Sia2BH  2. H2O2, NaOH",
+          "explains": "Hydroboration–oxidation puts the oxygen on the terminal carbon, giving hexanal."
+        },
+        {
+          "precursor": "C=CCCCC",
+          "reagent": "H2SO4, H2O",
+          "explains": "Acid-catalysed hydration of the alkene gives hexan-2-ol, an alcohol, not a ketone."
+        }
+      ]
+    },
+    "review": "Hg part simplified: an open vinyl cation is drawn instead of a bridged mercurinium ion, and Hg is removed by protonation at the C–Hg carbon followed by loss of Hg2+ to give the enol (the Wade/McMurry-style sequence). HSO4- counterions are left out. The tautomerization steps are the standard acid-catalysed ones.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-hydroboration",
+    "unit": "o1-4",
+    "pattern": "E",
+    "title": "Hydroboration–oxidation: terminal alkyne to aldehyde",
+    "reactants": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]"],
+    "reagents": [
+      "[B:7]([H:30])([CH:8]([CH3:9])[CH:10]([CH3:11])[CH3:12])[CH:13]([CH3:14])[CH:15]([CH3:16])[CH3:17]",
+      "[OH:18][OH:19]"
+    ],
+    "reagentDisplay": "1. Sia2BH (or 9-BBN)  2. H2O2, NaOH",
+    "reagentAliases": [
+      "1. Sia2BH 2. H2O2, NaOH",
+      "1. 9-BBN 2. H2O2, NaOH",
+      "disiamylborane, then H2O2, NaOH",
+      "9-BBN, then H2O2, NaOH",
+      "1. R2BH 2. H2O2, NaOH",
+      "Sia2BH; H2O2, NaOH"
+    ],
+    "product": "[O:18]=[CH:1][CH2:2][CH2:3][CH2:4][CH2:5][CH3:6]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 7}}, {"from": {"bond": [7, 30]}, "to": {"atom": 2}}]
+    },
+    "why": "A bulky dialkylborane adds B–H across the triple bond once, syn, with boron on the less hindered terminal carbon (anti-Markovnikov). Oxidation replaces B with OH, giving an enol with OH on the terminal carbon, which tautomerizes to the aldehyde, hexanal.",
+    "traps": [
+      {
+        "smiles": "CC(=O)CCCC",
+        "explains": "The methyl ketone is the Markovnikov product of Hg2+/H3O+ hydration. Hydroboration puts boron, and so the oxygen, on the terminal carbon."
+      },
+      {
+        "smiles": "OCCCCCC",
+        "explains": "Hexan-1-ol is what hydroboration of the alkene (hex-1-ene) gives. From the alkyne you get an enol, which tautomerizes to the aldehyde."
+      },
+      {
+        "smiles": "OC=CCCCC",
+        "explains": "That enol is only an intermediate; it tautomerizes to the more stable aldehyde."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-hydration-hgso4"],
+    "tags": ["hydroboration", "anti-Markovnikov", "tautomerization", "enol", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C#CCCCC",
+          "reagent": "H2SO4, H2O, HgSO4",
+          "explains": "Hg2+-catalysed hydration is Markovnikov, giving hexan-2-one."
+        },
+        {
+          "precursor": "C=CCCCC",
+          "reagent": "1. BH3·THF  2. H2O2, NaOH",
+          "explains": "Hydroboration of the alkene gives hexan-1-ol: an alcohol, not an aldehyde."
+        }
+      ]
+    },
+    "review": "No full mechanism: only the concerted syn hydroboration is given as the key step. The oxidation of the vinylborane (HOO- attack, 1,2-shift, hydrolysis) and the base-mediated enol-to-aldehyde tautomerization are described in 'why' only. Disiamylborane is drawn as the reagent; 9-BBN is accepted as an alias.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-hbr-2-equiv",
+    "unit": "o1-4",
+    "pattern": "E",
+    "title": "Excess HBr: Markovnikov twice, geminal dibromide",
+    "reactants": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]"],
+    "reagents": ["[H:7][Br:8]", "[H:9][Br:10]"],
+    "reagentDisplay": "HBr (2 equiv)",
+    "reagentAliases": ["HBr (2 equiv)", "2 HBr", "excess HBr", "HBr, excess", "HBr"],
+    "product": "[CH3:1][C:2]([Br:8])([Br:10])[CH2:3][CH2:4][CH2:5][CH3:6]",
+    "keyStep": {
+      "species": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[H:7][Br:8]"],
+      "nucleophileAtom": 1,
+      "electrophileAtom": 7,
+      "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond takes a proton at the terminal carbon, leaving a vinyl cation on the internal carbon",
+          "species": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[H:7][Br:8]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 7}}, {"from": {"bond": [7, 8]}, "to": {"atom": 8}}],
+          "note": "Markovnikov: the 2° vinyl cation is more stable than the 1° one."
+        },
+        {
+          "label": "Bromide adds to the cation",
+          "species": ["[CH2:1]=[C+:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[Br-:8]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 2}}]
+        },
+        {
+          "label": "With a second HBr, the C=C takes a proton at CH2, putting the cation on the carbon bearing Br",
+          "species": ["[CH2:1]=[C:2]([Br:8])[CH2:3][CH2:4][CH2:5][CH3:6]", "[H:9][Br:10]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 9}}, {"from": {"bond": [9, 10]}, "to": {"atom": 10}}],
+          "note": "A lone pair on Br helps stabilize this cation (resonance), so the second H also goes to the terminal carbon."
+        },
+        {
+          "label": "Bromide adds to the cation, giving the geminal dibromide",
+          "species": ["[CH3:1][C+:2]([Br:8])[CH2:3][CH2:4][CH2:5][CH3:6]", "[Br-:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 2}}]
+        }
+      ]
+    },
+    "why": "Each HBr adds with Markovnikov regiochemistry: H goes to the terminal CH, Br to the internal carbon. In the second addition the cation forms on the carbon that already has Br, because a Br lone pair stabilizes it, so both Br atoms end up on C2: 2,2-dibromohexane.",
+    "traps": [
+      {
+        "smiles": "BrC(Br)CCCCC",
+        "explains": "Both Br on the terminal carbon is anti-Markovnikov. Without peroxides, H adds to the terminal carbon and Br to the internal one."
+      },
+      {
+        "smiles": "CC(Br)C(Br)CCC",
+        "explains": "Mixing up the carbons: both Br atoms land on C2, but here they're spread over two carbons. In the second addition the cation forms next to the Br already there."
+      },
+      {
+        "smiles": "C=C(Br)CCCC",
+        "explains": "That's the product of one equivalent of HBr. With two equivalents the vinyl bromide adds a second HBr."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-br2-anti", "o1-alkyne-hydration-hgso4"],
+    "tags": ["HBr", "Markovnikov", "geminal dihalide", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C#CCCCC",
+          "reagent": "Br2 (2 equiv)",
+          "explains": "Two Br2 add four Br atoms: 1,1,2,2-tetrabromohexane."
+        },
+        {
+          "precursor": "C#CCCCC",
+          "reagent": "HBr (2 equiv), ROOR",
+          "explains": "Peroxides switch HBr to radical (anti-Markovnikov) addition, so Br goes on the terminal carbon."
+        }
+      ]
+    },
+    "review": "Shown through vinyl cations (the textbook picture); the real mechanism of HX + alkyne may be termolecular. Trap 2 is 2,3-dibromohexane; please confirm it reads as a sensible distractor.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-br2-anti",
+    "unit": "o1-4",
+    "pattern": "E",
+    "title": "Br2 (1 equiv): anti addition to a trans dibromoalkene",
+    "reactants": ["[CH3:1][CH2:2][C:3]#[C:4][CH2:5][CH3:6]"],
+    "reagents": ["[Br:7][Br:8]"],
+    "reagentDisplay": "Br2 (1 equiv), CH2Cl2",
+    "reagentAliases": ["Br2", "Br2 (1 equiv)", "Br2, CH2Cl2", "Br2, CCl4", "1 equiv Br2"],
+    "product": "[CH3:1][CH2:2]/[C:3]([Br:7])=[C:4](\\[Br:8])[CH2:5][CH3:6]",
+    "keyStep": {
+      "nucleophileAtom": 3,
+      "electrophileAtom": 7,
+      "arrows": [
+        {"from": {"bond": [3, 4]}, "to": {"atom": 7}},
+        {"from": {"lonePair": 7}, "to": {"atom": 4}},
+        {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond attacks Br2, forming a bridged bromonium ion as bromide leaves",
+          "species": ["[CH3:1][CH2:2][C:3]#[C:4][CH2:5][CH3:6]", "[Br:7][Br:8]"],
+          "arrows": [
+            {"from": {"bond": [3, 4]}, "to": {"atom": 7}},
+            {"from": {"lonePair": 7}, "to": {"atom": 4}},
+            {"from": {"bond": [7, 8]}, "to": {"atom": 8}}
+          ]
+        },
+        {
+          "label": "Bromide opens the bridge from the opposite face",
+          "species": ["[CH3:1][CH2:2][C:3]1=[C:4]([CH2:5][CH3:6])[Br+:7]1", "[Br-:8]"],
+          "arrows": [{"from": {"lonePair": 8}, "to": {"atom": 4}}, {"from": {"bond": [4, 7]}, "to": {"atom": 7}}],
+          "note": "Backside attack on the bridge puts the two Br atoms on opposite sides: anti addition."
+        }
+      ]
+    },
+    "why": "Br2 adds to a triple bond like it adds to a C=C: the bridged bromonium ion is opened by bromide from the opposite face, so the addition is anti. With one equivalent the two Br atoms end up trans on the remaining double bond: (E)-3,4-dibromohex-3-ene.",
+    "traps": [
+      {
+        "smiles": "CC/C(Br)=C(/Br)CC",
+        "explains": "That's syn addition (cis Br atoms). Bromide opens the bridged bromonium from the back, so the Br atoms end up trans."
+      },
+      {
+        "smiles": "CCC(Br)(Br)C(Br)(Br)CC",
+        "explains": "The tetrabromide needs two equivalents of Br2. With one equivalent the reaction stops at the dibromoalkene."
+      },
+      {
+        "smiles": "CCC(Br)C(Br)CC",
+        "explains": "Br2 adds no hydrogens; one π bond survives. 3,4-Dibromohexane would come from hex-3-ene."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-hbr-2-equiv", "o1-radical-nbs-cyclohexene"],
+    "tags": ["halogenation", "anti addition", "stereochemistry", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCC#CCC",
+          "reagent": "Br2 (2 equiv), CH2Cl2",
+          "explains": "A second equivalent adds to the dibromoalkene, giving 3,3,4,4-tetrabromohexane."
+        },
+        {
+          "precursor": "CC/C=C/CC",
+          "reagent": "Br2, CH2Cl2",
+          "explains": "From the alkene, Br2 gives the saturated 3,4-dibromohexane: no C=C is left."
+        }
+      ]
+    },
+    "review": "Bromination of alkynes is drawn through a bridged bromirenium ion, as in Klein/Wade; the mechanism is less clear-cut than for alkenes, but anti addition (E product) with 1 equiv is the textbook answer. E/Z checked with RDKit CIP (E). The simulator only checks connectivity for the C=C geometry.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkyne-double-elimination",
+    "unit": "o1-4",
+    "pattern": "S",
+    "title": "Making an alkyne: double E2 from a vicinal dibromide",
+    "reactants": ["[Br:7][C:1]([H:20])([H:22])[C:2]([H:21])([Br:8])[CH2:3][CH2:4][CH2:5][CH3:6]"],
+    "reagents": ["[NH2-:10].[Na+:13]", "[NH2-:11].[Na+:14]", "[NH2-:12].[Na+:15]"],
+    "reagentDisplay": "1. NaNH2 (3 equiv), NH3(l)  2. H2O",
+    "reagentAliases": [
+      "1. excess NaNH2 2. H2O",
+      "excess NaNH2, then H2O",
+      "1. NaNH2 (3 equiv) 2. H2O",
+      "3 NaNH2, NH3; H2O",
+      "NaNH2, NH3(l), then H2O"
+    ],
+    "product": "[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]",
+    "keyStep": {
+      "nucleophileAtom": 10,
+      "electrophileAtom": 20,
+      "arrows": [
+        {"from": {"lonePair": 10}, "to": {"atom": 20}},
+        {"from": {"bond": [1, 20]}, "to": {"bond": [1, 2]}},
+        {"from": {"bond": [2, 8]}, "to": {"atom": 8}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "First E2: amide removes an H from C1 as the C=C forms and bromide leaves from C2",
+          "species": ["[Br:7][C:1]([H:20])([H:22])[C:2]([H:21])([Br:8])[CH2:3][CH2:4][CH2:5][CH3:6]", "[NH2-:10]"],
+          "arrows": [
+            {"from": {"lonePair": 10}, "to": {"atom": 20}},
+            {"from": {"bond": [1, 20]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [2, 8]}, "to": {"atom": 8}}
+          ]
+        },
+        {
+          "label": "Second E2: amide removes the vinylic H on C2 as the second π bond forms and bromide leaves from C1",
+          "species": ["[Br:7][C:1]([H:22])=[C:2]([H:21])[CH2:3][CH2:4][CH2:5][CH3:6]", "[NH2-:11]"],
+          "arrows": [
+            {"from": {"lonePair": 11}, "to": {"atom": 21}},
+            {"from": {"bond": [2, 21]}, "to": {"bond": [1, 2]}},
+            {"from": {"bond": [1, 7]}, "to": {"atom": 7}}
+          ],
+          "note": "This second elimination is slower; it needs a very strong base such as NH2-."
+        },
+        {
+          "label": "A third amide removes the terminal alkyne C–H, giving the acetylide",
+          "species": ["[H:22][C:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[NH2-:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 22}}, {"from": {"bond": [1, 22]}, "to": {"atom": 1}}],
+          "note": "This is why three equivalents are needed for a terminal alkyne."
+        },
+        {
+          "label": "Workup: water protonates the acetylide",
+          "species": ["[C-:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[H:40][OH:41]"],
+          "arrows": [{"from": {"lonePair": 1}, "to": {"atom": 40}}, {"from": {"bond": [40, 41]}, "to": {"atom": 41}}]
+        }
+      ]
+    },
+    "why": "Two successive E2 eliminations remove two equivalents of HBr and form the two π bonds of the alkyne; the second one, from a vinyl bromide, needs a very strong base such as NaNH2. The terminal alkyne is then deprotonated by a third equivalent, and water workup gives hex-1-yne back.",
+    "traps": [
+      {
+        "smiles": "C=C(Br)CCCC",
+        "explains": "One E2 gives a vinyl bromide, but excess NaNH2 eliminates a second HBr. Stopping at the bromoalkene would need only one equivalent of a weaker base."
+      },
+      {
+        "smiles": "CC#CCCC",
+        "explains": "With NaNH2 the terminal alkyne is trapped as its acetylide, so the triple bond doesn't migrate inside. Internal alkynes form with KOH and heat, not here."
+      },
+      {
+        "smiles": "NCC(N)CCCC",
+        "explains": "NH2- is a very strong base, so it eliminates rather than substitutes; no C–N bonds form."
+      }
+    ],
+    "confusableWith": ["o1-alkyne-acetylide-alkylation"],
+    "tags": ["E2", "elimination", "alkyne synthesis", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C=CCCCC",
+          "reagent": "1. NaNH2 (3 equiv), NH3(l)  2. H2O",
+          "explains": "An alkene has no leaving groups, so there is nothing to eliminate; you'd need to brominate it first."
+        },
+        {
+          "precursor": "OCC(O)CCCC",
+          "reagent": "1. NaNH2 (3 equiv), NH3(l)  2. H2O",
+          "explains": "OH- is a terrible leaving group; NaNH2 only deprotonates the diol, and water gives it back."
+        }
+      ]
+    },
+    "review": "Which H is removed first (C1 vs C2) varies between texts; the route via 1-bromohex-1-ene is drawn here. E/Z of that intermediate is left unspecified.",
+    "verified": false,
+    "verifiedBy": null
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "id": "lesson-o1-4",
+    "unit": "o1-4",
+    "title": "Alkynes: acetylides, reductions and additions",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "The choice after the worked example says acetylides give mostly E2 with 2° halides. The reductions choice contrasts Lindlar / Na-NH3 / Pd-C on hex-3-yne.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "An alkyne has two π bonds on sp carbons. An sp carbon holds electrons close (50% s character), so a terminal alkyne C–H is unusually acidic, **pKa about 25**. NaNH2 (NH3 pKa about 38) removes it completely, giving an **acetylide ion**: a strong carbon nucleophile and a strong base.",
+        "smiles": "[CH3:1][C:2]#[CH:3]"
+      },
+      {
+        "kind": "tap",
+        "text": "Which carbon of propyne does NaNH2 deprotonate? Tap it.",
+        "smiles": "[CH3:1][C:2]#[CH:3]",
+        "answer": [3],
+        "explain": "The terminal sp carbon carries the acidic H (pKa about 25). CH3 hydrogens are sp3 C–H, pKa about 50, far too weak."
+      },
+      {
+        "kind": "worked",
+        "reaction": "o1-alkyne-acetylide-alkylation",
+        "text": "Deprotonate first, then the acetylide does SN2 on a 1° alkyl halide: a new C–C bond."
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkyne-double-elimination",
+        "card": "arrows",
+        "given": 1,
+        "text": "NaNH2 also makes alkynes: two E2 eliminations from a vicinal dibromide. The base's arrow is drawn; finish this first E2."
+      },
+      {
+        "kind": "choice",
+        "text": "Propyne is treated with NaNH2, then 2-bromopropane. The main organic product is propene, not 4-methylpent-2-yne. Why?",
+        "options": [
+          {
+            "text": "The acetylide is a strong base and the halide is 2°, so E2 beats SN2.",
+            "correct": true,
+            "explains": "Right. Acetylides only alkylate methyl and 1° halides cleanly; with 2° and 3° halides they act as bases and eliminate."
+          },
+          {
+            "text": "Acetylides are weak nucleophiles, so they can't do SN2 at all.",
+            "explains": "Acetylides are good nucleophiles; with a 1° halide they substitute well. The problem here is the crowded 2° carbon."
+          },
+          {
+            "text": "The 2° halide ionizes to a carbocation, which rearranges.",
+            "explains": "A strong base is present, so this is E2, not a carbocation (SN1/E1) path; there's nothing to rearrange."
+          },
+          {
+            "text": "NaNH2 is left over and does SN2 on the halide instead.",
+            "explains": "NaNH2 is used up making the acetylide before the halide is added. The alkene comes from the acetylide acting as a base."
+          }
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "Three reductions, three outcomes. **H2, Pd/C** reduces all the way to the alkane. **H2, Lindlar's catalyst** (poisoned Pd) stops at the alkene, and both H atoms come from the surface on one face: **cis**. **Na in NH3(l)** adds electrons and protons one at a time, and the intermediates settle **trans**."
+      },
+      {
+        "kind": "choice",
+        "text": "You need (E)-hex-3-ene (the trans alkene) from hex-3-yne. Which reagent?",
+        "smiles": "CCC#CCC",
+        "options": [
+          {
+            "text": "Na, NH3(l)",
+            "correct": true,
+            "explains": "Right. Dissolving-metal reduction goes through a radical anion and vinyl anion that adopt the trans geometry."
+          },
+          {
+            "text": "H2, Lindlar's catalyst",
+            "explains": "Lindlar gives the cis alkene: both H atoms are delivered syn from the catalyst surface."
+          },
+          {"text": "H2, Pd/C", "explains": "Plain Pd/C doesn't stop at the alkene; it gives hexane."},
+          {
+            "text": "NaNH2, NH3(l)",
+            "explains": "NaNH2 is a base, not a reducing agent. An internal alkyne has no acidic H, so nothing happens."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "o1-alkyne-lindlar", "card": "product"},
+      {
+        "kind": "read",
+        "text": "Additions to alkynes follow the alkene rules. HBr and Hg2+/H3O+ hydration are **Markovnikov**. Adding water gives an **enol** (OH on a C=C), which **tautomerizes** to the C=O compound. Hydroboration with a bulky borane is **anti-Markovnikov**, so a terminal alkyne gives an aldehyde instead of a methyl ketone."
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkyne-hbr-2-equiv",
+        "card": "arrows",
+        "text": "First step of HBr addition: draw the protonation that gives the more stable vinyl cation."
+      },
+      {
+        "kind": "choice",
+        "text": "Which conditions turn hex-1-yne into **hexanal** (CH3(CH2)4CHO)?",
+        "smiles": "C#CCCCC",
+        "options": [
+          {
+            "text": "1. Sia2BH (or 9-BBN)  2. H2O2, NaOH",
+            "correct": true,
+            "explains": "Right. Boron goes on the terminal carbon (anti-Markovnikov), and the enol from oxidation tautomerizes to the aldehyde."
+          },
+          {
+            "text": "H2SO4, H2O, HgSO4",
+            "explains": "Hg2+ hydration is Markovnikov: the oxygen ends up on C2, giving the methyl ketone hexan-2-one."
+          },
+          {
+            "text": "1. H2, Lindlar's catalyst  2. H2SO4, H2O",
+            "explains": "That makes hex-1-ene and then hydrates it Markovnikov: hexan-2-ol, an alcohol, not an aldehyde."
+          },
+          {
+            "text": "HBr (2 equiv), then H2O",
+            "explains": "HBr gives the geminal dibromide on C2 (Markovnikov); water doesn't turn it into hexanal."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "o1-alkyne-hydration-hgso4", "card": "product"}
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "lesson-o1-5",
+    "unit": "o1-5",
+    "title": "Radical halogenation and NBS",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Selectivity numbers quoted: per-H relative rates about 5 : 4 : 1 (3° : 2° : 1°) for Cl• and about 1600 : 80 : 1 for Br•; chlorination of 2-methylpropane about 64% 1-chloro-2-methylpropane / 36% 2-chloro-2-methylpropane. Please check against your textbook's figures.",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Radical halogenation is a **chain reaction**. **Initiation**: light (hν) splits Br2 into two Br•. **Propagation**: Br• takes an H from the alkane (giving H–Br and R•), then R• takes Br from Br2 (giving R–Br and a new Br•). **Termination**: two radicals meet and pair up, ending the chain."
+      },
+      {
+        "kind": "choice",
+        "text": "Which of these is a **propagation** step?",
+        "options": [
+          {
+            "text": "R• + Br2 → R–Br + Br•",
+            "correct": true,
+            "explains": "Right. A radical goes in and a radical comes out, so the chain keeps going."
+          },
+          {
+            "text": "Br2 + hν → 2 Br•",
+            "explains": "That's initiation: radicals are made from a molecule with no radicals."
+          },
+          {
+            "text": "R• + Br• → R–Br",
+            "explains": "That's termination: two radicals combine and none are left to carry the chain."
+          },
+          {"text": "R• + R• → R–R", "explains": "Also termination. It uses up two radicals and makes none."}
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "Radicals, like carbocations, are stabilized by alkyl groups: **3° > 2° > 1° > methyl**. Allylic and benzylic radicals are even more stable, because resonance spreads the unpaired electron over several carbons. A more stable radical means a weaker C–H bond, so that H is removed fastest."
+      },
+      {
+        "kind": "tap",
+        "text": "Br• removes an H from 2-methylbutane. Tap the carbon whose H it takes.",
+        "smiles": "[CH3:1][CH:2]([CH3:3])[CH2:4][CH3:5]",
+        "answer": [2],
+        "explain": "C2 is the only 3° carbon. Removing its H gives the most stable (3°) radical, and Br• is very selective for it."
+      },
+      {"kind": "card", "reaction": "o1-radical-br2-2-methylbutane", "card": "product"},
+      {
+        "kind": "read",
+        "text": "**Br2 is selective; Cl2 is not.** Per H, Br• prefers 3° : 2° : 1° roughly 1600 : 80 : 1, but Cl• only about 5 : 4 : 1. So with Cl2 the number of each kind of H matters, and you usually get a mixture."
+      },
+      {
+        "kind": "choice",
+        "text": "With 2-methylpropane, Br2/hν gives almost only tert-butyl bromide, but Cl2/hν gives more 1-chloro-2-methylpropane (about 64%) than tert-butyl chloride. Why the difference?",
+        "smiles": "CC(C)C",
+        "options": [
+          {
+            "text": "H abstraction by Br• is uphill, so its transition state looks like the radical and feels the 3° radical's stability; Cl• reacts fast and early and barely tells the H's apart.",
+            "correct": true,
+            "explains": "Right (Hammond postulate). With Cl•, the nine 1° H's outnumber the one 3° H and win on statistics."
+          },
+          {
+            "text": "Cl• forms a 1° radical because 1° radicals are more stable.",
+            "explains": "1° radicals are the least stable. Cl• gives mostly the 1° chloride only because there are nine 1° H's and one 3° H."
+          },
+          {
+            "text": "Cl2 reacts through a carbocation, Br2 through a radical.",
+            "explains": "Both are radical chain reactions started by light. The difference is how selective the halogen atom is."
+          },
+          {
+            "text": "Br2 is bigger, so it can only reach the 3° hydrogen.",
+            "explains": "The 3° H is actually the most hindered. Br• prefers it because of radical stability, not size."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "o1-radical-br2-methylcyclohexane", "card": "product"},
+      {"kind": "card", "reaction": "o1-radical-cl2-cyclohexane", "card": "reagent"},
+      {
+        "kind": "read",
+        "text": "**NBS** (N-bromosuccinimide) brominates the **allylic** position of an alkene. The allylic C–H is weak because the allylic radical is resonance-stabilized. NBS reacts with HBr to release Br2 slowly, keeping it at a very low concentration, so Br2 addition across the C=C can't compete with the radical chain."
+      },
+      {
+        "kind": "choice",
+        "text": "Cyclohexene with Br2 in CH2Cl2 gives trans-1,2-dibromocyclohexane. With NBS and light it gives 3-bromocyclohexene. Why the switch?",
+        "smiles": "C1=CCCCC1",
+        "options": [
+          {
+            "text": "NBS keeps the Br2 concentration tiny, so polar addition to the C=C is too slow and the radical chain at the weak allylic C–H wins.",
+            "correct": true,
+            "explains": "Right. Addition needs Br2 to form the bromonium ion; at very low [Br2] the radical substitution takes over."
+          },
+          {
+            "text": "NBS is a nucleophile that attacks the C=C.",
+            "explains": "NBS is a source of Br (Br2 and Br•), not a nucleophile; the succinimide part doesn't end up in the product."
+          },
+          {
+            "text": "The vinylic C–H is the weakest, so Br replaces it.",
+            "explains": "Vinylic C–H bonds are strong and their radicals aren't resonance-stabilized. The allylic H is the weak one."
+          },
+          {
+            "text": "Light makes the bromonium ion open the other way.",
+            "explains": "No bromonium ion forms here. Light starts a radical chain, which substitutes at the allylic carbon."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "o1-radical-nbs-cyclohexene", "card": "product"}
+    ]
+  }
+]
