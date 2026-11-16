@@ -123,7 +123,6 @@
         }
       ]
     },
-    "review": "No real polar mechanism (surface chemistry), so the key step is only a placeholder H delivery and the where/arrows/paper cards are skipped.",
     "verified": false,
     "verifiedBy": null
   },
@@ -183,7 +182,7 @@
     "product": "[CH3:1][CH2:2][CH2:3][CH2:4][CH2:5][CH3:6]",
     "keyStep": {"nucleophileAtom": 7, "electrophileAtom": 3, "arrows": [{"from": {"bond": [7, 8]}, "to": {"atom": 3}}]},
     "skipCards": ["where", "arrows", "paper"],
-    "why": "An ordinary hydrogenation catalyst (Pd, Pt or Ni) reduces the alkyne to an alkene, and that alkene is reduced on the same surface faster than it can escape. With excess H2 two equivalents add and the product is the alkane, hexane.",
+    "why": "An ordinary hydrogenation catalyst (Pd, Pt or Ni) reduces the alkyne to a cis alkene, but that alkene is itself hydrogenated under the same conditions, so the reaction can't be stopped there. With excess H2 two equivalents add and the product is the alkane, hexane.",
     "traps": [
       {
         "smiles": "CC/C=C\\CC",
@@ -200,7 +199,6 @@
     ],
     "confusableWith": ["o1-alkyne-lindlar", "o1-alkyne-na-nh3"],
     "tags": ["reduction", "hydrogenation", "alkyne"],
-    "review": "Surface chemistry: the key step is only a placeholder H delivery and the where/arrows/paper cards are skipped.",
     "verified": false,
     "verifiedBy": null
   },
@@ -301,7 +299,6 @@
         }
       ]
     },
-    "review": "Hg part simplified: an open vinyl cation is drawn instead of a bridged mercurinium ion, and Hg is removed by protonation at the C–Hg carbon followed by loss of Hg2+ to give the enol (the Wade/McMurry-style sequence). HSO4- counterions are left out. The tautomerization steps are the standard acid-catalysed ones.",
     "verified": false,
     "verifiedBy": null
   },
@@ -361,7 +358,6 @@
         }
       ]
     },
-    "review": "No full mechanism: only the concerted syn hydroboration is given as the key step. The oxidation of the vinylborane (HOO- attack, 1,2-shift, hydrolysis) and the base-mediated enol-to-aldehyde tautomerization are described in 'why' only. Disiamylborane is drawn as the reagent; 9-BBN is accepted as an alias.",
     "verified": false,
     "verifiedBy": null
   },
@@ -373,7 +369,7 @@
     "reactants": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]"],
     "reagents": ["[H:7][Br:8]", "[H:9][Br:10]"],
     "reagentDisplay": "HBr (2 equiv)",
-    "reagentAliases": ["HBr (2 equiv)", "2 HBr", "excess HBr", "HBr, excess", "HBr"],
+    "reagentAliases": ["HBr (2 equiv)", "2 HBr", "excess HBr", "HBr, excess"],
     "product": "[CH3:1][C:2]([Br:8])([Br:10])[CH2:3][CH2:4][CH2:5][CH3:6]",
     "keyStep": {
       "species": ["[CH:1]#[C:2][CH2:3][CH2:4][CH2:5][CH3:6]", "[H:7][Br:8]"],
@@ -438,7 +434,6 @@
         }
       ]
     },
-    "review": "Shown through vinyl cations (the textbook picture); the real mechanism of HX + alkyne may be termolecular. Trap 2 is 2,3-dibromohexane; please confirm it reads as a sensible distractor.",
     "verified": false,
     "verifiedBy": null
   },
@@ -511,7 +506,6 @@
         }
       ]
     },
-    "review": "Bromination of alkynes is drawn through a bridged bromirenium ion, as in Klein/Wade; the mechanism is less clear-cut than for alkenes, but anti addition (E product) with 1 equiv is the textbook answer. E/Z checked with RDKit CIP (E). The simulator only checks connectivity for the C=C geometry.",
     "verified": false,
     "verifiedBy": null
   },
@@ -605,7 +599,6 @@
         }
       ]
     },
-    "review": "Which H is removed first (C1 vs C2) varies between texts; the route via 1-bromohex-1-ene is drawn here. E/Z of that intermediate is left unspecified.",
     "verified": false,
     "verifiedBy": null
   }
