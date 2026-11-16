@@ -1,0 +1,904 @@
+[
+  {
+    "id": "o1-alkene-hbr-markovnikov",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "HBr adds Markovnikov: via the more stable carbocation",
+    "reactants": ["[CH2:1]=[C:2]([CH3:3])[CH3:4]"],
+    "reagents": ["[H:20][Br:10]"],
+    "reagentDisplay": "HBr (no peroxides)",
+    "reagentAliases": ["HBr", "hydrogen bromide", "HBr, CH2Cl2", "HBr (no peroxides)", "HBr, dark"],
+    "product": "[CH3:1][C:2]([CH3:3])([CH3:4])[Br:10]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 20,
+      "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 20}}, {"from": {"bond": [20, 10]}, "to": {"atom": 10}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond takes the proton from HBr, giving the 3° carbocation",
+          "species": ["[CH2:1]=[C:2]([CH3:3])[CH3:4]", "[H:20][Br:10]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 20}}, {"from": {"bond": [20, 10]}, "to": {"atom": 10}}],
+          "note": "H goes to the CH2 end so the positive charge sits on the carbon with more alkyl groups (3°, not 1°)."
+        },
+        {
+          "label": "Bromide attacks the carbocation",
+          "species": ["[H:20][CH2:1][C+:2]([CH3:3])[CH3:4]", "[Br-:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 2}}]
+        }
+      ]
+    },
+    "why": "The C=C π bond is the nucleophile and takes H⁺ from HBr. Putting the H on the CH2 end gives a 3° carbocation (far more stable than the 1° one), and bromide adds there: Markovnikov, 2-bromo-2-methylpropane.",
+    "traps": [
+      {
+        "smiles": "CC(C)CBr",
+        "explains": "That's the anti-Markovnikov product, which needs peroxides (a radical chain). Plain HBr goes through the more stable 3° carbocation, so Br ends up on the more substituted carbon."
+      },
+      {
+        "smiles": "CC(C)(Br)CBr",
+        "explains": "Two bromines would come from Br2. HBr adds one H and one Br across the C=C."
+      },
+      {
+        "smiles": "CC(C)(C)O",
+        "explains": "There's no water here. An OH would need acid-catalysed hydration (H2SO4, H2O); with HBr the nucleophile that captures the cation is bromide."
+      }
+    ],
+    "confusableWith": ["o1-alkene-hbr-peroxides", "o1-alkene-hcl-hydride-shift", "o1-alkene-acid-hydration"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C=C(C)C",
+          "reagent": "HBr, ROOR (peroxides)",
+          "explains": "Peroxides switch HBr to a radical chain, which puts Br on the CH2 end: 1-bromo-2-methylpropane, the anti-Markovnikov product."
+        },
+        {
+          "precursor": "C=C(C)C",
+          "reagent": "Br2, CH2Cl2",
+          "explains": "Br2 adds two bromines (1,2-dibromo-2-methylpropane), not H and Br."
+        }
+      ]
+    },
+    "tags": ["Markovnikov", "carbocation", "HX addition"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-hcl-hydride-shift",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "HCl addition with a 1,2-hydride shift",
+    "reactants": ["[CH2:1]=[CH:2][C:3]([H:21])([CH3:4])[CH3:5]"],
+    "reagents": ["[H:20][Cl:10]"],
+    "reagentDisplay": "HCl",
+    "reagentAliases": ["HCl", "hydrogen chloride", "HCl, CH2Cl2", "HCl (gas)", "HCl, ether"],
+    "product": "[CH3:1][CH2:2][C:3]([CH3:4])([CH3:5])[Cl:10]",
+    "keyStep": {
+      "species": ["[CH3:1][CH+:2][C:3]([H:21])([CH3:4])[CH3:5]"],
+      "nucleophileAtom": 21,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [3, 21]}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond takes the proton from HCl, giving a 2° carbocation",
+          "species": ["[CH2:1]=[CH:2][C:3]([H:21])([CH3:4])[CH3:5]", "[H:20][Cl:10]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 20}}, {"from": {"bond": [20, 10]}, "to": {"atom": 10}}],
+          "note": "Markovnikov: H goes to the CH2 end, so the cation is 2°, not 1°."
+        },
+        {
+          "label": "1,2-Hydride shift: the H on the next carbon moves over with its electrons",
+          "species": ["[H:20][CH2:1][CH+:2][C:3]([H:21])([CH3:4])[CH3:5]", "[Cl-:10]"],
+          "arrows": [{"from": {"bond": [3, 21]}, "to": {"atom": 2}}],
+          "note": "The 2° cation becomes a more stable 3° cation. Shifts happen whenever a neighbouring H or CH3 can make the cation more stable."
+        },
+        {
+          "label": "Chloride attacks the 3° carbocation",
+          "species": ["[H:20][CH2:1][CH:2]([H:21])[C+:3]([CH3:4])[CH3:5]", "[Cl-:10]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 3}}]
+        }
+      ]
+    },
+    "why": "Protonation of the C=C gives a 2° carbocation next to a carbon bearing an H. A 1,2-hydride shift turns it into a more stable 3° carbocation before chloride arrives, so Cl ends up on the 3° carbon: 2-chloro-2-methylbutane, not 2-chloro-3-methylbutane.",
+    "traps": [
+      {
+        "smiles": "CC(Cl)C(C)C",
+        "explains": "That's the unrearranged product. The 2° carbocation lives long enough for a 1,2-hydride shift to the more stable 3° cation, and chloride adds there."
+      },
+      {
+        "smiles": "CC(C)CCCl",
+        "explains": "Cl on the end carbon would be anti-Markovnikov. HCl adds H to the CH2 end to make a carbocation, and HCl doesn't do the peroxide (radical) reaction at all."
+      },
+      {
+        "smiles": "CC=C(C)C",
+        "explains": "Losing a proton (E1) is possible, but with chloride present and no heat the cation is captured by Cl⁻. HCl adds; it doesn't just isomerise the alkene."
+      }
+    ],
+    "confusableWith": ["o1-alkene-hbr-markovnikov", "o1-alkene-acid-hydration", "o1-alkene-oxymercuration"],
+    "tags": ["Markovnikov", "carbocation", "rearrangement", "hydride shift", "HX addition"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-acid-hydration",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Acid-catalysed hydration: Markovnikov, with a methyl shift",
+    "reactants": ["[CH2:1]=[CH:2][C:3]([CH3:4])([CH3:5])[CH3:6]"],
+    "reagents": ["[OH2:11]", "[H:20][OH2+:10]"],
+    "reagentDisplay": "H2SO4 (cat.), H2O",
+    "reagentAliases": ["H2SO4, H2O", "H3O+", "H2O, H2SO4", "dilute H2SO4", "aqueous acid", "H3O+, H2O"],
+    "product": "[CH3:1][CH:2]([CH3:6])[C:3]([CH3:4])([CH3:5])[OH:11]",
+    "keyStep": {
+      "species": ["[CH3:1][CH+:2][C:3]([CH3:4])([CH3:5])[CH3:6]"],
+      "nucleophileAtom": 6,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"bond": [3, 6]}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond takes a proton from hydronium, giving a 2° carbocation",
+          "species": ["[CH2:1]=[CH:2][C:3]([CH3:4])([CH3:5])[CH3:6]", "[H:20][OH2+:10]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 20}}, {"from": {"bond": [20, 10]}, "to": {"atom": 10}}],
+          "note": "Markovnikov: the H goes to the CH2 end."
+        },
+        {
+          "label": "1,2-Methyl shift: a CH3 moves over with its bonding electrons",
+          "species": ["[H:20][CH2:1][CH+:2][C:3]([CH3:4])([CH3:5])[CH3:6]"],
+          "arrows": [{"from": {"bond": [3, 6]}, "to": {"atom": 2}}],
+          "note": "The neighbouring carbon has no H, but it has methyls: moving one turns the 2° cation into a 3° cation."
+        },
+        {
+          "label": "Water attacks the 3° carbocation",
+          "species": ["[H:20][CH2:1][CH:2]([CH3:6])[C+:3]([CH3:4])[CH3:5]", "[H:22][OH:11]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 3}}]
+        },
+        {
+          "label": "Another water removes the proton from the oxonium ion",
+          "species": ["[H:20][CH2:1][CH:2]([CH3:6])[C:3]([CH3:4])([CH3:5])[OH+:11][H:22]", "[OH2:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 22}}, {"from": {"bond": [11, 22]}, "to": {"atom": 11}}],
+          "note": "Hydronium is regenerated, so the acid is a catalyst."
+        }
+      ]
+    },
+    "why": "Protonation gives a 2° carbocation next to a quaternary carbon, and a 1,2-methyl shift makes it a more stable 3° cation. Water adds to that carbon and loses a proton, giving 2,3-dimethylbutan-2-ol. Any reaction that goes through a free carbocation can rearrange like this.",
+    "traps": [
+      {
+        "smiles": "CC(O)C(C)(C)C",
+        "explains": "That's the unrearranged Markovnikov alcohol, which oxymercuration–demercuration gives. Acid hydration goes through a free 2° carbocation, and a methyl shift makes it 3° first."
+      },
+      {
+        "smiles": "CC(C)(C)CCO",
+        "explains": "OH on the end carbon is anti-Markovnikov: that's hydroboration–oxidation. Acid puts H on the CH2 end and OH where the cation was."
+      },
+      {
+        "smiles": "CC(C)=C(C)C",
+        "explains": "Dehydration is the reverse reaction, favoured by concentrated acid and heat with water removed. In dilute aqueous acid, the large excess of water pushes the equilibrium toward the alcohol."
+      }
+    ],
+    "confusableWith": ["o1-alkene-oxymercuration", "o1-alkene-hydroboration-terminal", "o1-alkene-hcl-hydride-shift"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "1. Hg(OAc)2, H2O  2. NaBH4",
+          "explains": "Oxymercuration goes through a bridged mercurinium ion, so nothing rearranges: you get 3,3-dimethylbutan-2-ol, not the 2,3-dimethyl alcohol."
+        },
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "1. BH3·THF  2. H2O2, NaOH",
+          "explains": "Hydroboration–oxidation is anti-Markovnikov and doesn't rearrange: 3,3-dimethylbutan-1-ol."
+        }
+      ]
+    },
+    "tags": ["Markovnikov", "carbocation", "rearrangement", "methyl shift", "hydration", "alcohol"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-oxymercuration",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Oxymercuration–demercuration: Markovnikov, no rearrangement",
+    "reactants": ["[CH2:1]=[CH:2][C:3]([CH3:4])([CH3:5])[CH3:6]"],
+    "reagents": ["[CH3:30][C:31](=[O:32])[O:33][Hg:12][O:34][C:35](=[O:36])[CH3:37]", "[OH2:11]"],
+    "reagentDisplay": "1. Hg(OAc)2, H2O  2. NaBH4",
+    "reagentAliases": [
+      "Hg(OAc)2, H2O; NaBH4",
+      "1. Hg(OAc)2, H2O 2. NaBH4",
+      "oxymercuration",
+      "oxymercuration-demercuration",
+      "Hg(OAc)2, H2O, then NaBH4",
+      "mercuric acetate, water; sodium borohydride"
+    ],
+    "product": "[CH3:1][CH:2]([OH:11])[C:3]([CH3:4])([CH3:5])[CH3:6]",
+    "keyStep": {
+      "species": ["[CH2:1]1[CH:2]([C:3]([CH3:4])([CH3:5])[CH3:6])[Hg+:12]1[O:33][C:31](=[O:32])[CH3:30]", "[OH2:11]"],
+      "nucleophileAtom": 11,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 12]}, "to": {"atom": 12}}]
+    },
+    "why": "Hg(OAc)⁺ adds to the C=C as a bridged mercurinium ion, so there is never a free carbocation and nothing rearranges. Water opens the bridge at the more substituted carbon (it holds more δ+), and NaBH4 then replaces Hg with H: Markovnikov 3,3-dimethylbutan-2-ol.",
+    "traps": [
+      {
+        "smiles": "CC(C)C(C)(C)O",
+        "explains": "That's the rearranged alcohol from H2SO4/H2O, which goes through a free carbocation. The mercurinium ion is bridged, so no methyl shift happens."
+      },
+      {
+        "smiles": "CC(C)(C)CCO",
+        "explains": "OH on the end carbon is anti-Markovnikov (hydroboration–oxidation). Water attacks the more substituted carbon of the mercurinium ion."
+      },
+      {
+        "smiles": "CC(=O)O[Hg]CC(O)C(C)(C)C",
+        "explains": "That's the organomercury intermediate after step 1. Step 2 (NaBH4) replaces the C–Hg bond with C–H."
+      }
+    ],
+    "confusableWith": ["o1-alkene-acid-hydration", "o1-alkene-hydroboration-terminal", "o1-alkene-halohydrin"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "H2SO4 (cat.), H2O",
+          "explains": "Acid hydration goes through a free 2° carbocation, which undergoes a methyl shift: 2,3-dimethylbutan-2-ol."
+        },
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "1. BH3·THF  2. H2O2, NaOH",
+          "explains": "Hydroboration–oxidation is anti-Markovnikov: OH ends up on the CH2 (3,3-dimethylbutan-1-ol)."
+        }
+      ]
+    },
+    "tags": ["Markovnikov", "no rearrangement", "mercurinium", "hydration", "alcohol"],
+    "review": "No mechanism card: the NaBH4 demercuration step is a radical process that the arrow simulator can't draw, and a mechanism has to end at the product. The key step shown is water opening the mercurinium ion at the more substituted carbon; the mercurinium is drawn as a three-membered ring with Hg⁺ bonded to one acetate. Please check that depiction.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-hydroboration-terminal",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Hydroboration–oxidation: anti-Markovnikov alcohol",
+    "reactants": ["[CH2:1]=[CH:2][C:3]([CH3:4])([CH3:5])[CH3:6]"],
+    "reagents": ["[H:21][BH2:10]", "[OH:11][OH:12]", "[OH-:13].[Na+:14]"],
+    "reagentDisplay": "1. BH3·THF  2. H2O2, NaOH",
+    "reagentAliases": [
+      "BH3, THF; H2O2, NaOH",
+      "1. BH3·THF 2. H2O2, NaOH",
+      "BH3; H2O2, NaOH",
+      "hydroboration-oxidation",
+      "1. BH3 2. H2O2, OH-",
+      "9-BBN; H2O2, NaOH",
+      "B2H6; H2O2, NaOH"
+    ],
+    "product": "[OH:11][CH2:1][CH2:2][C:3]([CH3:4])([CH3:5])[CH3:6]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 10,
+      "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 10}}, {"from": {"bond": [10, 21]}, "to": {"atom": 2}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "BH3 adds across the C=C in one step: B to the less substituted carbon, H to the other",
+          "species": ["[CH2:1]=[CH:2][C:3]([CH3:4])([CH3:5])[CH3:6]", "[H:21][BH2:10]"],
+          "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 10}}, {"from": {"bond": [10, 21]}, "to": {"atom": 2}}],
+          "note": "Concerted four-centre step, so B and H add to the same face (syn) and no carbocation forms. Each BH3 really adds to three alkenes; one is drawn."
+        },
+        {
+          "label": "Hydroxide deprotonates hydrogen peroxide",
+          "species": ["[BH2:10][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]", "[OH-:13]", "[H:22][O:11][OH:12]"],
+          "arrows": [{"from": {"lonePair": 13}, "to": {"atom": 22}}, {"from": {"bond": [11, 22]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "The hydroperoxide anion attacks the empty p orbital on boron",
+          "species": ["[BH2:10][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]", "[O-:11][OH:12]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "The alkyl group moves from boron to oxygen as hydroxide leaves",
+          "species": ["[OH:12][O:11][BH2-:10][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]"],
+          "arrows": [{"from": {"bond": [1, 10]}, "to": {"atom": 11}}, {"from": {"bond": [11, 12]}, "to": {"atom": 12}}],
+          "note": "The carbon keeps its configuration as it moves (retention), so OH ends up exactly where B was."
+        },
+        {
+          "label": "Hydroxide adds to boron",
+          "species": ["[BH2:10][O:11][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]", "[OH-:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "The B–O bond breaks, releasing the alkoxide",
+          "species": ["[BH2-:10]([OH:12])[O:11][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]"],
+          "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "Water protonates the alkoxide",
+          "species": ["[O-:11][CH2:1][CH:2]([H:21])[C:3]([CH3:4])([CH3:5])[CH3:6]", "[H:23][OH:24]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 23}}, {"from": {"bond": [23, 24]}, "to": {"atom": 24}}]
+        }
+      ]
+    },
+    "why": "Boron is the electrophile and goes to the less hindered CH2 end, while H goes to the inner carbon, in one concerted step with no carbocation (so no rearrangement). Oxidation swaps C–B for C–OH, giving the anti-Markovnikov alcohol 3,3-dimethylbutan-1-ol.",
+    "traps": [
+      {
+        "smiles": "CC(O)C(C)(C)C",
+        "explains": "That's the Markovnikov alcohol from oxymercuration–demercuration. In hydroboration, boron (and so the OH) goes to the less substituted carbon."
+      },
+      {
+        "smiles": "CC(C)C(C)(C)O",
+        "explains": "A methyl shift needs a carbocation. Hydroboration is a concerted four-centre addition, so nothing rearranges; this product comes from H2SO4/H2O."
+      },
+      {
+        "smiles": "CC(C)(C)CC=O",
+        "explains": "H2O2/NaOH replaces the C–B bond with C–OH and stops there. An aldehyde would need a separate oxidation (e.g. PCC)."
+      }
+    ],
+    "confusableWith": ["o1-alkene-acid-hydration", "o1-alkene-oxymercuration", "o1-alkene-hydroboration-syn"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "H2SO4 (cat.), H2O",
+          "explains": "Acid hydration is Markovnikov and the 2° cation rearranges: 2,3-dimethylbutan-2-ol."
+        },
+        {
+          "precursor": "C=CC(C)(C)C",
+          "reagent": "1. Hg(OAc)2, H2O  2. NaBH4",
+          "explains": "Oxymercuration is Markovnikov: OH goes on the inner carbon (3,3-dimethylbutan-2-ol)."
+        }
+      ]
+    },
+    "tags": ["anti-Markovnikov", "syn addition", "hydroboration", "no rearrangement", "alcohol"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-hydroboration-syn",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Hydroboration–oxidation: syn addition on a ring",
+    "reactants": ["[CH3:7][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[H:21][BH2:10]", "[OH:11][OH:12]", "[OH-:13].[Na+:14]"],
+    "reagentDisplay": "1. BH3·THF  2. H2O2, NaOH",
+    "reagentAliases": [
+      "BH3, THF; H2O2, NaOH",
+      "1. BH3·THF 2. H2O2, NaOH",
+      "BH3; H2O2, NaOH",
+      "hydroboration-oxidation",
+      "1. BH3 2. H2O2, OH-",
+      "9-BBN; H2O2, NaOH",
+      "B2H6; H2O2, NaOH"
+    ],
+    "product": "[CH3:7][C@@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@H:2]1[OH:11]",
+    "keyStep": {
+      "nucleophileAtom": 2,
+      "electrophileAtom": 10,
+      "arrows": [{"from": {"bond": [2, 1]}, "to": {"atom": 10}}, {"from": {"bond": [10, 21]}, "to": {"atom": 1}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "BH3 adds across the C=C in one step: B to the less substituted carbon, H to the other",
+          "species": ["[CH3:7][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1", "[H:21][BH2:10]"],
+          "arrows": [{"from": {"bond": [2, 1]}, "to": {"atom": 10}}, {"from": {"bond": [10, 21]}, "to": {"atom": 1}}],
+          "note": "Concerted four-centre step, so B and H add to the same face (syn) and no carbocation forms. Each BH3 really adds to three alkenes; one is drawn."
+        },
+        {
+          "label": "Hydroxide deprotonates hydrogen peroxide",
+          "species": [
+            "[CH3:7][C:1]1([H:21])[CH:2]([BH2:10])[CH2:3][CH2:4][CH2:5][CH2:6]1",
+            "[OH-:13]",
+            "[H:22][O:11][OH:12]"
+          ],
+          "arrows": [{"from": {"lonePair": 13}, "to": {"atom": 22}}, {"from": {"bond": [11, 22]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "The hydroperoxide anion attacks the empty p orbital on boron",
+          "species": ["[CH3:7][C:1]1([H:21])[CH:2]([BH2:10])[CH2:3][CH2:4][CH2:5][CH2:6]1", "[O-:11][OH:12]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "The alkyl group moves from boron to oxygen as hydroxide leaves",
+          "species": ["[CH3:7][C:1]1([H:21])[CH:2]([BH2-:10][O:11][OH:12])[CH2:3][CH2:4][CH2:5][CH2:6]1"],
+          "arrows": [{"from": {"bond": [2, 10]}, "to": {"atom": 11}}, {"from": {"bond": [11, 12]}, "to": {"atom": 12}}],
+          "note": "The carbon keeps its configuration as it moves (retention), so OH ends up exactly where B was."
+        },
+        {
+          "label": "Hydroxide adds to boron",
+          "species": ["[CH3:7][C:1]1([H:21])[CH:2]([O:11][BH2:10])[CH2:3][CH2:4][CH2:5][CH2:6]1", "[OH-:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 10}}]
+        },
+        {
+          "label": "The B–O bond breaks, releasing the alkoxide",
+          "species": ["[CH3:7][C:1]1([H:21])[CH:2]([O:11][BH2-:10]([OH:12]))[CH2:3][CH2:4][CH2:5][CH2:6]1"],
+          "arrows": [{"from": {"bond": [10, 11]}, "to": {"atom": 11}}]
+        },
+        {
+          "label": "Water protonates the alkoxide",
+          "species": ["[CH3:7][C:1]1([H:21])[CH:2]([O-:11])[CH2:3][CH2:4][CH2:5][CH2:6]1", "[H:23][OH:24]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 23}}, {"from": {"bond": [23, 24]}, "to": {"atom": 24}}]
+        }
+      ]
+    },
+    "why": "B and H add to the same face in one step: B to the less substituted CH, H to the carbon with the methyl. Oxidation replaces B with OH with retention, so OH and the new H are cis, which puts OH trans to the methyl: trans-2-methylcyclohexan-1-ol (racemic: ±, both faces react equally).",
+    "traps": [
+      {
+        "smiles": "C[C@@H]1CCCC[C@@H]1O",
+        "explains": "That's cis-2-methylcyclohexanol, which would need anti addition. B and H add to the same face (syn), and OH replaces B with retention, so OH ends up trans to the CH3."
+      },
+      {
+        "smiles": "CC1(O)CCCCC1",
+        "explains": "OH on the carbon with the methyl is the Markovnikov product (H2SO4/H2O or oxymercuration). Boron goes to the less substituted carbon."
+      },
+      {
+        "smiles": "CC1CCCCC1",
+        "explains": "H2O2/NaOH swaps the boron for OH. Replacing B with H would need a carboxylic acid (protonolysis), not peroxide."
+      }
+    ],
+    "confusableWith": ["o1-alkene-hydroboration-terminal", "o1-alkene-halohydrin", "o1-alkene-oso4-syn-diol"],
+    "tags": ["anti-Markovnikov", "syn addition", "hydroboration", "stereochemistry", "alcohol"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-br2-anti",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Br2 addition: anti, through a bromonium ion",
+    "reactants": ["[CH:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[Br:10][Br:11]"],
+    "reagentDisplay": "Br2, CH2Cl2",
+    "reagentAliases": ["Br2", "Br2, CH2Cl2", "Br2, CCl4", "bromine", "Br2 in CH2Cl2"],
+    "product": "[Br:10][C@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@@H:2]1[Br:11]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 10,
+      "arrows": [
+        {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+        {"from": {"bond": [10, 11]}, "to": {"atom": 11}},
+        {"from": {"lonePair": 10}, "to": {"atom": 2}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond attacks Br2; Br⁻ leaves and the near Br bridges both carbons",
+          "species": ["[CH:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1", "[Br:10][Br:11]"],
+          "arrows": [
+            {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}},
+            {"from": {"lonePair": 10}, "to": {"atom": 2}}
+          ],
+          "note": "The bridged bromonium ion has no free carbocation, so there is no rearrangement, and it blocks one face."
+        },
+        {
+          "label": "Bromide attacks a ring carbon from the back side, opening the bromonium ion",
+          "species": ["[CH:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[Br+:10]2", "[Br-:11]"],
+          "arrows": [{"from": {"lonePair": 11}, "to": {"atom": 2}}, {"from": {"bond": [2, 10]}, "to": {"atom": 10}}],
+          "note": "Backside (SN2-like) attack puts the two bromines on opposite faces: anti addition."
+        }
+      ]
+    },
+    "why": "Br2 forms a bridged bromonium ion on one face of the ring, so bromide has to attack from the opposite face. Anti addition to cyclohexene gives trans-1,2-dibromocyclohexane (racemic: ±), never the cis isomer.",
+    "traps": [
+      {
+        "smiles": "Br[C@H]1CCCC[C@H]1Br",
+        "explains": "That's cis-1,2-dibromocyclohexane, which would need syn addition. The bromonium ion blocks one face, so Br⁻ attacks from the other: anti, giving trans."
+      },
+      {
+        "smiles": "BrC1CCCCC1",
+        "explains": "Bromocyclohexane is the HBr product (H and Br). Br2 adds a bromine to each alkene carbon."
+      },
+      {
+        "smiles": "BrC1CCCC=C1",
+        "explains": "Substitution at the allylic position is the radical reaction (NBS, light). Br2 in CH2Cl2 in the dark adds across the C=C."
+      }
+    ],
+    "confusableWith": ["o1-alkene-halohydrin", "o1-alkene-oso4-syn-diol", "o1-alkene-hbr-markovnikov"],
+    "tags": ["anti addition", "bromonium", "stereochemistry", "halogenation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-halohydrin",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Bromohydrin: OH on the more substituted carbon, anti",
+    "reactants": ["[CH3:7][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[Br:10][Br:11]", "[OH2:12]"],
+    "reagentDisplay": "Br2, H2O",
+    "reagentAliases": ["Br2, H2O", "Br2/H2O", "bromine water", "NBS, H2O", "NBS, H2O, DMSO", "Br2 in water"],
+    "product": "[CH3:7][C@:1]1([OH:12])[CH2:6][CH2:5][CH2:4][CH2:3][C@@H:2]1[Br:10]",
+    "keyStep": {
+      "species": ["[CH3:7][C:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[Br+:10]2", "[OH2:12]"],
+      "nucleophileAtom": 12,
+      "electrophileAtom": 1,
+      "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 1}}, {"from": {"bond": [1, 10]}, "to": {"atom": 10}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The π bond attacks Br2, forming a bromonium ion",
+          "species": ["[CH3:7][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1", "[Br:10][Br:11]"],
+          "arrows": [
+            {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 11]}, "to": {"atom": 11}},
+            {"from": {"lonePair": 10}, "to": {"atom": 2}}
+          ]
+        },
+        {
+          "label": "Water attacks the more substituted carbon from the back side",
+          "species": ["[CH3:7][C:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[Br+:10]2", "[H:22][OH:12]"],
+          "arrows": [{"from": {"lonePair": 12}, "to": {"atom": 1}}, {"from": {"bond": [1, 10]}, "to": {"atom": 10}}],
+          "note": "Water is the solvent, so it far outnumbers Br⁻. The C–Br bond to the 3° carbon is longer and that carbon holds more δ+, so water goes there."
+        },
+        {
+          "label": "Another water removes the proton from the oxonium ion",
+          "species": ["[CH3:7][C:1]1([OH+:12][H:22])[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[Br:10]", "[OH2:13]"],
+          "arrows": [{"from": {"lonePair": 13}, "to": {"atom": 22}}, {"from": {"bond": [12, 22]}, "to": {"atom": 12}}]
+        }
+      ]
+    },
+    "why": "Br2 forms a bromonium ion, and water (the solvent, in huge excess) opens it from the back face at the more substituted carbon, which carries more positive charge. So OH goes on the 3° carbon, Br on the 2° carbon, and they end up trans: trans-2-bromo-1-methylcyclohexan-1-ol (racemic: ±).",
+    "traps": [
+      {
+        "smiles": "C[C@]1(O)CCCC[C@H]1Br",
+        "explains": "That's the cis bromohydrin, which would need syn addition. Water attacks the bromonium ion from the face opposite Br, so OH and Br are trans."
+      },
+      {
+        "smiles": "CC1(Br)CCCCC1O",
+        "explains": "The regiochemistry is reversed. Water attacks the more substituted carbon of the bromonium ion (more δ+), so OH goes on the carbon with the methyl."
+      },
+      {
+        "smiles": "CC1(Br)CCCCC1Br",
+        "explains": "The dibromide forms in CH2Cl2. Here water is the solvent and outnumbers bromide, so water opens the bromonium ion."
+      }
+    ],
+    "confusableWith": ["o1-alkene-br2-anti", "o1-alkene-oxymercuration", "o1-alkene-hydroboration-syn"],
+    "tags": ["anti addition", "bromonium", "halohydrin", "regiochemistry", "stereochemistry"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-mcpba-epoxidation",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "mCPBA epoxidation: syn and stereospecific",
+    "reactants": ["[CH3:1]/[CH:2]=[CH:3]\\[CH3:4]"],
+    "reagents": ["[H:20][O:10][O:11][C:12](=[O:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1"],
+    "reagentDisplay": "mCPBA, CH2Cl2",
+    "reagentAliases": ["mCPBA", "MCPBA", "mCPBA, CH2Cl2", "RCO3H", "peroxyacid", "CH3CO3H", "peracetic acid", "MMPP"],
+    "product": "[CH3:1][C@H:2]1[O:10][C@H:3]1[CH3:4]",
+    "byproducts": ["[O:11]=[C:12]([OH:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1"],
+    "keyStep": {
+      "nucleophileAtom": 2,
+      "electrophileAtom": 10,
+      "arrows": [
+        {"from": {"bond": [2, 3]}, "to": {"atom": 10}},
+        {"from": {"bond": [10, 20]}, "to": {"atom": 3}},
+        {"from": {"lonePair": 13}, "to": {"atom": 20}},
+        {"from": {"bond": [12, 13]}, "to": {"atom": 13}},
+        {"from": {"bond": [10, 11]}, "to": {"bond": [11, 12]}}
+      ]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "One concerted step: the π bond attacks the outer O, the O–O bond breaks, and the C=O takes the proton",
+          "species": [
+            "[CH3:1]/[CH:2]=[CH:3]\\[CH3:4]",
+            "[H:20][O:10][O:11][C:12](=[O:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1"
+          ],
+          "arrows": [
+            {"from": {"bond": [2, 3]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 20]}, "to": {"atom": 3}},
+            {"from": {"lonePair": 13}, "to": {"atom": 20}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 13}},
+            {"from": {"bond": [10, 11]}, "to": {"bond": [11, 12]}}
+          ],
+          "note": "Both C–O bonds form on the same face at the same time, so the alkene's geometry is kept: cis-alkene → cis-epoxide."
+        }
+      ]
+    },
+    "why": "The peroxyacid delivers one O to both alkene carbons from the same face in a single concerted step, so the geometry of the alkene is kept. cis-2-Butene gives cis-2,3-dimethyloxirane (a meso compound); trans-2-butene would give the trans epoxide.",
+    "traps": [
+      {
+        "smiles": "C[C@H]1O[C@@H]1C",
+        "explains": "That's trans-2,3-dimethyloxirane, from trans-2-butene. Epoxidation is concerted and syn, so the cis groups stay cis."
+      },
+      {
+        "smiles": "CC(O)C(C)O",
+        "explains": "Opening the epoxide to a diol needs a second step (H3O+). mCPBA in CH2Cl2 stops at the epoxide."
+      },
+      {
+        "smiles": "CCC(C)=O",
+        "explains": "No hydrogen moves to make a ketone. The O bridges both carbons that were in the C=C."
+      }
+    ],
+    "confusableWith": ["o1-alkene-anti-dihydroxylation", "o1-alkene-oso4-syn-diol", "o1-alkene-ozonolysis"],
+    "tags": ["epoxide", "syn addition", "stereospecific", "stereochemistry", "oxidation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-oso4-syn-diol",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "OsO4: syn dihydroxylation",
+    "reactants": ["[CH:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[O:10]=[Os:12](=[O:11])(=[O:13])=[O:14]"],
+    "reagentDisplay": "1. OsO4  2. NaHSO3, H2O",
+    "reagentAliases": [
+      "OsO4; NaHSO3, H2O",
+      "1. OsO4 2. NaHSO3, H2O",
+      "OsO4, NMO",
+      "OsO4",
+      "cold KMnO4, NaOH",
+      "KMnO4, cold, dilute, NaOH",
+      "cold dilute KMnO4"
+    ],
+    "product": "[OH:10][C@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@H:2]1[OH:11]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 10,
+      "arrows": [
+        {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+        {"from": {"lonePair": 11}, "to": {"atom": 2}},
+        {"from": {"bond": [10, 12]}, "to": {"atom": 12}},
+        {"from": {"bond": [11, 12]}, "to": {"atom": 11}}
+      ]
+    },
+    "why": "OsO4 adds both oxygens to the same face in one concerted step, forming a cyclic osmate ester. Cleaving the Os–O bonds (NaHSO3, H2O) leaves the C–O bonds untouched, so both OH groups are cis: cis-cyclohexane-1,2-diol (meso).",
+    "traps": [
+      {
+        "smiles": "O[C@H]1CCCC[C@@H]1O",
+        "explains": "That's trans-cyclohexane-1,2-diol, the anti product of epoxidation then H3O+. OsO4 delivers both oxygens from the same face."
+      },
+      {
+        "smiles": "C1CCC2OC2C1",
+        "explains": "The epoxide comes from a peroxyacid (mCPBA). OsO4 gives a diol with an OH on each carbon."
+      },
+      {
+        "smiles": "O=CCCCCC=O",
+        "explains": "Breaking the C=C completely needs ozonolysis or hot, acidic KMnO4. OsO4 (or cold, dilute KMnO4) keeps the C–C bond and adds two OH groups."
+      }
+    ],
+    "confusableWith": ["o1-alkene-anti-dihydroxylation", "o1-alkene-mcpba-epoxidation", "o1-alkene-br2-anti"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "1. mCPBA  2. H3O+",
+          "explains": "Epoxide opening by water is backside (anti), so this gives trans-cyclohexane-1,2-diol, not the cis diol."
+        },
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "1. O3  2. (CH3)2S",
+          "explains": "Ozonolysis breaks the C=C completely, giving hexanedial."
+        }
+      ]
+    },
+    "tags": ["syn addition", "diol", "dihydroxylation", "stereochemistry", "oxidation"],
+    "review": "No mechanism card: hydrolysis of the cyclic osmate ester (NaHSO3, H2O) isn't a clean textbook arrow sequence. The key step is the concerted [3+2] addition drawn as four arrows (π bond → O, other O's lone pair → C, both Os=O π bonds back onto Os/O, giving an Os(VI) osmate ester). Please check this depiction; the cold KMnO4 aliases are listed as accepted alternatives.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-anti-dihydroxylation",
+    "unit": "o1-3",
+    "pattern": "E",
+    "title": "Epoxide then H3O+: anti dihydroxylation",
+    "reactants": ["[CH:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[H:20][O:10][O:11][C:12](=[O:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1", "[OH2:50]"],
+    "reagentDisplay": "1. mCPBA  2. H3O+",
+    "reagentAliases": [
+      "mCPBA; H3O+",
+      "1. mCPBA 2. H3O+",
+      "RCO3H; H3O+",
+      "1. RCO3H 2. H2O, H+",
+      "mCPBA, then H2SO4, H2O",
+      "1. mCPBA 2. H2SO4, H2O"
+    ],
+    "product": "[OH:10][C@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@@H:2]1[OH:50]",
+    "byproducts": ["[O:11]=[C:12]([OH:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1"],
+    "keyStep": {
+      "species": ["[CH:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[OH+:10]2", "[OH2:50]"],
+      "nucleophileAtom": 50,
+      "electrophileAtom": 2,
+      "arrows": [{"from": {"lonePair": 50}, "to": {"atom": 2}}, {"from": {"bond": [2, 10]}, "to": {"atom": 10}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "mCPBA transfers an O to the C=C in one concerted step, giving the epoxide",
+          "species": [
+            "[CH:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1",
+            "[H:20][O:10][O:11][C:12](=[O:13])[c:40]1[cH:41][cH:42][cH:43][c:44]([Cl:45])[cH:46]1"
+          ],
+          "arrows": [
+            {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+            {"from": {"bond": [10, 20]}, "to": {"atom": 2}},
+            {"from": {"lonePair": 13}, "to": {"atom": 20}},
+            {"from": {"bond": [12, 13]}, "to": {"atom": 13}},
+            {"from": {"bond": [10, 11]}, "to": {"bond": [11, 12]}}
+          ]
+        },
+        {
+          "label": "Step 2: hydronium protonates the epoxide oxygen",
+          "species": ["[CH:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[O:10]2", "[H:22][OH2+:23]"],
+          "arrows": [{"from": {"lonePair": 10}, "to": {"atom": 22}}, {"from": {"bond": [22, 23]}, "to": {"atom": 23}}]
+        },
+        {
+          "label": "Water attacks a ring carbon from the back side as the C–O bond breaks",
+          "species": ["[CH:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[O+:10]2[H:22]", "[H:24][OH:50]"],
+          "arrows": [{"from": {"lonePair": 50}, "to": {"atom": 2}}, {"from": {"bond": [2, 10]}, "to": {"atom": 10}}],
+          "note": "Backside attack: the new OH comes in on the face opposite the old epoxide oxygen."
+        },
+        {
+          "label": "Water removes the proton from the oxonium ion",
+          "species": ["[O:10]([H:22])[CH:1]1[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[OH+:50][H:24]", "[OH2:25]"],
+          "arrows": [{"from": {"lonePair": 25}, "to": {"atom": 24}}, {"from": {"bond": [50, 24]}, "to": {"atom": 50}}]
+        }
+      ]
+    },
+    "why": "The epoxide O is on one face of the ring. In acid, water opens the protonated epoxide by backside attack, so the second OH comes in on the opposite face: anti addition overall, trans-cyclohexane-1,2-diol (racemic: ±). Compare OsO4, which gives the cis diol.",
+    "traps": [
+      {
+        "smiles": "O[C@H]1CCCC[C@H]1O",
+        "explains": "That's cis-cyclohexane-1,2-diol, the syn product of OsO4. Water opens the epoxide from the back side, so the two OH groups end up trans."
+      },
+      {
+        "smiles": "C1CCC2OC2C1",
+        "explains": "That's where step 1 stops. Step 2 (H3O+) opens the epoxide to the diol."
+      },
+      {
+        "smiles": "OC1CCCCC1",
+        "explains": "Cyclohexanol is the hydration product (H and OH). Here each alkene carbon ends up with an oxygen."
+      }
+    ],
+    "confusableWith": ["o1-alkene-oso4-syn-diol", "o1-alkene-mcpba-epoxidation", "o1-alkene-br2-anti"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "1. OsO4  2. NaHSO3, H2O",
+          "explains": "OsO4 adds both oxygens to the same face: cis-cyclohexane-1,2-diol, not trans."
+        },
+        {
+          "precursor": "C1=CCCCC1",
+          "reagent": "Br2, H2O",
+          "explains": "Bromine water gives the trans bromohydrin (one OH, one Br), not a diol."
+        }
+      ]
+    },
+    "tags": ["anti addition", "diol", "epoxide", "dihydroxylation", "stereochemistry"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-ozonolysis",
+    "unit": "o1-3",
+    "pattern": "X",
+    "title": "Ozonolysis: cut the C=C, make two C=O",
+    "reactants": ["[CH3:6][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5]1"],
+    "reagents": ["[O:10]=[O+:11][O-:12]"],
+    "reagentDisplay": "1. O3, CH2Cl2, −78 °C  2. (CH3)2S",
+    "reagentAliases": [
+      "O3; DMS",
+      "1. O3 2. DMS",
+      "O3; (CH3)2S",
+      "1. O3 2. (CH3)2S",
+      "O3; Zn, H2O",
+      "ozone, dimethyl sulfide",
+      "ozonolysis"
+    ],
+    "product": "[CH3:6][C:1](=[O:10])[CH2:5][CH2:4][CH2:3][CH:2]=[O:12]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 10,
+      "arrows": [
+        {"from": {"bond": [1, 2]}, "to": {"atom": 10}},
+        {"from": {"lonePair": 12}, "to": {"atom": 2}},
+        {"from": {"bond": [10, 11]}, "to": {"atom": 11}}
+      ]
+    },
+    "skipCards": ["where", "arrows", "paper"],
+    "why": "Ozone cleaves the C=C completely and each alkene carbon becomes a C=O. Because the C=C is in a ring, the ring opens into one chain: the carbon with the methyl becomes a ketone and the CH becomes an aldehyde. DMS (reductive workup) keeps the aldehyde from being oxidised: 5-oxohexanal.",
+    "traps": [
+      {
+        "smiles": "CC(=O)CCCC(=O)O",
+        "explains": "The carboxylic acid forms with an oxidative workup (H2O2) or hot KMnO4. Dimethyl sulfide is a reducing workup, so the aldehyde survives."
+      },
+      {
+        "smiles": "CC12CCCC1O2",
+        "explains": "The epoxide comes from mCPBA, which keeps the C–C bond. Ozone breaks both bonds of the C=C."
+      },
+      {
+        "smiles": "CC1(O)CCCC1O",
+        "explains": "The diol comes from OsO4 or cold KMnO4. Ozonolysis cleaves the C=C into two carbonyls."
+      }
+    ],
+    "confusableWith": ["o1-alkene-oso4-syn-diol", "o1-alkene-mcpba-epoxidation"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC1=CCCC1",
+          "reagent": "1. O3  2. H2O2",
+          "explains": "An oxidative workup turns the aldehyde into a carboxylic acid: 5-oxohexanoic acid."
+        },
+        {
+          "precursor": "CC1=CCCC1",
+          "reagent": "KMnO4, H3O+, heat",
+          "explains": "Hot, acidic permanganate also cleaves the C=C but oxidises the aldehyde end to COOH."
+        }
+      ]
+    },
+    "tags": ["oxidative cleavage", "ozonolysis", "carbonyl", "oxidation"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-hydrogenation",
+    "unit": "o1-3",
+    "pattern": "X",
+    "title": "Catalytic hydrogenation: syn addition of H2",
+    "reactants": ["[CH3:7][C:1]1=[C:2]([CH3:8])[CH2:3][CH2:4][CH2:5][CH2:6]1"],
+    "reagents": ["[H:20][H:21]"],
+    "reagentDisplay": "H2, Pd/C",
+    "reagentAliases": ["H2, Pd/C", "H2, Pd", "H2, Pt", "H2, PtO2", "H2, Ni", "Pd/C, H2", "catalytic hydrogenation"],
+    "product": "[CH3:7][C@H:1]1[CH2:6][CH2:5][CH2:4][CH2:3][C@H:2]1[CH3:8]",
+    "keyStep": {
+      "nucleophileAtom": 1,
+      "electrophileAtom": 20,
+      "arrows": [{"from": {"bond": [1, 2]}, "to": {"atom": 20}}, {"from": {"bond": [20, 21]}, "to": {"atom": 2}}]
+    },
+    "skipCards": ["where", "arrows", "paper"],
+    "why": "Both hydrogens are delivered from the metal surface to the same face of the C=C (syn addition). The two methyls get pushed to the other face together, so 1,2-dimethylcyclohexene gives cis-1,2-dimethylcyclohexane (meso).",
+    "traps": [
+      {
+        "smiles": "C[C@H]1CCCC[C@@H]1C",
+        "explains": "That's trans-1,2-dimethylcyclohexane, which would need anti addition. The alkene lies flat on the catalyst and both H atoms add from below: syn."
+      },
+      {
+        "smiles": "CC1(C)CCCCC1",
+        "explains": "Nothing migrates. There is no carbocation; each alkene carbon simply gains one H."
+      },
+      {
+        "smiles": "CC1CCCCC1(C)O",
+        "explains": "There is no water or acid. Hydrogenation adds H–H across the C=C; an OH would need hydration."
+      }
+    ],
+    "confusableWith": ["o1-alkene-hydroboration-syn", "o1-alkene-oso4-syn-diol"],
+    "tags": ["syn addition", "reduction", "hydrogenation", "stereochemistry"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-alkene-hbr-peroxides",
+    "unit": "o1-3",
+    "pattern": "R",
+    "title": "HBr with peroxides: anti-Markovnikov (radical)",
+    "reactants": ["[CH2:1]=[C:2]([CH3:3])[CH3:4]"],
+    "reagents": ["[H:20][Br:10]"],
+    "reagentDisplay": "HBr, ROOR (peroxides), heat or hν",
+    "reagentAliases": ["HBr, ROOR", "HBr, peroxides", "HBr, H2O2", "HBr, ROOR, hv", "HBr, (PhCO2)2", "HBr, ROOR, heat"],
+    "product": "[Br:10][CH2:1][CH:2]([CH3:3])[CH3:4]",
+    "why": "Peroxides start a radical chain: Br• (not H⁺) adds first, to the CH2 end, so the more stable 3° radical forms on the inner carbon. That radical takes H from HBr, so H ends on the more substituted carbon and Br on the end: 1-bromo-2-methylpropane. Only HBr does this; HCl and HI don't.",
+    "traps": [
+      {
+        "smiles": "CC(C)(C)Br",
+        "explains": "That's the Markovnikov product of HBr without peroxides (via the carbocation). With peroxides, Br• adds first and goes to the CH2 end."
+      },
+      {"smiles": "CC(C)(Br)CBr", "explains": "Two bromines come from Br2. HBr adds one H and one Br."},
+      {
+        "smiles": "C=C(C)CBr",
+        "explains": "Substitution at the allylic CH3 is NBS chemistry (low Br2, light). With HBr and peroxides, H and Br add across the C=C."
+      }
+    ],
+    "confusableWith": ["o1-alkene-hbr-markovnikov", "o1-alkene-hydroboration-terminal"],
+    "tags": ["anti-Markovnikov", "radical", "HX addition"],
+    "verified": false,
+    "verifiedBy": null
+  }
+]

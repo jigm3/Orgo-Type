@@ -1,0 +1,114 @@
+[
+  {
+    "id": "lesson-o1-3",
+    "unit": "o1-3",
+    "title": "Alkenes: the π bond is the nucleophile",
+    "verified": false,
+    "verifiedBy": null,
+    "review": "Step 10 compares three ways to hydrate 3,3-dimethyl-1-butene: H2SO4/H2O gives 2,3-dimethylbutan-2-ol (methyl shift), oxymercuration gives 3,3-dimethylbutan-2-ol, hydroboration gives 3,3-dimethylbutan-1-ol. Please confirm the wording of step 5 (mercurinium described as bridged like bromonium).",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "An alkene's **π bond** is a pair of electrons sitting above and below the C=C, so the alkene is the **nucleophile**. It attacks an electrophile (H⁺, Br2, Hg(OAc)⁺, BH3). With HX, H adds to the carbon that leaves the **more stable carbocation** (3° > 2° > 1°). That's **Markovnikov's rule**.",
+        "smiles": "[CH2:1]=[C:2]([CH3:3])[CH3:4]",
+        "lit": {"1": "nu"}
+      },
+      {
+        "kind": "worked",
+        "reaction": "o1-alkene-hbr-markovnikov",
+        "text": "Two steps: the π bond grabs H⁺ to make the 3° cation, then bromide adds to it."
+      },
+      {
+        "kind": "read",
+        "text": "A carbocation can **rearrange** before the nucleophile arrives. If a neighbouring carbon carries an H or a CH3 that could move over and leave a more stable cation (2° → 3°), it shifts with its bonding pair: a **1,2-hydride** or **1,2-methyl shift**. Watch for a 2° cation next to a branch.",
+        "smiles": "[CH3:1][CH+:2][CH:3]([CH3:4])[CH3:5]",
+        "lit": {"2": "el"}
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkene-hcl-hydride-shift",
+        "card": "product",
+        "text": "Protonate, check the neighbour, then add Cl⁻."
+      },
+      {
+        "kind": "read",
+        "text": "Br2 and Hg(OAc)2 don't make a free carbocation. The electrophile **bridges** both carbons (a bromonium or mercurinium ion). So nothing rearranges, and the nucleophile must attack from the **opposite face**: **anti** addition. It opens the bridge at the more substituted carbon.",
+        "smiles": "[CH:1]12[CH2:6][CH2:5][CH2:4][CH2:3][CH:2]1[Br+:10]2",
+        "lit": {"1": "el", "2": "el"}
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkene-br2-anti",
+        "card": "arrows",
+        "given": 1,
+        "text": "The π bond's arrow is drawn. Add the rest: Br⁻ leaves, and the near Br bridges back to the other carbon."
+      },
+      {
+        "kind": "choice",
+        "text": "Cyclohexene + Br2 gives only **trans**-1,2-dibromocyclohexane. Why no cis?",
+        "smiles": "C1=CCCCC1",
+        "options": [
+          {
+            "text": "The bromonium ion blocks one face, so Br⁻ has to attack from the other face (anti addition).",
+            "correct": true,
+            "explains": "Right. Backside opening of the bridged ion puts the two Br atoms on opposite faces."
+          },
+          {
+            "text": "The trans isomer is more stable, so the cis isomer converts into it.",
+            "explains": "The product doesn't equilibrate; stereochemistry is fixed by the mechanism. Anti attack on the bromonium ion makes trans directly."
+          },
+          {
+            "text": "A planar carbocation forms, and Br⁻ attacks it from the less hindered side.",
+            "explains": "A free carbocation could be attacked from either face and give both isomers. The bridged bromonium ion is why only trans forms."
+          },
+          {
+            "text": "Both Br atoms add at the same time from the same molecule of Br2.",
+            "explains": "That would be syn addition and would give cis. The two Br atoms arrive in separate steps from opposite faces."
+          }
+        ]
+      },
+      {
+        "kind": "read",
+        "text": "**Hydroboration** is different again: BH3 adds in **one concerted step**. Boron goes to the **less substituted** carbon and H to the other, on the **same face** (syn). No cation, no rearrangement. H2O2/NaOH then swaps B for OH with retention: an **anti-Markovnikov**, syn alcohol.",
+        "smiles": "[CH3:7][C:1]1=[CH:2][CH2:3][CH2:4][CH2:5][CH2:6]1",
+        "lit": {"2": "nu"}
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkene-hydroboration-syn",
+        "card": "product",
+        "text": "Think about which face B and H arrive on."
+      },
+      {
+        "kind": "choice",
+        "text": "Which reagents turn 3,3-dimethyl-1-butene into **3,3-dimethylbutan-2-ol**, (CH3)3C–CH(OH)–CH3?",
+        "smiles": "C=CC(C)(C)C",
+        "options": [
+          {
+            "text": "1. Hg(OAc)2, H2O  2. NaBH4",
+            "correct": true,
+            "explains": "Right. Markovnikov (OH on the inner carbon) through a bridged mercurinium ion, so the tert-butyl group's methyls don't shift."
+          },
+          {
+            "text": "H2SO4 (cat.), H2O",
+            "explains": "Markovnikov, but through a free 2° carbocation that does a methyl shift: you get 2,3-dimethylbutan-2-ol."
+          },
+          {
+            "text": "1. BH3·THF  2. H2O2, NaOH",
+            "explains": "Hydroboration is anti-Markovnikov: the OH goes on the CH2 end (3,3-dimethylbutan-1-ol)."
+          },
+          {
+            "text": "HBr, ROOR, then NaOH",
+            "explains": "Peroxides give the anti-Markovnikov 1° bromide, and on that route the OH would end up on the end carbon, not the inner one."
+          }
+        ]
+      },
+      {
+        "kind": "card",
+        "reaction": "o1-alkene-acid-hydration",
+        "card": "product",
+        "text": "Now the acid version of the same alkene."
+      }
+    ]
+  }
+]
