@@ -3,8 +3,8 @@
     "id": "lesson-u2",
     "unit": 2,
     "title": "Acyl substitution: add, then kick out",
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

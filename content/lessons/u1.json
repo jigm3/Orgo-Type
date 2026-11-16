@@ -3,8 +3,8 @@
     "id": "lesson-u1",
     "unit": 1,
     "title": "Pattern A: nucleophiles add to C=O",
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

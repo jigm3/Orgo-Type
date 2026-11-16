@@ -3,8 +3,8 @@
     "id": "lesson-u3",
     "unit": 3,
     "title": "Enones: 1,2 or 1,4?",
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

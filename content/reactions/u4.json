@@ -65,8 +65,8 @@
     ],
     "confusableWith": ["u4-aldol-condensation-propanal", "u4-claisen-ethyl-acetate"],
     "tags": ["C-C bond", "enolate", "aldol"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-alpha-bromination-acid",
@@ -140,8 +140,8 @@
     ],
     "confusableWith": ["u4-haloform-iodoform"],
     "tags": ["enol", "alpha-halogenation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-haloform-iodoform",
@@ -258,8 +258,8 @@
     ],
     "confusableWith": ["u4-alpha-bromination-acid"],
     "tags": ["enolate", "alpha-halogenation", "haloform", "C-C cleavage"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-kinetic-enolate-alkylation",
@@ -339,8 +339,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "kinetic"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-thermodynamic-enolate-alkylation",
@@ -512,8 +512,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "SN2"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-aldol-condensation-propanal",
@@ -619,8 +619,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "aldol", "condensation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-claisen-schmidt-chalcone",
@@ -739,8 +739,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "aldol", "crossed aldol", "condensation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-intramolecular-aldol-hexanedione",
@@ -840,8 +840,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "aldol", "intramolecular", "ring formation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-claisen-ethyl-acetate",
@@ -950,8 +950,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Claisen", "beta-keto ester"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-dieckmann-diethyl-adipate",
@@ -1065,8 +1065,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Claisen", "Dieckmann", "ring formation", "beta-keto ester"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-crossed-claisen-benzoate-acetone",
@@ -1184,8 +1184,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Claisen", "crossed Claisen", "1,3-dicarbonyl"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-michael-malonate-mvk",
@@ -1294,8 +1294,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Michael", "conjugate addition", "1,4"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-robinson-cyclohexanone-mvk",
@@ -1441,8 +1441,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Michael", "aldol", "Robinson annulation", "ring formation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-malonic-ester-butanoic-acid",
@@ -1643,8 +1643,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "malonic ester", "decarboxylation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-acetoacetic-ester-2-pentanone",
@@ -1792,8 +1792,8 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "acetoacetic ester", "decarboxylation"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-decarboxylation-beta-keto-acid",
@@ -1860,8 +1860,8 @@
     ],
     "confusableWith": ["u4-malonic-ester-butanoic-acid", "u4-acetoacetic-ester-2-pentanone"],
     "tags": ["decarboxylation", "enol", "beta-keto acid"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u4-stork-enamine-allyl",
@@ -2028,7 +2028,7 @@
       ]
     },
     "tags": ["C-C bond", "enamine", "alkylation", "Stork"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

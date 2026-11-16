@@ -1,1 +1,452 @@
-[{"id": "o1-acid-acetic-naoh", "unit": "o1-1", "pattern": "P", "title": "Carboxylic acid + NaOH: carboxylate", "reactants": ["[CH3:1][C:2](=[O:3])[O:4][H:5]"], "reagents": ["[OH-:6].[Na+:7]"], "reagentDisplay": "NaOH, H2O", "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "LiOH", "hydroxide", "OH-", "NaOH, H2O"], "product": "[CH3:1][C:2](=[O:3])[O-:4]", "keyStep": {"nucleophileAtom": 6, "electrophileAtom": 5, "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}]}, "mechanism": {"steps": [{"label": "Hydroxide takes the O–H proton; the O–H bond electrons stay on oxygen", "species": ["[CH3:1][C:2](=[O:3])[O:4][H:5]", "[OH-:6]"], "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}], "note": "Stronger acid (acetic acid, pKa 4.8) + stronger base (OH⁻) → weaker acid (water, pKa 15.7) + weaker base (acetate)."}]}, "why": "Acetic acid (pKa 4.8) is a far stronger acid than water (pKa 15.7), so hydroxide removes the O–H proton and the equilibrium lies about 10^11 to the right. Acetate is stabilized by resonance: the negative charge is shared by both oxygens.", "traps": [{"smiles": "[CH2-]C(=O)O", "explains": "Wrong proton. The C–H bonds of the CH3 group (pKa about 25) are far less acidic than the O–H (pKa 4.8); hydroxide takes the O–H proton, whose anion is shared by two oxygens."}, {"smiles": "CC(O)=O", "explains": "Wrong direction. Equilibrium favours the weaker acid: water (pKa 15.7) is much weaker than acetic acid (pKa 4.8), so the reaction lies far to the right, not left."}, {"smiles": "CC(=[OH+])O", "explains": "Hydroxide is a base: it removes a proton, it doesn't add one. A protonated carbonyl forms only in strong acid."}], "confusableWith": ["o1-acid-acetic-nahco3", "o1-acid-phenol-naoh", "o1-acid-ethanethiol-naoh"], "tags": ["acid-base", "pKa", "carboxylic acid"], "verified": false, "verifiedBy": null}, {"id": "o1-acid-phenol-naoh", "unit": "o1-1", "pattern": "P", "title": "Phenol + NaOH: phenoxide", "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O:7][H:8]"], "reagents": ["[OH-:9].[Na+:10]"], "reagentDisplay": "NaOH, H2O", "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "hydroxide", "OH-", "NaOH, H2O"], "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O-:7]", "keyStep": {"nucleophileAtom": 9, "electrophileAtom": 8, "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 8}}, {"from": {"bond": [7, 8]}, "to": {"atom": 7}}]}, "mechanism": {"steps": [{"label": "Hydroxide takes the phenol O–H proton; the bond electrons stay on oxygen", "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O:7][H:8]", "[OH-:9]"], "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 8}}, {"from": {"bond": [7, 8]}, "to": {"atom": 7}}], "note": "Phenol (pKa 10) is a stronger acid than water (pKa 15.7), so the equilibrium lies to the right."}]}, "why": "Phenol (pKa 10) is about a million times more acidic than an ordinary alcohol (pKa 16) because the negative charge of phenoxide is spread into the ring by resonance. It is a stronger acid than water (pKa 15.7), so NaOH deprotonates it almost completely.", "traps": [{"smiles": "Oc1ccccc1", "explains": "Wrong direction. Phenol is not like cyclohexanol: resonance into the ring lowers its pKa to 10, below water's 15.7, so hydroxide does deprotonate it."}, {"smiles": "Oc1cc[c-]cc1", "explains": "Wrong proton. Aromatic C–H bonds have a pKa above 40; the O–H (pKa 10) is the acidic hydrogen."}, {"smiles": "[OH2+]c1ccccc1", "explains": "Hydroxide is a base: it removes a proton, it doesn't add one. Protonating the OH would need a strong acid."}], "confusableWith": ["o1-acid-acetic-naoh", "o1-acid-ethanethiol-naoh", "o1-acid-ethanol-nah"], "tags": ["acid-base", "pKa", "resonance", "phenol"], "retro": {"distractors": [{"precursor": "Oc1ccccc1", "reagent": "NaHCO3, H2O", "explains": "Fails: carbonic acid (pKa 6.4) is a stronger acid than phenol (pKa 10), so bicarbonate is too weak a base and the equilibrium lies to the left."}, {"precursor": "Oc1ccccc1", "reagent": "H2O", "explains": "Fails: water is a much weaker base than hydroxide; phenol is only very slightly ionized in plain water."}]}, "verified": false, "verifiedBy": null}, {"id": "o1-acid-ethanol-nah", "unit": "o1-1", "pattern": "P", "title": "Alcohol + NaH: alkoxide", "reactants": ["[CH3:1][CH2:2][O:3][H:4]"], "reagents": ["[H-:5].[Na+:6]"], "reagentDisplay": "NaH, THF", "reagentAliases": ["NaH", "sodium hydride", "KH", "NaH, THF", "Na", "sodium metal"], "product": "[CH3:1][CH2:2][O-:3]", "keyStep": {"nucleophileAtom": 5, "electrophileAtom": 4, "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]}, "mechanism": {"steps": [{"label": "Hydride takes the O–H proton; the bond electrons stay on oxygen", "species": ["[CH3:1][CH2:2][O:3][H:4]", "[H-:5]"], "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}], "note": "The conjugate acid is H2 (pKa about 35), which bubbles out of the flask, so the reaction is irreversible."}]}, "why": "Hydride is a very strong base (its conjugate acid, H2, has pKa about 35), far stronger than ethoxide (ethanol pKa 16), so it removes the O–H proton completely. H2 gas escapes, which also drives the reaction. NaH is a base here, not a nucleophile.", "traps": [{"smiles": "[CH2-]CO", "explains": "Wrong proton. C–H bonds of an alkane (pKa about 50) are far less acidic than the O–H (pKa 16). The acidic H is the one on the electronegative oxygen."}, {"smiles": "CC", "explains": "Hydride from NaH acts as a base, not a nucleophile: it doesn't displace OH (a poor leaving group). It just removes the O–H proton."}, {"smiles": "C=C", "explains": "NaH doesn't dehydrate alcohols. Losing water to make an alkene needs strong acid and heat."}], "confusableWith": ["o1-acid-propyne-nanh2", "o1-acid-buli-water", "o1-acid-ethanol-h2so4"], "tags": ["acid-base", "pKa", "alkoxide"], "retro": {"distractors": [{"precursor": "CCO", "reagent": "NaHCO3, H2O", "explains": "Fails: carbonic acid (pKa 6.4) is far stronger than ethanol (pKa 16), so the equilibrium lies almost completely to the left."}, {"precursor": "CCO", "reagent": "NH3", "explains": "Fails: the ammonium ion (pKa 9.2) is a much stronger acid than ethanol (pKa 16), so ammonia is too weak a base to make ethoxide."}]}, "verified": false, "verifiedBy": null}, {"id": "o1-acid-propyne-nanh2", "unit": "o1-1", "pattern": "P", "title": "Terminal alkyne + NaNH2: acetylide", "reactants": ["[CH3:1][C:2]#[C:3][H:4]"], "reagents": ["[NH2-:5].[Na+:6]"], "reagentDisplay": "NaNH2, NH3(l)", "reagentAliases": ["NaNH2", "sodium amide", "NaNH2, NH3", "amide", "NH2-", "LDA", "n-BuLi", "BuLi"], "product": "[CH3:1][C:2]#[C-:3]", "keyStep": {"nucleophileAtom": 5, "electrophileAtom": 4, "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]}, "mechanism": {"steps": [{"label": "Amide takes the terminal alkyne C–H proton; the bond electrons stay on carbon", "species": ["[CH3:1][C:2]#[C:3][H:4]", "[NH2-:5]"], "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}], "note": "The lone pair sits in an sp orbital (50% s character), close to the nucleus, which makes it relatively stable."}]}, "why": "The terminal ≡C–H (pKa 25) is acidic for a C–H because the anion's lone pair is in an sp orbital with 50% s character. Amide is a much stronger base (NH3 pKa 38), so the equilibrium lies far to the right. Hydroxide or alkoxides (pKa 15.7–16) are too weak.", "traps": [{"smiles": "[CH2-]C#C", "explains": "Wrong proton. The CH3 hydrogens are on an sp3 carbon (pKa about 45–50); only the H on the sp carbon (pKa 25) is acidic enough for NaNH2."}, {"smiles": "CC#C", "explains": "Wrong direction. NH3 (pKa 38) is a weaker acid than the alkyne (pKa 25), so the equilibrium lies to the right. It's NaOH that can't deprotonate an alkyne."}, {"smiles": "CC(N)=C", "explains": "Amide acts as a base here, not as a nucleophile adding to the triple bond. Proton transfer is far faster."}], "confusableWith": ["o1-acid-ethanol-nah", "o1-acid-buli-water"], "tags": ["acid-base", "pKa", "hybridization", "alkyne"], "retro": {"distractors": [{"precursor": "CC#C", "reagent": "NaOH, H2O", "explains": "Fails: water (pKa 15.7) is a much stronger acid than the alkyne (pKa 25), so hydroxide is too weak a base; the equilibrium lies far to the left."}, {"precursor": "CC#C", "reagent": "NaOCH2CH3, CH3CH2OH", "explains": "Fails: ethanol (pKa 16) is a much stronger acid than the alkyne (pKa 25), so ethoxide can't make the acetylide in useful amounts."}]}, "verified": false, "verifiedBy": null}, {"id": "o1-acid-methylamine-hcl", "unit": "o1-1", "pattern": "P", "title": "Amine + HCl: ammonium salt", "reactants": ["[CH3:1][NH2:2]"], "reagents": ["[Cl:3][H:4]"], "reagentDisplay": "HCl", "reagentAliases": ["HCl", "hydrochloric acid", "HBr", "H2SO4", "H3O+", "HCl, H2O"], "product": "[CH3:1][NH3+:2]", "keyStep": {"nucleophileAtom": 2, "electrophileAtom": 4, "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]}, "mechanism": {"steps": [{"label": "The nitrogen lone pair takes the proton from HCl; the H–Cl electrons leave as chloride", "species": ["[CH3:1][NH2:2]", "[Cl:3][H:4]"], "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}], "note": "The amine is the base: its lone pair is what reaches for the proton."}]}, "why": "Amines are bases: the nitrogen lone pair takes a proton. HCl (pKa about −7) is a vastly stronger acid than methylammonium (pKa 10.6), so the equilibrium lies completely to the right, giving methylammonium chloride.", "traps": [{"smiles": "C[NH-]", "explains": "Wrong direction of proton flow. With HCl present the amine is the base, not the acid; N–H bonds (pKa about 40) are not acidic."}, {"smiles": "CCl", "explains": "Chloride doesn't substitute here. NH2⁻ is a terrible leaving group; the only thing that happens is proton transfer."}, {"smiles": "CN", "explains": "Wrong direction. HCl (pKa −7) is a much stronger acid than methylammonium (pKa 10.6), so the equilibrium lies far to the right."}], "confusableWith": ["o1-acid-ethanol-h2so4", "o1-acid-acetic-naoh"], "tags": ["acid-base", "pKa", "amine"], "verified": false, "verifiedBy": null}, {"id": "o1-acid-acetic-nahco3", "unit": "o1-1", "pattern": "P", "title": "Carboxylic acid + NaHCO3: carboxylate and CO2", "reactants": ["[CH3:1][C:2](=[O:3])[O:4][H:5]"], "reagents": ["[O-:6][C:7](=[O:8])[OH:9].[Na+:10]"], "reagentDisplay": "NaHCO3, H2O", "reagentAliases": ["NaHCO3", "sodium bicarbonate", "bicarbonate", "HCO3-", "baking soda", "Na2CO3"], "product": "[CH3:1][C:2](=[O:3])[O-:4]", "keyStep": {"nucleophileAtom": 6, "electrophileAtom": 5, "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}]}, "mechanism": {"steps": [{"label": "Bicarbonate takes the O–H proton of acetic acid; the bond electrons stay on oxygen", "species": ["[CH3:1][C:2](=[O:3])[O:4][H:5]", "[O-:6][C:7](=[O:8])[OH:9]"], "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}], "note": "The carbonic acid formed (pKa 6.4) falls apart into CO2 and H2O, which fizzes out and pulls the equilibrium further right."}]}, "why": "Acetic acid (pKa 4.8) is a stronger acid than carbonic acid (pKa 6.4), so bicarbonate deprotonates it. The carbonic acid formed decomposes to CO2 and H2O, so the mixture fizzes. This is the classic test that tells a carboxylic acid (fizzes) from a phenol or alcohol (doesn't).", "traps": [{"smiles": "CC(O)=O", "explains": "Wrong direction. Bicarbonate is a weak base, but carbonic acid (pKa 6.4) is still weaker than acetic acid (pKa 4.8), so the equilibrium lies to the right. It's phenols and alcohols that bicarbonate can't deprotonate."}, {"smiles": "[CH2-]C(=O)O", "explains": "Wrong proton. Bicarbonate is far too weak to touch a C–H (pKa about 25); it takes the O–H proton (pKa 4.8)."}, {"smiles": "CC(=O)OC(=O)O", "explains": "Bicarbonate only takes a proton; it doesn't bond to the acid. The CO2 that bubbles off comes from carbonic acid breaking down."}], "confusableWith": ["o1-acid-acetic-naoh", "o1-acid-phenol-naoh"], "tags": ["acid-base", "pKa", "carboxylic acid"], "review": "Product given as acetate only; the by-product H2CO3 → CO2 + H2O is described in the note and why, not drawn as a mechanism step (it holds no product atoms). Bicarbonate shown as the O⁻ form taking the proton.", "verified": false, "verifiedBy": null}, {"id": "o1-acid-ethanol-h2so4", "unit": "o1-1", "pattern": "P", "title": "Alcohol + H2SO4: protonated alcohol", "reactants": ["[CH3:1][CH2:2][OH:3]"], "reagents": ["[H:4][O:5][S:6](=[O:7])(=[O:8])[OH:9]"], "reagentDisplay": "H2SO4 (conc.)", "reagentAliases": ["H2SO4", "sulfuric acid", "conc. H2SO4", "HCl", "HBr", "TsOH", "H3O+"], "product": "[CH3:1][CH2:2][OH2+:3]", "keyStep": {"nucleophileAtom": 3, "electrophileAtom": 4, "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [5, 4]}, "to": {"atom": 5}}]}, "mechanism": {"steps": [{"label": "An oxygen lone pair of ethanol takes the proton from H2SO4; the O–H electrons stay on the sulfate oxygen", "species": ["[CH3:1][CH2:2][OH:3]", "[H:4][O:5][S:6](=[O:7])(=[O:8])[OH:9]"], "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [5, 4]}, "to": {"atom": 5}}], "note": "This is the first step of every acid-catalysed alcohol reaction: it turns OH (a poor leaving group) into OH2+ (water leaves easily)."}]}, "why": "With a strong acid an alcohol acts as a base: an oxygen lone pair takes the proton. H2SO4 (pKa about −9) is a much stronger acid than the protonated alcohol (pKa about −2), so the equilibrium lies to the right. The oxonium ion has water as a leaving group, which is why acid-catalysed SN1, E1 and dehydration start here.", "traps": [{"smiles": "CC[O-]", "explains": "Wrong direction of proton flow. Sulfuric acid is the acid; ethanol is the base here. Removing ethanol's proton needs a strong base such as NaH."}, {"smiles": "C=C", "explains": "Dehydration to ethene needs heat (about 180 °C for ethanol) and continues after this step. Protonation is only the first step."}, {"smiles": "CCOCC", "explains": "Diethyl ether forms only on heating (about 140 °C), when a second ethanol attacks the protonated alcohol. Protonation alone is a single proton transfer."}], "confusableWith": ["o1-acid-methylamine-hcl", "o1-acid-ethanol-nah"], "tags": ["acid-base", "pKa", "alcohol", "leaving group"], "review": "pKa values used: H2SO4 about −9 and protonated ethanol about −2 (Klein's table; other books list H2SO4 −3 and ROH2+ −2.4). The direction is right either way.", "verified": false, "verifiedBy": null}, {"id": "o1-acid-buli-water", "unit": "o1-1", "pattern": "P", "title": "Organolithium + water: alkane", "reactants": ["[CH3:1][CH2:2][CH2:3][CH2:4][Li:5]"], "reagents": ["[H:6][OH:7]"], "reagentDisplay": "H2O", "reagentAliases": ["H2O", "water", "H3O+", "CH3OH", "methanol", "ethanol"], "product": "[CH3:1][CH2:2][CH2:3][CH3:4]", "keyStep": {"nucleophileAtom": 4, "electrophileAtom": 6, "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}]}, "mechanism": {"steps": [{"label": "The C–Li bond electrons (a carbanion) take a proton from water; the O–H electrons stay on oxygen", "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][Li:5]", "[H:6][OH:7]"], "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}], "note": "Butane has pKa about 50, so this goes completely to the right. That's why organolithiums and Grignards must be kept dry."}]}, "why": "The C–Li bond is so polar that the carbon acts like a carbanion, the conjugate base of an alkane (pKa about 50). Water (pKa 15.7) is an enormously stronger acid, so the carbanion is protonated at once to give butane and LiOH. Any O–H or N–H in the flask destroys an organolithium or Grignard reagent this way.", "traps": [{"smiles": "CCCCO", "explains": "Water is the acid here, not an electrophile for carbon. The carbanion takes a proton from water; it doesn't form a C–O bond."}, {"smiles": "CCCCCCCC", "explains": "Two butyl groups don't couple. With water present, the much faster reaction is protonation of each carbanion."}, {"smiles": "C=CCC", "explains": "The carbanion is the base and water is the acid; nothing removes H from the butyl group, so no alkene forms."}], "confusableWith": ["o1-acid-ethanol-nah", "o1-acid-propyne-nanh2"], "tags": ["acid-base", "pKa", "organometallic"], "review": "Key step drawn with the C–Li bond as the electron source (no separate carbanion). Product is butane; LiOH by-product not drawn.", "verified": false, "verifiedBy": null}, {"id": "o1-acid-ethanethiol-naoh", "unit": "o1-1", "pattern": "P", "title": "Thiol + NaOH: thiolate", "reactants": ["[CH3:1][CH2:2][S:3][H:4]"], "reagents": ["[OH-:5].[Na+:6]"], "reagentDisplay": "NaOH, H2O", "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "hydroxide", "OH-", "NaOH, H2O", "NaOCH2CH3"], "product": "[CH3:1][CH2:2][S-:3]", "keyStep": {"nucleophileAtom": 5, "electrophileAtom": 4, "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]}, "mechanism": {"steps": [{"label": "Hydroxide takes the S–H proton; the bond electrons stay on sulfur", "species": ["[CH3:1][CH2:2][S:3][H:4]", "[OH-:5]"], "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}], "note": "Sulfur is less electronegative than oxygen, yet a thiol is more acidic than an alcohol: the larger S atom spreads the charge over more volume."}]}, "why": "Ethanethiol (pKa 10.6) is about 10^5 times more acidic than ethanol (pKa 16) because sulfur is a much larger atom, so the negative charge of thiolate is spread out. Down a group, atom size beats electronegativity. It is a stronger acid than water (pKa 15.7), so NaOH deprotonates it.", "traps": [{"smiles": "CCS", "explains": "Wrong direction. Thiols (pKa 10.6) are much more acidic than alcohols and more acidic than water (pKa 15.7), so hydroxide deprotonates them."}, {"smiles": "[CH2-]CS", "explains": "Wrong proton. The C–H bonds (pKa about 50) are far less acidic than the S–H (pKa 10.6)."}, {"smiles": "CCSSCC", "explains": "Disulfides form by oxidation (e.g. I2 or O2), not by acid–base chemistry with NaOH."}], "confusableWith": ["o1-acid-phenol-naoh", "o1-acid-acetic-naoh"], "tags": ["acid-base", "pKa", "atom size", "thiol"], "verified": false, "verifiedBy": null}]
+[
+  {
+    "id": "o1-acid-acetic-naoh",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Carboxylic acid + NaOH: carboxylate",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][H:5]"],
+    "reagents": ["[OH-:6].[Na+:7]"],
+    "reagentDisplay": "NaOH, H2O",
+    "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "LiOH", "hydroxide", "OH-", "NaOH, H2O"],
+    "product": "[CH3:1][C:2](=[O:3])[O-:4]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 5,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide takes the O–H proton; the O–H bond electrons stay on oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[O:4][H:5]", "[OH-:6]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}],
+          "note": "Stronger acid (acetic acid, pKa 4.8) + stronger base (OH⁻) → weaker acid (water, pKa 15.7) + weaker base (acetate)."
+        }
+      ]
+    },
+    "why": "Acetic acid (pKa 4.8) is a far stronger acid than water (pKa 15.7), so hydroxide removes the O–H proton and the equilibrium lies about 10^11 to the right. Acetate is stabilized by resonance: the negative charge is shared by both oxygens.",
+    "traps": [
+      {
+        "smiles": "[CH2-]C(=O)O",
+        "explains": "Wrong proton. The C–H bonds of the CH3 group (pKa about 25) are far less acidic than the O–H (pKa 4.8); hydroxide takes the O–H proton, whose anion is shared by two oxygens."
+      },
+      {
+        "smiles": "CC(O)=O",
+        "explains": "Wrong direction. Equilibrium favours the weaker acid: water (pKa 15.7) is much weaker than acetic acid (pKa 4.8), so the reaction lies far to the right, not left."
+      },
+      {
+        "smiles": "CC(=[OH+])O",
+        "explains": "Hydroxide is a base: it removes a proton, it doesn't add one. A protonated carbonyl forms only in strong acid."
+      }
+    ],
+    "confusableWith": ["o1-acid-acetic-nahco3", "o1-acid-phenol-naoh", "o1-acid-ethanethiol-naoh"],
+    "tags": ["acid-base", "pKa", "carboxylic acid"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-phenol-naoh",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Phenol + NaOH: phenoxide",
+    "reactants": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O:7][H:8]"],
+    "reagents": ["[OH-:9].[Na+:10]"],
+    "reagentDisplay": "NaOH, H2O",
+    "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "hydroxide", "OH-", "NaOH, H2O"],
+    "product": "[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O-:7]",
+    "keyStep": {
+      "nucleophileAtom": 9,
+      "electrophileAtom": 8,
+      "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 8}}, {"from": {"bond": [7, 8]}, "to": {"atom": 7}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide takes the phenol O–H proton; the bond electrons stay on oxygen",
+          "species": ["[cH:1]1[cH:2][cH:3][cH:4][cH:5][c:6]1[O:7][H:8]", "[OH-:9]"],
+          "arrows": [{"from": {"lonePair": 9}, "to": {"atom": 8}}, {"from": {"bond": [7, 8]}, "to": {"atom": 7}}],
+          "note": "Phenol (pKa 10) is a stronger acid than water (pKa 15.7), so the equilibrium lies to the right."
+        }
+      ]
+    },
+    "why": "Phenol (pKa 10) is about a million times more acidic than an ordinary alcohol (pKa 16) because the negative charge of phenoxide is spread into the ring by resonance. It is a stronger acid than water (pKa 15.7), so NaOH deprotonates it almost completely.",
+    "traps": [
+      {
+        "smiles": "Oc1ccccc1",
+        "explains": "Wrong direction. Phenol is not like cyclohexanol: resonance into the ring lowers its pKa to 10, below water's 15.7, so hydroxide does deprotonate it."
+      },
+      {
+        "smiles": "Oc1cc[c-]cc1",
+        "explains": "Wrong proton. Aromatic C–H bonds have a pKa above 40; the O–H (pKa 10) is the acidic hydrogen."
+      },
+      {
+        "smiles": "[OH2+]c1ccccc1",
+        "explains": "Hydroxide is a base: it removes a proton, it doesn't add one. Protonating the OH would need a strong acid."
+      }
+    ],
+    "confusableWith": ["o1-acid-acetic-naoh", "o1-acid-ethanethiol-naoh", "o1-acid-ethanol-nah"],
+    "tags": ["acid-base", "pKa", "resonance", "phenol"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "Oc1ccccc1",
+          "reagent": "NaHCO3, H2O",
+          "explains": "Fails: carbonic acid (pKa 6.4) is a stronger acid than phenol (pKa 10), so bicarbonate is too weak a base and the equilibrium lies to the left."
+        },
+        {
+          "precursor": "Oc1ccccc1",
+          "reagent": "H2O",
+          "explains": "Fails: water is a much weaker base than hydroxide; phenol is only very slightly ionized in plain water."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-ethanol-nah",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Alcohol + NaH: alkoxide",
+    "reactants": ["[CH3:1][CH2:2][O:3][H:4]"],
+    "reagents": ["[H-:5].[Na+:6]"],
+    "reagentDisplay": "NaH, THF",
+    "reagentAliases": ["NaH", "sodium hydride", "KH", "NaH, THF", "Na", "sodium metal"],
+    "product": "[CH3:1][CH2:2][O-:3]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydride takes the O–H proton; the bond electrons stay on oxygen",
+          "species": ["[CH3:1][CH2:2][O:3][H:4]", "[H-:5]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}],
+          "note": "The conjugate acid is H2 (pKa about 35), which bubbles out of the flask, so the reaction is irreversible."
+        }
+      ]
+    },
+    "why": "Hydride is a very strong base (its conjugate acid, H2, has pKa about 35), far stronger than ethoxide (ethanol pKa 16), so it removes the O–H proton completely. H2 gas escapes, which also drives the reaction. NaH is a base here, not a nucleophile.",
+    "traps": [
+      {
+        "smiles": "[CH2-]CO",
+        "explains": "Wrong proton. C–H bonds of an alkane (pKa about 50) are far less acidic than the O–H (pKa 16). The acidic H is the one on the electronegative oxygen."
+      },
+      {
+        "smiles": "CC",
+        "explains": "Hydride from NaH acts as a base, not a nucleophile: it doesn't displace OH (a poor leaving group). It just removes the O–H proton."
+      },
+      {
+        "smiles": "C=C",
+        "explains": "NaH doesn't dehydrate alcohols. Losing water to make an alkene needs strong acid and heat."
+      }
+    ],
+    "confusableWith": ["o1-acid-propyne-nanh2", "o1-acid-buli-water", "o1-acid-ethanol-h2so4"],
+    "tags": ["acid-base", "pKa", "alkoxide"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CCO",
+          "reagent": "NaHCO3, H2O",
+          "explains": "Fails: carbonic acid (pKa 6.4) is far stronger than ethanol (pKa 16), so the equilibrium lies almost completely to the left."
+        },
+        {
+          "precursor": "CCO",
+          "reagent": "NH3",
+          "explains": "Fails: the ammonium ion (pKa 9.2) is a much stronger acid than ethanol (pKa 16), so ammonia is too weak a base to make ethoxide."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-propyne-nanh2",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Terminal alkyne + NaNH2: acetylide",
+    "reactants": ["[CH3:1][C:2]#[C:3][H:4]"],
+    "reagents": ["[NH2-:5].[Na+:6]"],
+    "reagentDisplay": "NaNH2, NH3(l)",
+    "reagentAliases": ["NaNH2", "sodium amide", "NaNH2, NH3", "amide", "NH2-", "LDA", "n-BuLi", "BuLi"],
+    "product": "[CH3:1][C:2]#[C-:3]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Amide takes the terminal alkyne C–H proton; the bond electrons stay on carbon",
+          "species": ["[CH3:1][C:2]#[C:3][H:4]", "[NH2-:5]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}],
+          "note": "The lone pair sits in an sp orbital (50% s character), close to the nucleus, which makes it relatively stable."
+        }
+      ]
+    },
+    "why": "The terminal ≡C–H (pKa 25) is acidic for a C–H because the anion's lone pair is in an sp orbital with 50% s character. Amide is a much stronger base (NH3 pKa 38), so the equilibrium lies far to the right. Hydroxide or alkoxides (pKa 15.7–16) are too weak.",
+    "traps": [
+      {
+        "smiles": "[CH2-]C#C",
+        "explains": "Wrong proton. The CH3 hydrogens are on an sp3 carbon (pKa about 45–50); only the H on the sp carbon (pKa 25) is acidic enough for NaNH2."
+      },
+      {
+        "smiles": "CC#C",
+        "explains": "Wrong direction. NH3 (pKa 38) is a weaker acid than the alkyne (pKa 25), so the equilibrium lies to the right. It's NaOH that can't deprotonate an alkyne."
+      },
+      {
+        "smiles": "CC(N)=C",
+        "explains": "Amide acts as a base here, not as a nucleophile adding to the triple bond. Proton transfer is far faster."
+      }
+    ],
+    "confusableWith": ["o1-acid-ethanol-nah", "o1-acid-buli-water"],
+    "tags": ["acid-base", "pKa", "hybridization", "alkyne"],
+    "retro": {
+      "distractors": [
+        {
+          "precursor": "CC#C",
+          "reagent": "NaOH, H2O",
+          "explains": "Fails: water (pKa 15.7) is a much stronger acid than the alkyne (pKa 25), so hydroxide is too weak a base; the equilibrium lies far to the left."
+        },
+        {
+          "precursor": "CC#C",
+          "reagent": "NaOCH2CH3, CH3CH2OH",
+          "explains": "Fails: ethanol (pKa 16) is a much stronger acid than the alkyne (pKa 25), so ethoxide can't make the acetylide in useful amounts."
+        }
+      ]
+    },
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-methylamine-hcl",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Amine + HCl: ammonium salt",
+    "reactants": ["[CH3:1][NH2:2]"],
+    "reagents": ["[Cl:3][H:4]"],
+    "reagentDisplay": "HCl",
+    "reagentAliases": ["HCl", "hydrochloric acid", "HBr", "H2SO4", "H3O+", "HCl, H2O"],
+    "product": "[CH3:1][NH3+:2]",
+    "keyStep": {
+      "nucleophileAtom": 2,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The nitrogen lone pair takes the proton from HCl; the H–Cl electrons leave as chloride",
+          "species": ["[CH3:1][NH2:2]", "[Cl:3][H:4]"],
+          "arrows": [{"from": {"lonePair": 2}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}],
+          "note": "The amine is the base: its lone pair is what reaches for the proton."
+        }
+      ]
+    },
+    "why": "Amines are bases: the nitrogen lone pair takes a proton. HCl (pKa about −7) is a vastly stronger acid than methylammonium (pKa 10.6), so the equilibrium lies completely to the right, giving methylammonium chloride.",
+    "traps": [
+      {
+        "smiles": "C[NH-]",
+        "explains": "Wrong direction of proton flow. With HCl present the amine is the base, not the acid; N–H bonds (pKa about 40) are not acidic."
+      },
+      {
+        "smiles": "CCl",
+        "explains": "Chloride doesn't substitute here. NH2⁻ is a terrible leaving group; the only thing that happens is proton transfer."
+      },
+      {
+        "smiles": "CN",
+        "explains": "Wrong direction. HCl (pKa −7) is a much stronger acid than methylammonium (pKa 10.6), so the equilibrium lies far to the right."
+      }
+    ],
+    "confusableWith": ["o1-acid-ethanol-h2so4", "o1-acid-acetic-naoh"],
+    "tags": ["acid-base", "pKa", "amine"],
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-acetic-nahco3",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Carboxylic acid + NaHCO3: carboxylate and CO2",
+    "reactants": ["[CH3:1][C:2](=[O:3])[O:4][H:5]"],
+    "reagents": ["[O-:6][C:7](=[O:8])[OH:9].[Na+:10]"],
+    "reagentDisplay": "NaHCO3, H2O",
+    "reagentAliases": ["NaHCO3", "sodium bicarbonate", "bicarbonate", "HCO3-", "baking soda", "Na2CO3"],
+    "product": "[CH3:1][C:2](=[O:3])[O-:4]",
+    "keyStep": {
+      "nucleophileAtom": 6,
+      "electrophileAtom": 5,
+      "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Bicarbonate takes the O–H proton of acetic acid; the bond electrons stay on oxygen",
+          "species": ["[CH3:1][C:2](=[O:3])[O:4][H:5]", "[O-:6][C:7](=[O:8])[OH:9]"],
+          "arrows": [{"from": {"lonePair": 6}, "to": {"atom": 5}}, {"from": {"bond": [4, 5]}, "to": {"atom": 4}}],
+          "note": "The carbonic acid formed (pKa 6.4) falls apart into CO2 and H2O, which fizzes out and pulls the equilibrium further right."
+        }
+      ]
+    },
+    "why": "Acetic acid (pKa 4.8) is a stronger acid than carbonic acid (pKa 6.4), so bicarbonate deprotonates it. The carbonic acid formed decomposes to CO2 and H2O, so the mixture fizzes. This is the classic test that tells a carboxylic acid (fizzes) from a phenol or alcohol (doesn't).",
+    "traps": [
+      {
+        "smiles": "CC(O)=O",
+        "explains": "Wrong direction. Bicarbonate is a weak base, but carbonic acid (pKa 6.4) is still weaker than acetic acid (pKa 4.8), so the equilibrium lies to the right. It's phenols and alcohols that bicarbonate can't deprotonate."
+      },
+      {
+        "smiles": "[CH2-]C(=O)O",
+        "explains": "Wrong proton. Bicarbonate is far too weak to touch a C–H (pKa about 25); it takes the O–H proton (pKa 4.8)."
+      },
+      {
+        "smiles": "CC(=O)OC(=O)O",
+        "explains": "Bicarbonate only takes a proton; it doesn't bond to the acid. The CO2 that bubbles off comes from carbonic acid breaking down."
+      }
+    ],
+    "confusableWith": ["o1-acid-acetic-naoh", "o1-acid-phenol-naoh"],
+    "tags": ["acid-base", "pKa", "carboxylic acid"],
+    "review": "Product given as acetate only; the by-product H2CO3 → CO2 + H2O is described in the note and why, not drawn as a mechanism step (it holds no product atoms). Bicarbonate shown as the O⁻ form taking the proton.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-ethanol-h2so4",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Alcohol + H2SO4: protonated alcohol",
+    "reactants": ["[CH3:1][CH2:2][OH:3]"],
+    "reagents": ["[H:4][O:5][S:6](=[O:7])(=[O:8])[OH:9]"],
+    "reagentDisplay": "H2SO4 (conc.)",
+    "reagentAliases": ["H2SO4", "sulfuric acid", "conc. H2SO4", "HCl", "HBr", "TsOH", "H3O+"],
+    "product": "[CH3:1][CH2:2][OH2+:3]",
+    "keyStep": {
+      "nucleophileAtom": 3,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [5, 4]}, "to": {"atom": 5}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "An oxygen lone pair of ethanol takes the proton from H2SO4; the O–H electrons stay on the sulfate oxygen",
+          "species": ["[CH3:1][CH2:2][OH:3]", "[H:4][O:5][S:6](=[O:7])(=[O:8])[OH:9]"],
+          "arrows": [{"from": {"lonePair": 3}, "to": {"atom": 4}}, {"from": {"bond": [5, 4]}, "to": {"atom": 5}}],
+          "note": "This is the first step of every acid-catalysed alcohol reaction: it turns OH (a poor leaving group) into OH2+ (water leaves easily)."
+        }
+      ]
+    },
+    "why": "With a strong acid an alcohol acts as a base: an oxygen lone pair takes the proton. H2SO4 (pKa about −9) is a much stronger acid than the protonated alcohol (pKa about −2), so the equilibrium lies to the right. The oxonium ion has water as a leaving group, which is why acid-catalysed SN1, E1 and dehydration start here.",
+    "traps": [
+      {
+        "smiles": "CC[O-]",
+        "explains": "Wrong direction of proton flow. Sulfuric acid is the acid; ethanol is the base here. Removing ethanol's proton needs a strong base such as NaH."
+      },
+      {
+        "smiles": "C=C",
+        "explains": "Dehydration to ethene needs heat (about 180 °C for ethanol) and continues after this step. Protonation is only the first step."
+      },
+      {
+        "smiles": "CCOCC",
+        "explains": "Diethyl ether forms only on heating (about 140 °C), when a second ethanol attacks the protonated alcohol. Protonation alone is a single proton transfer."
+      }
+    ],
+    "confusableWith": ["o1-acid-methylamine-hcl", "o1-acid-ethanol-nah"],
+    "tags": ["acid-base", "pKa", "alcohol", "leaving group"],
+    "review": "pKa values used: H2SO4 about −9 and protonated ethanol about −2 (Klein's table; other books list H2SO4 −3 and ROH2+ −2.4). The direction is right either way.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-buli-water",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Organolithium + water: alkane",
+    "reactants": ["[CH3:1][CH2:2][CH2:3][CH2:4][Li:5]"],
+    "reagents": ["[H:6][OH:7]"],
+    "reagentDisplay": "H2O",
+    "reagentAliases": ["H2O", "water", "H3O+", "CH3OH", "methanol", "ethanol"],
+    "product": "[CH3:1][CH2:2][CH2:3][CH3:4]",
+    "keyStep": {
+      "nucleophileAtom": 4,
+      "electrophileAtom": 6,
+      "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "The C–Li bond electrons (a carbanion) take a proton from water; the O–H electrons stay on oxygen",
+          "species": ["[CH3:1][CH2:2][CH2:3][CH2:4][Li:5]", "[H:6][OH:7]"],
+          "arrows": [{"from": {"bond": [4, 5]}, "to": {"atom": 6}}, {"from": {"bond": [6, 7]}, "to": {"atom": 7}}],
+          "note": "Butane has pKa about 50, so this goes completely to the right. That's why organolithiums and Grignards must be kept dry."
+        }
+      ]
+    },
+    "why": "The C–Li bond is so polar that the carbon acts like a carbanion, the conjugate base of an alkane (pKa about 50). Water (pKa 15.7) is an enormously stronger acid, so the carbanion is protonated at once to give butane and LiOH. Any O–H or N–H in the flask destroys an organolithium or Grignard reagent this way.",
+    "traps": [
+      {
+        "smiles": "CCCCO",
+        "explains": "Water is the acid here, not an electrophile for carbon. The carbanion takes a proton from water; it doesn't form a C–O bond."
+      },
+      {
+        "smiles": "CCCCCCCC",
+        "explains": "Two butyl groups don't couple. With water present, the much faster reaction is protonation of each carbanion."
+      },
+      {
+        "smiles": "C=CCC",
+        "explains": "The carbanion is the base and water is the acid; nothing removes H from the butyl group, so no alkene forms."
+      }
+    ],
+    "confusableWith": ["o1-acid-ethanol-nah", "o1-acid-propyne-nanh2"],
+    "tags": ["acid-base", "pKa", "organometallic"],
+    "review": "Key step drawn with the C–Li bond as the electron source (no separate carbanion). Product is butane; LiOH by-product not drawn.",
+    "verified": false,
+    "verifiedBy": null
+  },
+  {
+    "id": "o1-acid-ethanethiol-naoh",
+    "unit": "o1-1",
+    "pattern": "P",
+    "title": "Thiol + NaOH: thiolate",
+    "reactants": ["[CH3:1][CH2:2][S:3][H:4]"],
+    "reagents": ["[OH-:5].[Na+:6]"],
+    "reagentDisplay": "NaOH, H2O",
+    "reagentAliases": ["NaOH", "sodium hydroxide", "KOH", "hydroxide", "OH-", "NaOH, H2O", "NaOCH2CH3"],
+    "product": "[CH3:1][CH2:2][S-:3]",
+    "keyStep": {
+      "nucleophileAtom": 5,
+      "electrophileAtom": 4,
+      "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}]
+    },
+    "mechanism": {
+      "steps": [
+        {
+          "label": "Hydroxide takes the S–H proton; the bond electrons stay on sulfur",
+          "species": ["[CH3:1][CH2:2][S:3][H:4]", "[OH-:5]"],
+          "arrows": [{"from": {"lonePair": 5}, "to": {"atom": 4}}, {"from": {"bond": [3, 4]}, "to": {"atom": 3}}],
+          "note": "Sulfur is less electronegative than oxygen, yet a thiol is more acidic than an alcohol: the larger S atom spreads the charge over more volume."
+        }
+      ]
+    },
+    "why": "Ethanethiol (pKa 10.6) is about 10^5 times more acidic than ethanol (pKa 16) because sulfur is a much larger atom, so the negative charge of thiolate is spread out. Down a group, atom size beats electronegativity. It is a stronger acid than water (pKa 15.7), so NaOH deprotonates it.",
+    "traps": [
+      {
+        "smiles": "CCS",
+        "explains": "Wrong direction. Thiols (pKa 10.6) are much more acidic than alcohols and more acidic than water (pKa 15.7), so hydroxide deprotonates them."
+      },
+      {
+        "smiles": "[CH2-]CS",
+        "explains": "Wrong proton. The C–H bonds (pKa about 50) are far less acidic than the S–H (pKa 10.6)."
+      },
+      {
+        "smiles": "CCSSCC",
+        "explains": "Disulfides form by oxidation (e.g. I2 or O2), not by acid–base chemistry with NaOH."
+      }
+    ],
+    "confusableWith": ["o1-acid-phenol-naoh", "o1-acid-acetic-naoh"],
+    "tags": ["acid-base", "pKa", "atom size", "thiol"],
+    "verified": false,
+    "verifiedBy": null
+  }
+]

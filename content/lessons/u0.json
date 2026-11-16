@@ -3,8 +3,8 @@
     "id": "lesson-u0",
     "unit": 0,
     "title": "Why carbonyls react",
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

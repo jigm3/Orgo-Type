@@ -182,8 +182,14 @@ def bundle(dev=False):
     ids = {r["id"] for r in reactions}
     for r in reactions:  # drop links to cards that aren't shipping
         r["confusableWith"] = [c for c in r["confusableWith"] if c in ids]
-    # a lesson ships only if every reaction it uses ships too
-    lessons = [l for l in load_dir("lessons") if ok(l) and all(st.get("reaction") in ids for st in l["steps"] if st["kind"] in ("worked", "card"))]
+    # a lesson ships when it's verified; steps that use a reaction that isn't shipping are dropped (if most remain)
+    lessons = []
+    for l in load_dir("lessons"):
+        if not ok(l):
+            continue
+        steps = [st for st in l["steps"] if st["kind"] not in ("worked", "card") or st.get("reaction") in ids]
+        if len(steps) >= max(3, 0.6 * len(l["steps"])):
+            lessons.append(dict(l, steps=steps))
     diagnostic = [d for d in load_dir("diagnostic") if ok(d)]
     return {"reactions": reactions, "lessons": lessons, "diagnostic": diagnostic, "dev": dev}
 

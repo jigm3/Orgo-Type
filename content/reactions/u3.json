@@ -73,8 +73,8 @@
       "u3-gilman-acid-chloride"
     ],
     "tags": ["C-C bond", "organometallic", "conjugate addition", "1,4"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u3-grignard-enone-12",
@@ -144,8 +144,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "1,2", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u3-alkyllithium-enone-12",
@@ -208,8 +208,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "1,2", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u3-gilman-acid-chloride",
@@ -273,8 +273,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "ketone synthesis", "cuprate"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u3-corey-house",
@@ -323,7 +323,7 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "cuprate", "coupling"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

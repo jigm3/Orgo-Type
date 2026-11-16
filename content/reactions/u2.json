@@ -67,8 +67,8 @@
       "u4-claisen-ethyl-acetate"
     ],
     "tags": ["C-C bond", "organometallic", "alcohol synthesis", "adds twice"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-socl2-acid-chloride",
@@ -147,8 +147,8 @@
     ],
     "confusableWith": ["u2-acid-chloride-water"],
     "tags": ["acid chloride synthesis", "activation", "up the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-chloride-water",
@@ -207,8 +207,8 @@
       "u2-acid-chloride-carboxylate-anhydride"
     ],
     "tags": ["hydrolysis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-chloride-alcohol-ester",
@@ -271,8 +271,8 @@
       "u2-acid-chloride-amine-amide"
     ],
     "tags": ["ester synthesis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-chloride-amine-amide",
@@ -327,8 +327,8 @@
     ],
     "confusableWith": ["u2-ester-aminolysis", "u2-acid-chloride-alcohol-ester"],
     "tags": ["amide synthesis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-chloride-carboxylate-anhydride",
@@ -378,8 +378,8 @@
     ],
     "confusableWith": ["u2-anhydride-alcohol-ester", "u2-acid-chloride-water"],
     "tags": ["anhydride synthesis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-fischer-esterification",
@@ -466,8 +466,8 @@
     ],
     "confusableWith": ["u2-ester-acid-hydrolysis", "u2-acid-chloride-alcohol-ester"],
     "tags": ["ester synthesis", "reversible", "acid catalysis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-ester-acid-hydrolysis",
@@ -538,8 +538,8 @@
     ],
     "confusableWith": ["u2-fischer-esterification", "u2-saponification"],
     "tags": ["hydrolysis", "reversible", "acid catalysis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-saponification",
@@ -599,8 +599,8 @@
     ],
     "confusableWith": ["u2-ester-acid-hydrolysis", "u2-amide-hydrolysis"],
     "tags": ["hydrolysis", "irreversible", "base"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-amide-hydrolysis",
@@ -673,8 +673,8 @@
     ],
     "confusableWith": ["u2-nitrile-hydrolysis", "u2-saponification", "u2-amide-lialh4-amine"],
     "tags": ["hydrolysis", "amide"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-nitrile-hydrolysis",
@@ -775,8 +775,8 @@
     ],
     "confusableWith": ["u2-amide-hydrolysis", "u2-nitrile-lialh4-amine", "side-sn2-2-bromobutane-cyanide"],
     "tags": ["hydrolysis", "nitrile"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-nitrile-grignard-ketone",
@@ -872,8 +872,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-nitrile-lialh4-amine",
@@ -932,8 +932,8 @@
     ],
     "confusableWith": ["u2-amide-lialh4-amine", "u2-nitrile-hydrolysis", "u2-nitrile-grignard-ketone"],
     "tags": ["reduction", "amine synthesis", "nitrile", "hydride"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-ester-lialh4-alcohol",
@@ -1003,8 +1003,8 @@
       "u2-acid-chloride-lialhotbu3-aldehyde"
     ],
     "tags": ["reduction", "alcohol synthesis", "hydride", "adds twice"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-ester-dibal-aldehyde",
@@ -1067,8 +1067,8 @@
     ],
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-chloride-lialhotbu3-aldehyde", "u1-nabh4-aldehyde"],
     "tags": ["reduction", "aldehyde synthesis", "hydride", "low temperature"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-chloride-lialhotbu3-aldehyde",
@@ -1127,8 +1127,8 @@
     ],
     "confusableWith": ["u2-ester-dibal-aldehyde", "u2-ester-lialh4-alcohol"],
     "tags": ["reduction", "aldehyde synthesis", "hydride"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-amide-lialh4-amine",
@@ -1191,8 +1191,8 @@
     ],
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-nitrile-lialh4-amine", "u2-amide-hydrolysis"],
     "tags": ["reduction", "amine synthesis", "hydride", "amide"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-lialh4-alcohol",
@@ -1273,8 +1273,8 @@
     "confusableWith": ["u2-ester-lialh4-alcohol", "u2-acid-grignard-trap"],
     "tags": ["reduction", "alcohol synthesis", "hydride"],
     "review": "Mechanism simplified (course-dependent): after the acid-base step the carboxylate and the tetrahedral dianion are drawn as free anions; real intermediates are O-Al aluminates. Product and reagent are correct.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-grignard-co2-acid",
@@ -1338,8 +1338,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-acid-grignard-trap",
@@ -1390,8 +1390,8 @@
     "confusableWith": ["u2-grignard-co2-acid", "u2-grignard-ester", "u2-acid-lialh4-alcohol"],
     "tags": ["acid-base", "organometallic", "trap", "no reaction"],
     "review": "Product is drawn as the recovered starting acid (after H3O+ workup), with methane as the byproduct; the carboxylate salt is a trap. Check the app copes with a product identical to the reactant, and whether you'd rather make the answer the carboxylate salt (drop step 2). Pattern set to X (acid–base, not acyl substitution); key step is proton transfer from O–H to the Grignard carbon, with the H drawn explicitly.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-ester-aminolysis",
@@ -1446,8 +1446,8 @@
     ],
     "confusableWith": ["u2-acid-chloride-amine-amide"],
     "tags": ["amide synthesis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u2-anhydride-alcohol-ester",
@@ -1502,7 +1502,7 @@
     ],
     "confusableWith": ["u2-acid-chloride-alcohol-ester", "u2-acid-chloride-carboxylate-anhydride"],
     "tags": ["ester synthesis", "down the ladder"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

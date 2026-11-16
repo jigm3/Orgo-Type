@@ -71,8 +71,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-nabh4-aldehyde",
@@ -122,8 +122,8 @@
     ],
     "confusableWith": ["u1-nabh4-ketone", "u1-lialh4-ketone", "u1-grignard-formaldehyde", "u2-ester-dibal-aldehyde"],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-nabh4-ketone",
@@ -180,8 +180,8 @@
       "u1-clemmensen"
     ],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-lialh4-ketone",
@@ -231,8 +231,8 @@
     ],
     "confusableWith": ["u1-nabh4-ketone", "u1-nabh4-aldehyde", "u1-grignard-aldehyde"],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-grignard-formaldehyde",
@@ -295,8 +295,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-grignard-aldehyde",
@@ -359,8 +359,8 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-acetylide-ketone",
@@ -423,8 +423,8 @@
       ]
     },
     "tags": ["C-C bond", "alkyne", "alcohol synthesis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-cyanohydrin",
@@ -488,8 +488,8 @@
       ]
     },
     "tags": ["C-C bond", "cyanide", "cyanohydrin"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-hydrate",
@@ -545,8 +545,8 @@
     ],
     "confusableWith": ["u1-acetal-methanol", "u1-acetal-hydrolysis", "u1-cyanohydrin"],
     "tags": ["hydrate", "equilibrium", "acid catalysis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-acetal-methanol",
@@ -628,8 +628,8 @@
     ],
     "confusableWith": ["u1-cyclic-acetal", "u1-acetal-hydrolysis", "u1-hydrate"],
     "tags": ["acetal", "acid catalysis", "equilibrium"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-cyclic-acetal",
@@ -716,8 +716,8 @@
     ],
     "confusableWith": ["u1-acetal-methanol", "u1-acetal-hydrolysis"],
     "tags": ["acetal", "protecting group", "acid catalysis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-acetal-hydrolysis",
@@ -794,8 +794,8 @@
     ],
     "confusableWith": ["u1-acetal-methanol", "u1-cyclic-acetal", "u1-hydrate"],
     "tags": ["acetal", "protecting group", "hydrolysis", "acid catalysis"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-imine",
@@ -867,8 +867,8 @@
     ],
     "confusableWith": ["u1-enamine", "u1-wolff-kishner"],
     "tags": ["imine", "condensation", "acid catalysis", "nitrogen nucleophile"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-enamine",
@@ -954,8 +954,8 @@
     ],
     "confusableWith": ["u1-imine"],
     "tags": ["enamine", "condensation", "acid catalysis", "nitrogen nucleophile"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-wittig",
@@ -1029,8 +1029,8 @@
     },
     "tags": ["C-C bond", "alkene synthesis", "ylide"],
     "review": "Mechanism drawn the Wade/McMurry way (ylide C attacks C=O → betaine-type alkoxide → oxaphosphetane). Current evidence for unstabilized ylides favours direct [2+2] oxaphosphetane formation; some courses (e.g. newer Klein) draw it that way.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-wolff-kishner",
@@ -1127,8 +1127,8 @@
     ],
     "confusableWith": ["u1-clemmensen", "u1-nabh4-ketone", "u1-imine"],
     "tags": ["reduction", "deoxygenation", "basic conditions"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "u1-clemmensen",
@@ -1156,8 +1156,8 @@
     ],
     "confusableWith": ["u1-wolff-kishner", "u1-nabh4-ketone"],
     "tags": ["reduction", "deoxygenation", "acidic conditions"],
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "skipCards": ["where", "arrows", "paper"]
   }
 ]

@@ -188,7 +188,7 @@ test("confusable siblings of the same card type sit next to each other", () => {
 test("topic focus: sessions draw only from the chosen units; the streak still counts every due review", () => {
   const E = engine();
   let t = new Date(2026, 10, 2, 9).getTime(); E.clock.now = () => new Date(t);
-  E.settings().unlocked = { 2: true, 3: true, 4: true };
+  E.settings().unlocked = { 2: true, 3: true, 4: true, "o1-2": true };
   // day 1: everything, so both Orgo 1 and Orgo 2 cards get introduced
   let s = E.buildSession({ seed: 1 });
   const units = q => new Set(q.map(id => String(E.RX[E.parseCard(id).rid].unit)));

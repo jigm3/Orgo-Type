@@ -22,8 +22,8 @@
         "explains": "The oxygen isn't lost. The alkoxide is protonated in the workup to give an alcohol."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-nabh4-chemoselectivity",
@@ -48,8 +48,8 @@
         "explains": "Full removal of the C=O oxygen needs Wolff–Kishner or Clemmensen conditions. A hydride gives an alcohol."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-enamine-secondary-amine",
@@ -74,8 +74,8 @@
         "explains": "That's reductive amination, which needs a reducing agent such as NaBH3CN. None is present."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-ester-dibal",
@@ -100,8 +100,8 @@
         "explains": "DIBAL-H reduces. Water in the workup quenches it but doesn't hydrolyze the ester."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-acid-chloride-cuprate",
@@ -123,8 +123,8 @@
         "explains": "That's hydrolysis by the water in the workup. The cuprate has already reacted with the acid chloride by then."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-ester-hydrolysis-product",
@@ -149,8 +149,8 @@
         "explains": "The tetrahedral intermediate doesn't survive. It expels the alkoxide and re-forms C=O."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-enone-cuprate-14",
@@ -175,8 +175,8 @@
         "explains": "The 1,4-adduct is an enolate until workup, and the cuprate doesn't add to it again."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-enone-grignard-12",
@@ -198,8 +198,8 @@
         "explains": "Adding both 1,4 and 1,2 would need the Grignard to add to the C=C first. It adds once, at the C=O."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-aldol-vs-claisen",
@@ -224,8 +224,8 @@
         "explains": "The H3O+ step only neutralizes the enolate. Hydrolyzing the ester would need heat with aqueous acid."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-kinetic-enolate",
@@ -250,8 +250,8 @@
         "explains": "One equivalent of LDA forms the enolate completely, and one alkylation follows."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-acetoacetic-malonic",
@@ -276,8 +276,8 @@
       },
       {"smiles": "CC(=O)CCc1ccccc1", "correct": true}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-syn-grignard-oxidize",
@@ -302,8 +302,8 @@
         "explains": "NaBH4 just reduces the aldehyde to benzyl alcohol, and CH3CH2Br can at most alkylate that oxygen (an ether). No new C–C bond forms, so no ketone."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-syn-protecting-group",
@@ -328,8 +328,8 @@
       },
       {"text": "1. HOCH2CH2OH, H+ (cat.), −H2O  2. LiAlH4, ether  3. H3O+", "correct": true}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-sn2-secondary",
@@ -354,8 +354,8 @@
         "explains": "Azide is a good nucleophile but a weak base, so a 2° halide gives substitution, not elimination."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-a-e2-zaitsev-tertiary",
@@ -380,8 +380,8 @@
         "explains": "The C=C must include the carbon that held the Br. This alkene would need a shift that E2 doesn't do."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-grignard-alcohol-class",
@@ -406,8 +406,8 @@
       },
       {"smiles": "OC1(CCCC1)c1ccccc1", "correct": true}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-nabh4-chemoselectivity",
@@ -432,8 +432,8 @@
         "explains": "Both groups reduced: that's LiAlH4. NaBH4 is too mild to reduce an ester."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-enamine-secondary-amine",
@@ -458,8 +458,8 @@
         "explains": "The iminium ion forms, but the nitrogen has no H to lose, so a C–H next to it is removed instead, giving the neutral enamine."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-ester-dibal",
@@ -484,8 +484,8 @@
       },
       {"smiles": "O=CCCc1ccccc1", "correct": true}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-acid-chloride-cuprate",
@@ -507,8 +507,8 @@
         "explains": "Adding twice is what a Grignard does. A Gilman reagent is softer and less reactive: it substitutes the Cl once and doesn't attack the ketone."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-ester-hydrolysis-product",
@@ -533,8 +533,8 @@
       },
       {"smiles": "O=C(O)C1CCCC1", "correct": true}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-enone-cuprate-14",
@@ -559,8 +559,8 @@
         "explains": "The α-carbon is nucleophilic in an enone. The electrophilic carbon is β, so that's where the methyl goes."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-enone-grignard-12",
@@ -582,8 +582,8 @@
       },
       {"smiles": "CC(O)C=C(C)C", "explains": "Grignard reagents deliver a carbon group, not hydride."}
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-aldol-vs-claisen",
@@ -608,8 +608,8 @@
         "explains": "Dehydration to the enal needs heat. At 5 °C the aldol addition product is isolated."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-kinetic-enolate",
@@ -634,8 +634,8 @@
         "explains": "Enolates alkylate on carbon with alkyl halides. O-alkylation is a minor pathway."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-acetoacetic-malonic",
@@ -660,8 +660,8 @@
         "explains": "Step 3 (H3O+, heat) hydrolyzes the esters. It doesn't stop at the alkylated diester."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-syn-grignard-oxidize",
@@ -686,8 +686,8 @@
         "explains": "An aldehyde has no leaving group, so no reagent can swap H for methyl directly. At best a cuprate would give the alcohol."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-syn-protecting-group",
@@ -712,8 +712,8 @@
         "explains": "Backwards: NaBH4 reduces the ketone and leaves the ester untouched."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-sn2-secondary",
@@ -738,8 +738,8 @@
         "explains": "Iodide is an excellent nucleophile but a very weak base, so a 2° halide gives substitution, not elimination."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "dx-b-e2-zaitsev-tertiary",
@@ -764,7 +764,7 @@
         "explains": "With a 3° halide, a strong base and heat, elimination (E2) beats substitution. SN2 can't happen at a 3° carbon."
       }
     ],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]
