@@ -8,7 +8,8 @@ function renderSettings(view) {
     <div class="row"><span>New cards per day</span><div class="seg">${[5, 10, 15, 20, 30].map(n => `<button data-new="${n}" aria-pressed="${st.newPerDay === n}">${n}</button>`).join("")}</div></div>
     <div class="row"><span>Your name <small class="mute">(optional, shown on exports)</small></span><input id="sName" value="${esc(store.name || "")}" maxlength="40"></div>
     <h2>Where you are in the course</h2>
-    <p class="mute">Units you've covered in class open straight away, with optional lessons and no warm-up cards.</p>
+    <div class="row"><span>Course</span><div class="seg">${[[1, "Orgo 1"], [2, "Orgo 2"]].map(([v, n]) => `<button data-level="${v}" aria-pressed="${(st.level || 2) === v}">${n}</button>`).join("")}</div></div>
+    <p class="mute">Orgo 2 units you've covered in class open straight away, with optional lessons and no warm-up cards.</p>
     <div class="places">${placementList()}</div>
     <h2>Sync between devices</h2><div id="syncBox"></div>
     <h2>Your data</h2>
@@ -30,6 +31,11 @@ function renderSettings(view) {
     store.xp = 0; save(); toast("Progress reset"); go("#/");
   };
   wirePlacement(view, () => {});
+  view.querySelectorAll(".seg [data-level]").forEach(b => b.onclick = () => {
+    st.level = +b.dataset.level;
+    if (st.level === 1) st.focus = ["side"]; else if (st.focus.length === 1 && st.focus[0] === "side") st.focus = [];
+    save(); renderSettings(view);
+  });
   renderSyncBox($("#syncBox"));
 }
 

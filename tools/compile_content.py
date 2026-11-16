@@ -68,7 +68,7 @@ def equivalence(smiles):
     return {str(a.GetAtomMapNum()): int(ranks[a.GetIdx()]) for a in m.GetAtoms() if a.GetAtomMapNum()}
 
 
-CHG_OK = {-3, -2, -1, 0, 1, 2, 3}
+CHG_OK = {-1, 0, 1}  # the editor sets −, 0, +; tasks needing ±2 are skipped
 
 
 def molblock(atoms, bonds):

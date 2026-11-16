@@ -222,3 +222,5 @@ h2{font-size:17px;margin:24px 0 8px}
 .sac.bad{fill:var(--bad)}
 .sadot{fill:var(--mute);pointer-events:none}
 .locked .sahit{cursor:default}
+.place.pick{text-align:left;font:inherit;color:inherit;width:100%}
+.place.pick:hover{border-color:var(--accent)}

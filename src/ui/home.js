@@ -66,12 +66,19 @@ function placementList() {
   return PLACE_UNITS.map(u => `<label class="place"><input type="checkbox" data-cover="${u}" ${isCovered(u) ? "checked" : ""}>
     <span><b>${u === 0 ? "Unit 0" : "Unit " + u} · ${esc(UNIT_NAME[u])}</b><small>${esc(UNIT_DESC[u])}</small></span></label>`).join("");
 }
+let placeStep = 1;   // first visit: 1 = Orgo 1 or 2?, 2 = which unit?
 function placementCard() {
-  return `<section class="placecard"><div class="eyebrow">Welcome</div><h1>Where are you in Orgo 2?</h1>
-    <p class="lead">Tick what you've already covered in class. Those units open now, their lessons become optional, and their
-      cards go straight to the real practice. Everything else unlocks as you go. You can change this any time in Settings.</p>
+  if (placeStep === 1) return `<section class="placecard"><div class="eyebrow">Welcome</div><h1>Where in Orgo are you?</h1>
+    <p class="lead">So the app can start where you are.</p>
+    <div class="places"><button class="place pick" data-level="1"><span><b>Orgo 1</b><small>SN1/SN2/E1/E2, alcohols, ethers and epoxides (the Orgo 1 review deck)</small></span></button>
+      <button class="place pick" data-level="2"><span><b>Orgo 2</b><small>carbonyl chemistry: aldehydes &amp; ketones, acid derivatives, enones, enolates</small></span></button></div>
+    <div class="actions">${btn("Skip for now", "placefresh")}</div></section>`;
+  return `<section class="placecard"><div class="eyebrow">Orgo 2</div><h1>Which unit?</h1>
+    <p class="lead">Tick what you've already covered in class (ticking a unit ticks the ones before it). Those units open now,
+      their lessons become optional, and their cards go straight to the real practice. Everything else unlocks as you go.
+      You can change this any time in Settings.</p>
     <div class="places">${placementList()}</div>
-    <div class="actions">${btn("Save and start", "primary placesave")}${btn("I'm starting from the beginning", "placefresh")}</div></section>`;
+    <div class="actions">${btn("Save and start", "primary placesave")}${btn("Back", "placeback")}${btn("I'm starting Orgo 2 from the beginning", "placefresh")}</div></section>`;
 }
 function wirePlacement(view, done) {
   view.querySelectorAll("[data-cover]").forEach(c => c.onchange = () => {
@@ -80,8 +87,15 @@ function wirePlacement(view, done) {
     if (c.checked) PLACE_UNITS.filter(u => u < +c.dataset.cover).forEach(u => { cov[u] = true; view.querySelector(`[data-cover="${u}"]`).checked = true; });
     save();
   });
+  view.querySelectorAll("[data-level]").forEach(b => b.onclick = () => {
+    if (b.dataset.level === "2") { placeStep = 2; renderHome(view); scrollTo(0, 0); return; }
+    // Orgo 1: practise the Orgo 1 review deck; Orgo 2 units stay closed until reached
+    settings().level = 1; settings().covered = {}; settings().focus = ["side"]; done();
+  });
+  const back = view.querySelector(".placeback");
+  if (back) back.onclick = () => { placeStep = 1; renderHome(view); };
   const s1 = view.querySelector(".placesave"), s2 = view.querySelector(".placefresh");
-  if (s1) s1.onclick = done;
+  if (s1) s1.onclick = () => { settings().level = 2; done(); };
   if (s2) s2.onclick = () => { settings().covered = {}; done(); };
 }
 
