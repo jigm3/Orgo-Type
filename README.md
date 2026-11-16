@@ -1,6 +1,6 @@
 # Orgo Type
 
-A study app for organic chemistry built on what the learning research says works: every screen is a question,
+A study app for **Orgo 1 and Orgo 2** built on what the learning research says works: every screen is a question,
 practice is spaced and mixed, and reactions are organized by **mechanism pattern** (nucleophilic addition,
 acyl substitution, 1,2 vs 1,4 addition, enolates) instead of by chapter. Same family as
 [Anatomy Type](https://github.com/jigm3/Anatomy-Type).
@@ -10,6 +10,13 @@ acyl substitution, 1,2 vs 1,4 addition, enolates) instead of by chapter. Same fa
 - **Review sheet:** https://jigm3.github.io/Orgo-Type/review.html, for checking the chemistry.
 
 ## What's in it
+
+- **Two courses.** Orgo 1: acids & bases, SN1/SN2/E1/E2, alkenes, alkynes, radical reactions, alcohols/ethers/epoxides.
+  Orgo 2: why carbonyls react, aldehydes & ketones, acid derivatives, enones, enolates. 117 reactions, 11 lessons,
+  a 30-question check-up quiz. Start anywhere: the first visit asks which course and which units you've covered.
+- **Content review.** Everything was checked by independent AI reviewer agents (not the authors), which fixed the
+  errors they found; items they doubted stay out of the main app. Reports are in `reviews/`. The app says plainly
+  that this is AI review, not an instructor's.
 
 - **Full mechanisms, step by step** (the priority): for 79 of 81 reactions, every elementary step including proton
   transfers and workup. Draw each step's arrows, commit once, see the right arrows and the next intermediate.

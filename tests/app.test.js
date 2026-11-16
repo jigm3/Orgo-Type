@@ -125,7 +125,7 @@ server.listen(0, async () => {
     // every card type answered correctly must grade correct
     let n = 0;
     for (const r of C.reactions.filter(r => !only || r.id === only)) {
-      const skip = r.skipCards || [];
+      const skip = (r.skipCards || []).concat(r.keyStep ? [] : ["where", "arrows", "paper"]);   // radical records have no arrow cards
       const types = ["where", "arrows"].concat(r.mechanism ? ["mechanism"] : []).concat(r.mechanism && r.mechanism.steps.some(s => s._build) ? ["intermediates"] : [])
         .concat(["product"]).concat(r._draw ? ["draw"] : []).concat(["reagent", "why", "paper"]).concat(r._newCC.length ? ["change"] : []).concat(r.retro ? ["back"] : []).filter(t => !skip.includes(t));
       for (const t of types) {
