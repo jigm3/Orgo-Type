@@ -10,7 +10,7 @@ srv.listen(0, async () => {
   const base = `http://localhost:${srv.address().port}/dev/`;
   const b = await chromium.launch(); const ctx = await b.newContext({ ...devices["iPhone 13"] }); const p = await ctx.newPage();
   fs.mkdirSync(OUT, { recursive: true });
-  await p.goto(base); await p.evaluate(() => localStorage.setItem("orgotype.dev.v1", JSON.stringify({ toured: true })));
+  await p.goto(base); await p.evaluate(() => localStorage.setItem("orgotype.dev.v1", JSON.stringify({ toured: true, placed: true })));
   for (const h of process.argv.slice(2)) {
     const [hash, action] = h.split("|");
     await p.goto(base + hash); await p.reload(); await p.waitForTimeout(1800);

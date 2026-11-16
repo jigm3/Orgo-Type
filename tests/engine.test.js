@@ -220,5 +220,20 @@ test("mechanisms-only mode serves mechanism cards straight away, skipping the un
   assert.ok(!E.cardUnlocked(withMech[0]), "normally a mechanism card waits for its arrows card");
 });
 
+test("placement: units covered in class open now, skip the lesson gate and the warm-up chain", () => {
+  const E = engine(undefined, { lessonsDone: false });
+  E.clock.now = () => new Date(2026, 10, 2, 9);
+  assert.ok(!E.unitStatus(4).open && !E.cardUnlocked("u4-michael-malonate-mvk:mechanism"));
+  E.settings().covered = { 0: true, 1: true, 2: true, 3: true, 4: true };
+  assert.ok(E.unitStatus(4).open && E.unitStatus(4).covered, "covered unit is open");
+  assert.ok(E.cardUnlocked("u4-michael-malonate-mvk:mechanism"), "no lesson gate, no warm-up chain");
+  // halfway through: Units 1-2 covered, so Unit 3 opens (nothing uncovered before it) but Unit 4 waits for Unit 3
+  E.settings().covered = { 0: true, 1: true, 2: true };
+  assert.ok(E.unitStatus(3).open, "first uncovered unit opens");
+  assert.ok(!E.unitStatus(4).open, "the unit after it still needs it");
+  const q = E.buildSession({ seed: 9 }).queue;
+  assert.ok(q.some(id => E.RX[E.parseCard(id).rid].unit === 2), "covered units' cards are served right away");
+});
+
 process.exitCode = failures ? 1 : 0;
 console.log(failures ? `${failures} failing` : "all engine tests passed");

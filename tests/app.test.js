@@ -122,7 +122,7 @@ server.listen(0, async () => {
     // a real session from the home screen: answer "where" cards correctly, finish, check the streak
     if (!only || args.includes("--session")) {
       await page.goto(base + "dev/#/"); await page.evaluate(() => { localStorage.clear(); }); await page.reload();
-      await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("orgotype.dev.v1") || "{}"); s.toured = true; localStorage.setItem("orgotype.dev.v1", JSON.stringify(s)); });
+      await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("orgotype.dev.v1") || "{}"); s.toured = true; s.placed = true; localStorage.setItem("orgotype.dev.v1", JSON.stringify(s)); });
       await page.reload();
       // finish any lessons for the open units first, so their cards can start
       // play the Unit 0 lesson (taps and choices) for real; mark the others done (each was played through when written)

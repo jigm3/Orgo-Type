@@ -197,3 +197,12 @@ h2{font-size:17px;margin:24px 0 8px}
 .mstep{margin-top:10px;border-top:1px dashed var(--line2);padding-top:6px}
 .mnext{border:1px dashed var(--line2);border-radius:12px;padding:4px 10px 6px;margin-top:6px;opacity:.85}
 .mnext .mol svg{max-height:20vh}
+
+/* placement */
+.placecard{border:1px solid color-mix(in srgb,var(--accent) 50%,var(--line2));background:var(--card);border-radius:16px;padding:6px 16px 4px;margin:10px 0}
+.places{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.place{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line2);border-radius:12px;padding:10px 12px;cursor:pointer;background:var(--bg2)}
+.place input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.place b{display:block;font-weight:600;font-size:14.5px}
+.place small{color:var(--mute);font-size:13px}
+.place:has(input:checked){border-color:var(--accent)}

@@ -7,6 +7,9 @@ function renderSettings(view) {
     <div class="row"><span>Sound</span><div class="seg"><button data-sound="1" aria-pressed="${store.sound !== false}">On</button><button data-sound="0" aria-pressed="${store.sound === false}">Off</button></div></div>
     <div class="row"><span>New cards per day</span><div class="seg">${[5, 10, 15, 20, 30].map(n => `<button data-new="${n}" aria-pressed="${st.newPerDay === n}">${n}</button>`).join("")}</div></div>
     <div class="row"><span>Your name <small class="mute">(optional, shown on exports)</small></span><input id="sName" value="${esc(store.name || "")}" maxlength="40"></div>
+    <h2>Where you are in the course</h2>
+    <p class="mute">Units you've covered in class open straight away, with optional lessons and no warm-up cards.</p>
+    <div class="places">${placementList()}</div>
     <h2>Sync between devices</h2><div id="syncBox"></div>
     <h2>Your data</h2>
     <p class="mute">Progress is saved in this browser${CONTENT.dev ? " (the preview build keeps its own separate progress)" : ""}. Export it to send to whoever is running the pilot, or as a backup.</p>
@@ -26,6 +29,7 @@ function renderSettings(view) {
     for (const k of ["cards", "lessons", "log", "days", "reports", "diag"]) delete store[k];
     store.xp = 0; save(); toast("Progress reset"); go("#/");
   };
+  wirePlacement(view, () => {});
   renderSyncBox($("#syncBox"));
 }
 

@@ -10,6 +10,7 @@ function renderHome(view) {
   const nextLesson = UNITS.filter(unitOpen).flatMap(lessonsOfUnit).find(l => !lessonDone(l.id));
   view.innerHTML = `
     ${banner}
+    ${store.placed ? "" : placementCard()}
     <section class="today">
       <div class="eyebrow">Today</div>
       <h1>${s.due + s.newLeft ? (s.due ? "Reviews are waiting." : "Ready for something new.") : nextLesson ? "Start with a short lesson." : studiedToday() ? "Done for today." : "Nothing due right now."}</h1>
@@ -43,6 +44,7 @@ function renderHome(view) {
       <span>build ${BUILD_ID}</span><span id="fOff"></span>
     </footer>`;
   const st0 = view.querySelector(".start"); if (st0) st0.onclick = () => startSession();
+  wirePlacement(view, () => { store.placed = true; save(); renderHome(view); setTimeout(maybeTour, 300); });
   view.querySelectorAll("[data-preset]").forEach(b => b.onclick = () => { settings().focus = [...FOCUS_PRESETS[b.dataset.preset]]; save(); renderHome(view); });
   view.querySelectorAll("[data-types]").forEach(b => b.onclick = () => { settings().focusTypes = b.dataset.types === "all" ? [] : [b.dataset.types]; save(); renderHome(view); });
   view.querySelectorAll("[data-focus]").forEach(b => b.onclick = () => {
@@ -56,6 +58,31 @@ function renderHome(view) {
   });
   renderPatterns();
   offlineStatus();
+}
+
+/* ---- "Where are you in the course?" (first visit, and in Settings) ---- */
+const PLACE_UNITS = [0, 1, 2, 3, 4];
+function placementList() {
+  return PLACE_UNITS.map(u => `<label class="place"><input type="checkbox" data-cover="${u}" ${isCovered(u) ? "checked" : ""}>
+    <span><b>${u === 0 ? "Unit 0" : "Unit " + u} · ${esc(UNIT_NAME[u])}</b><small>${esc(UNIT_DESC[u])}</small></span></label>`).join("");
+}
+function placementCard() {
+  return `<section class="placecard"><div class="eyebrow">Welcome</div><h1>Where are you in Orgo 2?</h1>
+    <p class="lead">Tick what you've already covered in class. Those units open now, their lessons become optional, and their
+      cards go straight to the real practice. Everything else unlocks as you go. You can change this any time in Settings.</p>
+    <div class="places">${placementList()}</div>
+    <div class="actions">${btn("Save and start", "primary placesave")}${btn("I'm starting from the beginning", "placefresh")}</div></section>`;
+}
+function wirePlacement(view, done) {
+  view.querySelectorAll("[data-cover]").forEach(c => c.onchange = () => {
+    const cov = settings().covered; if (c.checked) cov[c.dataset.cover] = true; else delete cov[c.dataset.cover];
+    // covering a later unit implies the earlier ones
+    if (c.checked) PLACE_UNITS.filter(u => u < +c.dataset.cover).forEach(u => { cov[u] = true; view.querySelector(`[data-cover="${u}"]`).checked = true; });
+    save();
+  });
+  const s1 = view.querySelector(".placesave"), s2 = view.querySelector(".placefresh");
+  if (s1) s1.onclick = done;
+  if (s2) s2.onclick = () => { settings().covered = {}; done(); };
 }
 
 /* "Practising:" presets and unit chips; empty focus = everything */
@@ -82,7 +109,7 @@ function unitRow(u) {
   const st = unitStatus(u), m = masteryOf(ids);
   const learned = ids.filter(id => cardState(id) && cardState(id).days.length).length;
   const lessonBtns = lessons.map(l => `<a class="btn sm ${lessonDone(l.id) ? "" : "primary"}" href="#/lesson/${encodeURIComponent(l.id)}">${lessonDone(l.id) ? "Revisit" : "Start"} lesson: ${esc(l.title)}</a>`).join("");
-  const status = !st.open
+  const status = st.covered ? `<span class="mute">Covered in class · lesson optional</span>` : !st.open
     ? `<span class="lock">Locked · opens at 60% of earlier units learned (now ${Math.round(100 * (st.have || 0))}%)</span> <button class="link" data-unlock="${u}">Open now</button>`
     : ids.length && lessons.some(l => !lessonDone(l.id)) ? `<span class="mute">New cards start after the lesson.</span>` : "";
   return `<div class="unit ${st.open ? "" : "locked"}">

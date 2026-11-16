@@ -18,7 +18,7 @@ const scheduler = FSRS.fsrs(FSRS.generatorParameters({ request_retention: 0.9, e
 const RATING = { again: FSRS.Rating.Again, hard: FSRS.Rating.Hard, good: FSRS.Rating.Good, easy: FSRS.Rating.Easy };
 
 function settings() {
-  store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [], focusTypes: [] }, store.settings || {});
+  store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [], focusTypes: [], covered: {} }, store.settings || {});
   return store.settings;
 }
 /* topic focus: which units a session draws from (empty = everything). Stored as strings ("1", "side"). */
@@ -70,22 +70,28 @@ const lessonDone = id => !!(store.lessons || {})[id];
    units 1..k-1 are learned (answered right on a first try at least once), or by hand. Mastery itself
    (3 separate days) takes ~2–3 weeks with proper spacing, too slow to gate a semester's units. */
 const isLearned = id => !!(cardState(id) && cardState(id).days.length);
+/* "Where are you in the course?": units already covered in class open straight away, their lesson is
+   optional, and their cards skip the warm-up chain (where → arrows → …). */
+const isCovered = u => !!(settings().covered || {})[String(u)];
 function unitStatus(u) {
+  if (isCovered(u)) return { open: true, covered: true };
   if (u === 0 || u === 1 || u === "side") return { open: true };
   if (settings().unlocked[u]) return { open: true, manual: true };
-  const prior = [1, 2, 3, 4, 5].filter(k => k < u).flatMap(cardsOfUnit);
+  const priorUnits = [1, 2, 3, 4, 5].filter(k => k < u && !isCovered(k));
+  if (!priorUnits.length) return { open: true };
+  const prior = priorUnits.flatMap(cardsOfUnit);
   const have = prior.length ? prior.filter(isLearned).length / prior.length : 0;
   return { open: prior.length > 0 && have >= UNLOCK_AT, need: UNLOCK_AT, have };
 }
 const unitOpen = u => unitStatus(u).open;
 /* a unit's new cards wait until its lesson (if any) is done or skipped */
-const unitReady = u => unitOpen(u) && lessonsOfUnit(u).every(l => lessonDone(l.id));
+const unitReady = u => unitOpen(u) && (isCovered(u) || lessonsOfUnit(u).every(l => lessonDone(l.id)));
 
 function cardUnlocked(id) {
   const { rid, type } = parseCard(id), r = RX[rid];
   if (!r || !unitReady(r.unit)) return false;
   const p = prereqOf(r, type);
-  if (!p || (settings().focusTypes || []).includes(type)) return true;   // focused practice skips the unlock chain
+  if (!p || isCovered(r.unit) || (settings().focusTypes || []).includes(type)) return true;   // covered units and focused practice skip the chain
   const ps = cardState(cardId(rid, p));
   return !!(ps && ps.right > 0);
 }

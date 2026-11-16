@@ -12,7 +12,7 @@ const TOUR = [
     text: "Your streak counts days you clear all your due reviews. Settings has themes, the number of new cards per day, sync between devices, and a progress export." },
 ];
 let tourAt = -1;
-function maybeTour() { if (!store.toured && !navigator.webdriver && tourAt < 0 && (location.hash || "#/") === "#/") startTour(); }
+function maybeTour() { if (!store.placed) return; if (!store.toured && !navigator.webdriver && tourAt < 0 && (location.hash || "#/") === "#/") startTour(); }
 function startTour() { tourAt = 0; showTour(); }
 function endTour() {
   tourAt = -1; store.toured = true; save();
