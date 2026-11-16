@@ -5,7 +5,7 @@ const assert = require("assert");
 const ROOT = path.join(__dirname, "..");
 
 function engine(extraContent, { lessonsDone = true } = {}) {
-  const content = extraContent || JSON.parse(execFileSync("python3", [path.join(ROOT, "tools/compile_content.py"), "--dev"]));
+  const content = extraContent || JSON.parse(execFileSync("python3", [path.join(ROOT, "tools/compile_content.py"), "--dev"], { maxBuffer: 256 * 1024 * 1024 }));
   const mem = {};
   const ctx = { console, Date, Math, JSON, CONTENT: content,
     localStorage: { getItem: k => mem[k] ?? null, setItem: (k, v) => { mem[k] = String(v); }, removeItem: k => { delete mem[k]; } } };

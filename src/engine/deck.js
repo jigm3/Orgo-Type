@@ -1,12 +1,12 @@
 /* ---------- deck: the cards each reaction record produces, and when each unlocks ----------
    CONTENT is inlined by build.py ({reactions, lessons, diagnostic, dev}). */
-const TYPES = ["where", "arrows", "mechanism", "product", "reagent", "why", "change", "back", "paper"];
+const TYPES = ["where", "arrows", "mechanism", "intermediates", "product", "draw", "reagent", "why", "change", "back", "paper"];
 const TYPE_NAME = {
-  where: "Where does it react?", arrows: "Arrows", mechanism: "Full mechanism", product: "Product", reagent: "Reagent",
+  where: "Where does it react?", arrows: "Arrows", mechanism: "Full mechanism", intermediates: "Complete the intermediates", draw: "Draw the product", product: "Product", reagent: "Reagent",
   why: "Why?", change: "What changed?", back: "One step back", paper: "Paper round",
 };
 // a card type unlocks once its prerequisite card has been answered correctly once
-const PREREQ = { arrows: "where", mechanism: "arrows", product: "arrows", reagent: "product", why: "reagent", change: "product", back: "change", paper: "arrows" };
+const PREREQ = { arrows: "where", mechanism: "arrows", intermediates: "mechanism", draw: "product", product: "arrows", reagent: "product", why: "reagent", change: "product", back: "change", paper: "arrows" };
 const UNITS = [0, 1, 2, 3, 4, 5, "side"];
 const UNIT_NAME = { 0: "Why carbonyls react", 1: "Nucleophilic addition", 2: "Acyl substitution", 3: "1,2 vs 1,4 addition",
   4: "Enolates", 5: "Synthesis", side: "Orgo 1 review" };
@@ -25,7 +25,9 @@ function typesFor(r) {
   return TYPES.filter(t => !(r.skipCards || []).includes(t))
               .filter(t => t !== "change" || (r._newCC && r._newCC.length))
               .filter(t => t !== "back" || r.retro)
-              .filter(t => t !== "mechanism" || (r.mechanism && r.mechanism.steps && r.mechanism.steps.length));
+              .filter(t => t !== "mechanism" || (r.mechanism && r.mechanism.steps && r.mechanism.steps.length))
+              .filter(t => t !== "intermediates" || (r.mechanism && r.mechanism.steps.some(s => s._build)))
+              .filter(t => t !== "draw" || r._draw);
 }
 const cardId = (rid, type) => rid + ":" + type;
 const parseCard = id => { const i = id.lastIndexOf(":"); return { rid: id.slice(0, i), type: id.slice(i + 1) }; };

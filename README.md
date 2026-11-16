@@ -15,7 +15,11 @@ acyl substitution, 1,2 vs 1,4 addition, enolates) instead of by chapter. Same fa
   transfers and workup. Draw each step's arrows, commit once, see the right arrows and the next intermediate.
   Every step is machine-checked by an arrow-pushing simulator (`tools/mechsim.py`). "Mechanisms only" on the home
   screen drills just these.
-- **Nine card types per reaction**, unlocking in order: where does it react (tap the nucleophile and electrophile),
+- **Drawing structures** (Achieve-style "complete the structure"): atoms are placed, you add the bonds and formal
+  charges. *Draw the product* (69 reactions) and *Complete the intermediates* (every mechanism step, 310 structures).
+  Graded by building your molecule and comparing it with the answer, so equivalent answers count.
+- **Placement:** on first visit, tick the units already covered in class; they open at once, lessons optional.
+- **Eleven card types per reaction**, unlocking in order: where does it react (tap the nucleophile and electrophile),
   arrows for the key step, the full mechanism, product (multiple choice, every wrong option explains its mistake), reagent (typed, with
   fuzzy matching), why (self-graded), what changed (new C–C bonds, carbons added), one step back (retrosynthesis), and
   a paper round (draw it by hand, then check).

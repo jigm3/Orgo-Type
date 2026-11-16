@@ -206,3 +206,19 @@ h2{font-size:17px;margin:24px 0 8px}
 .place b{display:block;font-weight:600;font-size:14.5px}
 .place small{color:var(--mute);font-size:13px}
 .place:has(input:checked){border-color:var(--accent)}
+
+/* structure editor */
+.semodes{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.semodes .pill[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.sedit svg{width:100%;height:auto;max-height:46vh;display:block;overflow:visible}
+.sb{stroke-width:2;stroke-linecap:round}
+.sb.given{stroke:var(--soft)} .sb.mine{stroke:var(--accent)} .sb.ok{stroke:var(--ok)}
+.sb.missed{stroke:var(--ok);stroke-dasharray:4 3} .sb.wrongb{stroke:var(--bad);stroke-dasharray:4 3}
+.sahit{fill:transparent;cursor:pointer}
+.sa.sel .sahit{fill:color-mix(in srgb,var(--accent) 30%,transparent);stroke:var(--accent);stroke-width:2}
+.sa:hover .sahit{fill:color-mix(in srgb,var(--accent) 15%,transparent)}
+.sal{font:600 15px var(--f-body);fill:var(--ink);text-anchor:middle;pointer-events:none}
+.sac{font:700 12px var(--f-body);fill:var(--accent2);pointer-events:none}
+.sac.bad{fill:var(--bad)}
+.sadot{fill:var(--mute);pointer-events:none}
+.locked .sahit{cursor:default}

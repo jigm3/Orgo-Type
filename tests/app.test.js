@@ -50,6 +50,28 @@ async function playCard(page, base, r, type, right = true) {
       await page.click(".check");
       if (i < steps.length - 1) await page.click(".nstep");
     }
+  } else if (type === "draw" || type === "intermediates") {
+    const tasks = type === "draw" ? [r._draw] : r.mechanism.steps.filter(s => s._build).map(s => s._build);
+    for (let i = 0; i < tasks.length; i++) {
+      const t = tasks[i];
+      await page.waitForSelector(".mstep .sedit .sa, .cbody > .board .sedit .sa");
+      const scope = type === "draw" ? ".cbody .board" : ".mstep .board";
+      const tapAtom = m => page.locator(`${scope} .sa[data-m="${m}"]`).first().dispatchEvent("click");
+      const todo = t.bonds.filter(b => !b[3]);
+      const skipOne = !right && i === 0 && todo.length;
+      for (const [k, b] of todo.entries()) {
+        if (skipOne && k === 0) continue;
+        for (let n = 0; n < b[2]; n++) { await tapAtom(b[0]); await tapAtom(b[1]); }
+      }
+      const charged = t.atoms.filter(a => a.c);
+      if (charged.length) {
+        await page.click(`${scope} [data-mode="charge"]`);
+        for (const a of charged) for (let n = 0; n < (a.c === -1 ? 1 : 2); n++) await tapAtom(a.m);
+      }
+      if (!right && i === 0 && !todo.length) { await page.click(`${scope} [data-mode="charge"]`); await tapAtom(t.atoms[0].m); }
+      await page.click(".check");
+      if (type === "intermediates" && i < tasks.length - 1) await page.click(".nstep");
+    }
   } else if (type === "product") {
     const opts = page.locator(".opt");
     const n = await opts.count();
@@ -104,14 +126,16 @@ server.listen(0, async () => {
     let n = 0;
     for (const r of C.reactions.filter(r => !only || r.id === only)) {
       const skip = r.skipCards || [];
-      const types = ["where", "arrows"].concat(r.mechanism ? ["mechanism"] : []).concat(["product", "reagent", "why", "paper"]).concat(r._newCC.length ? ["change"] : []).concat(r.retro ? ["back"] : []).filter(t => !skip.includes(t));
+      const types = ["where", "arrows"].concat(r.mechanism ? ["mechanism"] : []).concat(r.mechanism && r.mechanism.steps.some(s => s._build) ? ["intermediates"] : [])
+        .concat(["product"]).concat(r._draw ? ["draw"] : []).concat(["reagent", "why", "paper"]).concat(r._newCC.length ? ["change"] : []).concat(r.retro ? ["back"] : []).filter(t => !skip.includes(t));
       for (const t of types) {
         const res = await playCard(page, base, r, t, true).catch(e => "error: " + e.message.split("\n")[0]);
         n++;
         if (res !== "correct") fail(`${r.id} ${t}: right answer graded "${res}"`);
       }
       // and a wrong answer on the auto-graded types must grade wrong
-      for (const t of ["where", "arrows", "product", "reagent"].concat(r.mechanism ? ["mechanism"] : []).filter(t => !skip.includes(t))) {
+      for (const t of ["where", "arrows", "product", "reagent"].concat(r.mechanism ? ["mechanism"] : []).concat(r._draw ? ["draw"] : [])
+        .concat(r.mechanism && r.mechanism.steps.some(s => s._build) ? ["intermediates"] : []).filter(t => !skip.includes(t))) {
         const res = await playCard(page, base, r, t, false).catch(e => "error: " + e.message.split("\n")[0]);
         n++;
         if (res !== "wrong") fail(`${r.id} ${t}: wrong answer graded "${res}"`);

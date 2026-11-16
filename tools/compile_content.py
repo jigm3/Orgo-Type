@@ -68,13 +68,90 @@ def equivalence(smiles):
     return {str(a.GetAtomMapNum()): int(ranks[a.GetIdx()]) for a in m.GetAtoms() if a.GetAtomMapNum()}
 
 
+CHG_OK = {-3, -2, -1, 0, 1, 2, 3}
+
+
+def molblock(atoms, bonds):
+    """V2000 molblock from [{m, el, c}] and [[m1, m2, order]] (no coordinates needed). The browser builds the
+    student's answer the same way, so hydrogens are implied from normal valences on both sides."""
+    idx = {a["m"]: i + 1 for i, a in enumerate(atoms)}
+    lines = ["", "  orgotype", "", f"{len(atoms):3d}{len(bonds):3d}  0  0  0  0  0  0  0  0999 V2000"]
+    lines += [f"    0.0000    0.0000    0.0000 {a['el']:<3} 0  0  0  0  0  0  0  0  0  0  0  0" for a in atoms]
+    lines += [f"{idx[b[0]]:3d}{idx[b[1]]:3d}{b[2]:3d}  0" for b in bonds if b[2] > 0]
+    chg = [(idx[a["m"]], a["c"]) for a in atoms if a["c"]]
+    for k in range(0, len(chg), 8):
+        part = chg[k:k + 8]
+        lines.append("M  CHG" + f"{len(part):3d}" + "".join(f" {i:3d} {c:3d}" for i, c in part))
+    lines.append("M  END")
+    return "\n".join(lines)
+
+
+def struct_task(prev_smiles, target_smiles):
+    """A 'complete the structure' task: the target's atoms (placed by the browser from target layout), the bonds
+    that are unchanged from `prev` given, everything else (new or changed bonds, all charges) for the student.
+    Returns None when the target can't be rebuilt faithfully from atoms + bonds (unusual valences)."""
+    def bonds_of(m):
+        out = {}
+        for b in m.GetBonds():
+            a1, a2 = b.GetBeginAtom().GetAtomMapNum(), b.GetEndAtom().GetAtomMapNum()
+            if a1 and a2:
+                out[frozenset((a1, a2))] = int(b.GetBondTypeAsDouble())
+        return out
+    prev, tgt = mol(".".join(prev_smiles)), mol(".".join(target_smiles))
+    if prev is None or tgt is None:
+        return None
+    for m in (prev, tgt):
+        Chem.Kekulize(m, clearAromaticFlags=True)
+    pb, pc = bonds_of(prev), {a.GetAtomMapNum(): a.GetFormalCharge() for a in prev.GetAtoms() if a.GetAtomMapNum()}
+    tb = bonds_of(tgt)
+    keep_idx = []
+    for frag in Chem.GetMolFrags(tgt):
+        maps = [tgt.GetAtomWithIdx(i).GetAtomMapNum() for i in frag]
+        if not all(maps):
+            continue
+        ms = set(maps)
+        if not ms & set(pc):
+            continue  # a reagent added in this step (e.g. H3O+ at workup), not something the arrows made
+        changed = any(tgt.GetAtomWithIdx(i).GetFormalCharge() != pc.get(tgt.GetAtomWithIdx(i).GetAtomMapNum(), 0) for i in frag) \
+            or any(k <= ms and pb.get(k) != o for k, o in tb.items()) \
+            or any(k <= ms and k not in tb for k in pb)
+        if changed:
+            keep_idx += list(frag)
+    if not keep_idx:
+        return None
+    atoms = [{"m": tgt.GetAtomWithIdx(i).GetAtomMapNum(), "el": tgt.GetAtomWithIdx(i).GetSymbol(),
+              "c": tgt.GetAtomWithIdx(i).GetFormalCharge()} for i in keep_idx]
+    if any(a["c"] not in CHG_OK for a in atoms):
+        return None
+    ms = {a["m"] for a in atoms}
+    bonds = [[min(k), max(k), o, pb.get(k) == o] for k, o in tb.items() if k <= ms]
+    if all(b[3] for b in bonds) and all(a["c"] == pc.get(a["m"], 0) for a in atoms):
+        return None  # nothing to do
+    # faithful? rebuilding from atoms + bonds with default valences must give the same molecule
+    rebuilt = Chem.MolFromMolBlock(molblock(atoms, [b[:3] for b in bonds]))
+    sub = Chem.RWMol(tgt)
+    for i in sorted(set(range(tgt.GetNumAtoms())) - set(keep_idx), reverse=True):
+        sub.RemoveAtom(i)
+    same = lambda m: Chem.MolToSmiles(Chem.MolFromSmiles(Chem.MolToSmiles(m))) if m is not None else None
+    if rebuilt is None or same(rebuilt) != same(Chem.RemoveHs(strip(sub), sanitize=False)):
+        return None
+    layout = Chem.MolToSmiles(sub, kekuleSmiles=True)
+    return {"layout": layout, "atoms": atoms, "bonds": bonds}
+
+
 def compile_reaction(r):
     r = dict(r)
     r["_display"] = display_for(r)
     r["_eq"] = equivalence(r["_display"])
     r["_start"] = ".".join(r["reactants"])
     if r.get("mechanism"):
-        r["mechanism"] = {"steps": [dict(st, _eq=equivalence(".".join(st["species"]))) for st in r["mechanism"]["steps"]]}
+        steps = r["mechanism"]["steps"]
+        out = []
+        for k, st in enumerate(steps):
+            target = steps[k + 1]["species"] if k + 1 < len(steps) else [r["product"]]
+            out.append(dict(st, _eq=equivalence(".".join(st["species"])), _build=struct_task(st["species"], target)))
+        r["mechanism"] = {"steps": out}
+    r["_draw"] = struct_task(r["reactants"] + r["reagents"], [r["product"]])
     origin = {}
     for i, s in enumerate(r["reactants"] + r["reagents"]):
         for a in mol(s).GetAtoms():

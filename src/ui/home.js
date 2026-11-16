@@ -46,7 +46,7 @@ function renderHome(view) {
   const st0 = view.querySelector(".start"); if (st0) st0.onclick = () => startSession();
   wirePlacement(view, () => { store.placed = true; save(); renderHome(view); setTimeout(maybeTour, 300); });
   view.querySelectorAll("[data-preset]").forEach(b => b.onclick = () => { settings().focus = [...FOCUS_PRESETS[b.dataset.preset]]; save(); renderHome(view); });
-  view.querySelectorAll("[data-types]").forEach(b => b.onclick = () => { settings().focusTypes = b.dataset.types === "all" ? [] : [b.dataset.types]; save(); renderHome(view); });
+  view.querySelectorAll("[data-types]").forEach(b => b.onclick = () => { settings().focusTypes = b.dataset.types === "all" ? [] : ["mechanism", "intermediates", "draw"]; save(); renderHome(view); });
   view.querySelectorAll("[data-focus]").forEach(b => b.onclick = () => {
     const f = settings().focus, u = b.dataset.focus, i = f.indexOf(u);
     if (i >= 0) f.splice(i, 1); else f.push(u);
@@ -93,9 +93,9 @@ function focusRow() {
     const open = unitOpen(u), on = f.includes(String(u));
     return `<button class="pill" data-focus="${u}" aria-pressed="${on}" ${open ? "" : 'title="locked"'}>${u === "side" ? "Orgo 1 review" : "Unit " + u}${open ? "" : " 🔒"}</button>`;
   }).join("");
-  const ft = settings().focusTypes || [], mech = ft.length === 1 && ft[0] === "mechanism";
+  const ft = settings().focusTypes || [], mech = ft.includes("mechanism");
   const types = `<span class="fsep"></span><button class="pill" data-types="all" aria-pressed="${!ft.length}">All card types</button>
-    <button class="pill" data-types="mechanism" aria-pressed="${mech}">Mechanisms only</button>`;
+    <button class="pill" data-types="mechanism" aria-pressed="${mech}">Mechanisms &amp; drawing only</button>`;
   const s = summary(), hidden = s.dueAll - s.due;
   return `<div class="focus" role="group" aria-label="Topics to practise"><span class="mute small">Practising:</span>
     ${preset("all", "Everything")}${preset("orgo2", "All of Orgo 2")}<span class="fsep"></span>${units}${types}</div>
