@@ -143,6 +143,18 @@ def canon_no_ez(mol):
     return canon(m)
 
 
+def same_up_to_new_stereo(product, result):
+    """True if `result` matches `product` once the product's stereo is dropped wherever arrow pushing can't know it:
+    new stereocentres (the result atom has no chiral tag) and new C=C bonds (cis/trans comes from 3D geometry).
+    Stereo the result does carry (e.g. inversion at an existing centre) must still match."""
+    p = Chem.Mol(product)
+    rtag = {a.GetAtomMapNum(): a.GetChiralTag() for a in result.GetAtoms() if a.GetAtomMapNum()}
+    for a in p.GetAtoms():
+        if rtag.get(a.GetAtomMapNum(), Chem.ChiralType.CHI_UNSPECIFIED) == Chem.ChiralType.CHI_UNSPECIFIED:
+            a.SetChiralTag(Chem.ChiralType.CHI_UNSPECIFIED)
+    return canon_no_ez(p) == canon_no_ez(result)
+
+
 def canon_smiles(smi):
     m = Chem.MolFromSmiles(smi, _P)
     return canon(m) if m is not None else None
@@ -202,8 +214,7 @@ def check_step(species, arrows, next_species=None, product=None, keep_maps=()):
             if lost:
                 last = f"the arrows give {', '.join(lost)}, which the next step doesn't show"
                 continue
-        if want_prod and want_prod not in got and \
-                canon_no_ez(Chem.MolFromSmiles(product, _P)) not in {canon_no_ez(f) for f in frags(res)}:
+        if want_prod and want_prod not in got and not any(same_up_to_new_stereo(Chem.MolFromSmiles(product, _P), f) for f in frags(res)):
             last = f"the last step gives {', '.join(c for c in got)}, not the product {want_prod}"
             continue
         return True, ""

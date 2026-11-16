@@ -72,7 +72,7 @@ BREAKS = [
     ("verified with no reviewer", "verified-without-reviewer",
      lambda R: by_id(R, "u1-grignard-ketone").update(verified=True, verifiedBy=None)),
     ("unknown pattern", "bad-pattern",
-     lambda R: by_id(R, "u1-grignard-ketone").update(pattern="E")),
+     lambda R: by_id(R, "u1-grignard-ketone").update(pattern="Q")),
     ("mechanism step missing an arrow (the C=O never reforms)", "mech-step-mismatch",
      lambda R: by_id(R, "u4-michael-malonate-mvk")["mechanism"]["steps"][2].update(arrows=by_id(R, "u4-michael-malonate-mvk")["mechanism"]["steps"][2]["arrows"][1:])),
     ("mechanism arrow to the wrong carbon (1,2 instead of 1,4)", "mech-step-mismatch",

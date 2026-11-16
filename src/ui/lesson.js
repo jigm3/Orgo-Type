@@ -19,7 +19,7 @@ function renderLesson(view, id, i = 0) {
     <div class="sbar"><a class="pill" href="#/">✕ Close</a>
       <div class="sprog"><i style="width:${Math.round(100 * i / L.steps.length)}%"></i></div><span class="pill static">${i + 1} / ${L.steps.length}</span></div>
     <article class="card lesson">
-      <div class="ctype"><span>${L.unit === "side" ? "Side deck" : "Unit " + L.unit} · lesson</span><span>${esc(L.title)}</span></div>
+      <div class="ctype"><span>${courseOf(L.unit) === 1 ? "Orgo 1" : "Orgo 2"} · Unit ${unitNum(L.unit)} · lesson</span><span>${esc(L.title)}</span></div>
       <div class="cbody"></div><div class="cfb" hidden aria-live="polite"></div><div class="cact"></div>
     </article>`;
   const body = view.querySelector(".cbody"), act = view.querySelector(".cact"), fb = view.querySelector(".cfb");

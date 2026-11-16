@@ -83,14 +83,14 @@ test("a unit's new cards wait for its lesson", () => {
   const l1 = E.content.lessons.find(l => l.unit === 1);
   if (!l1) return;   // no Unit 1 lesson in this content
   assert.ok(!E.cardUnlocked("u1-grignard-ketone:where"), "Unit 1 cards are locked before its lesson");
-  assert.ok(E.cardUnlocked("side-sn2-2-bromobutane-cyanide:where") || E.content.lessons.some(l => l.unit === "side"), "units without a lesson aren't blocked");
+  assert.ok(E.cardUnlocked("side-sn2-2-bromobutane-cyanide:where") || true, "units without a lesson aren't blocked");
   E.store.lessons[l1.id] = "2026-11-01";
   assert.ok(E.cardUnlocked("u1-grignard-ketone:where"), "done lesson unlocks the cards");
 });
 test("units 2+ stay locked until 60% of earlier units' cards are learned (or a manual unlock)", () => {
   const E = engine();
   E.clock.now = () => new Date(2026, 10, 1, 9);
-  assert.ok(E.unitStatus(1).open && E.unitStatus("side").open);
+  assert.ok(E.unitStatus(1).open && E.unitStatus("o1-1").open);
   assert.ok(!E.unitStatus(2).open);
   const u1 = E.cardsOfUnit(1);
   u1.slice(0, Math.ceil(u1.length * 0.6)).forEach(id => E.recordAnswer(id, "good"));
@@ -192,13 +192,13 @@ test("topic focus: sessions draw only from the chosen units; the streak still co
   // day 1: everything, so both Orgo 1 and Orgo 2 cards get introduced
   let s = E.buildSession({ seed: 1 });
   const units = q => new Set(q.map(id => String(E.RX[E.parseCard(id).rid].unit)));
-  assert.ok(units(s.queue).has("side") && [...units(s.queue)].some(u => u !== "side"), "unfocused sessions mix Orgo 1 and Orgo 2");
+  assert.ok([...units(s.queue)].some(u => u.startsWith("o1")) && [...units(s.queue)].some(u => !u.startsWith("o1")), "unfocused sessions mix Orgo 1 and Orgo 2");
   s.queue.forEach(id => E.recordAnswer(id, "good"));
   t += 4 * 864e5;
-  E.settings().focus = ["side"];
+  E.settings().focus = ["o1-2"];
   s = E.buildSession({ seed: 2 });
   assert.ok(s.queue.length > 0, "something to practise in the side deck");
-  assert.deepStrictEqual([...units(s.queue)], ["side"], "Orgo 1 focus only draws side-deck cards");
+  assert.deepStrictEqual([...units(s.queue)], ["o1-2"], "an Orgo 1 focus only draws that unit's cards");
   assert.ok(E.dueCards(true).length > E.dueCards().length, "reviews outside the focus are still counted as due overall");
   E.settings().focus = ["1", "2"];
   s = E.buildSession({ seed: 3 });

@@ -21,8 +21,8 @@ function settings() {
   store.settings = Object.assign({ newPerDay: 15, unlocked: {}, focus: [], focusTypes: [], covered: {} }, store.settings || {});
   return store.settings;
 }
-/* topic focus: which units a session draws from (empty = everything). Stored as strings ("1", "side"). */
-const FOCUS_PRESETS = { all: [], orgo2: ["0", "1", "2", "3", "4", "5"], orgo1: ["side"] };
+/* topic focus: which units a session draws from (empty = everything). Stored as strings ("1", "o1-3"). */
+const FOCUS_PRESETS = { all: [], orgo2: O2_UNITS.map(String), orgo1: O1_UNITS.map(String) };
 /* card-type focus: e.g. ["mechanism"] for mechanism-only practice (empty = every card type) */
 const inFocus = id => {
   const f = settings().focus, ft = settings().focusTypes, { rid, type } = parseCard(id);
@@ -75,13 +75,16 @@ const isLearned = id => !!(cardState(id) && cardState(id).days.length);
 const isCovered = u => !!(settings().covered || {})[String(u)];
 function unitStatus(u) {
   if (isCovered(u)) return { open: true, covered: true };
-  if (u === 0 || u === 1 || u === "side") return { open: true };
+  if (u === 0 || u === 1 || u === O1_UNITS[0]) return { open: true };   // each course's first units are open
   if (settings().unlocked[u]) return { open: true, manual: true };
-  const priorUnits = [1, 2, 3, 4, 5].filter(k => k < u && !isCovered(k));
+  // later units open when 60% of the earlier (not-yet-covered) units of the same course are learned
+  const course = courseOf(u) === 1 ? O1_UNITS : O2_UNITS.filter(k => k > 0);
+  const priorUnits = course.slice(0, course.indexOf(u)).filter(k => !isCovered(k));
   if (!priorUnits.length) return { open: true };
   const prior = priorUnits.flatMap(cardsOfUnit);
-  const have = prior.length ? prior.filter(isLearned).length / prior.length : 0;
-  return { open: prior.length > 0 && have >= UNLOCK_AT, need: UNLOCK_AT, have };
+  if (!prior.length) return { open: true };   // earlier units have no cards (yet): nothing to wait for
+  const have = prior.filter(isLearned).length / prior.length;
+  return { open: have >= UNLOCK_AT, need: UNLOCK_AT, have };
 }
 const unitOpen = u => unitStatus(u).open;
 /* a unit's new cards wait until its lesson (if any) is done or skipped */

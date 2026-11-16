@@ -26,14 +26,14 @@ RDLogger.DisableLog("rdApp.*")  # we report parse failures ourselves
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content" / "reactions"
 
-UNITS = {0, 1, 2, 3, 4, 5, "side"}
-PATTERNS = {"A", "B", "C", "D", "S", "X"}  # A–D carbonyl patterns · S substitution/elimination · X other (oxidation, protecting groups…)
+UNITS = {0, 1, 2, 3, 4, 5, "o1-1", "o1-2", "o1-3", "o1-4", "o1-5", "o1-6"}   # Orgo 2: 0–5 · Orgo 1: o1-1…o1-6
+PATTERNS = {"A", "B", "C", "D", "S", "P", "E", "R", "X"}  # A–D carbonyl · S substitution/elimination · P proton transfer · E electrophilic addition · R radical · X other
 SOURCES = {"shared", "personal"}
 ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 REQUIRED = {"id": str, "unit": (int, str), "pattern": str, "title": str, "reactants": list, "reagents": list,
-            "reagentDisplay": str, "reagentAliases": list, "product": str, "keyStep": dict, "why": str,
+            "reagentDisplay": str, "reagentAliases": list, "product": str, "why": str,
             "traps": list, "confusableWith": list, "tags": list, "verified": bool}
-OPTIONAL = {"byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str, "retro": dict, "skipCards": list, "mechanism": dict}
+OPTIONAL = {"keyStep": dict, "byproducts": list, "verifiedBy": (str, type(None)), "review": str, "source": str, "notes": str, "retro": dict, "skipCards": list, "mechanism": dict}
 MIN_TRAPS, MAX_TRAPS = 2, 4
 LONE_PAIR_ELEMENTS = {"N", "O", "S", "F", "Cl", "Br", "I", "P"}
 
@@ -175,7 +175,14 @@ def check_record(r, where, rep):
     if not any(set(mapped_atoms(m)) & used for m in reactants):
         rep.err(where, "product-unrelated", "no reactant atom ends up in the product")
 
-    # ---- key step ----
+    # ---- key step (required, except for radical reactions: fishhook arrows aren't drawn, so they have no arrow cards) ----
+    if "keyStep" not in r:
+        if r["pattern"] != "R":
+            rep.err(where, "missing-field", "missing required field 'keyStep' (only radical, pattern R, records may omit it)")
+        if r.get("mechanism"):
+            rep.err(where, "bad-field", "a record without keyStep can't have a mechanism")
+        r["_reaction_key"] = ".".join(sorted(canon(m) for m in reactants)) + ">" + ".".join(sorted(canon(m) for m in reagents)) + ">" + canon(product)
+        return
     ks = r["keyStep"]
     species_smiles = ks.get("species")
     if species_smiles is not None:

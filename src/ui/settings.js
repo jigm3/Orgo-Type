@@ -9,8 +9,8 @@ function renderSettings(view) {
     <div class="row"><span>Your name <small class="mute">(optional, shown on exports)</small></span><input id="sName" value="${esc(store.name || "")}" maxlength="40"></div>
     <h2>Where you are in the course</h2>
     <div class="row"><span>Course</span><div class="seg">${[[1, "Orgo 1"], [2, "Orgo 2"]].map(([v, n]) => `<button data-level="${v}" aria-pressed="${(st.level || 2) === v}">${n}</button>`).join("")}</div></div>
-    <p class="mute">Orgo 2 units you've covered in class open straight away, with optional lessons and no warm-up cards.</p>
-    <div class="places">${placementList()}</div>
+    <p class="mute">Units you've covered in class open straight away, with optional lessons and no warm-up cards.</p>
+    <div class="places">${placementList(st.level === 1 ? 1 : 2)}</div>
     <h2>Sync between devices</h2><div id="syncBox"></div>
     <h2>Your data</h2>
     <p class="mute">Progress is saved in this browser${CONTENT.dev ? " (the preview build keeps its own separate progress)" : ""}. Export it to send to whoever is running the pilot, or as a backup.</p>
@@ -33,7 +33,7 @@ function renderSettings(view) {
   wirePlacement(view, () => {});
   view.querySelectorAll(".seg [data-level]").forEach(b => b.onclick = () => {
     st.level = +b.dataset.level;
-    if (st.level === 1) st.focus = ["side"]; else if (st.focus.length === 1 && st.focus[0] === "side") st.focus = [];
+    st.focus = [];
     save(); renderSettings(view);
   });
   renderSyncBox($("#syncBox"));

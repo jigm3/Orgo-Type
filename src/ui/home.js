@@ -34,10 +34,9 @@ function renderHome(view) {
         <small>${p.mastered}/${p.total} mastered · ${p.learned} learned</small></div>`).join("") || '<p class="mute">The map fills in as cards are added.</p>'}
     </section>
 
-    <div class="eyebrow">Orgo 2 · carbonyl chemistry</div>
-    <section class="units">${UNITS.filter(u => u !== "side").map(unitRow).join("")}</section>
-    <div class="eyebrow">Orgo 1 review · topics Orgo 2 builds on</div>
-    <section class="units">${unitRow("side")}</section>
+    ${(settings().level === 1 ? [1, 2] : [2, 1]).map(c => c === 2
+      ? `<div class="eyebrow">Orgo 2 · carbonyl chemistry</div><section class="units">${O2_UNITS.map(unitRow).join("")}</section>`
+      : `<div class="eyebrow">Orgo 1${settings().level === 2 ? " · review what Orgo 2 builds on" : ""}</div><section class="units">${O1_UNITS.map(unitRow).join("")}</section>`).join("")}
 
     <div class="eyebrow">The four patterns</div>
     <section class="patterns" id="patterns"></section>
@@ -55,7 +54,7 @@ function renderHome(view) {
     save(); renderHome(view);
   });
   view.querySelectorAll("[data-unlock]").forEach(b => b.onclick = () => {
-    const u = isNaN(+b.dataset.unlock) ? b.dataset.unlock : +b.dataset.unlock;
+    const u = UNITS.find(x => String(x) === b.dataset.unlock);
     if (confirm(`Open “${UNIT_NAME[u]}” now? Its cards build on the earlier units.`)) { settings().unlocked[u] = true; save(); renderHome(view); }
   });
   renderPatterns();
@@ -63,42 +62,48 @@ function renderHome(view) {
 }
 
 /* ---- "Where are you in the course?" (first visit, and in Settings) ---- */
-const PLACE_UNITS = [0, 1, 2, 3, 4];
-function placementList() {
-  return PLACE_UNITS.map(u => `<label class="place"><input type="checkbox" data-cover="${u}" ${isCovered(u) ? "checked" : ""}>
-    <span><b>${u === 0 ? "Unit 0" : "Unit " + u} · ${esc(UNIT_NAME[u])}</b><small>${esc(UNIT_DESC[u])}</small></span></label>`).join("");
+/* placement lists one course's units; covering a later unit covers the earlier ones of that course */
+const placeUnits = course => course === 1 ? O1_UNITS : O2_UNITS.filter(u => u < 5);
+function placementList(course) {
+  return placeUnits(course).map(u => `<label class="place"><input type="checkbox" data-cover="${u}" ${isCovered(u) ? "checked" : ""}>
+    <span><b>Unit ${unitNum(u)} · ${esc(UNIT_NAME[u])}</b><small>${esc(UNIT_DESC[u])}</small></span></label>`).join("");
 }
-let placeStep = 1;   // first visit: 1 = Orgo 1 or 2?, 2 = which unit?
+let placeStep = 1, placeCourse = 2;   // first visit: 1 = Orgo 1 or 2?, 2 = which unit?
 function placementCard() {
   if (placeStep === 1) return `<section class="placecard"><div class="eyebrow">Welcome</div><h1>Where in Orgo are you?</h1>
     <p class="lead">So the app can start where you are.</p>
-    <div class="places"><button class="place pick" data-level="1"><span><b>Orgo 1</b><small>SN1/SN2/E1/E2, alcohols, ethers and epoxides (the Orgo 1 review deck)</small></span></button>
-      <button class="place pick" data-level="2"><span><b>Orgo 2</b><small>carbonyl chemistry: aldehydes &amp; ketones, acid derivatives, enones, enolates</small></span></button></div>
+    <div class="places"><button class="place pick" data-level="1"><span><b>Orgo 1</b><small>acids &amp; bases, SN1/SN2/E1/E2, alkenes, alkynes, radicals, alcohols &amp; ethers</small></span></button>
+      <button class="place pick" data-level="2"><span><b>Orgo 2</b><small>carbonyl chemistry: aldehydes &amp; ketones, acid derivatives, enones, enolates (Orgo 1 stays open for review)</small></span></button></div>
     <div class="actions">${btn("Skip for now", "placefresh")}</div></section>`;
-  return `<section class="placecard"><div class="eyebrow">Orgo 2</div><h1>Which unit?</h1>
+  return `<section class="placecard"><div class="eyebrow">Orgo ${placeCourse}</div><h1>Which unit?</h1>
     <p class="lead">Tick what you've already covered in class (ticking a unit ticks the ones before it). Those units open now,
       their lessons become optional, and their cards go straight to the real practice. Everything else unlocks as you go.
       You can change this any time in Settings.</p>
-    <div class="places">${placementList()}</div>
-    <div class="actions">${btn("Save and start", "primary placesave")}${btn("Back", "placeback")}${btn("I'm starting Orgo 2 from the beginning", "placefresh")}</div></section>`;
+    <div class="places">${placementList(placeCourse)}</div>
+    <div class="actions">${btn("Save and start", "primary placesave")}${btn("Back", "placeback")}${btn(`I'm starting Orgo ${placeCourse} from the beginning`, "placefresh")}</div></section>`;
 }
 function wirePlacement(view, done) {
+  const key = u => String(u);
   view.querySelectorAll("[data-cover]").forEach(c => c.onchange = () => {
-    const cov = settings().covered; if (c.checked) cov[c.dataset.cover] = true; else delete cov[c.dataset.cover];
-    // covering a later unit implies the earlier ones
-    if (c.checked) PLACE_UNITS.filter(u => u < +c.dataset.cover).forEach(u => { cov[u] = true; view.querySelector(`[data-cover="${u}"]`).checked = true; });
+    const cov = settings().covered, u = UNITS.find(x => key(x) === c.dataset.cover);
+    if (c.checked) cov[key(u)] = true; else delete cov[key(u)];
+    if (c.checked) {
+      const list = placeUnits(courseOf(u));
+      list.slice(0, list.indexOf(u)).forEach(e => { cov[key(e)] = true; const box = view.querySelector(`[data-cover="${key(e)}"]`); if (box) box.checked = true; });
+    }
     save();
   });
-  view.querySelectorAll("[data-level]").forEach(b => b.onclick = () => {
-    if (b.dataset.level === "2") { placeStep = 2; renderHome(view); scrollTo(0, 0); return; }
-    // Orgo 1: practise the Orgo 1 review deck; Orgo 2 units stay closed until reached
-    settings().level = 1; settings().covered = {}; settings().focus = ["side"]; done();
+  view.querySelectorAll(".place.pick[data-level]").forEach(b => b.onclick = () => {
+    placeCourse = +b.dataset.level; settings().level = placeCourse;
+    // in Orgo 2, Orgo 1 is done: open it all as review
+    if (placeCourse === 2) O1_UNITS.forEach(u => { settings().covered[key(u)] = true; });
+    save(); placeStep = 2; renderHome(view); scrollTo(0, 0);
   });
   const back = view.querySelector(".placeback");
   if (back) back.onclick = () => { placeStep = 1; renderHome(view); };
   const s1 = view.querySelector(".placesave"), s2 = view.querySelector(".placefresh");
-  if (s1) s1.onclick = () => { settings().level = 2; done(); };
-  if (s2) s2.onclick = () => { settings().covered = {}; done(); };
+  if (s1) s1.onclick = done;
+  if (s2) s2.onclick = () => { placeUnits(placeCourse).forEach(u => { delete settings().covered[key(u)]; }); done(); };
 }
 
 /* "Practising:" presets and unit chips; empty focus = everything */
@@ -107,16 +112,16 @@ function focusRow() {
   const preset = (k, label) => `<button class="pill" data-preset="${k}" aria-pressed="${same(f, FOCUS_PRESETS[k])}">${label}</button>`;
   const units = UNITS.filter(u => cardsOfUnit(u).length).map(u => {
     const open = unitOpen(u), on = f.includes(String(u));
-    return `<button class="pill" data-focus="${u}" aria-pressed="${on}" ${open ? "" : 'title="locked"'}>${u === "side" ? "Orgo 1 review" : "Unit " + u}${open ? "" : " 🔒"}</button>`;
+    return `<button class="pill" data-focus="${u}" aria-pressed="${on}" ${open ? "" : 'title="locked"'}>${esc(UNIT_SHORT[u])}${open ? "" : " 🔒"}</button>`;
   }).join("");
   const ft = settings().focusTypes || [], mech = ft.includes("mechanism");
   const types = `<span class="fsep"></span><button class="pill" data-types="all" aria-pressed="${!ft.length}">All card types</button>
     <button class="pill" data-types="mechanism" aria-pressed="${mech}">Mechanisms &amp; drawing only</button>`;
   const s = summary(), hidden = s.dueAll - s.due;
   return `<div class="focus" role="group" aria-label="Topics to practise"><span class="mute small">Practising:</span>
-    ${preset("all", "Everything")}${preset("orgo2", "All of Orgo 2")}<span class="fsep"></span>${units}${types}</div>
+    ${preset("all", "Everything")}${preset("orgo1", "All of Orgo 1")}${preset("orgo2", "All of Orgo 2")}<span class="fsep"></span>${units}${types}</div>
     ${f.length && hidden ? `<p class="mute small">${hidden} review${hidden === 1 ? " is" : "s are"} due outside these topics.</p>` : ""}
-    ${f.length && !s.due && !s.newLeft && f.some(u => lessonsOfUnit(isNaN(+u) ? u : +u).some(l => !lessonDone(l.id))) ? `<p class="mute small">New cards in these topics start after their lesson (see Units below).</p>` : ""}`;
+    ${f.length && !s.due && !s.newLeft && f.some(u => lessonsOfUnit(UNITS.find(x => String(x) === u)).some(l => !lessonDone(l.id))) ? `<p class="mute small">New cards in these topics start after their lesson (see Units below).</p>` : ""}`;
 }
 
 function unitRow(u) {
@@ -129,7 +134,7 @@ function unitRow(u) {
     ? `<span class="lock">Locked · opens at 60% of earlier units learned (now ${Math.round(100 * (st.have || 0))}%)</span> <button class="link" data-unlock="${u}">Open now</button>`
     : ids.length && lessons.some(l => !lessonDone(l.id)) ? `<span class="mute">New cards start after the lesson.</span>` : "";
   return `<div class="unit ${st.open ? "" : "locked"}">
-    <div class="uhead"><span class="tag">${u === "side" ? "Orgo 1" : "Unit " + u}</span><b>${esc(UNIT_NAME[u])}</b>
+    <div class="uhead"><span class="tag">Unit ${unitNum(u)}</span><b>${esc(UNIT_NAME[u])}</b>
       <small>${ids.length ? `${learned}/${ids.length} learned · ${m.mastered} mastered` : ""}</small></div>
     <div class="ubody">${status}${st.open ? lessonBtns : ""}</div></div>`;
 }

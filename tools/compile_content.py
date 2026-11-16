@@ -141,8 +141,9 @@ def struct_task(prev_smiles, target_smiles):
 
 def compile_reaction(r):
     r = dict(r)
-    r["_display"] = display_for(r)
-    r["_eq"] = equivalence(r["_display"])
+    if r.get("keyStep"):
+        r["_display"] = display_for(r)
+        r["_eq"] = equivalence(r["_display"])
     r["_start"] = ".".join(r["reactants"])
     if r.get("mechanism"):
         steps = r["mechanism"]["steps"]

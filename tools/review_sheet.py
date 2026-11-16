@@ -46,7 +46,7 @@ def svg(smiles, lit=None, w=260, h=170):
 
 def card(r):
     e = html.escape
-    ks = r["keyStep"]
+    ks = r.get("keyStep") or {"nucleophileAtom": 0, "electrophileAtom": 0, "arrows": [], "species": r["reactants"] + r["reagents"]}
     lit = {ks["nucleophileAtom"]: GOLD, ks["electrophileAtom"]: BLUE}
     step_mols = ks.get("species") or (r["reactants"] + r["reagents"])
     arrows = "; ".join(
@@ -133,8 +133,8 @@ def main(out):
     units = {}
     for r in recs:
         units.setdefault(str(r["unit"]), []).append(r)
-    order = ["0", "1", "2", "3", "4", "5", "side"]
-    name = {"side": "Side deck (Orgo 1)"}
+    order = ["o1-1", "o1-2", "o1-3", "o1-4", "o1-5", "o1-6", "0", "1", "2", "3", "4", "5"]
+    name = {f"o1-{k}": f"Orgo 1 · Unit {k}" for k in range(1, 7)} | {str(k): f"Orgo 2 · Unit {k}" for k in range(6)}
     sections = []
     for u in order:
         ls = [l for l in lessons if str(l["unit"]) == u]
