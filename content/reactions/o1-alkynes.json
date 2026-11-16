@@ -70,8 +70,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-lindlar",
@@ -123,8 +123,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-na-nh3",
@@ -167,8 +167,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-hydrogenation-pd",
@@ -199,8 +199,8 @@
     ],
     "confusableWith": ["o1-alkyne-lindlar", "o1-alkyne-na-nh3"],
     "tags": ["reduction", "hydrogenation", "alkyne"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-hydration-hgso4",
@@ -299,8 +299,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-hydroboration",
@@ -358,8 +358,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-hbr-2-equiv",
@@ -434,8 +434,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-br2-anti",
@@ -506,8 +506,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-alkyne-double-elimination",
@@ -599,7 +599,7 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

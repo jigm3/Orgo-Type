@@ -3,8 +3,8 @@
     "id": "lesson-o1-5",
     "unit": "o1-5",
     "title": "Radical halogenation and NBS",
-    "verified": false,
-    "verifiedBy": null,
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

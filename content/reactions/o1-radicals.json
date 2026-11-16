@@ -40,8 +40,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-radical-br2-methylcyclohexane",
@@ -67,8 +67,8 @@
     ],
     "confusableWith": ["o1-radical-br2-2-methylbutane", "o1-radical-cl2-cyclohexane"],
     "tags": ["radical", "halogenation", "selectivity", "alkane"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-radical-cl2-cyclohexane",
@@ -97,8 +97,8 @@
     ],
     "confusableWith": ["o1-radical-br2-2-methylbutane", "o1-radical-br2-methylcyclohexane"],
     "tags": ["radical", "halogenation", "chain mechanism", "alkane"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-radical-nbs-cyclohexene",
@@ -141,7 +141,7 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]
