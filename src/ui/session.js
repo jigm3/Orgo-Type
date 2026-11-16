@@ -1,6 +1,9 @@
 /* ---------- session player: one card at a time, commit → feedback → continue ---------- */
 let S = null;   // the running session
 
+/* while a card is being answered its header names only the topic; titles like "SN2: inversion" would give it away */
+const topicTitle = r => `Orgo ${courseOf(r.unit)} · ${UNIT_SHORT[r.unit] || ""}`;
+
 function startSession(opts = {}) {
   S = buildSession(opts);
   S.total = S.queue.length; S.firstTry = { right: 0, total: 0 }; S.mastered = [];
@@ -14,6 +17,7 @@ function renderSession(view) {
   if (!S.queue.length) return renderSessionDone(view);
   const id = S.queue[0], { rid, type } = parseCard(id), r = RX[rid], C = CARDS[type];
   delete view.dataset.ready;
+  view.dataset.card = rid;
   const repeat = S.seen.has(id), isNew = !cardState(id);
   view.innerHTML = `
     <div class="sbar"><button class="pill" id="sExit" aria-label="End session">✕ End</button>
@@ -21,7 +25,7 @@ function renderSession(view) {
       <span class="pill static">${S.queue.length} left</span></div>
     <article class="card">
       <div class="ctype"><span>${esc(patternTag(r))}</span><span>${isNew ? '<b class="newtag">new</b> ' : repeat ? '<b class="againtag">again</b> ' : ""}${esc(C.title)}</span></div>
-      <h2 class="ctitle">${esc(r.title.replace(/\s*→.*$/, ""))}</h2>
+      <h2 class="ctitle">${esc(topicTitle(r))}</h2>
       <div class="cbody"></div>
       <div class="cfb" hidden aria-live="polite"></div>
       <div class="cact"></div>
@@ -35,6 +39,7 @@ function renderSession(view) {
   const commit = res => {
     if (committed) return; committed = true;
     const ms = performance.now() - t0;
+    view.querySelector(".ctitle").textContent = r.title;   // the reaction's name can give the answer away, so it shows after
     const rating = res.rating || ratingFor(res.correct, ms / (res.nSteps || 1));   // multi-step cards get time per step
     const { newlyMastered } = recordAnswer(id, rating, { ms: Math.round(ms), type, detail: res.detail });
     if (!repeat) { S.firstTry.total++; if (res.correct) S.firstTry.right++; }
@@ -91,10 +96,11 @@ function renderPreview(view, rid, type) {
   view.innerHTML = `<div class="sbar"><a class="pill" href="#/">✕ Home</a><span class="pill static">preview · not scheduled</span></div>
     <nav class="chips">${typesFor(r).map(t => `<a class="pill" href="#/card/${encodeURIComponent(rid)}/${t}" ${t === type ? 'aria-current="page"' : ""}>${esc(TYPE_NAME[t])}</a>`).join("")}</nav>
     <article class="card"><div class="ctype"><span>${esc(patternTag(r))}</span><span>${esc(C.title)}</span></div>
-      <h2 class="ctitle">${esc(r.title.replace(/\s*→.*$/, ""))}</h2><div class="cbody"></div><div class="cfb" hidden aria-live="polite"></div><div class="cact"></div></article>`;
+      <h2 class="ctitle">${esc(topicTitle(r))}</h2><div class="cbody"></div><div class="cfb" hidden aria-live="polite"></div><div class="cact"></div></article>`;
   const act = view.querySelector(".cact");
   C.render({ rec: r, body: view.querySelector(".cbody"), act, fb: view.querySelector(".cfb"), commit: res => {
     view.dataset.result = res.correct ? "correct" : "wrong";
+    view.querySelector(".ctitle").textContent = r.title;
     act.innerHTML = `<span class="mute">${res.correct ? "Correct" : "Wrong"} (not recorded)</span>` + btn("Try again", "primary again");
     act.querySelector(".again").onclick = () => renderPreview(view, rid, type);
   } }).then(() => { view.dataset.ready = "1"; });

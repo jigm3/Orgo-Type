@@ -3,9 +3,8 @@
     "id": "lesson-o1-1",
     "unit": "o1-1",
     "title": "Acids, bases and the two arrows",
-    "verified": false,
-    "verifiedBy": null,
-    "review": "pKa values follow Klein's table (acetic acid 4.8, H2CO3 6.4, phenol 10, thiol 10.6, water 15.7, ethanol 16, alkyne 25, H2 35, NH3 38, alkane about 50). Step 8 names resonance as the main reason acetic acid beats ethanol, with induction as a smaller help.",
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",

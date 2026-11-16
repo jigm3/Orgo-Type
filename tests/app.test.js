@@ -183,8 +183,8 @@ server.listen(0, async () => {
           if (await page.locator(".cont").count()) { await page.click(".cont"); continue; }
           const id = await page.evaluate(() => location.hash);
           // answer via the same helpers: find the reaction from the title
-          const title = await page.locator(".ctitle").textContent();
-          const r = C.reactions.find(x => x.title.replace(/\s*→.*$/, "") === title);
+          const hash = await page.evaluate(() => document.querySelector("#sReport") && document.querySelector("#view").dataset.card);
+          const r = C.reactions.find(x => x.id === hash);
           if (/where/i.test(label)) { await ready(page); await tap(page, "a:" + r.keyStep.nucleophileAtom); await tap(page, "a:" + r.keyStep.electrophileAtom); await page.click(".check"); }
           else { fail("unexpected first-day card " + label + " " + id); break; }
           await page.waitForSelector(".cont"); await page.evaluate(() => { delete document.querySelector("#view").dataset.ready; }); await page.click(".cont");

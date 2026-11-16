@@ -1,1 +1,120 @@
-[{"id": "lesson-side", "unit": "o1-2", "title": "SN1, SN2, E1, E2 and alcohols", "verified": false, "verifiedBy": null, "review": "Step 2 uses 2-bromo-2-methylbutane in water at 25 °C as SN1 (major: 2-methylbutan-2-ol), with E1 described as the minor path without heat. Step 5 says ethoxide on a 2° halide with heat gives mostly E2 with some SN2 ether. Step 11 option D (CH3O⁻ + tert-butanol) is called an acid–base reaction only; please confirm that wording.", "steps": [{"kind": "read", "text": "Four inputs decide SN1, SN2, E1 or E2. **Substrate**: methyl and 1° favour SN2; 3° can't do SN2. **Nucleophile/base**: a strong base pushes E2; a good nucleophile that is a weak base gives SN2; a weak, neutral one means SN1/E1. **Solvent**: polar aprotic helps SN2; protic helps ions form. **Heat** favours elimination.", "smiles": "[CH3:1][CH2:2][CH:3]([Br:4])[CH3:5]", "lit": {"3": "el", "4": "lg"}}, {"kind": "choice", "text": "2-Bromo-2-methylbutane is stirred in water at 25 °C. Which mechanism gives the major product?", "smiles": "CCC(C)(C)Br", "options": [{"text": "SN2", "explains": "A 3° carbon is too crowded for backside attack, so SN2 is out."}, {"text": "E2", "explains": "E2 needs a strong base. Water is a very weak base."}, {"text": "SN1", "correct": true, "explains": "A 3° halide ionises to a stable 3° carbocation in a protic solvent, and water is a weak nucleophile. Without heat or a strong base, substitution wins: 2-methylbutan-2-ol."}, {"text": "E1", "explains": "E1 shares the carbocation with SN1 but needs heat to become the main path. At 25 °C it is only the minor product."}]}, {"kind": "worked", "reaction": "side-sn2-2-bromobutane-cyanide", "text": "One step: cyanide attacks the back of the C–Br carbon while Br⁻ leaves, so the stereocentre inverts."}, {"kind": "card", "reaction": "side-sn2-1-bromobutane-azide", "card": "arrows", "given": 1, "text": "Same SN2 on a 1° halide. The attack is drawn; add the leaving-group arrow."}, {"kind": "choice", "text": "2-Bromobutane with NaCN in DMSO goes **SN2**. With NaOEt in ethanol and heat it mostly gives but-2-ene (**E2**). What made the difference?", "options": [{"text": "Ethoxide is a strong base and heat favours elimination; cyanide is a good nucleophile but a weak base.", "correct": true, "explains": "Right. On a 2° halide the reagent decides: strong base (plus heat) → E2; good nucleophile, weak base → SN2. Some SN2 ether still forms with ethoxide, but E2 is major."}, {"text": "Ethanol is protic, so the reaction switched to SN1/E1.", "explains": "A strong base is present, so the bimolecular path (E2) is much faster than waiting for a 2° carbocation to form."}, {"text": "Ethoxide is too bulky to attack carbon.", "explains": "That's tert-butoxide. Ethoxide is small and can do SN2; it eliminates here because it is a strong base and the mixture is heated."}]}, {"kind": "card", "reaction": "side-e2-2-bromobutane-ethoxide", "card": "product"}, {"kind": "choice", "text": "2-Bromo-2,3-dimethylbutane gives 2,3-dimethylbut-2-ene with NaOEt (**Zaitsev**) but mostly 2,3-dimethylbut-1-ene with KOtBu (**Hofmann**). Why?", "smiles": "CC(C)(Br)C(C)C", "options": [{"text": "The Hofmann alkene is the more stable one.", "explains": "It's the less stable one: a disubstituted C=C versus a tetrasubstituted one. It forms because it is easier to reach, not because it is more stable."}, {"text": "KOtBu reacts by E1, which gives the Hofmann alkene.", "explains": "KOtBu is a strong base, so this is still E2. E1 goes through a carbocation and would give the Zaitsev alkene."}, {"text": "tert-Butoxide is a weaker base than ethoxide.", "explains": "It is at least as strong a base. Its size, not its strength, is what changes which H it removes."}, {"text": "tert-Butoxide is bulky, so it removes an easy-to-reach H on a CH3 group instead of the hindered H on the inner C–H.", "correct": true, "explains": "Right. A small base reaches the internal H and gives the more substituted (more stable) alkene; a bulky base takes the accessible one."}]}, {"kind": "card", "reaction": "side-sn1-tert-butyl-bromide-ethanol", "card": "product"}, {"kind": "read", "text": "Alcohols: OH⁻ is a poor leaving group, so first turn the OH into a **good leaving group**. TsCl with pyridine makes a tosylate with retention, because the C–O bond is not touched. PBr3 or SOCl2 make the alkyl halide by SN2, with inversion. Ethers: the Williamson synthesis is SN2, so the halide must be methyl or 1°."}, {"kind": "card", "reaction": "side-pbr3-2-butanol", "card": "product"}, {"kind": "choice", "text": "You want **tert-butyl methyl ether**, (CH3)3C–O–CH3, by a Williamson synthesis. Which pair works?", "options": [{"text": "CH3O⁻ Na⁺ + (CH3)3CBr", "explains": "A 3° halide can't do SN2, and methoxide is a strong base, so you get E2: 2-methylpropene."}, {"text": "(CH3)3CO⁻ Na⁺ + CH3I", "correct": true, "explains": "SN2 on CH3I, the least hindered halide there is. The bulky alkoxide is fine as the nucleophile."}, {"text": "(CH3)3COH + CH3OH, no catalyst", "explains": "Nothing happens: neither OH is a leaving group, and neither alcohol is a strong enough nucleophile on its own."}, {"text": "CH3O⁻ Na⁺ + (CH3)3COH", "explains": "OH⁻ can't leave, so there's no substitution. The only thing that happens is proton transfer between the two alcohols."}]}]}]
+[
+  {
+    "id": "lesson-side",
+    "unit": "o1-2",
+    "title": "SN1, SN2, E1, E2 and alcohols",
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
+    "steps": [
+      {
+        "kind": "read",
+        "text": "Four inputs decide SN1, SN2, E1 or E2. **Substrate**: methyl and 1° favour SN2; 3° can't do SN2. **Nucleophile/base**: a strong base pushes E2; a good nucleophile that is a weak base gives SN2; a weak, neutral one means SN1/E1. **Solvent**: polar aprotic helps SN2; protic helps ions form. **Heat** favours elimination.",
+        "smiles": "[CH3:1][CH2:2][CH:3]([Br:4])[CH3:5]",
+        "lit": {"3": "el", "4": "lg"}
+      },
+      {
+        "kind": "choice",
+        "text": "2-Bromo-2-methylbutane is stirred in water at 25 °C. Which mechanism gives the major product?",
+        "smiles": "CCC(C)(C)Br",
+        "options": [
+          {"text": "SN2", "explains": "A 3° carbon is too crowded for backside attack, so SN2 is out."},
+          {"text": "E2", "explains": "E2 needs a strong base. Water is a very weak base."},
+          {
+            "text": "SN1",
+            "correct": true,
+            "explains": "A 3° halide ionises to a stable 3° carbocation in a protic solvent, and water is a weak nucleophile. Without heat or a strong base, substitution wins: 2-methylbutan-2-ol."
+          },
+          {
+            "text": "E1",
+            "explains": "E1 shares the carbocation with SN1 but needs heat to become the main path. At 25 °C it is only the minor product."
+          }
+        ]
+      },
+      {
+        "kind": "worked",
+        "reaction": "side-sn2-2-bromobutane-cyanide",
+        "text": "One step: cyanide attacks the back of the C–Br carbon while Br⁻ leaves, so the stereocentre inverts."
+      },
+      {
+        "kind": "card",
+        "reaction": "side-sn2-1-bromobutane-azide",
+        "card": "arrows",
+        "given": 1,
+        "text": "Same SN2 on a 1° halide. The attack is drawn; add the leaving-group arrow."
+      },
+      {
+        "kind": "choice",
+        "text": "2-Bromobutane with NaCN in DMSO goes **SN2**. With NaOEt in ethanol and heat it mostly gives but-2-ene (**E2**). What made the difference?",
+        "options": [
+          {
+            "text": "Ethoxide is a strong base and heat favours elimination; cyanide is a good nucleophile but a weak base.",
+            "correct": true,
+            "explains": "Right. On a 2° halide the reagent decides: strong base (plus heat) → E2; good nucleophile, weak base → SN2. Some SN2 ether still forms with ethoxide, but E2 is major."
+          },
+          {
+            "text": "Ethanol is protic, so the reaction switched to SN1/E1.",
+            "explains": "A strong base is present, so the bimolecular path (E2) is much faster than waiting for a 2° carbocation to form."
+          },
+          {
+            "text": "Ethoxide is too bulky to attack carbon.",
+            "explains": "That's tert-butoxide. Ethoxide is small and can do SN2; it eliminates here because it is a strong base and the mixture is heated."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "side-e2-2-bromobutane-ethoxide", "card": "product"},
+      {
+        "kind": "choice",
+        "text": "2-Bromo-2,3-dimethylbutane gives 2,3-dimethylbut-2-ene with NaOEt (**Zaitsev**) but mostly 2,3-dimethylbut-1-ene with KOtBu (**Hofmann**). Why?",
+        "smiles": "CC(C)(Br)C(C)C",
+        "options": [
+          {
+            "text": "The Hofmann alkene is the more stable one.",
+            "explains": "It's the less stable one: a disubstituted C=C versus a tetrasubstituted one. It forms because it is easier to reach, not because it is more stable."
+          },
+          {
+            "text": "KOtBu reacts by E1, which gives the Hofmann alkene.",
+            "explains": "KOtBu is a strong base, so this is still E2. E1 goes through a carbocation and would give the Zaitsev alkene."
+          },
+          {
+            "text": "tert-Butoxide is a weaker base than ethoxide.",
+            "explains": "It is at least as strong a base. Its size, not its strength, is what changes which H it removes."
+          },
+          {
+            "text": "tert-Butoxide is bulky, so it removes an easy-to-reach H on a CH3 group instead of the hindered H on the inner C–H.",
+            "correct": true,
+            "explains": "Right. A small base reaches the internal H and gives the more substituted (more stable) alkene; a bulky base takes the accessible one."
+          }
+        ]
+      },
+      {"kind": "card", "reaction": "side-sn1-tert-butyl-bromide-ethanol", "card": "product"},
+      {
+        "kind": "read",
+        "text": "Alcohols: OH⁻ is a poor leaving group, so first turn the OH into a **good leaving group**. TsCl with pyridine makes a tosylate with retention, because the C–O bond is not touched. PBr3, or SOCl2 with pyridine, make the alkyl halide by SN2, with inversion. Ethers: the Williamson synthesis is SN2, so the halide must be methyl or 1°."
+      },
+      {"kind": "card", "reaction": "side-pbr3-2-butanol", "card": "product"},
+      {
+        "kind": "choice",
+        "text": "You want **tert-butyl methyl ether**, (CH3)3C–O–CH3, by a Williamson synthesis. Which pair works?",
+        "options": [
+          {
+            "text": "CH3O⁻ Na⁺ + (CH3)3CBr",
+            "explains": "A 3° halide can't do SN2, and methoxide is a strong base, so you get E2: 2-methylpropene."
+          },
+          {
+            "text": "(CH3)3CO⁻ Na⁺ + CH3I",
+            "correct": true,
+            "explains": "SN2 on CH3I, the least hindered halide there is. The bulky alkoxide is fine as the nucleophile."
+          },
+          {
+            "text": "(CH3)3COH + CH3OH, no catalyst",
+            "explains": "Nothing happens: neither OH is a leaving group, and neither alcohol is a strong enough nucleophile on its own."
+          },
+          {
+            "text": "CH3O⁻ Na⁺ + (CH3)3COH",
+            "explains": "OH⁻ can't leave, so there's no substitution. The only thing that can happen is proton transfer between methoxide and tert-butanol."
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -41,8 +41,8 @@
     ],
     "confusableWith": ["o1-acid-acetic-nahco3", "o1-acid-phenol-naoh", "o1-acid-ethanethiol-naoh"],
     "tags": ["acid-base", "pKa", "carboxylic acid"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-phenol-naoh",
@@ -100,8 +100,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-ethanol-nah",
@@ -159,8 +159,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-propyne-nanh2",
@@ -191,7 +191,7 @@
     "traps": [
       {
         "smiles": "[CH2-]C#C",
-        "explains": "Wrong proton. The CH3 hydrogens are on an sp3 carbon (pKa about 45–50); only the H on the sp carbon (pKa 25) is acidic enough for NaNH2."
+        "explains": "Wrong proton. The CH3 hydrogens are on an sp3 carbon and are far less acidic than the H on the sp carbon (pKa 25), the only one NaNH2 removes."
       },
       {
         "smiles": "CC#C",
@@ -218,8 +218,8 @@
         }
       ]
     },
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-methylamine-hcl",
@@ -263,8 +263,8 @@
     ],
     "confusableWith": ["o1-acid-ethanol-h2so4", "o1-acid-acetic-naoh"],
     "tags": ["acid-base", "pKa", "amine"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-acetic-nahco3",
@@ -308,9 +308,8 @@
     ],
     "confusableWith": ["o1-acid-acetic-naoh", "o1-acid-phenol-naoh"],
     "tags": ["acid-base", "pKa", "carboxylic acid"],
-    "review": "Product given as acetate only; the by-product H2CO3 → CO2 + H2O is described in the note and why, not drawn as a mechanism step (it holds no product atoms). Bicarbonate shown as the O⁻ form taking the proton.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-ethanol-h2so4",
@@ -320,7 +319,7 @@
     "reactants": ["[CH3:1][CH2:2][OH:3]"],
     "reagents": ["[H:4][O:5][S:6](=[O:7])(=[O:8])[OH:9]"],
     "reagentDisplay": "H2SO4 (conc.)",
-    "reagentAliases": ["H2SO4", "sulfuric acid", "conc. H2SO4", "HCl", "HBr", "TsOH", "H3O+"],
+    "reagentAliases": ["H2SO4", "sulfuric acid", "conc. H2SO4", "HCl", "HBr", "TsOH"],
     "product": "[CH3:1][CH2:2][OH2+:3]",
     "keyStep": {
       "nucleophileAtom": 3,
@@ -354,9 +353,8 @@
     ],
     "confusableWith": ["o1-acid-methylamine-hcl", "o1-acid-ethanol-nah"],
     "tags": ["acid-base", "pKa", "alcohol", "leaving group"],
-    "review": "pKa values used: H2SO4 about −9 and protonated ethanol about −2 (Klein's table; other books list H2SO4 −3 and ROH2+ −2.4). The direction is right either way.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-buli-water",
@@ -400,9 +398,8 @@
     ],
     "confusableWith": ["o1-acid-ethanol-nah", "o1-acid-propyne-nanh2"],
     "tags": ["acid-base", "pKa", "organometallic"],
-    "review": "Key step drawn with the C–Li bond as the electron source (no separate carbanion). Product is butane; LiOH by-product not drawn.",
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   },
   {
     "id": "o1-acid-ethanethiol-naoh",
@@ -446,7 +443,7 @@
     ],
     "confusableWith": ["o1-acid-phenol-naoh", "o1-acid-acetic-naoh"],
     "tags": ["acid-base", "pKa", "atom size", "thiol"],
-    "verified": false,
-    "verifiedBy": null
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)"
   }
 ]

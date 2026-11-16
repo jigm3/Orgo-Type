@@ -3,9 +3,8 @@
     "id": "lesson-o1-6",
     "unit": "o1-6",
     "title": "Alcohols, ethers and epoxides",
-    "verified": false,
-    "verifiedBy": null,
-    "review": "Step 11 says acid-catalysed opening attacks the more substituted carbon because it carries more δ+ (SN1-like), while still being backside (anti) attack; this matches Klein/Wade.",
+    "verified": true,
+    "verifiedBy": "AI review (2026-11-16)",
     "steps": [
       {
         "kind": "read",
@@ -42,7 +41,7 @@
       },
       {
         "kind": "read",
-        "text": "To substitute an OH, first make it a **good leaving group**. **TsCl, pyridine** reacts at O and S only, so the C–O bond is untouched: the tosylate keeps the configuration (**retention**). **PBr3** and **SOCl2** activate the O, then halide attacks carbon from the back (SN2): **inversion**, and no carbocation, so no rearrangement."
+        "text": "To substitute an OH, first make it a **good leaving group**. **TsCl, pyridine** reacts at O and S only, so the C–O bond is untouched: the tosylate keeps the configuration (**retention**). **PBr3** and **SOCl2** (with pyridine) activate the O, then halide attacks carbon from the back (SN2): **inversion**, and no carbocation, so no rearrangement."
       },
       {
         "kind": "card",
