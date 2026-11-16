@@ -34,8 +34,10 @@ function renderHome(view) {
         <small>${p.mastered}/${p.total} mastered · ${p.learned} learned</small></div>`).join("") || '<p class="mute">The map fills in as cards are added.</p>'}
     </section>
 
-    <div class="eyebrow">Units</div>
-    <section class="units">${UNITS.map(unitRow).join("")}</section>
+    <div class="eyebrow">Orgo 2 · carbonyl chemistry</div>
+    <section class="units">${UNITS.filter(u => u !== "side").map(unitRow).join("")}</section>
+    <div class="eyebrow">Orgo 1 review · topics Orgo 2 builds on</div>
+    <section class="units">${unitRow("side")}</section>
 
     <div class="eyebrow">The four patterns</div>
     <section class="patterns" id="patterns"></section>
@@ -127,7 +129,7 @@ function unitRow(u) {
     ? `<span class="lock">Locked · opens at 60% of earlier units learned (now ${Math.round(100 * (st.have || 0))}%)</span> <button class="link" data-unlock="${u}">Open now</button>`
     : ids.length && lessons.some(l => !lessonDone(l.id)) ? `<span class="mute">New cards start after the lesson.</span>` : "";
   return `<div class="unit ${st.open ? "" : "locked"}">
-    <div class="uhead"><span class="tag">${u === "side" ? "Side deck" : "Unit " + u}</span><b>${esc(UNIT_NAME[u])}</b>
+    <div class="uhead"><span class="tag">${u === "side" ? "Orgo 1" : "Unit " + u}</span><b>${esc(UNIT_NAME[u])}</b>
       <small>${ids.length ? `${learned}/${ids.length} learned · ${m.mastered} mastered` : ""}</small></div>
     <div class="ubody">${status}${st.open ? lessonBtns : ""}</div></div>`;
 }

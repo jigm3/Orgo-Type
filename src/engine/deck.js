@@ -9,14 +9,14 @@ const TYPE_NAME = {
 const PREREQ = { arrows: "where", mechanism: "arrows", intermediates: "mechanism", draw: "product", product: "arrows", reagent: "product", why: "reagent", change: "product", back: "change", paper: "arrows" };
 const UNITS = [0, 1, 2, 3, 4, 5, "side"];
 const UNIT_NAME = { 0: "Why carbonyls react", 1: "Nucleophilic addition", 2: "Acyl substitution", 3: "1,2 vs 1,4 addition",
-  4: "Enolates", 5: "Synthesis", side: "Orgo 1 review" };
+  4: "Enolates", 5: "Synthesis", side: "SN1/SN2/E1/E2, alcohols & ethers" };
 const UNIT_DESC = { 0: "C=O polarity, tetrahedral intermediate, leaving groups, α-H acidity",
   1: "aldehydes & ketones: NaBH4/LiAlH4, Grignards, acetals, imines/enamines, Wittig, Wolff–Kishner",
   2: "carboxylic acids & derivatives: acid chlorides, esters, amides, nitriles, hydrolysis, DIBAL",
   3: "α,β-unsaturated carbonyls: Grignard vs Gilman (1,2 vs 1,4), cuprates",
   4: "enols & enolates: halogenation, alkylation, aldol, Claisen, Michael, Robinson, malonic/acetoacetic",
   5: "synthesis", side: "SN1/SN2/E1/E2, alcohols & ethers, epoxides" };
-const PATTERN_NAME = { A: "Nucleophilic addition", B: "Acyl substitution", C: "1,2 vs 1,4", D: "Enolates", S: "SN1/SN2/E1/E2", X: "Other" };
+const PATTERN_NAME = { A: "Nucleophilic addition", B: "Acyl substitution", C: "1,2 vs 1,4", D: "Enolates", S: "Orgo 1: SN1/SN2/E1/E2", X: "Other (oxidation etc.)" };
 
 const REACTIONS = CONTENT.reactions;
 const RX = Object.fromEntries(REACTIONS.map(r => [r.id, r]));
