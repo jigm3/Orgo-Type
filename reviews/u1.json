@@ -1,0 +1,19 @@
+[
+{"id":"u1-grignard-ketone","verdict":"pass","notes":"Product tert-butanol, traps, retro distractors and 2-step mechanism are correct. The methyl-ether trap (O-attack) is a real misconception, so I resolved and removed the review note."},
+{"id":"u1-nabh4-aldehyde","verdict":"pass","notes":"1-Butanol, traps (acid, butane, 2-butanol) and mechanism are correct. Drawing the arrow from H- is a standard simplification, and the step note names the B-H bond, so I removed the review note."},
+{"id":"u1-nabh4-ketone","verdict":"pass","notes":"Cyclohexanol, traps and mechanism are correct. I resolved the H- simplification review note and removed it."},
+{"id":"u1-lialh4-ketone","verdict":"pass","notes":"Racemic 2-butanol drawn without stereo is right. Dry ether followed by a separate H3O+ workup is correct. I removed the review note on the H- simplification."},
+{"id":"u1-grignard-formaldehyde","verdict":"pass","notes":"1-Propanol, traps and both retro distractors (acetaldehyde + MeMgBr gives 2-propanol; ethanol just protonates the Grignard) are correct."},
+{"id":"u1-grignard-aldehyde","verdict":"pass","notes":"Racemic 2-butanol, traps, retro (2-butanone gives the 3° alcohol; NaBH4 gives 1-propanol) and mechanism are correct."},
+{"id":"u1-acetylide-ketone","verdict":"fixed","notes":"Chemistry is correct (2-methyl-3-butyn-2-ol, traps, retro). I removed the generic alias 'acetylide' because it would accept any acetylide, not HC≡C-."},
+{"id":"u1-cyanohydrin","verdict":"pass","notes":"Acetone cyanohydrin, HCN protonation that regenerates CN-, traps and retro (SN2 on 2-bromopropane gives the nitrile with no OH) are correct."},
+{"id":"u1-hydrate","verdict":"pass","notes":"Methanediol as the major species of aqueous formaldehyde is the standard textbook example. The acid-catalysed mechanism and the traps are correct. I resolved the review note and removed it."},
+{"id":"u1-acetal-methanol","verdict":"pass","notes":"Dimethyl acetal, the 7-step mechanism with CH3OH2+ as acid and MeOH as base, the oxocarbenium key step and the traps are correct. I removed the design review note."},
+{"id":"u1-cyclic-acetal","verdict":"pass","notes":"The 1,4-dioxaspiro[4.5]decane product, the intramolecular ring-closure mechanism and the traps are correct."},
+{"id":"u1-acetal-hydrolysis","verdict":"pass","notes":"The mechanism is the reverse of acetal formation, and mapping the ketone O to the water O is correct. The acetone hydrate trap is genuinely wrong (tiny K). I removed the review note."},
+{"id":"u1-imine","verdict":"fixed","notes":"Imine, the pH 4-5 mechanism and the traps (enamine, carbinolamine, reductive-amination amine) are correct. I removed the generic alias 'RNH2'."},
+{"id":"u1-enamine","verdict":"fixed","notes":"Mechanism, product and traps are correct. I removed the aliases 'morpholine' and 'piperidine', which give a different enamine and so would accept a wrong answer, and the generic 'R2NH' and '2° amine'."},
+{"id":"u1-wittig","verdict":"fixed","notes":"Methylenecyclohexane, the traps and the retro (Zaitsev dehydration gives 1-methylcyclohexene; Grignard stops at the alcohol) are correct. I removed the generic aliases 'ylide' (this would also accept a sulfur ylide, which gives an epoxide), 'phosphorus ylide' and 'Wittig reagent'. I kept a shortened review note: betaine vs direct [2+2] depends on the course."},
+{"id":"u1-wolff-kishner","verdict":"pass","notes":"Ethylbenzene, traps and the full mechanism are correct (hydrazone formation, N-H deprotonation, C-protonation, N2 loss, carbanion protonation). Drilling the N-attack key step is fine, so I removed the review note."},
+{"id":"u1-clemmensen","verdict":"pass","notes":"Propylbenzene, traps and why are correct. The mechanism-dependent cards are already skipped, so I removed the resolved review note."}
+]

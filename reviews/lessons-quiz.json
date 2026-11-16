@@ -1,0 +1,177 @@
+[
+ {
+  "id": "lesson-u0",
+  "verdict": "pass",
+  "notes": "All statements, tap answers (propanal C3; acetyl-chloride intermediate Cl; 2-butanone alpha carbons 1,4) and choice explanations checked; correct."
+ },
+ {
+  "id": "lesson-u1",
+  "verdict": "pass",
+  "notes": "Pattern A text, choices (hydride vs C-C, enamine vs imine, 2° alcohol from aldehyde) correct; card/given steps match the referenced keyStep arrow counts and order."
+ },
+ {
+  "id": "lesson-u2",
+  "verdict": "pass",
+  "notes": "Reactivity ladder and the review doubt resolved: ester+NaCl, amide+CH3OH and anhydride+NaCl genuinely fail; LiAlH4 vs DIBAL choice correct. Review note removed."
+ },
+ {
+  "id": "lesson-u3",
+  "verdict": "pass",
+  "notes": "Beta-carbon tap correct; hard/soft lists standard; 1-ethylcyclopent-2-en-1-ol and 1-ethylcyclopentanol names correct; cuprate is the only route to 3-ethylcyclopentanone. Review note removed."
+ },
+ {
+  "id": "lesson-u4",
+  "verdict": "pass",
+  "notes": "Enolate C-nucleophile, pentan-3-one alpha taps, SN2 alkylation, aldol vs Claisen reasoning, and LDA kinetic site (CH2 side, C6 = map 7) all correct; worked/given text matches keyStep arrows. Review note removed."
+ },
+ {
+  "id": "dx-a-grignard-alcohol-class",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-nabh4-chemoselectivity",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-enamine-secondary-amine",
+  "verdict": "pass",
+  "notes": "Pentan-3-one + morpholine gives the enamine; E/Z unspecified is acceptable with no competing geometric option. Review removed."
+ },
+ {
+  "id": "dx-a-ester-dibal",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-acid-chloride-cuprate",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-ester-hydrolysis-product",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-enone-cuprate-14",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-enone-grignard-12",
+  "verdict": "pass",
+  "notes": "Textbook 1,2-addition of EtMgBr to pent-3-en-2-one; distractors wrong. Review removed."
+ },
+ {
+  "id": "dx-a-aldol-vs-claisen",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-kinetic-enolate",
+  "verdict": "pass",
+  "notes": "LDA/-78 °C alkylates the CH2 side of 2-methylcyclopentanone; diastereomer mixture drawn flat is fine. Review removed."
+ },
+ {
+  "id": "dx-a-acetoacetic-malonic",
+  "verdict": "fixed",
+  "notes": "Correct option was 5-phenylpentan-2-one (one CH2 too many); acetoacetic synthesis with BnBr gives 4-phenylbutan-2-one CC(=O)CCc1ccccc1. Fixed; pair with malonic B item now consistent."
+ },
+ {
+  "id": "dx-a-syn-grignard-oxidize",
+  "verdict": "fixed",
+  "notes": "Route (EtMgBr, H3O+, PCC) correct. Rewrote the NaBH4/EtBr distractor explanation (\"loses the carbon count\" was wrong) to: gives benzyl alcohol, EtBr at most makes an ether, no C-C bond."
+ },
+ {
+  "id": "dx-a-syn-protecting-group",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-sn2-secondary",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-a-e2-zaitsev-tertiary",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-grignard-alcohol-class",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-nabh4-chemoselectivity",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-enamine-secondary-amine",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-ester-dibal",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-acid-chloride-cuprate",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-ester-hydrolysis-product",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-enone-cuprate-14",
+  "verdict": "pass",
+  "notes": "Benzalacetone + Me2CuLi gives 4-phenylpentan-2-one; flat drawing acceptable. Review removed."
+ },
+ {
+  "id": "dx-b-enone-grignard-12",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-aldol-vs-claisen",
+  "verdict": "pass",
+  "notes": "Butanal, NaOH, 5 °C: 2-ethyl-3-hydroxyhexanal by the standard cold=addition/heat=condensation convention, stated in the explanation. Review removed. Pair with A (Claisen of ethyl propanoate) tests the same aldol-vs-Claisen distinction."
+ },
+ {
+  "id": "dx-b-kinetic-enolate",
+  "verdict": "pass",
+  "notes": "2-methylcycloheptanone kinetic benzylation correct (ring sizes checked); O-alkyl and dialkyl distractors wrong. Review removed."
+ },
+ {
+  "id": "dx-b-acetoacetic-malonic",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-syn-grignard-oxidize",
+  "verdict": "fixed",
+  "notes": "Route (MeMgBr, H3O+, Jones) correct. Same NaBH4/CH3I explanation fix as form A."
+ },
+ {
+  "id": "dx-b-syn-protecting-group",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-sn2-secondary",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ },
+ {
+  "id": "dx-b-e2-zaitsev-tertiary",
+  "verdict": "pass",
+  "notes": "Major product/answer correct, each distractor genuinely wrong with accurate explanation, and the A/B pair tests the same skill at comparable difficulty."
+ }
+]

@@ -74,7 +74,6 @@
         "explains": "That's reductive amination, which needs a reducing agent such as NaBH3CN. None is present."
       }
     ],
-    "review": "Enamine drawn without E/Z geometry (C=C between C3 and C4 of the pentane chain); check that's acceptable.",
     "verified": false,
     "verifiedBy": null
   },
@@ -199,7 +198,6 @@
         "explains": "Adding both 1,4 and 1,2 would need the Grignard to add to the C=C first. It adds once, at the C=O."
       }
     ],
-    "review": "Start drawn without E/Z (pent-3-en-2-one, normally E). Textbook rule assumed: Grignard adds 1,2 to an unhindered acyclic enone; real mixtures can contain some 1,4.",
     "verified": false,
     "verifiedBy": null
   },
@@ -252,7 +250,6 @@
         "explains": "One equivalent of LDA forms the enolate completely, and one alkylation follows."
       }
     ],
-    "review": "Kinetic product drawn without cis/trans stereo (mixture of diastereomers).",
     "verified": false,
     "verifiedBy": null
   },
@@ -277,7 +274,7 @@
         "smiles": "O=C(O)CCc1ccccc1",
         "explains": "That's the malonic ester product. Acetoacetic ester keeps its CH3C=O and gives a methyl ketone."
       },
-      {"smiles": "CC(=O)CCCc1ccccc1", "correct": true}
+      {"smiles": "CC(=O)CCc1ccccc1", "correct": true}
     ],
     "verified": false,
     "verifiedBy": null
@@ -302,7 +299,7 @@
       {"text": "1. CH3CH2MgBr, ether  2. H3O+  3. PCC, CH2Cl2", "correct": true},
       {
         "text": "1. NaBH4, CH3OH  2. CH3CH2Br",
-        "explains": "NaBH4 makes benzyl alcohol, which loses the carbon count. No new C–C bond forms."
+        "explains": "NaBH4 just reduces the aldehyde to benzyl alcohol, and CH3CH2Br can at most alkylate that oxygen (an ether). No new C–C bond forms, so no ketone."
       }
     ],
     "verified": false,
@@ -562,7 +559,6 @@
         "explains": "The α-carbon is nucleophilic in an enone. The electrophilic carbon is β, so that's where the methyl goes."
       }
     ],
-    "review": "Start (benzalacetone, normally E) and the α-methyl distractor are drawn without E/Z; the product has one stereocenter (racemic), drawn flat.",
     "verified": false,
     "verifiedBy": null
   },
@@ -612,7 +608,6 @@
         "explains": "Dehydration to the enal needs heat. At 5 °C the aldol addition product is isolated."
       }
     ],
-    "review": "Butanal dehydrates easily; at 5 °C the β-hydroxy aldehyde is taken as the product, matching the deck's convention (cold = addition, heat = condensation).",
     "verified": false,
     "verifiedBy": null
   },
@@ -639,7 +634,6 @@
         "explains": "Enolates alkylate on carbon with alkyl halides. O-alkylation is a minor pathway."
       }
     ],
-    "review": "Kinetic product drawn without cis/trans stereo (mixture of diastereomers).",
     "verified": false,
     "verifiedBy": null
   },
@@ -681,7 +675,7 @@
       {"text": "1. CH3MgBr, ether  2. H3O+  3. H2CrO4 (CrO3, H2SO4, H2O)", "correct": true},
       {
         "text": "1. NaBH4, CH3OH  2. CH3I",
-        "explains": "NaBH4 makes the 1° alcohol, which loses the carbon count. No new C–C bond forms."
+        "explains": "NaBH4 just reduces the aldehyde to the 1° alcohol, and CH3I can at most alkylate that oxygen (an ether). No new C–C bond forms, so no ketone."
       },
       {
         "text": "1. CH3MgBr, ether  2. H3O+",

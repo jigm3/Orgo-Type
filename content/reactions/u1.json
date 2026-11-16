@@ -71,7 +71,6 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "alcohol synthesis"],
-    "review": "Check trap 2 (methyl ether) is a misconception students actually have; swap for a better distractor if not.",
     "verified": false,
     "verifiedBy": null
   },
@@ -123,7 +122,6 @@
     ],
     "confusableWith": ["u1-nabh4-ketone", "u1-lialh4-ketone", "u1-grignard-formaldehyde", "u2-ester-dibal-aldehyde"],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. Mechanism: the alkoxide is protonated by H3O+ workup (as in reagentDisplay); with NaBH4 in MeOH the solvent usually does this.",
     "verified": false,
     "verifiedBy": null
   },
@@ -182,7 +180,6 @@
       "u1-clemmensen"
     ],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. Mechanism: the alkoxide is protonated by H3O+ workup (as in reagentDisplay); with NaBH4 in MeOH the solvent usually does this.",
     "verified": false,
     "verifiedBy": null
   },
@@ -234,7 +231,6 @@
     ],
     "confusableWith": ["u1-nabh4-ketone", "u1-nabh4-aldehyde", "u1-grignard-aldehyde"],
     "tags": ["reduction", "hydride", "alcohol synthesis"],
-    "review": "Hydride is written as a bare H⁻ ([H-]) in reagents and keyStep, because RDKit drops a mapped H on BH4⁻/AlH4⁻. The arrow therefore starts at H⁻, not at the B–H/Al–H bond; check this simplification is OK on the arrows card. The product (2-butanol) is racemic; drawn without stereo on purpose.",
     "verified": false,
     "verifiedBy": null
   },
@@ -374,7 +370,7 @@
     "reactants": ["[CH3:1][C:2](=[O:3])[CH3:4]"],
     "reagents": ["[CH:5]#[C-:6].[Na+:7]"],
     "reagentDisplay": "1. HC≡CNa  2. H3O+",
-    "reagentAliases": ["HC≡CNa", "NaC≡CH", "sodium acetylide", "HCCNa", "NaCCH", "acetylide", "HC≡C⁻"],
+    "reagentAliases": ["HC≡CNa", "NaC≡CH", "sodium acetylide", "HCCNa", "NaCCH", "HC≡C⁻"],
     "product": "[CH3:1][C:2]([OH:3])([CH3:4])[C:6]#[CH:5]",
     "keyStep": {
       "nucleophileAtom": 6,
@@ -549,7 +545,6 @@
     ],
     "confusableWith": ["u1-acetal-methanol", "u1-acetal-hydrolysis", "u1-cyanohydrin"],
     "tags": ["hydrate", "equilibrium", "acid catalysis"],
-    "review": "Hydration is an equilibrium and methanediol can't be isolated (it reverts to formaldehyde on drying). Formaldehyde was chosen because its hydrate is the major species in water; check that is acceptable as the 'product'. Key step shown is the acid-catalysed version (water attacks the protonated carbonyl), consistent with the acetal cards using a cationic species.",
     "verified": false,
     "verifiedBy": null
   },
@@ -633,7 +628,6 @@
     ],
     "confusableWith": ["u1-cyclic-acetal", "u1-acetal-hydrolysis", "u1-hydrate"],
     "tags": ["acetal", "acid catalysis", "equilibrium"],
-    "review": "Key step drilled is the second methanol attacking the oxocarbenium ion (the step that makes the acetal, not just the hemiacetal). The same choice is used for the cyclic acetal and for acetal hydrolysis (water attacking the oxocarbenium). Mechanism: protonated methanol is the acid and methanol the base throughout (the H+ catalyst in methanol solvent).",
     "verified": false,
     "verifiedBy": null
   },
@@ -800,7 +794,6 @@
     ],
     "confusableWith": ["u1-acetal-methanol", "u1-cyclic-acetal", "u1-hydrate"],
     "tags": ["acetal", "protecting group", "hydrolysis", "acid catalysis"],
-    "review": "Map choice: the ketone O is mapped to the water O (8), which is mechanistically right (the original OCH3 oxygens leave as methanol). Check the 'what changed?' card reads sensibly with that.",
     "verified": false,
     "verifiedBy": null
   },
@@ -812,7 +805,7 @@
     "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
     "reagents": ["[CH3:8][NH2:9]"],
     "reagentDisplay": "CH3NH2, H+ (cat.), −H2O",
-    "reagentAliases": ["CH3NH2", "MeNH2", "methylamine", "methyl amine", "CH3NH2, H+", "RNH2"],
+    "reagentAliases": ["CH3NH2", "MeNH2", "methylamine", "methyl amine", "CH3NH2, H+"],
     "product": "[CH3:8][N:9]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
     "byproducts": ["[OH2:1]"],
     "keyStep": {
@@ -885,7 +878,7 @@
     "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
     "reagents": ["[NH:8]1[CH2:9][CH2:10][CH2:11][CH2:12]1"],
     "reagentDisplay": "pyrrolidine, H+ (cat.), −H2O",
-    "reagentAliases": ["pyrrolidine", "C4H8NH", "pyrrolidine, H+", "R2NH", "2° amine", "morpholine", "piperidine"],
+    "reagentAliases": ["pyrrolidine", "C4H8NH", "pyrrolidine, H+"],
     "product": "[CH:3]1=[C:2]([N:8]2[CH2:9][CH2:10][CH2:11][CH2:12]2)[CH2:7][CH2:6][CH2:5][CH2:4]1",
     "byproducts": ["[OH2:1]"],
     "keyStep": {
@@ -972,15 +965,7 @@
     "reactants": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1"],
     "reagents": ["[CH2:8]=[P:9](c1ccccc1)(c1ccccc1)c1ccccc1"],
     "reagentDisplay": "Ph3P=CH2, THF",
-    "reagentAliases": [
-      "Ph3P=CH2",
-      "Ph3PCH2",
-      "Ph3P=CH2 ylide",
-      "methylenetriphenylphosphorane",
-      "Wittig reagent",
-      "phosphorus ylide",
-      "ylide"
-    ],
+    "reagentAliases": ["Ph3P=CH2", "Ph3PCH2", "Ph3P=CH2 ylide", "methylenetriphenylphosphorane"],
     "product": "[CH2:8]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
     "keyStep": {
       "species": ["[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1", "[CH2-:8][P+:9](c1ccccc1)(c1ccccc1)c1ccccc1"],
@@ -1043,7 +1028,7 @@
       ]
     },
     "tags": ["C-C bond", "alkene synthesis", "ylide"],
-    "review": "Arrows show the textbook 'ylide carbon attacks C=O' step (betaine-style picture). Current evidence favours direct [2+2] oxaphosphetane formation; check this simplification is acceptable as the drilled key step. Mechanism: drawn as betaine (ylide C attacks C=O) → oxaphosphetane → syn-elimination, matching the key step. For unstabilized ylides the oxaphosphetane is now thought to form directly by [2+2]; check the betaine step is acceptable.",
+    "review": "Mechanism drawn the Wade/McMurry way (ylide C attacks C=O → betaine-type alkoxide → oxaphosphetane). Current evidence for unstabilized ylides favours direct [2+2] oxaphosphetane formation; some courses (e.g. newer Klein) draw it that way.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1142,7 +1127,6 @@
     ],
     "confusableWith": ["u1-clemmensen", "u1-nabh4-ketone", "u1-imine"],
     "tags": ["reduction", "deoxygenation", "basic conditions"],
-    "review": "Key step drilled is hydrazine N attacking C=O (hydrazone formation, the pattern-A step), not the base-promoted N2 loss that actually makes the CH2. Check that is the step to drill. Mechanism: hydrazone formation drawn under the basic conditions (water and hydroxide as proton shuttles; hydroxide leaves from the carbinolamine with the N lone pair pushing). Some courses draw it acid-catalysed like imine formation, or start the mechanism from the preformed hydrazone.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1172,7 +1156,6 @@
     ],
     "confusableWith": ["u1-wolff-kishner", "u1-nabh4-ketone"],
     "tags": ["reduction", "deoxygenation", "acidic conditions"],
-    "review": "The Clemmensen mechanism is not well established (zinc-surface electron transfer / zinc carbenoids), so there is no clean nucleophile-to-carbon step. The key step shown is only protonation of the carbonyl O by H+ (HCl written as H+ + Cl-, since RDKit drops a mapped H). Consider hiding the arrows card for this record or replacing the step. (Its where/arrows/paper cards are now skipped via skipCards, so only product/reagent/why are drilled.)",
     "verified": false,
     "verifiedBy": null,
     "skipCards": ["where", "arrows", "paper"]

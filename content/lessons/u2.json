@@ -5,7 +5,6 @@
     "title": "Acyl substitution: add, then kick out",
     "verified": false,
     "verifiedBy": null,
-    "review": "Step 4: the ladder is taught as acid chloride > anhydride > ester ≈ acid > amide, with 'you can go down but not up'. The correct option's explanation adds that going up needs a special reagent (SOCl2: acid → acid chloride), which is in the deck (u2-acid-socl2-acid-chloride). Please check the wrong options are fair: ester + NaCl, amide + CH3OH and anhydride + NaCl are all labelled as not working.",
     "steps": [
       {
         "kind": "read",

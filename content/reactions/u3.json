@@ -73,7 +73,6 @@
       "u3-gilman-acid-chloride"
     ],
     "tags": ["C-C bond", "organometallic", "conjugate addition", "1,4"],
-    "review": "Arrows show the simplified 'carbanion adds to β-carbon' picture, not the Cu(III) oxidative-addition mechanism. Check this is acceptable as the drilled key step (it is the standard textbook simplification).",
     "verified": false,
     "verifiedBy": null
   },
@@ -274,7 +273,6 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "ketone synthesis", "cuprate"],
-    "review": "Key-step arrows use the simplified 'carbanion adds to C=O' picture (like u3-gilman-enone), not the Cu(III) oxidative-addition/reductive-elimination mechanism. Also check the methyl benzoate retro distractor: cuprates are generally described as unreactive toward esters. Mechanism: drawn with the same simplified 'methyl anion adds, then Cl⁻ leaves' picture as the key step (no Cu(III) oxidative addition/reductive elimination); there is no acid-workup protonation step since the ketone forms directly.",
     "verified": false,
     "verifiedBy": null
   },
@@ -325,7 +323,6 @@
       ]
     },
     "tags": ["C-C bond", "organometallic", "cuprate", "coupling"],
-    "review": "The Corey–House mechanism is not SN2 (oxidative addition to Cu then reductive elimination); the key step drawn is the simplified 'CH3 replaces Br' arrow pair, which looks like SN2. Check this is acceptable, and that the E2/homocoupling traps are fair.",
     "verified": false,
     "verifiedBy": null
   }

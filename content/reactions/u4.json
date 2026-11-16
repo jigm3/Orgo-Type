@@ -65,7 +65,6 @@
     ],
     "confusableWith": ["u4-aldol-condensation-propanal", "u4-claisen-ethyl-acetate"],
     "tags": ["C-C bond", "enolate", "aldol"],
-    "review": "Check the conditions (NaOH, 5 °C = addition; heat = condensation) follow the usual textbook split.",
     "verified": false,
     "verifiedBy": null
   },
@@ -259,7 +258,6 @@
     ],
     "confusableWith": ["u4-alpha-bromination-acid"],
     "tags": ["enolate", "alpha-halogenation", "haloform", "C-C cleavage"],
-    "review": "Key step shown is hydroxide adding to the C=O of the CI3 ketone (the C–C bond breaks in the next step, when the tetrahedral intermediate expels CI3⁻). Check this is the step you want drilled.",
     "verified": false,
     "verifiedBy": null
   },
@@ -419,7 +417,7 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "thermodynamic"],
-    "review": "Textbooks vary on how cleanly thermodynamic-enolate alkylation works (with NaOEt/EtOH there is also polyalkylation and some 2,6-product). Check the conditions shown (NaOEt, EtOH, 25 °C; NaH accepted as an alias) match the course's convention.",
+    "review": "Course-dependent conditions: textbooks vary on how cleanly thermodynamic-enolate alkylation works (with NaOEt/EtOH there is also polyalkylation, some 2,6-product, and ethoxide itself reacts with CH3I by Williamson ether synthesis). Check that 'NaOEt, EtOH, 25 °C' (NaH accepted as alias) matches the course's convention for the thermodynamic enolate.",
     "verified": false,
     "verifiedBy": null
   },
@@ -525,7 +523,7 @@
     "reactants": ["[CH3:1][CH2:2][CH:3]=[O:4]", "[CH3:5][CH2:6][CH:7]=[O:8]"],
     "reagents": [],
     "reagentDisplay": "NaOH, H2O, heat",
-    "reagentAliases": ["NaOH, heat", "NaOH", "KOH, heat", "NaOEt, heat", "base, heat", "hydroxide, heat"],
+    "reagentAliases": ["NaOH, heat", "KOH, heat", "NaOEt, heat", "base, heat", "hydroxide, heat"],
     "product": "[CH3:1][CH2:2][CH:3]=[C:6]([CH3:5])[CH:7]=[O:8]",
     "byproducts": ["[OH2:4]"],
     "keyStep": {
@@ -1186,7 +1184,6 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Claisen", "crossed Claisen", "1,3-dicarbonyl"],
-    "review": "The 1,3-diketone is drawn as the diketo form; in reality 1-phenylbutane-1,3-dione exists largely as its enol tautomer. Acetone self-aldol is a competing side reaction (the self-condensation trap explains why the crossed product dominates). Check the substrate pair is acceptable or swap to ethyl benzoate + ethyl acetate.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1444,7 +1441,6 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "Michael", "aldol", "Robinson annulation", "ring formation"],
-    "review": "Key step is the Michael step only (stated in why). Check the conditions shown (NaOEt, EtOH, heat; one pot) match the course convention; some texts write 1. NaOEt, 2. heat or use KOH/MeOH. Mechanism: the Michael enolate and the aldol alkoxide are protonated by ethanol (the solvent), and ethoxide does the later deprotonations; check this one-pot NaOEt/EtOH picture matches how the course draws it.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1460,8 +1456,7 @@
       "NaOEt, CH3CH2Br, H3O+",
       "NaOEt, EtBr, H3O+ heat",
       "1. NaOEt 2. EtBr 3. H3O+, heat",
-      "NaOEt then CH3CH2Br then H3O+",
-      "NaOEt, EtBr"
+      "NaOEt then CH3CH2Br then H3O+"
     ],
     "product": "[CH3:12][CH2:13][CH2:6][C:4](=[O:5])[OH:15]",
     "byproducts": ["[O:8]=[C:7]=[O:16]", "[CH3:1][CH2:2][OH:3]", "[CH3:11][CH2:10][OH:9]", "[Br-:14]"],
@@ -1648,7 +1643,6 @@
       ]
     },
     "tags": ["C-C bond", "enolate", "alkylation", "malonic ester", "decarboxylation"],
-    "review": "Mechanism: the two ester hydrolyses are drawn in parallel (each step applies the same arrows to both esters) to keep the card to 11 steps; the water-mediated proton transfers are written as separate deprotonation/protonation steps.",
     "verified": false,
     "verifiedBy": null
   },
@@ -1664,8 +1658,7 @@
       "NaOEt, CH3CH2Br, H3O+",
       "NaOEt, EtBr, H3O+ heat",
       "1. NaOEt 2. EtBr 3. H3O+, heat",
-      "NaOEt then CH3CH2Br then H3O+",
-      "NaOEt, EtBr"
+      "NaOEt then CH3CH2Br then H3O+"
     ],
     "product": "[CH3:1][C:2](=[O:3])[CH2:4][CH2:11][CH3:10]",
     "byproducts": ["[O:6]=[C:5]=[O:13]", "[CH3:9][CH2:8][OH:7]", "[Br-:12]"],
@@ -1807,17 +1800,18 @@
     "unit": 4,
     "pattern": "D",
     "title": "Decarboxylation of a β-keto acid (heat) → ketone + CO2",
-    "reactants": ["[O:1]=[C:2]1[CH:3]([C:8](=[O:9])[OH:10])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
+    "reactants": ["[O:1]=[C:2]1[CH:3]([C:8](=[O:9])[O:10][H:30])[CH2:4][CH2:5][CH2:6][CH2:7]1"],
     "reagents": [],
     "reagentDisplay": "heat",
     "reagentAliases": ["heat", "Δ", "warm", "H3O+, heat", "heat, -CO2"],
     "product": "[O:1]=[C:2]1[CH2:3][CH2:4][CH2:5][CH2:6][CH2:7]1",
     "byproducts": ["[O:9]=[C:8]=[O:10]"],
     "keyStep": {
-      "nucleophileAtom": 10,
-      "electrophileAtom": 1,
+      "nucleophileAtom": 1,
+      "electrophileAtom": 30,
       "arrows": [
-        {"from": {"lonePair": 10}, "to": {"bond": [8, 10]}},
+        {"from": {"lonePair": 1}, "to": {"atom": 30}},
+        {"from": {"bond": [30, 10]}, "to": {"bond": [8, 10]}},
         {"from": {"bond": [3, 8]}, "to": {"bond": [2, 3]}},
         {"from": {"bond": [1, 2]}, "to": {"atom": 1}}
       ]
@@ -1866,7 +1860,6 @@
     ],
     "confusableWith": ["u4-malonic-ester-butanoic-acid", "u4-acetoacetic-ester-2-pentanone"],
     "tags": ["decarboxylation", "enol", "beta-keto acid"],
-    "review": "Key-step arrows are simplified: the validator can't reference explicit H atoms, so the O–H → ketone-O proton transfer of the cyclic TS is drawn as 'O lone pair forms C=O of CO2; C–C bond forms the enol C=C; C=O π goes to the ketone O' (three arrows, no H). nucleophileAtom = the OH oxygen, electrophileAtom = the ketone O that picks up the H. Check this is acceptable. Mechanism: the enol→ketone tautomerization is drawn as acid-catalysed (H3O+/H2O) although only heat is listed; trace acid (e.g. the β-keto acid itself) catalyses it in practice.",
     "verified": false,
     "verifiedBy": null
   },
@@ -2035,7 +2028,6 @@
       ]
     },
     "tags": ["C-C bond", "enamine", "alkylation", "Stork"],
-    "review": "Mechanism: enamine formation and iminium hydrolysis are drawn with H3O+/H2O as the acid/base; with catalytic TsOH and pyrrolidine the deprotonations could equally be drawn with the amine as base.",
     "verified": false,
     "verifiedBy": null
   }
